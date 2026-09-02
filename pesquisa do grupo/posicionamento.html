@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Posicionamento — consciência, sofisticação e concorrentes</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+Condensed:wght@600;700&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #FBFCF9;
+    --bar: #E6EEDF;
+    --rule: #C3CFB9;
+    --ink: #1B2019;
+    --ink-soft: #5E655B;
+    --debit: #A8412A;
+    --debit-bg: #F8E7E1;
+    --debit-rule: #D9A695;
+    --fiscal: #2E3B2C;
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    background-image: repeating-linear-gradient(to bottom, var(--bar) 0 34px, var(--paper) 34px 68px);
+    color: var(--ink);
+    font-family: "IBM Plex Sans", system-ui, sans-serif;
+    font-size: 16px;
+    line-height: 1.65;
+  }
+  .sheet {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 40px 28px 80px;
+    background: var(--paper);
+    border-left: 1px solid var(--rule);
+    border-right: 1px solid var(--rule);
+    min-height: 100vh;
+  }
+  .eyebrow {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--ink-soft); margin: 0 0 18px;
+  }
+  h1 {
+    font-family: "IBM Plex Sans Condensed", sans-serif;
+    font-weight: 700; font-size: clamp(34px, 7vw, 54px);
+    line-height: 1.02; letter-spacing: -0.01em; margin: 0 0 14px;
+  }
+  .standfirst { font-size: 18px; color: var(--ink-soft); max-width: 46em; margin: 0 0 36px; }
+  section { margin-bottom: 56px; }
+  h2 {
+    font-family: "IBM Plex Sans Condensed", sans-serif;
+    font-weight: 600; font-size: 26px; line-height: 1.15;
+    margin: 0 0 6px; padding-top: 14px; border-top: 2px solid var(--ink);
+  }
+  h3 {
+    font-family: "IBM Plex Sans Condensed", sans-serif;
+    font-weight: 600; font-size: 19px; margin: 30px 0 8px;
+  }
+  .kicker {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--ink-soft); display: block; margin-bottom: 20px;
+  }
+  p { margin: 0 0 16px; max-width: 46em; }
+  strong { font-weight: 500; }
+  em { font-style: italic; }
+  ul.plain { padding-left: 20px; margin: 0 0 16px; max-width: 46em; }
+  ul.plain li { margin-bottom: 8px; }
+
+  table { width: 100%; border-collapse: collapse; margin: 8px 0 24px; font-size: 15px; }
+  caption {
+    text-align: left; font-family: "IBM Plex Mono", monospace;
+    font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--ink-soft); padding-bottom: 8px;
+  }
+  th, td { text-align: left; padding: 11px 12px 11px 0; border-bottom: 1px solid var(--rule); vertical-align: top; }
+  thead th {
+    font-family: "IBM Plex Mono", monospace; font-size: 11px;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--ink-soft); border-bottom: 1px solid var(--ink); font-weight: 400;
+  }
+  td.mark { color: var(--debit); }
+
+  .ladder { margin: 8px 0 24px; }
+  .rung {
+    display: grid; grid-template-columns: 30px 1fr; gap: 0 18px;
+    padding: 16px 0; border-top: 1px solid var(--rule); align-items: start;
+  }
+  .ladder .rung:last-child { border-bottom: 1px solid var(--rule); }
+  .rung-n {
+    font-family: "IBM Plex Mono", monospace; font-size: 12px;
+    color: var(--ink-soft); padding-top: 4px;
+  }
+  .rung h4 {
+    font-family: "IBM Plex Sans Condensed", sans-serif;
+    font-weight: 600; font-size: 18px; margin: 0 0 4px;
+  }
+  .rung p { margin: 0; }
+  .rung.here { background: #fff; border-left: 3px solid var(--debit); padding-left: 16px; }
+  .rung.here h4 { color: var(--debit); }
+  .here-flag {
+    display: inline-block; font-family: "IBM Plex Mono", monospace;
+    font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--debit); background: var(--debit-bg);
+    border: 1px solid var(--debit-rule); padding: 2px 7px; margin-left: 8px; vertical-align: 3px;
+  }
+
+  .layers { display: grid; gap: 1px; background: var(--rule); border: 1px solid var(--rule); margin: 8px 0 24px; }
+  .layer { background: #fff; padding: 20px 22px; }
+  .layer:last-child { background: var(--fiscal); color: #F1F4EC; }
+  .layer:last-child h4 { color: #fff; }
+  .layer:last-child p { color: #DCE3D6; }
+  .layer h4 {
+    font-family: "IBM Plex Sans Condensed", sans-serif;
+    font-weight: 600; font-size: 18px; margin: 0 0 6px;
+  }
+  .layer .who {
+    font-family: "IBM Plex Mono", monospace; font-size: 12px;
+    color: var(--ink-soft); display: block; margin-bottom: 10px;
+  }
+  .layer:last-child .who { color: #A9B5A2; }
+  .layer p { margin: 0; }
+
+  .callout { background: var(--debit-bg); border: 1px solid var(--debit-rule); padding: 22px 24px; margin: 24px 0; }
+  .callout h3 { margin-top: 0; }
+  .callout p:last-child { margin-bottom: 0; }
+
+  ol.dec { padding-left: 0; list-style: none; counter-reset: d; margin: 0; }
+  ol.dec li {
+    counter-increment: d; padding: 18px 0 18px 52px;
+    border-top: 1px solid var(--rule); position: relative; max-width: 46em;
+  }
+  ol.dec li:last-child { border-bottom: 1px solid var(--rule); }
+  ol.dec li::before {
+    content: counter(d, decimal-leading-zero);
+    position: absolute; left: 0; top: 18px;
+    font-family: "IBM Plex Mono", monospace; font-size: 12px; color: var(--debit);
+  }
+  ol.dec b {
+    font-family: "IBM Plex Sans Condensed", sans-serif;
+    font-weight: 600; font-size: 18px; display: block; margin-bottom: 2px;
+  }
+
+  footer {
+    font-family: "IBM Plex Mono", monospace; font-size: 12px;
+    color: var(--ink-soft); border-top: 1px solid var(--rule); padding-top: 16px;
+  }
+
+  @media (max-width: 620px) {
+    .sheet { padding: 28px 18px 60px; border: none; }
+    table { font-size: 14px; }
+    .rung { grid-template-columns: 1fr; gap: 4px; }
+    .rung-n { padding-top: 0; }
+  }
+  @media print {
+    body { background: #fff; }
+    .sheet { border: none; max-width: none; }
+    section { break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+<div class="sheet">
+
+  <p class="eyebrow">Hackathon · Time 12 · Mesa 12 · Documento 04</p>
+  <h1>Posicionamento</h1>
+  <p class="standfirst">Consciência, sofisticação e concorrentes. Três frameworks que não definem quem é o cliente — definem o que dizemos para ele, e se ainda dá para dizer.</p>
+
+  <section>
+    <h2>Antes de tudo: a ordem importa</h2>
+    <span class="kicker">Cada framework responde uma pergunta diferente</span>
+    <table>
+      <caption>O que cada camada resolve</caption>
+      <thead>
+        <tr><th scope="col">Camada</th><th scope="col">Pergunta que responde</th><th scope="col">Quando usar</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Comportamento — canal, volume, distância do teto</td><td>Quem é o ICP</td><td>Primeiro</td></tr>
+        <tr><td>Níveis de consciência</td><td>Por onde entrar na conversa</td><td>Depois do ICP</td></tr>
+        <tr><td>Estágios de sofisticação</td><td>Que promessa ainda funciona</td><td>Depois do ICP</td></tr>
+        <tr><td>Concorrentes</td><td>O que já foi tomado</td><td>Depois do ICP</td></tr>
+      </tbody>
+    </table>
+    <p>Usar consciência ou sofisticação para <em>segmentar</em> é o erro mais comum. Eles não separam pessoas, separam conversas. O ICP sai das variáveis de comportamento; estes três dizem se ele é vendável.</p>
+  </section>
+
+  <section>
+    <h2>Níveis de consciência</h2>
+    <span class="kicker">Onde o MEI está hoje</span>
+    <div class="ladder">
+      <div class="rung here">
+        <div class="rung-n">01</div>
+        <div>
+          <h4>Inconsciente do problema<span class="here-flag">aqui</span></h4>
+          <p>Não sabe quanto faturou, não liga o medo difuso de imposto a um número concreto. Nunca formulou isso como problema.</p>
+        </div>
+      </div>
+      <div class="rung here">
+        <div class="rung-n">02</div>
+        <div>
+          <h4>Consciente do problema, não da solução<span class="here-flag">aqui</span></h4>
+          <p>Sabe que a bagunça atrapalha e que o teto existe, mas acha que a saída é “se organizar melhor” ou pagar um contador.</p>
+        </div>
+      </div>
+      <div class="rung">
+        <div class="rung-n">03</div>
+        <div>
+          <h4>Consciente da solução</h4>
+          <p>Sabe que existem apps de gestão para MEI. Minoria — normalmente quem já foi desenquadrado ou levou susto fiscal.</p>
+        </div>
+      </div>
+      <div class="rung">
+        <div class="rung-n">04</div>
+        <div>
+          <h4>Consciente do produto</h4>
+          <p>Compara ferramentas específicas. Praticamente inexistente neste público.</p>
+        </div>
+      </div>
+    </div>
+
+    <h3>As três consequências de produto</h3>
+    <p><strong>Revelar antes de resolver.</strong> A primeira tela não pode pedir configuração — tem que devolver um número que a pessoa não sabia. <em>“Você já faturou R$ 58 mil este ano”</em> convence mais que qualquer texto de venda.</p>
+    <p><strong>Ninguém vai nos procurar.</strong> Público inconsciente não pesquisa solução. A distribuição precisa ser embutida: banco, adquirente, marketplace, contabilidade.</p>
+    <p><strong>A demo começa pelo susto.</strong> Não pela arquitetura, não pela lista de features. Pelo número que a pessoa não tinha.</p>
+
+    <p>Vale registrar o contraste: a PF de despesa está no nível 3 ou 4 — sabe que assinatura esquecida existe e conhece apps que resolvem. Mercado diferente, jogo diferente.</p>
+  </section>
+
+  <section>
+    <h2>Estágios de sofisticação</h2>
+    <span class="kicker">Duas promessas, dois mercados</span>
+    <table>
+      <caption>A mesma tecnologia, dois mercados em estágios opostos</caption>
+      <thead>
+        <tr><th scope="col"></th><th scope="col">Vigiar despesa</th><th scope="col">Vigiar receita do MEI</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Estágio</td><td class="mark">Avançado</td><td>Inicial</td></tr>
+        <tr><td>Quem já disse</td><td>Bancos, apps de finanças pessoais, gestores de assinatura</td><td>Praticamente ninguém</td></tr>
+        <tr><td>Promessa direta funciona?</td><td class="mark">Não — está gasta</td><td>Sim</td></tr>
+        <tr><td>O que seria preciso</td><td class="mark">Mecanismo novo ou identidade forte</td><td>Só ser o primeiro a dizer</td></tr>
+      </tbody>
+    </table>
+    <p>Essa é a justificativa estratégica da escolha de segmento. Em mercado pouco sofisticado, não precisamos ser mais criativos que ninguém — precisamos chegar antes com a frase mais simples possível.</p>
+
+    <div class="callout">
+      <h3>A promessa que ainda está livre</h3>
+      <p><strong>“Você sabe quanto já faturou este ano?”</strong></p>
+      <p>Direta, sem jargão, sem prometer inteligência artificial. Se alguém já estivesse dizendo isso, precisaríamos de uma camada a mais. Ninguém está.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Concorrentes em três camadas</h2>
+    <span class="kicker">A terceira é a que decide</span>
+    <div class="layers">
+      <div class="layer">
+        <h4>Diretos</h4>
+        <span class="who">Apps de gestão para MEI, contabilidades digitais, funções nativas de conta PJ</span>
+        <p>Resolvem emissão de nota, DAS e organização. Quase todos partem do princípio de que a pessoa vai alimentar o sistema — e ela não alimenta.</p>
+      </div>
+      <div class="layer">
+        <h4>Adjacentes</h4>
+        <span class="who">Bancos, adquirentes, marketplaces</span>
+        <p>Já enxergam o dado hoje e podem ligar esse recurso quando quiserem. É o risco competitivo real — e também o canal de distribuição mais provável. Vale tratar como parceiro potencial, não só como ameaça.</p>
+      </div>
+      <div class="layer">
+        <h4>Status quo</h4>
+        <span class="who">O caderno, a planilha, o contador do primo, não fazer nada</span>
+        <p>É quem detém o mercado. A pesquisa mostra a maioria controlando em caderno ou de cabeça — nenhum app perdeu esses usuários, porque eles nunca foram de ninguém. Nosso concorrente não é um produto: é um hábito.</p>
+      </div>
+    </div>
+    <p>Consequência prática: a barra de comparação não é “melhor que o app X”. É <strong>menos trabalho que o caderno</strong>. Qualquer tela que exija cadastro manual perde para o caderno na primeira semana.</p>
+  </section>
+
+  <section>
+    <h2>As decisões que saem daqui</h2>
+    <span class="kicker">Levar para a construção, não para a discussão</span>
+    <ol class="dec">
+      <li><b>A primeira tela revela um número</b>Sem onboarding, sem configuração, sem cadastro de categoria. Um dado que a pessoa não tinha.</li>
+      <li><b>A promessa do pitch é sobre receita, não sobre IA</b>“Você sabe quanto já faturou este ano?” — não “autopilot inteligente de anomalias financeiras”.</li>
+      <li><b>O slide de concorrência mostra três camadas</b>E termina na frase de que o concorrente real é o caderno. É o slide que diferencia a nossa leitura de mercado.</li>
+      <li><b>Zero entrada manual no fluxo principal</b>Se a demo precisar que alguém digite algo para funcionar, perdemos para o status quo antes de começar.</li>
+      <li><b>Distribuição entra no pitch</b>Público inconsciente não busca solução — precisamos dizer por qual canal chegamos até ele.</li>
+    </ol>
+  </section>
+
+  <footer>Documento de trabalho — série: 01 enquadramento · 02 catálogo · 03 universo MEI · 04 posicionamento.</footer>
+
+</div>
+</body>
+</html>

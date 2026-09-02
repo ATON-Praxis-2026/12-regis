@@ -1,0 +1,5115 @@
+{
+  "meta": {
+    "produto": "Regis · Financial Anomaly Autopilot",
+    "arquivo": "transacoes.json",
+    "descricao": "Extrato da conta PJ da Angela, transação por transação.",
+    "aviso": "Dados sintéticos, gerados por dados/gerar.py. Nenhuma pessoa ou empresa real.",
+    "seed": 20260829,
+    "moeda": "BRL",
+    "fuso": "America/Sao_Paulo",
+    "periodo_detalhado": {
+      "inicio": "2026-06-01",
+      "fim": "2026-08-29"
+    },
+    "convencao_de_sinal": "valor é sempre positivo, a direção está em tipo (entrada ou saida)",
+    "persona": {
+      "nome": "Angela Nogueira",
+      "negocio": "cabeleireira MEI no Studio Bella",
+      "regime": "MEI",
+      "cnae": "9602-5/01 cabeleireiros, manicure e pedicure",
+      "cidade": "Campinas, SP",
+      "vinculo": "aluga cadeira no Studio Bella, não é dona do salão",
+      "atende": "terça a sábado, fechado segunda e domingo",
+      "divide_o_salao_com": [
+        "Jéssica",
+        "Tainara",
+        "Simone"
+      ],
+      "recebe_por": [
+        "maquininha_credito",
+        "maquininha_debito",
+        "marketplace",
+        "pix"
+      ],
+      "controla_em": "caderno"
+    }
+  },
+  "contexto": {
+    "explicacao": "O que o motor precisa saber para transformar número em anomalia. Tudo aqui é contrato ou evento declarado, não é inferência.",
+    "teto_mei_anual": 81000.0,
+    "das": {
+      "valor_mensal": 87.05,
+      "base": "5% do salário mínimo de R$ 1621.00, mais R$ 1,00 de ICMS e R$ 5,00 de ISS",
+      "vencimento_dia": 20,
+      "regra": "um pagamento por competência, competência do mês anterior"
+    },
+    "maquininha": {
+      "adquirente": "Cielo",
+      "terminal": "4829",
+      "taxa_credito_contratada": 0.0289,
+      "taxa_debito_contratada": 0.0149,
+      "liquidacao": "D+0 para crédito (antecipação ligada) e D+0 para débito"
+    },
+    "antecipacao_automatica": {
+      "ativa": true,
+      "ativa_desde": "2026-03-02",
+      "taxa": 0.0299,
+      "contratada_conscientemente_pela_titular": false,
+      "descritor": "CIELO ANTECIP AUTOM D+0"
+    },
+    "marketplace": {
+      "nome": "BelezaNet",
+      "comissao_contratada": 0.12,
+      "ciclo_de_repasse": "toda sexta, cobrindo as vendas de sexta anterior até quinta"
+    },
+    "conta_pj": {
+      "banco": "Banco Sudeste",
+      "pacote": "PJ Essencial",
+      "tarifa_mensal_isenta_ate": "2026-07-31",
+      "tarifa_mensal_a_partir_de": {
+        "data": "2026-08-01",
+        "valor": 29.9
+      },
+      "aviso_recebido_pela_titular": false
+    },
+    "assinaturas_declaradas": [
+      {
+        "contraparte": "Agenda Salão App",
+        "valor": 39.9,
+        "dia_do_ciclo": 22,
+        "inicio": "2026-01-22",
+        "cancelada_em": "2026-06-12",
+        "protocolo_de_cancelamento": "AGS-2026-88421"
+      },
+      {
+        "contraparte": "SomPro Música Ambiente",
+        "valor_contratado": 32.9,
+        "dia_do_ciclo": 8,
+        "inicio": "2025-11-08",
+        "cancelada_em": null,
+        "reajuste_avisado": false
+      },
+      {
+        "contraparte": "Netflix",
+        "valor": 55.9,
+        "dia_do_ciclo": 12,
+        "inicio": "2024-03-12",
+        "cancelada_em": null,
+        "observacao": "assinatura pessoal paga pela conta PJ"
+      }
+    ],
+    "contrapartes_conhecidas": [
+      "Adriana R.",
+      "Agenda Salão App",
+      "Amanda W.",
+      "Banco Sudeste (conta PJ)",
+      "Beatriz M.",
+      "Beleza Distribuidora LTDA",
+      "BelezaNet (marketplace de agendamento)",
+      "Bruna Y.",
+      "CPFL Paulista (energia)",
+      "Cielo (maquininha)",
+      "Descarta Mais Comércio",
+      "Drogaria São Paulo",
+      "Fabiana L.",
+      "Gisele A.",
+      "Helena C.",
+      "Juliana F.",
+      "Kelly O.",
+      "Larissa V.",
+      "Nathália B.",
+      "Netflix",
+      "Patrícia H.",
+      "Posto Ipiranga",
+      "Receita Federal (DAS SIMEI)",
+      "Renata Q.",
+      "SomPro Música Ambiente",
+      "Studio Bella (aluguel de cadeira)",
+      "Supermercado Bom Preço",
+      "Vanessa U.",
+      "Vivo Fibra (internet)",
+      "Wilma J.",
+      "Yara K.",
+      "Íris N."
+    ],
+    "horario_habitual_de_movimento": {
+      "inicio": "06:00",
+      "fim": "23:59"
+    },
+    "feriados_no_periodo": [
+      {
+        "data": "2026-06-04",
+        "nome": "Corpus Christi"
+      },
+      {
+        "data": "2026-07-09",
+        "nome": "Revolução Constitucionalista (SP)"
+      }
+    ]
+  },
+  "acumulado_anterior": {
+    "explicacao": "Janeiro a maio de 2026 entram consolidados por mês, sem detalhe de transação. É o histórico que o motor fiscal soma ao período detalhado para chegar no acumulado do ano.",
+    "meses": [
+      {
+        "mes": "2026-01",
+        "faturamento_bruto": 5100.0
+      },
+      {
+        "mes": "2026-02",
+        "faturamento_bruto": 5500.0
+      },
+      {
+        "mes": "2026-03",
+        "faturamento_bruto": 6000.0
+      },
+      {
+        "mes": "2026-04",
+        "faturamento_bruto": 6500.0
+      },
+      {
+        "mes": "2026-05",
+        "faturamento_bruto": 6900.0
+      }
+    ],
+    "faturamento_bruto_total": 30000.0,
+    "das_pagos": [
+      "2026-01",
+      "2026-02",
+      "2026-03",
+      "2026-04"
+    ]
+  },
+  "totais": {
+    "qtd_transacoes": 367,
+    "qtd_entradas": 265,
+    "qtd_saidas": 102,
+    "faturamento_bruto_do_periodo": 28400.0,
+    "recebido_liquido_no_periodo": 26996.81,
+    "saidas_no_periodo": 13769.25,
+    "faturamento_bruto_acumulado_2026": 58400.0,
+    "percentual_do_teto": 72.1,
+    "falta_para_o_teto": 22600.0
+  },
+  "transacoes": [
+    {
+      "id": "TX-0001",
+      "data": "2026-06-02T10:10:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "CIELO*CRED 4829",
+      "valor": 43.7,
+      "valor_bruto_venda": 45.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0001"
+      ]
+    },
+    {
+      "id": "TX-0002",
+      "data": "2026-06-02T12:10:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "REC CARTAO CIELO 4829",
+      "valor": 140.81,
+      "valor_bruto_venda": 145.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0002"
+      ]
+    },
+    {
+      "id": "TX-0003",
+      "data": "2026-06-02T16:40:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_debito",
+      "descritor_bruto": "CIELO DEB 4829",
+      "valor": 246.28,
+      "valor_bruto_venda": 250.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0003"
+      ]
+    },
+    {
+      "id": "TX-0004",
+      "data": "2026-06-02T23:50:00-03:00",
+      "tipo": "saida",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "CIELO ANTECIP AUTOM D+0",
+      "valor": 5.68,
+      "valor_bruto_venda": null,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "antecipacao"
+    },
+    {
+      "id": "TX-0005",
+      "data": "2026-06-03T08:58:00-03:00",
+      "tipo": "saida",
+      "canal": "pix",
+      "descritor_bruto": "PIX ENV DROGARIA SAO PAULO",
+      "valor": 139.88,
+      "valor_bruto_venda": null,
+      "contraparte": "Drogaria São Paulo",
+      "categoria": "pessoal"
+    },
+    {
+      "id": "TX-0006",
+      "data": "2026-06-03T09:00:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_debito",
+      "descritor_bruto": "CIELO DEB 4829",
+      "valor": 246.28,
+      "valor_bruto_venda": 250.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0004"
+      ]
+    },
+    {
+      "id": "TX-0007",
+      "data": "2026-06-03T14:15:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "CIELO*CRED 4829",
+      "valor": 33.99,
+      "valor_bruto_venda": 35.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0005"
+      ]
+    },
+    {
+      "id": "TX-0008",
+      "data": "2026-06-03T23:50:00-03:00",
+      "tipo": "saida",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "CIELO ANTECIP AUTOM D+0",
+      "valor": 1.05,
+      "valor_bruto_venda": null,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "antecipacao"
+    },
+    {
+      "id": "TX-0009",
+      "data": "2026-06-05T09:22:00-03:00",
+      "tipo": "saida",
+      "canal": "pix",
+      "descritor_bruto": "PIX ENVIADO STUDIO BELLA LTDA",
+      "valor": 1850.0,
+      "valor_bruto_venda": null,
+      "contraparte": "Studio Bella (aluguel de cadeira)",
+      "categoria": "aluguel"
+    },
+    {
+      "id": "TX-0010",
+      "data": "2026-06-05T11:15:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "CIELO*CRED 4829",
+      "valor": 67.98,
+      "valor_bruto_venda": 70.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0006"
+      ]
+    },
+    {
+      "id": "TX-0011",
+      "data": "2026-06-05T13:30:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_debito",
+      "descritor_bruto": "CIELO*DEB 4829",
+      "valor": 39.4,
+      "valor_bruto_venda": 40.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0007"
+      ]
+    },
+    {
+      "id": "TX-0012",
+      "data": "2026-06-05T13:40:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "CIELO*CRED 4829",
+      "valor": 33.99,
+      "valor_bruto_venda": 35.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0008"
+      ]
+    },
+    {
+      "id": "TX-0013",
+      "data": "2026-06-05T17:10:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "CIELO 4829",
+      "valor": 53.41,
+      "valor_bruto_venda": 55.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0010"
+      ]
+    },
+    {
+      "id": "TX-0014",
+      "data": "2026-06-05T18:45:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_debito",
+      "descritor_bruto": "CIELO DEB 4829",
+      "valor": 68.96,
+      "valor_bruto_venda": 70.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0011"
+      ]
+    },
+    {
+      "id": "TX-0015",
+      "data": "2026-06-05T23:50:00-03:00",
+      "tipo": "saida",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "CIELO ANTECIP AUTOM D+0",
+      "valor": 4.78,
+      "valor_bruto_venda": null,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "antecipacao"
+    },
+    {
+      "id": "TX-0016",
+      "data": "2026-06-06T09:20:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_debito",
+      "descritor_bruto": "CIELO*DEB 4829",
+      "valor": 34.48,
+      "valor_bruto_venda": 35.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0013"
+      ]
+    },
+    {
+      "id": "TX-0017",
+      "data": "2026-06-06T09:30:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "CIELO 4829",
+      "valor": 67.98,
+      "valor_bruto_venda": 70.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0014"
+      ]
+    },
+    {
+      "id": "TX-0018",
+      "data": "2026-06-06T11:00:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_debito",
+      "descritor_bruto": "CIELO*DEB 4829",
+      "valor": 49.26,
+      "valor_bruto_venda": 50.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0016"
+      ]
+    },
+    {
+      "id": "TX-0019",
+      "data": "2026-06-06T13:30:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "CIELO*CRED 4829",
+      "valor": 155.38,
+      "valor_bruto_venda": 160.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0019"
+      ]
+    },
+    {
+      "id": "TX-0020",
+      "data": "2026-06-06T17:15:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_debito",
+      "descritor_bruto": "CIELO*DEB 4829",
+      "valor": 59.11,
+      "valor_bruto_venda": 60.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0020"
+      ]
+    },
+    {
+      "id": "TX-0021",
+      "data": "2026-06-06T23:50:00-03:00",
+      "tipo": "saida",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "CIELO ANTECIP AUTOM D+0",
+      "valor": 6.88,
+      "valor_bruto_venda": null,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "antecipacao"
+    },
+    {
+      "id": "TX-0022",
+      "data": "2026-06-08T06:12:00-03:00",
+      "tipo": "saida",
+      "canal": "debito_automatico",
+      "descritor_bruto": "SOMPRO*MUSICA AMBIENT",
+      "valor": 32.9,
+      "valor_bruto_venda": null,
+      "contraparte": "SomPro Música Ambiente",
+      "categoria": "assinatura"
+    },
+    {
+      "id": "TX-0023",
+      "data": "2026-06-09T11:10:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "REC CARTAO CIELO 4829",
+      "valor": 63.12,
+      "valor_bruto_venda": 65.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0021"
+      ]
+    },
+    {
+      "id": "TX-0024",
+      "data": "2026-06-09T11:30:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_debito",
+      "descritor_bruto": "CIELO DEB 4829",
+      "valor": 49.26,
+      "valor_bruto_venda": 50.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0022"
+      ]
+    },
+    {
+      "id": "TX-0025",
+      "data": "2026-06-09T14:45:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "CIELO 4829",
+      "valor": 38.84,
+      "valor_bruto_venda": 40.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0023"
+      ]
+    },
+    {
+      "id": "TX-0026",
+      "data": "2026-06-09T16:15:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_debito",
+      "descritor_bruto": "CIELO DEB 4829",
+      "valor": 49.26,
+      "valor_bruto_venda": 50.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0024"
+      ]
+    },
+    {
+      "id": "TX-0027",
+      "data": "2026-06-09T23:50:00-03:00",
+      "tipo": "saida",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "CIELO ANTECIP AUTOM D+0",
+      "valor": 3.14,
+      "valor_bruto_venda": null,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "antecipacao"
+    },
+    {
+      "id": "TX-0028",
+      "data": "2026-06-10T06:03:00-03:00",
+      "tipo": "saida",
+      "canal": "debito_automatico",
+      "descritor_bruto": "VIVO FIBRA 400 DEB AUT",
+      "valor": 119.9,
+      "valor_bruto_venda": null,
+      "contraparte": "Vivo Fibra (internet)",
+      "categoria": "utilidade"
+    },
+    {
+      "id": "TX-0029",
+      "data": "2026-06-10T09:10:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_debito",
+      "descritor_bruto": "CIELO DEB 4829",
+      "valor": 68.96,
+      "valor_bruto_venda": 70.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0025"
+      ]
+    },
+    {
+      "id": "TX-0030",
+      "data": "2026-06-10T11:40:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "CIELO 4829",
+      "valor": 43.7,
+      "valor_bruto_venda": 45.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0026"
+      ]
+    },
+    {
+      "id": "TX-0031",
+      "data": "2026-06-10T23:50:00-03:00",
+      "tipo": "saida",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "CIELO ANTECIP AUTOM D+0",
+      "valor": 1.35,
+      "valor_bruto_venda": null,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "antecipacao"
+    },
+    {
+      "id": "TX-0032",
+      "data": "2026-06-11T14:10:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_debito",
+      "descritor_bruto": "CIELO*DEB 4829",
+      "valor": 49.26,
+      "valor_bruto_venda": 50.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0028"
+      ]
+    },
+    {
+      "id": "TX-0033",
+      "data": "2026-06-11T15:15:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "CIELO*CRED 4829",
+      "valor": 53.41,
+      "valor_bruto_venda": 55.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0029"
+      ]
+    },
+    {
+      "id": "TX-0034",
+      "data": "2026-06-11T16:50:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_debito",
+      "descritor_bruto": "CIELO DEB 4829",
+      "valor": 269.92,
+      "valor_bruto_venda": 274.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0030"
+      ]
+    },
+    {
+      "id": "TX-0035",
+      "data": "2026-06-11T17:00:00-03:00",
+      "tipo": "entrada",
+      "canal": "pix",
+      "descritor_bruto": "PIX RECEBIDO CPF ***.412.***-**",
+      "valor": 130.0,
+      "valor_bruto_venda": null,
+      "contraparte": "Helena C.",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0031"
+      ]
+    },
+    {
+      "id": "TX-0036",
+      "data": "2026-06-11T23:50:00-03:00",
+      "tipo": "saida",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "CIELO ANTECIP AUTOM D+0",
+      "valor": 1.64,
+      "valor_bruto_venda": null,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "antecipacao"
+    },
+    {
+      "id": "TX-0037",
+      "data": "2026-06-12T06:03:00-03:00",
+      "tipo": "saida",
+      "canal": "debito_automatico",
+      "descritor_bruto": "CPFL PAULISTA DEB AUT",
+      "valor": 268.44,
+      "valor_bruto_venda": null,
+      "contraparte": "CPFL Paulista (energia)",
+      "categoria": "utilidade"
+    },
+    {
+      "id": "TX-0038",
+      "data": "2026-06-12T09:14:00-03:00",
+      "tipo": "saida",
+      "canal": "debito_automatico",
+      "descritor_bruto": "NETFLIX.COM 5511",
+      "valor": 55.9,
+      "valor_bruto_venda": null,
+      "contraparte": "Netflix",
+      "categoria": "assinatura"
+    },
+    {
+      "id": "TX-0039",
+      "data": "2026-06-12T10:12:00-03:00",
+      "tipo": "entrada",
+      "canal": "marketplace",
+      "descritor_bruto": "PAG*BELEZANET",
+      "valor": 473.44,
+      "valor_bruto_venda": 538.0,
+      "contraparte": "BelezaNet (marketplace de agendamento)",
+      "categoria": "repasse",
+      "venda_ids": [
+        "VD-0009",
+        "VD-0012",
+        "VD-0015",
+        "VD-0017",
+        "VD-0018",
+        "VD-0027"
+      ],
+      "qtd_vendas": 6
+    },
+    {
+      "id": "TX-0040",
+      "data": "2026-06-12T13:40:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "CIELO*CRED 4829",
+      "valor": 38.84,
+      "valor_bruto_venda": 40.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0035"
+      ]
+    },
+    {
+      "id": "TX-0041",
+      "data": "2026-06-12T15:30:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "CIELO*CRED 4829",
+      "valor": 33.99,
+      "valor_bruto_venda": 35.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0036"
+      ]
+    },
+    {
+      "id": "TX-0042",
+      "data": "2026-06-12T16:15:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "REC CARTAO CIELO 4829",
+      "valor": 33.99,
+      "valor_bruto_venda": 35.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0037"
+      ]
+    },
+    {
+      "id": "TX-0043",
+      "data": "2026-06-12T17:50:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_debito",
+      "descritor_bruto": "CIELO*DEB 4829",
+      "valor": 68.96,
+      "valor_bruto_venda": 70.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0038"
+      ]
+    },
+    {
+      "id": "TX-0044",
+      "data": "2026-06-12T23:50:00-03:00",
+      "tipo": "saida",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "CIELO ANTECIP AUTOM D+0",
+      "valor": 3.29,
+      "valor_bruto_venda": null,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "antecipacao"
+    },
+    {
+      "id": "TX-0045",
+      "data": "2026-06-13T09:00:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_debito",
+      "descritor_bruto": "CIELO DEB 4829",
+      "valor": 34.48,
+      "valor_bruto_venda": 35.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0039"
+      ]
+    },
+    {
+      "id": "TX-0046",
+      "data": "2026-06-13T10:15:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "REC CARTAO CIELO 4829",
+      "valor": 67.98,
+      "valor_bruto_venda": 70.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0041"
+      ]
+    },
+    {
+      "id": "TX-0047",
+      "data": "2026-06-13T12:30:00-03:00",
+      "tipo": "entrada",
+      "canal": "pix",
+      "descritor_bruto": "PIX REC 8812 QRS",
+      "valor": 35.0,
+      "valor_bruto_venda": null,
+      "contraparte": "Amanda W.",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0042"
+      ]
+    },
+    {
+      "id": "TX-0048",
+      "data": "2026-06-13T13:00:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_debito",
+      "descritor_bruto": "CIELO*DEB 4829",
+      "valor": 54.18,
+      "valor_bruto_venda": 55.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0044"
+      ]
+    },
+    {
+      "id": "TX-0049",
+      "data": "2026-06-13T15:50:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_debito",
+      "descritor_bruto": "CIELO DEB 4829",
+      "valor": 49.26,
+      "valor_bruto_venda": 50.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0046"
+      ]
+    },
+    {
+      "id": "TX-0050",
+      "data": "2026-06-13T16:10:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_debito",
+      "descritor_bruto": "CIELO*DEB 4829",
+      "valor": 34.48,
+      "valor_bruto_venda": 35.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0047"
+      ]
+    },
+    {
+      "id": "TX-0051",
+      "data": "2026-06-13T23:50:00-03:00",
+      "tipo": "saida",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "CIELO ANTECIP AUTOM D+0",
+      "valor": 2.09,
+      "valor_bruto_venda": null,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "antecipacao"
+    },
+    {
+      "id": "TX-0052",
+      "data": "2026-06-14T09:12:00-03:00",
+      "tipo": "saida",
+      "canal": "boleto",
+      "descritor_bruto": "BELEZA DISTRIB LTDA 001",
+      "valor": 512.4,
+      "valor_bruto_venda": null,
+      "contraparte": "Beleza Distribuidora LTDA",
+      "categoria": "insumo"
+    },
+    {
+      "id": "TX-0053",
+      "data": "2026-06-14T12:17:00-03:00",
+      "tipo": "saida",
+      "canal": "pix",
+      "descritor_bruto": "PIX ENV SUPERM BOM PRECO",
+      "valor": 139.51,
+      "valor_bruto_venda": null,
+      "contraparte": "Posto Ipiranga",
+      "categoria": "pessoal"
+    },
+    {
+      "id": "TX-0054",
+      "data": "2026-06-16T12:20:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "REC CARTAO CIELO 4829",
+      "valor": 43.7,
+      "valor_bruto_venda": 45.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0048"
+      ]
+    },
+    {
+      "id": "TX-0055",
+      "data": "2026-06-16T15:30:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_debito",
+      "descritor_bruto": "CIELO DEB 4829",
+      "valor": 54.18,
+      "valor_bruto_venda": 55.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0049"
+      ]
+    },
+    {
+      "id": "TX-0056",
+      "data": "2026-06-16T17:20:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_debito",
+      "descritor_bruto": "CIELO DEB 4829",
+      "valor": 64.03,
+      "valor_bruto_venda": 65.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0050"
+      ]
+    },
+    {
+      "id": "TX-0057",
+      "data": "2026-06-16T23:50:00-03:00",
+      "tipo": "saida",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "CIELO ANTECIP AUTOM D+0",
+      "valor": 1.35,
+      "valor_bruto_venda": null,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "antecipacao"
+    },
+    {
+      "id": "TX-0058",
+      "data": "2026-06-17T10:20:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_debito",
+      "descritor_bruto": "CIELO DEB 4829",
+      "valor": 142.84,
+      "valor_bruto_venda": 145.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0051"
+      ]
+    },
+    {
+      "id": "TX-0059",
+      "data": "2026-06-17T13:30:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_debito",
+      "descritor_bruto": "CIELO DEB 4829",
+      "valor": 68.96,
+      "valor_bruto_venda": 70.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0052"
+      ]
+    },
+    {
+      "id": "TX-0060",
+      "data": "2026-06-17T16:45:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_debito",
+      "descritor_bruto": "CIELO*DEB 4829",
+      "valor": 34.48,
+      "valor_bruto_venda": 35.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0053"
+      ]
+    },
+    {
+      "id": "TX-0061",
+      "data": "2026-06-17T17:15:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_debito",
+      "descritor_bruto": "CIELO DEB 4829",
+      "valor": 59.11,
+      "valor_bruto_venda": 60.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0054"
+      ]
+    },
+    {
+      "id": "TX-0062",
+      "data": "2026-06-17T18:15:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "REC CARTAO CIELO 4829",
+      "valor": 92.25,
+      "valor_bruto_venda": 95.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0055"
+      ]
+    },
+    {
+      "id": "TX-0063",
+      "data": "2026-06-17T23:50:00-03:00",
+      "tipo": "saida",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "CIELO ANTECIP AUTOM D+0",
+      "valor": 2.84,
+      "valor_bruto_venda": null,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "antecipacao"
+    },
+    {
+      "id": "TX-0064",
+      "data": "2026-06-18T10:40:00-03:00",
+      "tipo": "saida",
+      "canal": "boleto",
+      "descritor_bruto": "PAGTO BOLETO GPS/DAS 05/2026",
+      "valor": 87.05,
+      "valor_bruto_venda": null,
+      "contraparte": "Receita Federal (DAS SIMEI)",
+      "categoria": "imposto",
+      "competencia": "2026-05"
+    },
+    {
+      "id": "TX-0065",
+      "data": "2026-06-18T11:05:00-03:00",
+      "tipo": "saida",
+      "canal": "pix",
+      "descritor_bruto": "PIX ENV DESCARTA MAIS COM",
+      "valor": 214.0,
+      "valor_bruto_venda": null,
+      "contraparte": "Descarta Mais Comércio",
+      "categoria": "insumo"
+    },
+    {
+      "id": "TX-0066",
+      "data": "2026-06-18T16:40:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_debito",
+      "descritor_bruto": "CIELO DEB 4829",
+      "valor": 54.18,
+      "valor_bruto_venda": 55.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0057"
+      ]
+    },
+    {
+      "id": "TX-0067",
+      "data": "2026-06-18T17:45:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "CIELO*CRED 4829",
+      "valor": 126.24,
+      "valor_bruto_venda": 130.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0058"
+      ]
+    },
+    {
+      "id": "TX-0068",
+      "data": "2026-06-18T23:50:00-03:00",
+      "tipo": "saida",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "CIELO ANTECIP AUTOM D+0",
+      "valor": 3.89,
+      "valor_bruto_venda": null,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "antecipacao"
+    },
+    {
+      "id": "TX-0069",
+      "data": "2026-06-19T10:10:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "REC CARTAO CIELO 4829",
+      "valor": 33.99,
+      "valor_bruto_venda": 35.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0059"
+      ]
+    },
+    {
+      "id": "TX-0070",
+      "data": "2026-06-19T10:12:00-03:00",
+      "tipo": "entrada",
+      "canal": "marketplace",
+      "descritor_bruto": "MP *SALAO",
+      "valor": 601.04,
+      "valor_bruto_venda": 683.0,
+      "contraparte": "BelezaNet (marketplace de agendamento)",
+      "categoria": "repasse",
+      "venda_ids": [
+        "VD-0032",
+        "VD-0033",
+        "VD-0034",
+        "VD-0040",
+        "VD-0043",
+        "VD-0045",
+        "VD-0056"
+      ],
+      "qtd_vendas": 7
+    },
+    {
+      "id": "TX-0071",
+      "data": "2026-06-19T12:10:00-03:00",
+      "tipo": "entrada",
+      "canal": "pix",
+      "descritor_bruto": "PIX RECEBIDO CPF ***.412.***-**",
+      "valor": 150.0,
+      "valor_bruto_venda": null,
+      "contraparte": "Renata Q.",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0061"
+      ]
+    },
+    {
+      "id": "TX-0072",
+      "data": "2026-06-19T14:10:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_debito",
+      "descritor_bruto": "CIELO DEB 4829",
+      "valor": 64.03,
+      "valor_bruto_venda": 65.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0062"
+      ]
+    },
+    {
+      "id": "TX-0073",
+      "data": "2026-06-19T14:15:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_debito",
+      "descritor_bruto": "CIELO DEB 4829",
+      "valor": 64.03,
+      "valor_bruto_venda": 65.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0063"
+      ]
+    },
+    {
+      "id": "TX-0074",
+      "data": "2026-06-19T15:10:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "CIELO 4829",
+      "valor": 242.78,
+      "valor_bruto_venda": 250.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0064"
+      ]
+    },
+    {
+      "id": "TX-0075",
+      "data": "2026-06-19T17:10:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_debito",
+      "descritor_bruto": "CIELO DEB 4829",
+      "valor": 64.03,
+      "valor_bruto_venda": 65.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0065"
+      ]
+    },
+    {
+      "id": "TX-0076",
+      "data": "2026-06-19T23:50:00-03:00",
+      "tipo": "saida",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "CIELO ANTECIP AUTOM D+0",
+      "valor": 8.52,
+      "valor_bruto_venda": null,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "antecipacao"
+    },
+    {
+      "id": "TX-0077",
+      "data": "2026-06-20T08:50:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "CIELO 4829",
+      "valor": 43.7,
+      "valor_bruto_venda": 45.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0066"
+      ]
+    },
+    {
+      "id": "TX-0078",
+      "data": "2026-06-20T14:30:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_debito",
+      "descritor_bruto": "CIELO DEB 4829",
+      "valor": 68.96,
+      "valor_bruto_venda": 70.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0069"
+      ]
+    },
+    {
+      "id": "TX-0079",
+      "data": "2026-06-20T14:40:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "CIELO*CRED 4829",
+      "valor": 43.7,
+      "valor_bruto_venda": 45.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0070"
+      ]
+    },
+    {
+      "id": "TX-0080",
+      "data": "2026-06-20T15:50:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "REC CARTAO CIELO 4829",
+      "valor": 43.7,
+      "valor_bruto_venda": 45.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0071"
+      ]
+    },
+    {
+      "id": "TX-0081",
+      "data": "2026-06-20T16:50:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "CIELO 4829",
+      "valor": 38.84,
+      "valor_bruto_venda": 40.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0072"
+      ]
+    },
+    {
+      "id": "TX-0082",
+      "data": "2026-06-20T17:20:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_debito",
+      "descritor_bruto": "CIELO*DEB 4829",
+      "valor": 275.83,
+      "valor_bruto_venda": 280.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0073"
+      ]
+    },
+    {
+      "id": "TX-0083",
+      "data": "2026-06-20T23:50:00-03:00",
+      "tipo": "saida",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "CIELO ANTECIP AUTOM D+0",
+      "valor": 5.23,
+      "valor_bruto_venda": null,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "antecipacao"
+    },
+    {
+      "id": "TX-0084",
+      "data": "2026-06-22T06:41:00-03:00",
+      "tipo": "saida",
+      "canal": "debito_automatico",
+      "descritor_bruto": "PAG*AGENDASALAO",
+      "valor": 39.9,
+      "valor_bruto_venda": null,
+      "contraparte": "Agenda Salão App",
+      "categoria": "assinatura"
+    },
+    {
+      "id": "TX-0085",
+      "data": "2026-06-23T16:50:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "CIELO 4829",
+      "valor": 53.41,
+      "valor_bruto_venda": 55.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0075"
+      ]
+    },
+    {
+      "id": "TX-0086",
+      "data": "2026-06-23T19:41:00-03:00",
+      "tipo": "saida",
+      "canal": "pix",
+      "descritor_bruto": "PIX ENV POSTO IPIRANGA 12",
+      "valor": 115.91,
+      "valor_bruto_venda": null,
+      "contraparte": "Supermercado Bom Preço",
+      "categoria": "pessoal"
+    },
+    {
+      "id": "TX-0087",
+      "data": "2026-06-23T23:50:00-03:00",
+      "tipo": "saida",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "CIELO ANTECIP AUTOM D+0",
+      "valor": 1.64,
+      "valor_bruto_venda": null,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "antecipacao"
+    },
+    {
+      "id": "TX-0088",
+      "data": "2026-06-24T10:40:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_debito",
+      "descritor_bruto": "CIELO*DEB 4829",
+      "valor": 64.03,
+      "valor_bruto_venda": 65.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0076"
+      ]
+    },
+    {
+      "id": "TX-0089",
+      "data": "2026-06-24T13:20:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_debito",
+      "descritor_bruto": "CIELO*DEB 4829",
+      "valor": 44.33,
+      "valor_bruto_venda": 45.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0077"
+      ]
+    },
+    {
+      "id": "TX-0090",
+      "data": "2026-06-24T15:40:00-03:00",
+      "tipo": "saida",
+      "canal": "boleto",
+      "descritor_bruto": "PAG*BELEZADIST",
+      "valor": 386.2,
+      "valor_bruto_venda": null,
+      "contraparte": "Beleza Distribuidora LTDA",
+      "categoria": "insumo"
+    },
+    {
+      "id": "TX-0091",
+      "data": "2026-06-25T15:15:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_debito",
+      "descritor_bruto": "CIELO*DEB 4829",
+      "valor": 157.62,
+      "valor_bruto_venda": 160.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0080"
+      ]
+    },
+    {
+      "id": "TX-0092",
+      "data": "2026-06-25T17:40:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "REC CARTAO CIELO 4829",
+      "valor": 155.38,
+      "valor_bruto_venda": 160.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0081"
+      ]
+    },
+    {
+      "id": "TX-0093",
+      "data": "2026-06-25T23:50:00-03:00",
+      "tipo": "saida",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "CIELO ANTECIP AUTOM D+0",
+      "valor": 4.78,
+      "valor_bruto_venda": null,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "antecipacao"
+    },
+    {
+      "id": "TX-0094",
+      "data": "2026-06-26T10:00:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "REC CARTAO CIELO 4829",
+      "valor": 43.7,
+      "valor_bruto_venda": 45.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0082"
+      ]
+    },
+    {
+      "id": "TX-0095",
+      "data": "2026-06-26T10:12:00-03:00",
+      "tipo": "entrada",
+      "canal": "marketplace",
+      "descritor_bruto": "BELEZANET REPASSE",
+      "valor": 277.2,
+      "valor_bruto_venda": 315.0,
+      "contraparte": "BelezaNet (marketplace de agendamento)",
+      "categoria": "repasse",
+      "venda_ids": [
+        "VD-0060",
+        "VD-0067",
+        "VD-0068",
+        "VD-0074",
+        "VD-0078",
+        "VD-0079"
+      ],
+      "qtd_vendas": 6
+    },
+    {
+      "id": "TX-0096",
+      "data": "2026-06-26T11:00:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "REC CARTAO CIELO 4829",
+      "valor": 38.84,
+      "valor_bruto_venda": 40.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0083"
+      ]
+    },
+    {
+      "id": "TX-0097",
+      "data": "2026-06-26T13:45:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_debito",
+      "descritor_bruto": "CIELO*DEB 4829",
+      "valor": 44.33,
+      "valor_bruto_venda": 45.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0085"
+      ]
+    },
+    {
+      "id": "TX-0098",
+      "data": "2026-06-26T14:50:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "REC CARTAO CIELO 4829",
+      "valor": 48.56,
+      "valor_bruto_venda": 50.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0086"
+      ]
+    },
+    {
+      "id": "TX-0099",
+      "data": "2026-06-26T15:15:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_debito",
+      "descritor_bruto": "CIELO DEB 4829",
+      "valor": 64.03,
+      "valor_bruto_venda": 65.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0087"
+      ]
+    },
+    {
+      "id": "TX-0100",
+      "data": "2026-06-26T15:40:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_debito",
+      "descritor_bruto": "CIELO*DEB 4829",
+      "valor": 93.58,
+      "valor_bruto_venda": 95.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0088"
+      ]
+    },
+    {
+      "id": "TX-0101",
+      "data": "2026-06-26T17:10:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_debito",
+      "descritor_bruto": "CIELO DEB 4829",
+      "valor": 93.58,
+      "valor_bruto_venda": 95.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0089"
+      ]
+    },
+    {
+      "id": "TX-0102",
+      "data": "2026-06-26T23:50:00-03:00",
+      "tipo": "saida",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "CIELO ANTECIP AUTOM D+0",
+      "valor": 4.04,
+      "valor_bruto_venda": null,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "antecipacao"
+    },
+    {
+      "id": "TX-0103",
+      "data": "2026-06-27T09:40:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_debito",
+      "descritor_bruto": "CIELO DEB 4829",
+      "valor": 246.28,
+      "valor_bruto_venda": 250.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0090"
+      ]
+    },
+    {
+      "id": "TX-0104",
+      "data": "2026-06-27T11:10:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_debito",
+      "descritor_bruto": "CIELO DEB 4829",
+      "valor": 39.4,
+      "valor_bruto_venda": 40.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0092"
+      ]
+    },
+    {
+      "id": "TX-0105",
+      "data": "2026-06-27T12:15:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_debito",
+      "descritor_bruto": "CIELO DEB 4829",
+      "valor": 64.03,
+      "valor_bruto_venda": 65.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0093"
+      ]
+    },
+    {
+      "id": "TX-0106",
+      "data": "2026-06-27T13:20:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "REC CARTAO CIELO 4829",
+      "valor": 271.91,
+      "valor_bruto_venda": 280.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0094"
+      ]
+    },
+    {
+      "id": "TX-0107",
+      "data": "2026-06-27T14:20:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_debito",
+      "descritor_bruto": "CIELO*DEB 4829",
+      "valor": 34.48,
+      "valor_bruto_venda": 35.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0095"
+      ]
+    },
+    {
+      "id": "TX-0108",
+      "data": "2026-06-27T14:50:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_debito",
+      "descritor_bruto": "CIELO DEB 4829",
+      "valor": 49.26,
+      "valor_bruto_venda": 50.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0096"
+      ]
+    },
+    {
+      "id": "TX-0109",
+      "data": "2026-06-27T17:20:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "REC CARTAO CIELO 4829",
+      "valor": 63.12,
+      "valor_bruto_venda": 65.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0097"
+      ]
+    },
+    {
+      "id": "TX-0110",
+      "data": "2026-06-27T23:50:00-03:00",
+      "tipo": "saida",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "CIELO ANTECIP AUTOM D+0",
+      "valor": 10.32,
+      "valor_bruto_venda": null,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "antecipacao"
+    },
+    {
+      "id": "TX-0111",
+      "data": "2026-06-30T09:40:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "CIELO 4829",
+      "valor": 43.7,
+      "valor_bruto_venda": 45.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0098"
+      ]
+    },
+    {
+      "id": "TX-0112",
+      "data": "2026-06-30T13:20:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_debito",
+      "descritor_bruto": "CIELO*DEB 4829",
+      "valor": 118.21,
+      "valor_bruto_venda": 120.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0100"
+      ]
+    },
+    {
+      "id": "TX-0113",
+      "data": "2026-06-30T15:00:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "CIELO 4829",
+      "valor": 67.98,
+      "valor_bruto_venda": 70.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0101"
+      ]
+    },
+    {
+      "id": "TX-0114",
+      "data": "2026-06-30T23:50:00-03:00",
+      "tipo": "saida",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "CIELO ANTECIP AUTOM D+0",
+      "valor": 3.44,
+      "valor_bruto_venda": null,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "antecipacao"
+    },
+    {
+      "id": "TX-0115",
+      "data": "2026-07-01T09:30:00-03:00",
+      "tipo": "entrada",
+      "canal": "pix",
+      "descritor_bruto": "PIX QR ESTATICO 8812",
+      "valor": 45.0,
+      "valor_bruto_venda": null,
+      "contraparte": "Yara K.",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0102"
+      ]
+    },
+    {
+      "id": "TX-0116",
+      "data": "2026-07-01T13:00:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_debito",
+      "descritor_bruto": "CIELO DEB 4829",
+      "valor": 64.03,
+      "valor_bruto_venda": 65.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0103"
+      ]
+    },
+    {
+      "id": "TX-0117",
+      "data": "2026-07-02T11:50:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "CIELO*CRED 4829",
+      "valor": 43.7,
+      "valor_bruto_venda": 45.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0105"
+      ]
+    },
+    {
+      "id": "TX-0118",
+      "data": "2026-07-02T14:45:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "REC CARTAO CIELO 4829",
+      "valor": 38.84,
+      "valor_bruto_venda": 40.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0106"
+      ]
+    },
+    {
+      "id": "TX-0119",
+      "data": "2026-07-02T23:50:00-03:00",
+      "tipo": "saida",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "CIELO ANTECIP AUTOM D+0",
+      "valor": 2.54,
+      "valor_bruto_venda": null,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "antecipacao"
+    },
+    {
+      "id": "TX-0120",
+      "data": "2026-07-03T09:10:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "REC CARTAO CIELO 4829",
+      "valor": 126.24,
+      "valor_bruto_venda": 130.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0107"
+      ]
+    },
+    {
+      "id": "TX-0121",
+      "data": "2026-07-03T10:12:00-03:00",
+      "tipo": "entrada",
+      "canal": "marketplace",
+      "descritor_bruto": "PAG*BELEZANET",
+      "valor": 180.4,
+      "valor_bruto_venda": 205.0,
+      "contraparte": "BelezaNet (marketplace de agendamento)",
+      "categoria": "repasse",
+      "venda_ids": [
+        "VD-0084",
+        "VD-0091",
+        "VD-0099",
+        "VD-0104"
+      ],
+      "qtd_vendas": 4
+    },
+    {
+      "id": "TX-0122",
+      "data": "2026-07-03T10:30:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_debito",
+      "descritor_bruto": "CIELO DEB 4829",
+      "valor": 49.26,
+      "valor_bruto_venda": 50.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0110"
+      ]
+    },
+    {
+      "id": "TX-0123",
+      "data": "2026-07-03T10:50:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "CIELO 4829",
+      "valor": 92.25,
+      "valor_bruto_venda": 95.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0111"
+      ]
+    },
+    {
+      "id": "TX-0124",
+      "data": "2026-07-03T10:50:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "CIELO 4829",
+      "valor": 67.98,
+      "valor_bruto_venda": 70.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0112"
+      ]
+    },
+    {
+      "id": "TX-0125",
+      "data": "2026-07-03T14:20:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_debito",
+      "descritor_bruto": "CIELO*DEB 4829",
+      "valor": 34.48,
+      "valor_bruto_venda": 35.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0113"
+      ]
+    },
+    {
+      "id": "TX-0126",
+      "data": "2026-07-03T15:40:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "REC CARTAO CIELO 4829",
+      "valor": 43.7,
+      "valor_bruto_venda": 45.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0114"
+      ]
+    },
+    {
+      "id": "TX-0127",
+      "data": "2026-07-03T23:50:00-03:00",
+      "tipo": "saida",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "CIELO ANTECIP AUTOM D+0",
+      "valor": 10.17,
+      "valor_bruto_venda": null,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "antecipacao"
+    },
+    {
+      "id": "TX-0128",
+      "data": "2026-07-04T11:45:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "CIELO*CRED 4829",
+      "valor": 53.41,
+      "valor_bruto_venda": 55.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0117"
+      ]
+    },
+    {
+      "id": "TX-0129",
+      "data": "2026-07-04T12:45:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "CIELO*CRED 4829",
+      "valor": 271.91,
+      "valor_bruto_venda": 280.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0118"
+      ]
+    },
+    {
+      "id": "TX-0130",
+      "data": "2026-07-04T13:50:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "CIELO 4829",
+      "valor": 116.53,
+      "valor_bruto_venda": 120.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0119"
+      ]
+    },
+    {
+      "id": "TX-0131",
+      "data": "2026-07-04T15:15:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "CIELO 4829",
+      "valor": 43.7,
+      "valor_bruto_venda": 45.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0120"
+      ]
+    },
+    {
+      "id": "TX-0132",
+      "data": "2026-07-04T17:15:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "CIELO 4829",
+      "valor": 58.27,
+      "valor_bruto_venda": 60.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0122"
+      ]
+    },
+    {
+      "id": "TX-0133",
+      "data": "2026-07-04T17:40:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_debito",
+      "descritor_bruto": "CIELO*DEB 4829",
+      "valor": 54.18,
+      "valor_bruto_venda": 55.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0123"
+      ]
+    },
+    {
+      "id": "TX-0134",
+      "data": "2026-07-04T23:50:00-03:00",
+      "tipo": "saida",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "CIELO ANTECIP AUTOM D+0",
+      "valor": 16.74,
+      "valor_bruto_venda": null,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "antecipacao"
+    },
+    {
+      "id": "TX-0135",
+      "data": "2026-07-05T09:22:00-03:00",
+      "tipo": "saida",
+      "canal": "pix",
+      "descritor_bruto": "PIX ENVIADO STUDIO BELLA LTDA",
+      "valor": 1850.0,
+      "valor_bruto_venda": null,
+      "contraparte": "Studio Bella (aluguel de cadeira)",
+      "categoria": "aluguel"
+    },
+    {
+      "id": "TX-0136",
+      "data": "2026-07-07T15:45:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "CIELO*CRED 4829",
+      "valor": 58.27,
+      "valor_bruto_venda": 60.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0124"
+      ]
+    },
+    {
+      "id": "TX-0137",
+      "data": "2026-07-07T23:50:00-03:00",
+      "tipo": "saida",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "CIELO ANTECIP AUTOM D+0",
+      "valor": 1.79,
+      "valor_bruto_venda": null,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "antecipacao"
+    },
+    {
+      "id": "TX-0138",
+      "data": "2026-07-08T06:12:00-03:00",
+      "tipo": "saida",
+      "canal": "debito_automatico",
+      "descritor_bruto": "SOMPRO*MUSICA AMBIENT",
+      "valor": 32.9,
+      "valor_bruto_venda": null,
+      "contraparte": "SomPro Música Ambiente",
+      "categoria": "assinatura"
+    },
+    {
+      "id": "TX-0139",
+      "data": "2026-07-08T10:00:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "REC CARTAO CIELO 4829",
+      "valor": 67.98,
+      "valor_bruto_venda": 70.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0125"
+      ]
+    },
+    {
+      "id": "TX-0140",
+      "data": "2026-07-08T14:40:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "REC CARTAO CIELO 4829",
+      "valor": 116.53,
+      "valor_bruto_venda": 120.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0126"
+      ]
+    },
+    {
+      "id": "TX-0141",
+      "data": "2026-07-08T18:00:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "CIELO 4829",
+      "valor": 58.27,
+      "valor_bruto_venda": 60.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0127"
+      ]
+    },
+    {
+      "id": "TX-0142",
+      "data": "2026-07-08T23:50:00-03:00",
+      "tipo": "saida",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "CIELO ANTECIP AUTOM D+0",
+      "valor": 7.48,
+      "valor_bruto_venda": null,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "antecipacao"
+    },
+    {
+      "id": "TX-0143",
+      "data": "2026-07-10T06:03:00-03:00",
+      "tipo": "saida",
+      "canal": "debito_automatico",
+      "descritor_bruto": "VIVO FIBRA 400 DEB AUT",
+      "valor": 119.9,
+      "valor_bruto_venda": null,
+      "contraparte": "Vivo Fibra (internet)",
+      "categoria": "utilidade"
+    },
+    {
+      "id": "TX-0144",
+      "data": "2026-07-10T09:15:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "REC CARTAO CIELO 4829",
+      "valor": 145.67,
+      "valor_bruto_venda": 150.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0128"
+      ]
+    },
+    {
+      "id": "TX-0145",
+      "data": "2026-07-10T10:12:00-03:00",
+      "tipo": "entrada",
+      "canal": "marketplace",
+      "descritor_bruto": "PAG*BELEZANET",
+      "valor": 492.8,
+      "valor_bruto_venda": 560.0,
+      "contraparte": "BelezaNet (marketplace de agendamento)",
+      "categoria": "repasse",
+      "venda_ids": [
+        "VD-0108",
+        "VD-0109",
+        "VD-0115",
+        "VD-0116",
+        "VD-0121"
+      ],
+      "qtd_vendas": 5
+    },
+    {
+      "id": "TX-0146",
+      "data": "2026-07-10T10:30:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "REC CARTAO CIELO 4829",
+      "valor": 38.84,
+      "valor_bruto_venda": 40.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0130"
+      ]
+    },
+    {
+      "id": "TX-0147",
+      "data": "2026-07-10T14:45:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "CIELO*CRED 4829",
+      "valor": 155.38,
+      "valor_bruto_venda": 160.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0131"
+      ]
+    },
+    {
+      "id": "TX-0148",
+      "data": "2026-07-10T16:10:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "REC CARTAO CIELO 4829",
+      "valor": 67.98,
+      "valor_bruto_venda": 70.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0132"
+      ]
+    },
+    {
+      "id": "TX-0149",
+      "data": "2026-07-10T17:15:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_debito",
+      "descritor_bruto": "CIELO DEB 4829",
+      "valor": 275.83,
+      "valor_bruto_venda": 280.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0133"
+      ]
+    },
+    {
+      "id": "TX-0150",
+      "data": "2026-07-10T17:50:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_debito",
+      "descritor_bruto": "CIELO DEB 4829",
+      "valor": 34.48,
+      "valor_bruto_venda": 35.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0134"
+      ]
+    },
+    {
+      "id": "TX-0151",
+      "data": "2026-07-10T23:50:00-03:00",
+      "tipo": "saida",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "CIELO ANTECIP AUTOM D+0",
+      "valor": 12.56,
+      "valor_bruto_venda": null,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "antecipacao"
+    },
+    {
+      "id": "TX-0152",
+      "data": "2026-07-11T08:30:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_debito",
+      "descritor_bruto": "CIELO*DEB 4829",
+      "valor": 54.18,
+      "valor_bruto_venda": 55.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0135"
+      ]
+    },
+    {
+      "id": "TX-0153",
+      "data": "2026-07-11T08:45:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_debito",
+      "descritor_bruto": "CIELO DEB 4829",
+      "valor": 44.33,
+      "valor_bruto_venda": 45.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0136"
+      ]
+    },
+    {
+      "id": "TX-0154",
+      "data": "2026-07-11T10:10:00-03:00",
+      "tipo": "entrada",
+      "canal": "pix",
+      "descritor_bruto": "PIX QR ESTATICO 8812",
+      "valor": 380.0,
+      "valor_bruto_venda": null,
+      "contraparte": "Renata Q.",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0137"
+      ]
+    },
+    {
+      "id": "TX-0155",
+      "data": "2026-07-11T12:15:00-03:00",
+      "tipo": "entrada",
+      "canal": "pix",
+      "descritor_bruto": "PIX REC 8812 QRS",
+      "valor": 130.0,
+      "valor_bruto_venda": null,
+      "contraparte": "Amanda W.",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0138"
+      ]
+    },
+    {
+      "id": "TX-0156",
+      "data": "2026-07-11T13:40:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_debito",
+      "descritor_bruto": "CIELO DEB 4829",
+      "valor": 34.48,
+      "valor_bruto_venda": 35.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0139"
+      ]
+    },
+    {
+      "id": "TX-0157",
+      "data": "2026-07-11T14:15:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_debito",
+      "descritor_bruto": "CIELO DEB 4829",
+      "valor": 39.4,
+      "valor_bruto_venda": 40.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0140"
+      ]
+    },
+    {
+      "id": "TX-0158",
+      "data": "2026-07-11T14:50:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_debito",
+      "descritor_bruto": "CIELO*DEB 4829",
+      "valor": 49.26,
+      "valor_bruto_venda": 50.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0141"
+      ]
+    },
+    {
+      "id": "TX-0159",
+      "data": "2026-07-11T17:15:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_debito",
+      "descritor_bruto": "CIELO DEB 4829",
+      "valor": 34.48,
+      "valor_bruto_venda": 35.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0143"
+      ]
+    },
+    {
+      "id": "TX-0160",
+      "data": "2026-07-11T17:50:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "CIELO*CRED 4829",
+      "valor": 63.12,
+      "valor_bruto_venda": 65.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0144"
+      ]
+    },
+    {
+      "id": "TX-0161",
+      "data": "2026-07-11T23:50:00-03:00",
+      "tipo": "saida",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "CIELO ANTECIP AUTOM D+0",
+      "valor": 1.94,
+      "valor_bruto_venda": null,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "antecipacao"
+    },
+    {
+      "id": "TX-0162",
+      "data": "2026-07-12T06:03:00-03:00",
+      "tipo": "saida",
+      "canal": "debito_automatico",
+      "descritor_bruto": "CPFL PAULISTA DEB AUT",
+      "valor": 291.1,
+      "valor_bruto_venda": null,
+      "contraparte": "CPFL Paulista (energia)",
+      "categoria": "utilidade"
+    },
+    {
+      "id": "TX-0163",
+      "data": "2026-07-12T09:14:00-03:00",
+      "tipo": "saida",
+      "canal": "debito_automatico",
+      "descritor_bruto": "NETFLIX.COM 5511",
+      "valor": 55.9,
+      "valor_bruto_venda": null,
+      "contraparte": "Netflix",
+      "categoria": "assinatura"
+    },
+    {
+      "id": "TX-0164",
+      "data": "2026-07-13T19:23:00-03:00",
+      "tipo": "saida",
+      "canal": "pix",
+      "descritor_bruto": "PIX ENV POSTO IPIRANGA 12",
+      "valor": 64.03,
+      "valor_bruto_venda": null,
+      "contraparte": "Drogaria São Paulo",
+      "categoria": "pessoal"
+    },
+    {
+      "id": "TX-0165",
+      "data": "2026-07-14T09:12:00-03:00",
+      "tipo": "saida",
+      "canal": "boleto",
+      "descritor_bruto": "BELEZA DISTRIB LTDA 001",
+      "valor": 487.6,
+      "valor_bruto_venda": null,
+      "contraparte": "Beleza Distribuidora LTDA",
+      "categoria": "insumo"
+    },
+    {
+      "id": "TX-0166",
+      "data": "2026-07-14T12:20:00-03:00",
+      "tipo": "entrada",
+      "canal": "pix",
+      "descritor_bruto": "PIX REC 8812 QRS",
+      "valor": 280.0,
+      "valor_bruto_venda": null,
+      "contraparte": "Vanessa U.",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0145"
+      ]
+    },
+    {
+      "id": "TX-0167",
+      "data": "2026-07-14T16:48:00-03:00",
+      "tipo": "saida",
+      "canal": "boleto",
+      "descritor_bruto": "BELEZA DISTRIB LTDA 001",
+      "valor": 487.6,
+      "valor_bruto_venda": null,
+      "contraparte": "Beleza Distribuidora LTDA",
+      "categoria": "insumo"
+    },
+    {
+      "id": "TX-0168",
+      "data": "2026-07-15T14:30:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "CIELO*CRED 4829",
+      "valor": 116.53,
+      "valor_bruto_venda": 120.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0147"
+      ]
+    },
+    {
+      "id": "TX-0169",
+      "data": "2026-07-15T16:15:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_debito",
+      "descritor_bruto": "CIELO DEB 4829",
+      "valor": 68.96,
+      "valor_bruto_venda": 70.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0148"
+      ]
+    },
+    {
+      "id": "TX-0170",
+      "data": "2026-07-15T23:50:00-03:00",
+      "tipo": "saida",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "CIELO ANTECIP AUTOM D+0",
+      "valor": 3.59,
+      "valor_bruto_venda": null,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "antecipacao"
+    },
+    {
+      "id": "TX-0171",
+      "data": "2026-07-16T11:20:00-03:00",
+      "tipo": "entrada",
+      "canal": "pix",
+      "descritor_bruto": "PIX QR ESTATICO 8812",
+      "valor": 35.0,
+      "valor_bruto_venda": null,
+      "contraparte": "Larissa V.",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0150"
+      ]
+    },
+    {
+      "id": "TX-0172",
+      "data": "2026-07-16T11:50:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "CIELO 4829",
+      "valor": 43.7,
+      "valor_bruto_venda": 45.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0151"
+      ]
+    },
+    {
+      "id": "TX-0173",
+      "data": "2026-07-16T14:05:00-03:00",
+      "tipo": "saida",
+      "canal": "pix",
+      "descritor_bruto": "PIX ENV POSTO IPIRANGA 12",
+      "valor": 150.27,
+      "valor_bruto_venda": null,
+      "contraparte": "Drogaria São Paulo",
+      "categoria": "pessoal"
+    },
+    {
+      "id": "TX-0174",
+      "data": "2026-07-16T23:50:00-03:00",
+      "tipo": "saida",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "CIELO ANTECIP AUTOM D+0",
+      "valor": 1.35,
+      "valor_bruto_venda": null,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "antecipacao"
+    },
+    {
+      "id": "TX-0175",
+      "data": "2026-07-17T08:55:00-03:00",
+      "tipo": "saida",
+      "canal": "boleto",
+      "descritor_bruto": "DAS SIMEI 062026",
+      "valor": 87.05,
+      "valor_bruto_venda": null,
+      "contraparte": "Receita Federal (DAS SIMEI)",
+      "categoria": "imposto",
+      "competencia": "2026-06"
+    },
+    {
+      "id": "TX-0176",
+      "data": "2026-07-17T09:20:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "REC CARTAO CIELO 4829",
+      "valor": 33.99,
+      "valor_bruto_venda": 35.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0153"
+      ]
+    },
+    {
+      "id": "TX-0177",
+      "data": "2026-07-17T10:12:00-03:00",
+      "tipo": "entrada",
+      "canal": "marketplace",
+      "descritor_bruto": "BELEZANET REPASSE",
+      "valor": 497.2,
+      "valor_bruto_venda": 565.0,
+      "contraparte": "BelezaNet (marketplace de agendamento)",
+      "categoria": "repasse",
+      "venda_ids": [
+        "VD-0129",
+        "VD-0142",
+        "VD-0146",
+        "VD-0149",
+        "VD-0152"
+      ],
+      "qtd_vendas": 5
+    },
+    {
+      "id": "TX-0178",
+      "data": "2026-07-17T12:00:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "CIELO 4829",
+      "valor": 43.7,
+      "valor_bruto_venda": 45.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0154"
+      ]
+    },
+    {
+      "id": "TX-0179",
+      "data": "2026-07-17T13:45:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "CIELO 4829",
+      "valor": 38.84,
+      "valor_bruto_venda": 40.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0155"
+      ]
+    },
+    {
+      "id": "TX-0180",
+      "data": "2026-07-17T14:10:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_debito",
+      "descritor_bruto": "CIELO DEB 4829",
+      "valor": 54.18,
+      "valor_bruto_venda": 55.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0156"
+      ]
+    },
+    {
+      "id": "TX-0181",
+      "data": "2026-07-17T14:20:00-03:00",
+      "tipo": "entrada",
+      "canal": "pix",
+      "descritor_bruto": "PIX RECEBIDO CPF ***.412.***-**",
+      "valor": 40.0,
+      "valor_bruto_venda": null,
+      "contraparte": "Bruna Y.",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0157"
+      ]
+    },
+    {
+      "id": "TX-0182",
+      "data": "2026-07-17T14:50:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "CIELO*CRED 4829",
+      "valor": 63.12,
+      "valor_bruto_venda": 65.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0158"
+      ]
+    },
+    {
+      "id": "TX-0183",
+      "data": "2026-07-17T17:00:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "REC CARTAO CIELO 4829",
+      "valor": 53.41,
+      "valor_bruto_venda": 55.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0159"
+      ]
+    },
+    {
+      "id": "TX-0184",
+      "data": "2026-07-17T18:10:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "CIELO*CRED 4829",
+      "valor": 53.41,
+      "valor_bruto_venda": 55.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0160"
+      ]
+    },
+    {
+      "id": "TX-0185",
+      "data": "2026-07-17T23:50:00-03:00",
+      "tipo": "saida",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "CIELO ANTECIP AUTOM D+0",
+      "valor": 8.82,
+      "valor_bruto_venda": null,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "antecipacao"
+    },
+    {
+      "id": "TX-0186",
+      "data": "2026-07-18T08:40:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "CIELO*CRED 4829",
+      "valor": 53.41,
+      "valor_bruto_venda": 55.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0161"
+      ]
+    },
+    {
+      "id": "TX-0187",
+      "data": "2026-07-18T09:00:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_debito",
+      "descritor_bruto": "CIELO*DEB 4829",
+      "valor": 59.11,
+      "valor_bruto_venda": 60.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0162"
+      ]
+    },
+    {
+      "id": "TX-0188",
+      "data": "2026-07-18T11:05:00-03:00",
+      "tipo": "saida",
+      "canal": "pix",
+      "descritor_bruto": "PIX ENV DESCARTA MAIS COM",
+      "valor": 236.5,
+      "valor_bruto_venda": null,
+      "contraparte": "Descarta Mais Comércio",
+      "categoria": "insumo"
+    },
+    {
+      "id": "TX-0189",
+      "data": "2026-07-18T12:00:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "REC CARTAO CIELO 4829",
+      "valor": 43.7,
+      "valor_bruto_venda": 45.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0166"
+      ]
+    },
+    {
+      "id": "TX-0190",
+      "data": "2026-07-18T12:40:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "CIELO 4829",
+      "valor": 33.99,
+      "valor_bruto_venda": 35.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0167"
+      ]
+    },
+    {
+      "id": "TX-0191",
+      "data": "2026-07-18T23:50:00-03:00",
+      "tipo": "saida",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "CIELO ANTECIP AUTOM D+0",
+      "valor": 4.04,
+      "valor_bruto_venda": null,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "antecipacao"
+    },
+    {
+      "id": "TX-0192",
+      "data": "2026-07-19T03:41:00-03:00",
+      "tipo": "saida",
+      "canal": "pix",
+      "descritor_bruto": "PIX ENV BELEZA DISTRIB LTDA",
+      "valor": 268.0,
+      "valor_bruto_venda": null,
+      "contraparte": "Beleza Distribuidora LTDA",
+      "categoria": "insumo"
+    },
+    {
+      "id": "TX-0193",
+      "data": "2026-07-20T19:26:00-03:00",
+      "tipo": "saida",
+      "canal": "boleto",
+      "descritor_bruto": "PAGTO BOLETO GPS/DAS 06/2026",
+      "valor": 87.05,
+      "valor_bruto_venda": null,
+      "contraparte": "Receita Federal (DAS SIMEI)",
+      "categoria": "imposto",
+      "competencia": "2026-06"
+    },
+    {
+      "id": "TX-0194",
+      "data": "2026-07-21T16:20:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "CIELO*CRED 4829",
+      "valor": 58.27,
+      "valor_bruto_venda": 60.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0170"
+      ]
+    },
+    {
+      "id": "TX-0195",
+      "data": "2026-07-21T23:50:00-03:00",
+      "tipo": "saida",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "CIELO ANTECIP AUTOM D+0",
+      "valor": 1.79,
+      "valor_bruto_venda": null,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "antecipacao"
+    },
+    {
+      "id": "TX-0196",
+      "data": "2026-07-22T06:41:00-03:00",
+      "tipo": "saida",
+      "canal": "debito_automatico",
+      "descritor_bruto": "PAG*AGENDASALAO",
+      "valor": 39.9,
+      "valor_bruto_venda": null,
+      "contraparte": "Agenda Salão App",
+      "categoria": "assinatura"
+    },
+    {
+      "id": "TX-0197",
+      "data": "2026-07-22T09:30:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "CIELO 4829",
+      "valor": 48.56,
+      "valor_bruto_venda": 50.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0171"
+      ]
+    },
+    {
+      "id": "TX-0198",
+      "data": "2026-07-22T11:15:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "REC CARTAO CIELO 4829",
+      "valor": 43.7,
+      "valor_bruto_venda": 45.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0172"
+      ]
+    },
+    {
+      "id": "TX-0199",
+      "data": "2026-07-22T23:50:00-03:00",
+      "tipo": "saida",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "CIELO ANTECIP AUTOM D+0",
+      "valor": 2.84,
+      "valor_bruto_venda": null,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "antecipacao"
+    },
+    {
+      "id": "TX-0200",
+      "data": "2026-07-23T13:30:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_debito",
+      "descritor_bruto": "CIELO*DEB 4829",
+      "valor": 34.48,
+      "valor_bruto_venda": 35.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0173"
+      ]
+    },
+    {
+      "id": "TX-0201",
+      "data": "2026-07-23T15:00:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "CIELO*CRED 4829",
+      "valor": 53.41,
+      "valor_bruto_venda": 55.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0174"
+      ]
+    },
+    {
+      "id": "TX-0202",
+      "data": "2026-07-23T23:50:00-03:00",
+      "tipo": "saida",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "CIELO ANTECIP AUTOM D+0",
+      "valor": 1.64,
+      "valor_bruto_venda": null,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "antecipacao"
+    },
+    {
+      "id": "TX-0203",
+      "data": "2026-07-24T10:12:00-03:00",
+      "tipo": "entrada",
+      "canal": "marketplace",
+      "descritor_bruto": "PAG*BELEZANET",
+      "valor": 510.4,
+      "valor_bruto_venda": 580.0,
+      "contraparte": "BelezaNet (marketplace de agendamento)",
+      "categoria": "repasse",
+      "venda_ids": [
+        "VD-0163",
+        "VD-0164",
+        "VD-0165",
+        "VD-0168",
+        "VD-0169",
+        "VD-0175"
+      ],
+      "qtd_vendas": 6
+    },
+    {
+      "id": "TX-0204",
+      "data": "2026-07-24T10:45:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "CIELO 4829",
+      "valor": 43.7,
+      "valor_bruto_venda": 45.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0177"
+      ]
+    },
+    {
+      "id": "TX-0205",
+      "data": "2026-07-24T11:40:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_debito",
+      "descritor_bruto": "CIELO DEB 4829",
+      "valor": 59.11,
+      "valor_bruto_venda": 60.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0178"
+      ]
+    },
+    {
+      "id": "TX-0206",
+      "data": "2026-07-24T11:50:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "CIELO*CRED 4829",
+      "valor": 58.27,
+      "valor_bruto_venda": 60.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0179"
+      ]
+    },
+    {
+      "id": "TX-0207",
+      "data": "2026-07-24T13:20:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "CIELO*CRED 4829",
+      "valor": 137.9,
+      "valor_bruto_venda": 142.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0181"
+      ]
+    },
+    {
+      "id": "TX-0208",
+      "data": "2026-07-24T15:40:00-03:00",
+      "tipo": "saida",
+      "canal": "boleto",
+      "descritor_bruto": "PAG*BELEZADIST",
+      "valor": 402.9,
+      "valor_bruto_venda": null,
+      "contraparte": "Beleza Distribuidora LTDA",
+      "categoria": "insumo"
+    },
+    {
+      "id": "TX-0209",
+      "data": "2026-07-24T17:10:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "REC CARTAO CIELO 4829",
+      "valor": 63.12,
+      "valor_bruto_venda": 65.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0183"
+      ]
+    },
+    {
+      "id": "TX-0210",
+      "data": "2026-07-24T23:50:00-03:00",
+      "tipo": "saida",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "CIELO ANTECIP AUTOM D+0",
+      "valor": 9.33,
+      "valor_bruto_venda": null,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "antecipacao"
+    },
+    {
+      "id": "TX-0211",
+      "data": "2026-07-25T10:50:00-03:00",
+      "tipo": "entrada",
+      "canal": "pix",
+      "descritor_bruto": "PIX REC 8812 QRS",
+      "valor": 70.0,
+      "valor_bruto_venda": null,
+      "contraparte": "Beatriz M.",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0185"
+      ]
+    },
+    {
+      "id": "TX-0212",
+      "data": "2026-07-25T13:00:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_debito",
+      "descritor_bruto": "CIELO*DEB 4829",
+      "valor": 44.33,
+      "valor_bruto_venda": 45.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0186"
+      ]
+    },
+    {
+      "id": "TX-0213",
+      "data": "2026-07-25T16:30:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_debito",
+      "descritor_bruto": "CIELO*DEB 4829",
+      "valor": 34.48,
+      "valor_bruto_venda": 35.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0189"
+      ]
+    },
+    {
+      "id": "TX-0214",
+      "data": "2026-07-25T17:10:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_debito",
+      "descritor_bruto": "CIELO DEB 4829",
+      "valor": 34.48,
+      "valor_bruto_venda": 35.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0190"
+      ]
+    },
+    {
+      "id": "TX-0215",
+      "data": "2026-07-25T17:30:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "CIELO*CRED 4829",
+      "valor": 369.02,
+      "valor_bruto_venda": 380.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0191"
+      ]
+    },
+    {
+      "id": "TX-0216",
+      "data": "2026-07-25T17:30:00-03:00",
+      "tipo": "entrada",
+      "canal": "pix",
+      "descritor_bruto": "PIX REC 8812 QRS",
+      "valor": 60.0,
+      "valor_bruto_venda": null,
+      "contraparte": "Helena C.",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0192"
+      ]
+    },
+    {
+      "id": "TX-0217",
+      "data": "2026-07-25T17:50:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_debito",
+      "descritor_bruto": "CIELO DEB 4829",
+      "valor": 44.33,
+      "valor_bruto_venda": 45.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0193"
+      ]
+    },
+    {
+      "id": "TX-0218",
+      "data": "2026-07-25T23:50:00-03:00",
+      "tipo": "saida",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "CIELO ANTECIP AUTOM D+0",
+      "valor": 11.36,
+      "valor_bruto_venda": null,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "antecipacao"
+    },
+    {
+      "id": "TX-0219",
+      "data": "2026-07-27T11:17:00-03:00",
+      "tipo": "saida",
+      "canal": "pix",
+      "descritor_bruto": "PIX ENV SUPERM BOM PRECO",
+      "valor": 151.32,
+      "valor_bruto_venda": null,
+      "contraparte": "Drogaria São Paulo",
+      "categoria": "pessoal"
+    },
+    {
+      "id": "TX-0220",
+      "data": "2026-07-28T16:30:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "REC CARTAO CIELO 4829",
+      "valor": 58.27,
+      "valor_bruto_venda": 60.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0195"
+      ]
+    },
+    {
+      "id": "TX-0221",
+      "data": "2026-07-28T23:50:00-03:00",
+      "tipo": "saida",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "CIELO ANTECIP AUTOM D+0",
+      "valor": 1.79,
+      "valor_bruto_venda": null,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "antecipacao"
+    },
+    {
+      "id": "TX-0222",
+      "data": "2026-07-30T11:00:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "REC CARTAO CIELO 4829",
+      "valor": 145.67,
+      "valor_bruto_venda": 150.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0199"
+      ]
+    },
+    {
+      "id": "TX-0223",
+      "data": "2026-07-30T18:00:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_debito",
+      "descritor_bruto": "CIELO*DEB 4829",
+      "valor": 68.96,
+      "valor_bruto_venda": 70.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0201"
+      ]
+    },
+    {
+      "id": "TX-0224",
+      "data": "2026-07-30T23:50:00-03:00",
+      "tipo": "saida",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "CIELO ANTECIP AUTOM D+0",
+      "valor": 4.49,
+      "valor_bruto_venda": null,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "antecipacao"
+    },
+    {
+      "id": "TX-0225",
+      "data": "2026-07-31T09:45:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_debito",
+      "descritor_bruto": "CIELO*DEB 4829",
+      "valor": 68.96,
+      "valor_bruto_venda": 70.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0202"
+      ]
+    },
+    {
+      "id": "TX-0226",
+      "data": "2026-07-31T10:12:00-03:00",
+      "tipo": "entrada",
+      "canal": "marketplace",
+      "descritor_bruto": "BELEZANET REPASSE",
+      "valor": 941.6,
+      "valor_bruto_venda": 1070.0,
+      "contraparte": "BelezaNet (marketplace de agendamento)",
+      "categoria": "repasse",
+      "venda_ids": [
+        "VD-0176",
+        "VD-0180",
+        "VD-0182",
+        "VD-0184",
+        "VD-0187",
+        "VD-0188",
+        "VD-0194",
+        "VD-0196",
+        "VD-0197",
+        "VD-0198",
+        "VD-0200"
+      ],
+      "qtd_vendas": 11
+    },
+    {
+      "id": "TX-0227",
+      "data": "2026-07-31T13:50:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "CIELO 4829",
+      "valor": 43.7,
+      "valor_bruto_venda": 45.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0206"
+      ]
+    },
+    {
+      "id": "TX-0228",
+      "data": "2026-07-31T17:20:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "REC CARTAO CIELO 4829",
+      "valor": 63.12,
+      "valor_bruto_venda": 65.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0207"
+      ]
+    },
+    {
+      "id": "TX-0229",
+      "data": "2026-07-31T18:10:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_debito",
+      "descritor_bruto": "CIELO DEB 4829",
+      "valor": 76.84,
+      "valor_bruto_venda": 78.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0209"
+      ]
+    },
+    {
+      "id": "TX-0230",
+      "data": "2026-07-31T18:45:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_debito",
+      "descritor_bruto": "CIELO*DEB 4829",
+      "valor": 142.84,
+      "valor_bruto_venda": 145.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0210"
+      ]
+    },
+    {
+      "id": "TX-0231",
+      "data": "2026-07-31T23:50:00-03:00",
+      "tipo": "saida",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "CIELO ANTECIP AUTOM D+0",
+      "valor": 3.29,
+      "valor_bruto_venda": null,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "antecipacao"
+    },
+    {
+      "id": "TX-0232",
+      "data": "2026-08-01T08:45:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "REC CARTAO CIELO 4829",
+      "valor": 271.91,
+      "valor_bruto_venda": 280.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0211"
+      ]
+    },
+    {
+      "id": "TX-0233",
+      "data": "2026-08-01T08:45:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "REC CARTAO CIELO 4829",
+      "valor": 145.67,
+      "valor_bruto_venda": 150.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0212"
+      ]
+    },
+    {
+      "id": "TX-0234",
+      "data": "2026-08-01T11:30:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_debito",
+      "descritor_bruto": "CIELO DEB 4829",
+      "valor": 49.26,
+      "valor_bruto_venda": 50.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0214"
+      ]
+    },
+    {
+      "id": "TX-0235",
+      "data": "2026-08-01T12:45:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "REC CARTAO CIELO 4829",
+      "valor": 116.53,
+      "valor_bruto_venda": 120.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0215"
+      ]
+    },
+    {
+      "id": "TX-0236",
+      "data": "2026-08-01T14:20:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "REC CARTAO CIELO 4829",
+      "valor": 63.12,
+      "valor_bruto_venda": 65.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0216"
+      ]
+    },
+    {
+      "id": "TX-0237",
+      "data": "2026-08-01T14:45:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "CIELO*CRED 4829",
+      "valor": 116.53,
+      "valor_bruto_venda": 120.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0217"
+      ]
+    },
+    {
+      "id": "TX-0238",
+      "data": "2026-08-01T15:15:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_debito",
+      "descritor_bruto": "CIELO DEB 4829",
+      "valor": 157.62,
+      "valor_bruto_venda": 160.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0218"
+      ]
+    },
+    {
+      "id": "TX-0239",
+      "data": "2026-08-01T15:15:00-03:00",
+      "tipo": "entrada",
+      "canal": "pix",
+      "descritor_bruto": "PIX QR ESTATICO 8812",
+      "valor": 45.0,
+      "valor_bruto_venda": null,
+      "contraparte": "Fabiana L.",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0219"
+      ]
+    },
+    {
+      "id": "TX-0240",
+      "data": "2026-08-01T23:50:00-03:00",
+      "tipo": "saida",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "CIELO ANTECIP AUTOM D+0",
+      "valor": 21.98,
+      "valor_bruto_venda": null,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "antecipacao"
+    },
+    {
+      "id": "TX-0241",
+      "data": "2026-08-03T18:09:00-03:00",
+      "tipo": "saida",
+      "canal": "pix",
+      "descritor_bruto": "PIX ENVIADO MARIA S SOUZA",
+      "valor": 340.0,
+      "valor_bruto_venda": null,
+      "contraparte": "Maria Souza",
+      "categoria": "nao_classificado"
+    },
+    {
+      "id": "TX-0242",
+      "data": "2026-08-04T10:45:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "CIELO 4829",
+      "valor": 43.7,
+      "valor_bruto_venda": 45.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0220"
+      ]
+    },
+    {
+      "id": "TX-0243",
+      "data": "2026-08-04T23:50:00-03:00",
+      "tipo": "saida",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "CIELO ANTECIP AUTOM D+0",
+      "valor": 1.35,
+      "valor_bruto_venda": null,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "antecipacao"
+    },
+    {
+      "id": "TX-0244",
+      "data": "2026-08-05T06:22:00-03:00",
+      "tipo": "saida",
+      "canal": "debito_automatico",
+      "descritor_bruto": "TAR MANUT CONTA PJ PACOTE 2",
+      "valor": 29.9,
+      "valor_bruto_venda": null,
+      "contraparte": "Banco Sudeste (conta PJ)",
+      "categoria": "tarifa"
+    },
+    {
+      "id": "TX-0245",
+      "data": "2026-08-05T09:22:00-03:00",
+      "tipo": "saida",
+      "canal": "pix",
+      "descritor_bruto": "PIX ENVIADO STUDIO BELLA LTDA",
+      "valor": 1850.0,
+      "valor_bruto_venda": null,
+      "contraparte": "Studio Bella (aluguel de cadeira)",
+      "categoria": "aluguel"
+    },
+    {
+      "id": "TX-0246",
+      "data": "2026-08-05T12:50:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "CIELO*CRED 4829",
+      "valor": 145.67,
+      "valor_bruto_venda": 150.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0222"
+      ]
+    },
+    {
+      "id": "TX-0247",
+      "data": "2026-08-05T18:30:00-03:00",
+      "tipo": "entrada",
+      "canal": "pix",
+      "descritor_bruto": "PIX QR ESTATICO 8812",
+      "valor": 78.0,
+      "valor_bruto_venda": null,
+      "contraparte": "Gisele A.",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0223"
+      ]
+    },
+    {
+      "id": "TX-0248",
+      "data": "2026-08-05T18:40:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "CIELO 4829",
+      "valor": 67.98,
+      "valor_bruto_venda": 70.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0224"
+      ]
+    },
+    {
+      "id": "TX-0249",
+      "data": "2026-08-05T23:50:00-03:00",
+      "tipo": "saida",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "CIELO ANTECIP AUTOM D+0",
+      "valor": 6.58,
+      "valor_bruto_venda": null,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "antecipacao"
+    },
+    {
+      "id": "TX-0250",
+      "data": "2026-08-06T16:15:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "REC CARTAO CIELO 4829",
+      "valor": 33.99,
+      "valor_bruto_venda": 35.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0228"
+      ]
+    },
+    {
+      "id": "TX-0251",
+      "data": "2026-08-06T16:17:00-03:00",
+      "tipo": "saida",
+      "canal": "pix",
+      "descritor_bruto": "PIX ENV POSTO IPIRANGA 12",
+      "valor": 219.9,
+      "valor_bruto_venda": null,
+      "contraparte": "Drogaria São Paulo",
+      "categoria": "pessoal"
+    },
+    {
+      "id": "TX-0252",
+      "data": "2026-08-06T23:50:00-03:00",
+      "tipo": "saida",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "CIELO ANTECIP AUTOM D+0",
+      "valor": 1.05,
+      "valor_bruto_venda": null,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "antecipacao"
+    },
+    {
+      "id": "TX-0253",
+      "data": "2026-08-07T10:12:00-03:00",
+      "tipo": "entrada",
+      "canal": "marketplace",
+      "descritor_bruto": "BELEZANET REPASSE",
+      "valor": 563.2,
+      "valor_bruto_venda": 640.0,
+      "contraparte": "BelezaNet (marketplace de agendamento)",
+      "categoria": "repasse",
+      "venda_ids": [
+        "VD-0203",
+        "VD-0204",
+        "VD-0205",
+        "VD-0208",
+        "VD-0213",
+        "VD-0221",
+        "VD-0225",
+        "VD-0226",
+        "VD-0227"
+      ],
+      "qtd_vendas": 9
+    },
+    {
+      "id": "TX-0254",
+      "data": "2026-08-07T10:15:00-03:00",
+      "tipo": "entrada",
+      "canal": "pix",
+      "descritor_bruto": "PIX QR ESTATICO 8812",
+      "valor": 95.0,
+      "valor_bruto_venda": null,
+      "contraparte": "Nathália B.",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0229"
+      ]
+    },
+    {
+      "id": "TX-0255",
+      "data": "2026-08-07T11:30:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "REC CARTAO CIELO 4829",
+      "valor": 75.75,
+      "valor_bruto_venda": 78.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0230"
+      ]
+    },
+    {
+      "id": "TX-0256",
+      "data": "2026-08-07T14:15:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "CIELO*CRED 4829",
+      "valor": 63.12,
+      "valor_bruto_venda": 65.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0232"
+      ]
+    },
+    {
+      "id": "TX-0257",
+      "data": "2026-08-07T14:45:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "REC CARTAO CIELO 4829",
+      "valor": 38.84,
+      "valor_bruto_venda": 40.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0233"
+      ]
+    },
+    {
+      "id": "TX-0258",
+      "data": "2026-08-07T17:30:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_debito",
+      "descritor_bruto": "CIELO*DEB 4829",
+      "valor": 34.48,
+      "valor_bruto_venda": 35.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0235"
+      ]
+    },
+    {
+      "id": "TX-0259",
+      "data": "2026-08-07T17:50:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_debito",
+      "descritor_bruto": "CIELO DEB 4829",
+      "valor": 93.58,
+      "valor_bruto_venda": 95.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0236"
+      ]
+    },
+    {
+      "id": "TX-0260",
+      "data": "2026-08-07T23:50:00-03:00",
+      "tipo": "saida",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "CIELO ANTECIP AUTOM D+0",
+      "valor": 5.47,
+      "valor_bruto_venda": null,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "antecipacao"
+    },
+    {
+      "id": "TX-0261",
+      "data": "2026-08-08T06:12:00-03:00",
+      "tipo": "saida",
+      "canal": "debito_automatico",
+      "descritor_bruto": "SOMPRO*MUSICA AMBIENT",
+      "valor": 47.9,
+      "valor_bruto_venda": null,
+      "contraparte": "SomPro Música Ambiente",
+      "categoria": "assinatura"
+    },
+    {
+      "id": "TX-0262",
+      "data": "2026-08-08T09:15:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "CIELO*CRED 4829",
+      "valor": 92.25,
+      "valor_bruto_venda": 95.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0237"
+      ]
+    },
+    {
+      "id": "TX-0263",
+      "data": "2026-08-08T09:40:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_debito",
+      "descritor_bruto": "CIELO DEB 4829",
+      "valor": 64.03,
+      "valor_bruto_venda": 65.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0238"
+      ]
+    },
+    {
+      "id": "TX-0264",
+      "data": "2026-08-08T09:50:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_debito",
+      "descritor_bruto": "CIELO*DEB 4829",
+      "valor": 157.62,
+      "valor_bruto_venda": 160.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0239"
+      ]
+    },
+    {
+      "id": "TX-0265",
+      "data": "2026-08-08T10:00:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "REC CARTAO CIELO 4829",
+      "valor": 33.99,
+      "valor_bruto_venda": 35.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0240"
+      ]
+    },
+    {
+      "id": "TX-0266",
+      "data": "2026-08-08T12:20:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "CIELO 4829",
+      "valor": 75.75,
+      "valor_bruto_venda": 78.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0243"
+      ]
+    },
+    {
+      "id": "TX-0267",
+      "data": "2026-08-08T13:10:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_debito",
+      "descritor_bruto": "CIELO DEB 4829",
+      "valor": 157.62,
+      "valor_bruto_venda": 160.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0244"
+      ]
+    },
+    {
+      "id": "TX-0268",
+      "data": "2026-08-08T13:40:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "CIELO*CRED 4829",
+      "valor": 58.27,
+      "valor_bruto_venda": 60.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0245"
+      ]
+    },
+    {
+      "id": "TX-0269",
+      "data": "2026-08-08T14:15:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "CIELO 4829",
+      "valor": 58.27,
+      "valor_bruto_venda": 60.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0246"
+      ]
+    },
+    {
+      "id": "TX-0270",
+      "data": "2026-08-08T15:45:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "CIELO*CRED 4829",
+      "valor": 63.12,
+      "valor_bruto_venda": 65.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0247"
+      ]
+    },
+    {
+      "id": "TX-0271",
+      "data": "2026-08-08T23:50:00-03:00",
+      "tipo": "saida",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "CIELO ANTECIP AUTOM D+0",
+      "valor": 11.75,
+      "valor_bruto_venda": null,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "antecipacao"
+    },
+    {
+      "id": "TX-0272",
+      "data": "2026-08-10T06:03:00-03:00",
+      "tipo": "saida",
+      "canal": "debito_automatico",
+      "descritor_bruto": "VIVO FIBRA 400 DEB AUT",
+      "valor": 119.9,
+      "valor_bruto_venda": null,
+      "contraparte": "Vivo Fibra (internet)",
+      "categoria": "utilidade"
+    },
+    {
+      "id": "TX-0273",
+      "data": "2026-08-12T06:03:00-03:00",
+      "tipo": "saida",
+      "canal": "debito_automatico",
+      "descritor_bruto": "CPFL PAULISTA DEB AUT",
+      "valor": 312.77,
+      "valor_bruto_venda": null,
+      "contraparte": "CPFL Paulista (energia)",
+      "categoria": "utilidade"
+    },
+    {
+      "id": "TX-0274",
+      "data": "2026-08-12T09:14:00-03:00",
+      "tipo": "saida",
+      "canal": "debito_automatico",
+      "descritor_bruto": "NETFLIX.COM 5511",
+      "valor": 55.9,
+      "valor_bruto_venda": null,
+      "contraparte": "Netflix",
+      "categoria": "assinatura"
+    },
+    {
+      "id": "TX-0275",
+      "data": "2026-08-12T12:50:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "CIELO 4829",
+      "valor": 43.7,
+      "valor_bruto_venda": 45.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0250"
+      ]
+    },
+    {
+      "id": "TX-0276",
+      "data": "2026-08-12T15:10:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "CIELO*CRED 4829",
+      "valor": 53.41,
+      "valor_bruto_venda": 55.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0252"
+      ]
+    },
+    {
+      "id": "TX-0277",
+      "data": "2026-08-12T21:47:00-03:00",
+      "tipo": "saida",
+      "canal": "debito_automatico",
+      "descritor_bruto": "NETFLIX.COM 5511",
+      "valor": 55.9,
+      "valor_bruto_venda": null,
+      "contraparte": "Netflix",
+      "categoria": "assinatura"
+    },
+    {
+      "id": "TX-0278",
+      "data": "2026-08-12T23:50:00-03:00",
+      "tipo": "saida",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "CIELO ANTECIP AUTOM D+0",
+      "valor": 2.99,
+      "valor_bruto_venda": null,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "antecipacao"
+    },
+    {
+      "id": "TX-0279",
+      "data": "2026-08-13T16:10:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "CIELO 4829",
+      "valor": 33.99,
+      "valor_bruto_venda": 35.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0253"
+      ]
+    },
+    {
+      "id": "TX-0280",
+      "data": "2026-08-13T17:20:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_debito",
+      "descritor_bruto": "CIELO DEB 4829",
+      "valor": 59.11,
+      "valor_bruto_venda": 60.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0254"
+      ]
+    },
+    {
+      "id": "TX-0281",
+      "data": "2026-08-13T17:50:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "CIELO 4829",
+      "valor": 63.12,
+      "valor_bruto_venda": 65.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0255"
+      ]
+    },
+    {
+      "id": "TX-0282",
+      "data": "2026-08-13T23:50:00-03:00",
+      "tipo": "saida",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "CIELO ANTECIP AUTOM D+0",
+      "valor": 2.99,
+      "valor_bruto_venda": null,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "antecipacao"
+    },
+    {
+      "id": "TX-0283",
+      "data": "2026-08-14T09:12:00-03:00",
+      "tipo": "saida",
+      "canal": "boleto",
+      "descritor_bruto": "BELEZA DISTRIB LTDA 001",
+      "valor": 534.8,
+      "valor_bruto_venda": null,
+      "contraparte": "Beleza Distribuidora LTDA",
+      "categoria": "insumo"
+    },
+    {
+      "id": "TX-0284",
+      "data": "2026-08-14T09:45:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "CIELO*CRED 4829",
+      "valor": 271.91,
+      "valor_bruto_venda": 280.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0256"
+      ]
+    },
+    {
+      "id": "TX-0285",
+      "data": "2026-08-14T09:50:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_debito",
+      "descritor_bruto": "CIELO DEB 4829",
+      "valor": 64.03,
+      "valor_bruto_venda": 65.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0257"
+      ]
+    },
+    {
+      "id": "TX-0286",
+      "data": "2026-08-14T10:12:00-03:00",
+      "tipo": "entrada",
+      "canal": "marketplace",
+      "descritor_bruto": "PAG*BELEZANET",
+      "valor": 667.04,
+      "valor_bruto_venda": 758.0,
+      "contraparte": "BelezaNet (marketplace de agendamento)",
+      "categoria": "repasse",
+      "venda_ids": [
+        "VD-0231",
+        "VD-0234",
+        "VD-0241",
+        "VD-0242",
+        "VD-0248",
+        "VD-0249",
+        "VD-0251"
+      ],
+      "qtd_vendas": 7
+    },
+    {
+      "id": "TX-0287",
+      "data": "2026-08-14T12:10:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_debito",
+      "descritor_bruto": "CIELO DEB 4829",
+      "valor": 44.33,
+      "valor_bruto_venda": 45.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0259"
+      ]
+    },
+    {
+      "id": "TX-0288",
+      "data": "2026-08-14T13:30:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_debito",
+      "descritor_bruto": "CIELO DEB 4829",
+      "valor": 34.48,
+      "valor_bruto_venda": 35.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0261"
+      ]
+    },
+    {
+      "id": "TX-0289",
+      "data": "2026-08-14T14:45:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "CIELO 4829",
+      "valor": 75.75,
+      "valor_bruto_venda": 78.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0263"
+      ]
+    },
+    {
+      "id": "TX-0290",
+      "data": "2026-08-14T15:10:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "CIELO 4829",
+      "valor": 43.7,
+      "valor_bruto_venda": 45.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0264"
+      ]
+    },
+    {
+      "id": "TX-0291",
+      "data": "2026-08-14T23:50:00-03:00",
+      "tipo": "saida",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "CIELO ANTECIP AUTOM D+0",
+      "valor": 12.05,
+      "valor_bruto_venda": null,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "antecipacao"
+    },
+    {
+      "id": "TX-0292",
+      "data": "2026-08-15T08:00:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_debito",
+      "descritor_bruto": "CIELO DEB 4829",
+      "valor": 44.33,
+      "valor_bruto_venda": 45.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0266"
+      ]
+    },
+    {
+      "id": "TX-0293",
+      "data": "2026-08-15T08:58:00-03:00",
+      "tipo": "saida",
+      "canal": "pix",
+      "descritor_bruto": "PIX ENV DROGARIA SAO PAULO",
+      "valor": 255.8,
+      "valor_bruto_venda": null,
+      "contraparte": "Posto Ipiranga",
+      "categoria": "pessoal"
+    },
+    {
+      "id": "TX-0294",
+      "data": "2026-08-15T09:00:00-03:00",
+      "tipo": "entrada",
+      "canal": "pix",
+      "descritor_bruto": "PIX RECEBIDO CPF ***.412.***-**",
+      "valor": 45.0,
+      "valor_bruto_venda": null,
+      "contraparte": "Patrícia H.",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0267"
+      ]
+    },
+    {
+      "id": "TX-0295",
+      "data": "2026-08-15T10:20:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_debito",
+      "descritor_bruto": "CIELO*DEB 4829",
+      "valor": 246.28,
+      "valor_bruto_venda": 250.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0268"
+      ]
+    },
+    {
+      "id": "TX-0296",
+      "data": "2026-08-15T10:50:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "CIELO 4829",
+      "valor": 43.7,
+      "valor_bruto_venda": 45.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0270"
+      ]
+    },
+    {
+      "id": "TX-0297",
+      "data": "2026-08-15T11:00:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_debito",
+      "descritor_bruto": "CIELO DEB 4829",
+      "valor": 315.23,
+      "valor_bruto_venda": 320.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0271"
+      ]
+    },
+    {
+      "id": "TX-0298",
+      "data": "2026-08-15T12:20:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "CIELO*CRED 4829",
+      "valor": 155.38,
+      "valor_bruto_venda": 160.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0272"
+      ]
+    },
+    {
+      "id": "TX-0299",
+      "data": "2026-08-15T14:50:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_debito",
+      "descritor_bruto": "CIELO DEB 4829",
+      "valor": 44.33,
+      "valor_bruto_venda": 45.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0273"
+      ]
+    },
+    {
+      "id": "TX-0300",
+      "data": "2026-08-15T16:10:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_debito",
+      "descritor_bruto": "CIELO DEB 4829",
+      "valor": 44.33,
+      "valor_bruto_venda": 45.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0274"
+      ]
+    },
+    {
+      "id": "TX-0301",
+      "data": "2026-08-15T17:30:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "CIELO*CRED 4829",
+      "valor": 38.84,
+      "valor_bruto_venda": 40.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0275"
+      ]
+    },
+    {
+      "id": "TX-0302",
+      "data": "2026-08-15T23:50:00-03:00",
+      "tipo": "saida",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "CIELO ANTECIP AUTOM D+0",
+      "valor": 7.33,
+      "valor_bruto_venda": null,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "antecipacao"
+    },
+    {
+      "id": "TX-0303",
+      "data": "2026-08-18T09:31:00-03:00",
+      "tipo": "saida",
+      "canal": "boleto",
+      "descritor_bruto": "DAS SIMEI 072026",
+      "valor": 87.05,
+      "valor_bruto_venda": null,
+      "contraparte": "Receita Federal (DAS SIMEI)",
+      "categoria": "imposto",
+      "competencia": "2026-07"
+    },
+    {
+      "id": "TX-0304",
+      "data": "2026-08-18T11:05:00-03:00",
+      "tipo": "saida",
+      "canal": "pix",
+      "descritor_bruto": "PIX ENV DESCARTA MAIS COM",
+      "valor": 248.9,
+      "valor_bruto_venda": null,
+      "contraparte": "Descarta Mais Comércio",
+      "categoria": "insumo"
+    },
+    {
+      "id": "TX-0305",
+      "data": "2026-08-18T11:45:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_debito",
+      "descritor_bruto": "CIELO DEB 4829",
+      "valor": 64.03,
+      "valor_bruto_venda": 65.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0276"
+      ]
+    },
+    {
+      "id": "TX-0306",
+      "data": "2026-08-19T09:15:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_debito",
+      "descritor_bruto": "CIELO*DEB 4829",
+      "valor": 93.58,
+      "valor_bruto_venda": 95.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0278"
+      ]
+    },
+    {
+      "id": "TX-0307",
+      "data": "2026-08-19T09:20:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_debito",
+      "descritor_bruto": "CIELO DEB 4829",
+      "valor": 59.11,
+      "valor_bruto_venda": 60.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0279"
+      ]
+    },
+    {
+      "id": "TX-0308",
+      "data": "2026-08-19T14:10:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "REC CARTAO CIELO 4829",
+      "valor": 62.73,
+      "valor_bruto_venda": 65.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0280"
+      ]
+    },
+    {
+      "id": "TX-0309",
+      "data": "2026-08-19T23:50:00-03:00",
+      "tipo": "saida",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "CIELO ANTECIP AUTOM D+0",
+      "valor": 1.94,
+      "valor_bruto_venda": null,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "antecipacao"
+    },
+    {
+      "id": "TX-0310",
+      "data": "2026-08-20T11:40:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_debito",
+      "descritor_bruto": "CIELO*DEB 4829",
+      "valor": 157.62,
+      "valor_bruto_venda": 160.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0281"
+      ]
+    },
+    {
+      "id": "TX-0311",
+      "data": "2026-08-20T18:10:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "REC CARTAO CIELO 4829",
+      "valor": 53.08,
+      "valor_bruto_venda": 55.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0283"
+      ]
+    },
+    {
+      "id": "TX-0312",
+      "data": "2026-08-20T18:40:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "REC CARTAO CIELO 4829",
+      "valor": 144.77,
+      "valor_bruto_venda": 150.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0284"
+      ]
+    },
+    {
+      "id": "TX-0313",
+      "data": "2026-08-20T23:50:00-03:00",
+      "tipo": "saida",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "CIELO ANTECIP AUTOM D+0",
+      "valor": 6.13,
+      "valor_bruto_venda": null,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "antecipacao"
+    },
+    {
+      "id": "TX-0314",
+      "data": "2026-08-21T10:12:00-03:00",
+      "tipo": "entrada",
+      "canal": "marketplace",
+      "descritor_bruto": "MP *SALAO",
+      "valor": 734.8,
+      "valor_bruto_venda": 835.0,
+      "contraparte": "BelezaNet (marketplace de agendamento)",
+      "categoria": "repasse",
+      "venda_ids": [
+        "VD-0258",
+        "VD-0260",
+        "VD-0262",
+        "VD-0265",
+        "VD-0269",
+        "VD-0277",
+        "VD-0282"
+      ],
+      "qtd_vendas": 7
+    },
+    {
+      "id": "TX-0315",
+      "data": "2026-08-21T10:45:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "CIELO 4829",
+      "valor": 67.56,
+      "valor_bruto_venda": 70.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0287"
+      ]
+    },
+    {
+      "id": "TX-0316",
+      "data": "2026-08-21T12:00:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "CIELO*CRED 4829",
+      "valor": 33.78,
+      "valor_bruto_venda": 35.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0288"
+      ]
+    },
+    {
+      "id": "TX-0317",
+      "data": "2026-08-21T14:15:00-03:00",
+      "tipo": "entrada",
+      "canal": "pix",
+      "descritor_bruto": "PIX QR ESTATICO 8812",
+      "valor": 35.0,
+      "valor_bruto_venda": null,
+      "contraparte": "Íris N.",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0290"
+      ]
+    },
+    {
+      "id": "TX-0318",
+      "data": "2026-08-21T15:20:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_debito",
+      "descritor_bruto": "CIELO DEB 4829",
+      "valor": 44.33,
+      "valor_bruto_venda": 45.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0291"
+      ]
+    },
+    {
+      "id": "TX-0319",
+      "data": "2026-08-21T17:50:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "REC CARTAO CIELO 4829",
+      "valor": 33.78,
+      "valor_bruto_venda": 35.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0292"
+      ]
+    },
+    {
+      "id": "TX-0320",
+      "data": "2026-08-21T18:00:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_debito",
+      "descritor_bruto": "CIELO*DEB 4829",
+      "valor": 64.03,
+      "valor_bruto_venda": 65.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0293"
+      ]
+    },
+    {
+      "id": "TX-0321",
+      "data": "2026-08-21T18:50:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "REC CARTAO CIELO 4829",
+      "valor": 33.78,
+      "valor_bruto_venda": 35.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0295"
+      ]
+    },
+    {
+      "id": "TX-0322",
+      "data": "2026-08-21T23:50:00-03:00",
+      "tipo": "saida",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "CIELO ANTECIP AUTOM D+0",
+      "valor": 5.23,
+      "valor_bruto_venda": null,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "antecipacao"
+    },
+    {
+      "id": "TX-0323",
+      "data": "2026-08-22T06:41:00-03:00",
+      "tipo": "saida",
+      "canal": "debito_automatico",
+      "descritor_bruto": "PAG*AGENDASALAO",
+      "valor": 39.9,
+      "valor_bruto_venda": null,
+      "contraparte": "Agenda Salão App",
+      "categoria": "assinatura"
+    },
+    {
+      "id": "TX-0324",
+      "data": "2026-08-22T09:15:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "REC CARTAO CIELO 4829",
+      "valor": 38.6,
+      "valor_bruto_venda": 40.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0296"
+      ]
+    },
+    {
+      "id": "TX-0325",
+      "data": "2026-08-22T13:30:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_debito",
+      "descritor_bruto": "CIELO DEB 4829",
+      "valor": 39.4,
+      "valor_bruto_venda": 40.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0299"
+      ]
+    },
+    {
+      "id": "TX-0326",
+      "data": "2026-08-22T14:45:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "CIELO 4829",
+      "valor": 75.28,
+      "valor_bruto_venda": 78.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0302"
+      ]
+    },
+    {
+      "id": "TX-0327",
+      "data": "2026-08-22T14:45:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_debito",
+      "descritor_bruto": "CIELO DEB 4829",
+      "valor": 44.33,
+      "valor_bruto_venda": 45.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0301"
+      ]
+    },
+    {
+      "id": "TX-0328",
+      "data": "2026-08-22T16:00:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "REC CARTAO CIELO 4829",
+      "valor": 67.56,
+      "valor_bruto_venda": 70.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0305"
+      ]
+    },
+    {
+      "id": "TX-0329",
+      "data": "2026-08-22T17:00:00-03:00",
+      "tipo": "entrada",
+      "canal": "pix",
+      "descritor_bruto": "PIX RECEBIDO CPF ***.412.***-**",
+      "valor": 160.0,
+      "valor_bruto_venda": null,
+      "contraparte": "Juliana F.",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0306"
+      ]
+    },
+    {
+      "id": "TX-0330",
+      "data": "2026-08-22T23:50:00-03:00",
+      "tipo": "saida",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "CIELO ANTECIP AUTOM D+0",
+      "valor": 5.62,
+      "valor_bruto_venda": null,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "antecipacao"
+    },
+    {
+      "id": "TX-0331",
+      "data": "2026-08-24T15:40:00-03:00",
+      "tipo": "saida",
+      "canal": "boleto",
+      "descritor_bruto": "PAG*BELEZADIST",
+      "valor": 419.3,
+      "valor_bruto_venda": null,
+      "contraparte": "Beleza Distribuidora LTDA",
+      "categoria": "insumo"
+    },
+    {
+      "id": "TX-0332",
+      "data": "2026-08-25T10:40:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "REC CARTAO CIELO 4829",
+      "valor": 38.6,
+      "valor_bruto_venda": 40.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0307"
+      ]
+    },
+    {
+      "id": "TX-0333",
+      "data": "2026-08-25T23:50:00-03:00",
+      "tipo": "saida",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "CIELO ANTECIP AUTOM D+0",
+      "valor": 1.2,
+      "valor_bruto_venda": null,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "antecipacao"
+    },
+    {
+      "id": "TX-0334",
+      "data": "2026-08-26T12:15:00-03:00",
+      "tipo": "entrada",
+      "canal": "pix",
+      "descritor_bruto": "PIX REC 8812 QRS",
+      "valor": 65.0,
+      "valor_bruto_venda": null,
+      "contraparte": "Kelly O.",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0309"
+      ]
+    },
+    {
+      "id": "TX-0335",
+      "data": "2026-08-26T18:30:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "REC CARTAO CIELO 4829",
+      "valor": 125.46,
+      "valor_bruto_venda": 130.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0311"
+      ]
+    },
+    {
+      "id": "TX-0336",
+      "data": "2026-08-26T23:50:00-03:00",
+      "tipo": "saida",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "CIELO ANTECIP AUTOM D+0",
+      "valor": 3.89,
+      "valor_bruto_venda": null,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "antecipacao"
+    },
+    {
+      "id": "TX-0337",
+      "data": "2026-08-27T11:05:00-03:00",
+      "tipo": "saida",
+      "canal": "pix",
+      "descritor_bruto": "PIX ENV POSTO IPIRANGA 12",
+      "valor": 65.32,
+      "valor_bruto_venda": null,
+      "contraparte": "Posto Ipiranga",
+      "categoria": "pessoal"
+    },
+    {
+      "id": "TX-0338",
+      "data": "2026-08-27T11:30:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "CIELO*CRED 4829",
+      "valor": 43.43,
+      "valor_bruto_venda": 45.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0312"
+      ]
+    },
+    {
+      "id": "TX-0339",
+      "data": "2026-08-27T11:45:00-03:00",
+      "tipo": "entrada",
+      "canal": "pix",
+      "descritor_bruto": "PIX RECEBIDO CPF ***.412.***-**",
+      "valor": 45.0,
+      "valor_bruto_venda": null,
+      "contraparte": "Wilma J.",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0313"
+      ]
+    },
+    {
+      "id": "TX-0340",
+      "data": "2026-08-27T13:10:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "CIELO 4829",
+      "valor": 154.42,
+      "valor_bruto_venda": 160.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0314"
+      ]
+    },
+    {
+      "id": "TX-0341",
+      "data": "2026-08-27T17:45:00-03:00",
+      "tipo": "entrada",
+      "canal": "pix",
+      "descritor_bruto": "PIX QR ESTATICO 8812",
+      "valor": 65.0,
+      "valor_bruto_venda": null,
+      "contraparte": "Adriana R.",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0315"
+      ]
+    },
+    {
+      "id": "TX-0342",
+      "data": "2026-08-27T23:50:00-03:00",
+      "tipo": "saida",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "CIELO ANTECIP AUTOM D+0",
+      "valor": 6.13,
+      "valor_bruto_venda": null,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "antecipacao"
+    },
+    {
+      "id": "TX-0343",
+      "data": "2026-08-28T09:45:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_debito",
+      "descritor_bruto": "CIELO DEB 4829",
+      "valor": 64.03,
+      "valor_bruto_venda": 65.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0316"
+      ]
+    },
+    {
+      "id": "TX-0344",
+      "data": "2026-08-28T10:12:00-03:00",
+      "tipo": "entrada",
+      "canal": "marketplace",
+      "descritor_bruto": "PAG*BELEZANET",
+      "valor": 878.96,
+      "valor_bruto_venda": 1042.0,
+      "contraparte": "BelezaNet (marketplace de agendamento)",
+      "categoria": "repasse",
+      "venda_ids": [
+        "VD-0285",
+        "VD-0286",
+        "VD-0289",
+        "VD-0294",
+        "VD-0297",
+        "VD-0298",
+        "VD-0300",
+        "VD-0303",
+        "VD-0304",
+        "VD-0308",
+        "VD-0310"
+      ],
+      "qtd_vendas": 11
+    },
+    {
+      "id": "TX-0345",
+      "data": "2026-08-28T11:40:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_debito",
+      "descritor_bruto": "CIELO DEB 4829",
+      "valor": 118.21,
+      "valor_bruto_venda": 120.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0317"
+      ]
+    },
+    {
+      "id": "TX-0346",
+      "data": "2026-08-28T12:50:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_debito",
+      "descritor_bruto": "CIELO*DEB 4829",
+      "valor": 39.4,
+      "valor_bruto_venda": 40.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0318"
+      ]
+    },
+    {
+      "id": "TX-0347",
+      "data": "2026-08-28T14:30:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "REC CARTAO CIELO 4829",
+      "valor": 57.91,
+      "valor_bruto_venda": 60.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0319"
+      ]
+    },
+    {
+      "id": "TX-0348",
+      "data": "2026-08-28T14:50:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "CIELO*CRED 4829",
+      "valor": 38.6,
+      "valor_bruto_venda": 40.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0320"
+      ]
+    },
+    {
+      "id": "TX-0349",
+      "data": "2026-08-28T14:50:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "CIELO*CRED 4829",
+      "valor": 43.43,
+      "valor_bruto_venda": 45.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0321"
+      ]
+    },
+    {
+      "id": "TX-0350",
+      "data": "2026-08-28T15:50:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "CIELO 4829",
+      "valor": 270.23,
+      "valor_bruto_venda": 280.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0322"
+      ]
+    },
+    {
+      "id": "TX-0351",
+      "data": "2026-08-28T16:00:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "REC CARTAO CIELO 4829",
+      "valor": 53.08,
+      "valor_bruto_venda": 55.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0323"
+      ]
+    },
+    {
+      "id": "TX-0352",
+      "data": "2026-08-28T17:20:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_debito",
+      "descritor_bruto": "CIELO DEB 4829",
+      "valor": 39.4,
+      "valor_bruto_venda": 40.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0324"
+      ]
+    },
+    {
+      "id": "TX-0353",
+      "data": "2026-08-28T18:10:00-03:00",
+      "tipo": "entrada",
+      "canal": "pix",
+      "descritor_bruto": "PIX QR ESTATICO 8812",
+      "valor": 95.0,
+      "valor_bruto_venda": null,
+      "contraparte": "Vanessa U.",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0325"
+      ]
+    },
+    {
+      "id": "TX-0354",
+      "data": "2026-08-28T23:50:00-03:00",
+      "tipo": "saida",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "CIELO ANTECIP AUTOM D+0",
+      "valor": 14.35,
+      "valor_bruto_venda": null,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "antecipacao"
+    },
+    {
+      "id": "TX-0355",
+      "data": "2026-08-29T08:15:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "CIELO*CRED 4829",
+      "valor": 154.42,
+      "valor_bruto_venda": 160.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0326"
+      ]
+    },
+    {
+      "id": "TX-0356",
+      "data": "2026-08-29T09:45:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_debito",
+      "descritor_bruto": "CIELO DEB 4829",
+      "valor": 68.96,
+      "valor_bruto_venda": 70.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0327"
+      ]
+    },
+    {
+      "id": "TX-0357",
+      "data": "2026-08-29T11:00:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "CIELO 4829",
+      "valor": 43.43,
+      "valor_bruto_venda": 45.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0328"
+      ]
+    },
+    {
+      "id": "TX-0358",
+      "data": "2026-08-29T11:30:00-03:00",
+      "tipo": "entrada",
+      "canal": "pix",
+      "descritor_bruto": "PIX RECEBIDO CPF ***.412.***-**",
+      "valor": 65.0,
+      "valor_bruto_venda": null,
+      "contraparte": "Larissa V.",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0329"
+      ]
+    },
+    {
+      "id": "TX-0359",
+      "data": "2026-08-29T14:45:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "CIELO*CRED 4829",
+      "valor": 43.43,
+      "valor_bruto_venda": 45.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0330"
+      ]
+    },
+    {
+      "id": "TX-0360",
+      "data": "2026-08-29T15:00:00-03:00",
+      "tipo": "entrada",
+      "canal": "pix",
+      "descritor_bruto": "PIX QR ESTATICO 8812",
+      "valor": 70.0,
+      "valor_bruto_venda": null,
+      "contraparte": "Vanessa U.",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0331"
+      ]
+    },
+    {
+      "id": "TX-0361",
+      "data": "2026-08-29T16:10:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "CIELO 4829",
+      "valor": 53.08,
+      "valor_bruto_venda": 55.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0332"
+      ]
+    },
+    {
+      "id": "TX-0362",
+      "data": "2026-08-29T16:15:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_debito",
+      "descritor_bruto": "CIELO*DEB 4829",
+      "valor": 39.4,
+      "valor_bruto_venda": 40.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0334"
+      ]
+    },
+    {
+      "id": "TX-0363",
+      "data": "2026-08-29T16:15:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "REC CARTAO CIELO 4829",
+      "valor": 43.43,
+      "valor_bruto_venda": 45.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0333"
+      ]
+    },
+    {
+      "id": "TX-0364",
+      "data": "2026-08-29T17:00:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_debito",
+      "descritor_bruto": "CIELO*DEB 4829",
+      "valor": 49.26,
+      "valor_bruto_venda": 50.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0335"
+      ]
+    },
+    {
+      "id": "TX-0365",
+      "data": "2026-08-29T17:15:00-03:00",
+      "tipo": "entrada",
+      "canal": "maquininha_debito",
+      "descritor_bruto": "CIELO DEB 4829",
+      "valor": 39.4,
+      "valor_bruto_venda": 40.0,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0336"
+      ]
+    },
+    {
+      "id": "TX-0366",
+      "data": "2026-08-29T17:40:00-03:00",
+      "tipo": "entrada",
+      "canal": "pix",
+      "descritor_bruto": "PIX REC 8812 QRS",
+      "valor": 45.0,
+      "valor_bruto_venda": null,
+      "contraparte": "Gisele A.",
+      "categoria": "venda",
+      "venda_ids": [
+        "VD-0337"
+      ]
+    },
+    {
+      "id": "TX-0367",
+      "data": "2026-08-29T23:50:00-03:00",
+      "tipo": "saida",
+      "canal": "maquininha_credito",
+      "descritor_bruto": "CIELO ANTECIP AUTOM D+0",
+      "valor": 10.47,
+      "valor_bruto_venda": null,
+      "contraparte": "Cielo (maquininha)",
+      "categoria": "antecipacao"
+    }
+  ]
+}

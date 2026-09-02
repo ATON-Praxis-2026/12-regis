@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Custo por conta bancária — Financial Anomaly Autopilot</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#FFFFFF;
+    --ink:#15151A;
+    --blue:#2F5AA8;
+    --rust:#B85B4A;
+    --rust-bg:#F5E3DD;
+    --gray:#68697A;
+    --border:#E5E2DC;
+    --border-strong:#15151A;
+    --mono: 'IBM Plex Mono', ui-monospace, monospace;
+    --sans: 'Inter', system-ui, sans-serif;
+    --display: 'Space Grotesk', var(--sans);
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family:var(--sans); line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:900px; margin:0 auto; padding:64px 32px 120px;}
+  .eyebrow{
+    font-family:var(--mono); font-size:13px; letter-spacing:.08em;
+    color:var(--gray); text-transform:uppercase; margin-bottom:20px;
+  }
+  h1.title{
+    font-family:var(--display); font-weight:700; font-size:56px;
+    line-height:1.02; letter-spacing:-0.02em; margin:0 0 20px;
+  }
+  .subtitle{font-size:19px; color:#3a3b46; max-width:680px; margin:0 0 28px;}
+  .subtitle em{font-style:italic; color:var(--ink);}
+  .meta{
+    display:flex; gap:28px; flex-wrap:wrap; font-family:var(--mono); font-size:13px;
+    color:var(--gray); padding:18px 0; border-top:1px solid var(--border); border-bottom:1px solid var(--border);
+    margin-bottom:56px;
+  }
+  .meta b{color:var(--ink); font-weight:600;}
+  section{margin-bottom:56px;}
+  h2{
+    font-family:var(--display); font-weight:700; font-size:28px; color:var(--blue);
+    letter-spacing:-0.01em; margin:0 0 6px; display:flex; align-items:baseline; gap:10px;
+  }
+  h2 .num{font-family:var(--mono); font-size:16px; color:var(--gray); font-weight:500;}
+  .kicker{font-family:var(--mono); font-size:12px; letter-spacing:.08em; color:var(--gray); text-transform:uppercase; margin:0 0 18px;}
+  p{font-size:16px; margin:0 0 14px; max-width:760px;}
+  .lede{font-size:16px; color:#33343d; margin-bottom:24px; max-width:760px;}
+
+  table{width:100%; border-collapse:collapse; margin:20px 0 8px; font-size:14.5px;}
+  th,td{border:1px solid var(--border); padding:12px 14px; text-align:left; vertical-align:top;}
+  th{background:#FAFAF8; font-family:var(--mono); font-size:12.5px; text-transform:uppercase; letter-spacing:.03em; color:var(--gray); font-weight:600;}
+  td.num{font-family:var(--mono); font-weight:600;}
+  tr.highlight td{background:var(--rust-bg);}
+  tr.highlight td:first-child{font-weight:700; color:var(--rust);}
+
+  .source{font-family:var(--mono); font-size:12.5px; color:var(--gray); margin:14px 0 0;}
+  .source::before{content:"→ "; }
+
+  ul.list{margin:0 0 16px; padding-left:0; list-style:none; max-width:760px;}
+  ul.list li{position:relative; padding-left:22px; margin-bottom:10px; font-size:15.5px;}
+  ul.list li::before{content:"—"; position:absolute; left:0; color:var(--rust); font-weight:700;}
+
+  .callout{
+    border:1px solid var(--border-strong); padding:22px 24px; margin:20px 0;
+    display:flex; flex-direction:column; gap:6px;
+  }
+  .callout .k{font-family:var(--mono); font-size:12px; text-transform:uppercase; letter-spacing:.06em; color:var(--gray);}
+  .callout .v{font-family:var(--display); font-size:22px; font-weight:700;}
+
+  /* signature: cost-per-account calculator */
+  .calc{border:1px solid var(--border-strong); padding:0; margin:28px 0 8px;}
+  .calc-head{padding:20px 24px; border-bottom:1px solid var(--border-strong); display:flex; justify-content:space-between; align-items:baseline; gap:16px; flex-wrap:wrap;}
+  .calc-head h3{font-family:var(--display); font-size:20px; margin:0; font-weight:700;}
+  .calc-head .tag{font-family:var(--mono); font-size:12px; color:var(--gray);}
+  .calc-rows{padding:8px 24px 20px;}
+  .calc-row{display:grid; grid-template-columns:150px 1fr 110px; gap:16px; align-items:center; padding:14px 0; border-bottom:1px solid var(--border);}
+  .calc-row:last-child{border-bottom:none;}
+  .calc-row .label{font-family:var(--mono); font-size:13px; color:var(--ink); font-weight:600;}
+  .bar-track{background:#F1F0EC; height:28px; position:relative; overflow:hidden;}
+  .bar-fill{height:100%; background:var(--rust); display:flex; align-items:center; padding-left:10px;}
+  .bar-fill.muted{background:#D8D6CE;}
+  .bar-fill span{font-family:var(--mono); font-size:11.5px; color:#fff; font-weight:600; white-space:nowrap;}
+  .bar-fill.muted span{color:#68697A;}
+  .calc-row .value{font-family:var(--mono); font-size:14px; font-weight:700; text-align:right;}
+  .calc-foot{padding:16px 24px 22px; border-top:1px dashed var(--border); font-size:13.5px; color:var(--gray);}
+
+  .quote{
+    border-left:3px solid var(--rust); padding:4px 0 4px 20px; margin:18px 0; max-width:760px;
+  }
+  .quote p{font-size:15px; color:#2b2c34; margin-bottom:6px; font-style:italic;}
+  .quote .who{font-family:var(--mono); font-size:12px; color:var(--gray);}
+
+  .final{border-top:2px solid var(--ink); margin-top:64px; padding-top:24px;}
+  .final p{font-size:13.5px; color:var(--gray); font-family:var(--mono);}
+
+  @media (max-width:640px){
+    h1.title{font-size:38px;}
+    .calc-row{grid-template-columns:90px 1fr 80px; gap:10px;}
+    .wrap{padding:40px 20px 80px;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="eyebrow">HACKATHON · TROUXE ARCÁDIA · FINANCIAL ANOMALY AUTOPILOT</div>
+  <h1 class="title">Custo por conta bancária</h1>
+  <p class="subtitle">Este documento existe porque a pergunta certa nunca foi <em>"quanto custa o Open Finance"</em> — é <em>quanto custa cada conta que o agente precisa ler</em>. Sem esse número, não dá pra precificar nada.</p>
+
+  <div class="meta">
+    <span><b>Tema 20</b> · Financeiro</span>
+    <span>Status: <b>dado confirmado</b></span>
+    <span>Fonte: <b>relatos reais, TabNews</b></span>
+  </div>
+
+  <section>
+    <div class="kicker">Onde a resposta estava presa</div>
+    <h2><span class="num">01</span>O problema do plano fechado</h2>
+    <p class="lede">Pluggy e Belvo cobram mensalidade fixa por um "volume base" que nenhuma das duas divulga em número de contas. Isso trava qualquer projeção de margem: se você não sabe o custo por conta, não sabe quanto pode cobrar por usuário sem virar prejuízo.</p>
+    <table>
+      <tr><th>Plataforma</th><th>Custo reportado</th><th>Unidade</th><th>Observação</th></tr>
+      <tr><td>Pluggy</td><td class="num">R$ 2.500/mês</td><td>Plano fechado</td><td>Limite de contas incluídas não divulgado</td></tr>
+      <tr><td>Belvo</td><td class="num">R$ 6.000/mês</td><td>Até 25 links</td><td>Acima de 25, precisa negociar à parte</td></tr>
+      <tr><td>Tecnospeed</td><td class="num">R$ 1.500 + R$ 540/mês</td><td>Plano fechado</td><td>Limite não confirmado nas fontes</td></tr>
+      <tr><td>Celcoin</td><td class="num">Por transação</td><td>Sem taxa de setup</td><td>Usada por Neon e PagSeguro — valor não divulgado</td></tr>
+      <tr class="highlight"><td>Banco MCP</td><td class="num">R$ 19,90/mês</td><td>Por conta conectada</td><td>Único com preço unitário real e confirmado</td></tr>
+    </table>
+    <p class="source">tabnews.com.br/GuilhermeVieira · tabnews.com.br/leandrodaher · pluggy.ai/precos · celcoin.com.br</p>
+  </section>
+
+  <section>
+    <div class="kicker">O dado que destrava a conta</div>
+    <h2><span class="num">02</span>Como o Banco MCP resolveu isso</h2>
+    <p>É um revendedor que roda a Pluggy por trás, mas cobra por conexão em vez de plano fechado — pensado justamente para quem não tem caixa pra pagar R$ 2.500/mês fixos antes de validar demanda.</p>
+    <div class="quote">
+      <p>"Atualmente pago 19,90 por cada banco conectado. Não queria criar uma fila falsa — o limite é literal, é minha capacidade de pagar por aquilo enquanto valido a demanda."</p>
+      <div class="who">— dev, TabNews, relato de retorno após a cotação inicial</div>
+    </div>
+    <div class="callout">
+      <div class="k">Preço que ele repassa ao usuário final</div>
+      <div class="v">R$ 49,90/mês · 5 contas incluídas · + R$ 9,90 por conta extra</div>
+    </div>
+  </section>
+
+  <section>
+    <div class="kicker">Não confunda as camadas</div>
+    <h2><span class="num">03</span>Pluggy e Banco MCP não são a mesma coisa</h2>
+    <p class="lede">O Banco MCP não tem licença própria do Banco Central — ele consome a API oficial da Pluggy por trás e revende esse acesso com cobrança por conta em vez de plano fechado.</p>
+    <div class="callout">
+      <div class="k">A cadeia de dependência</div>
+      <div class="v" style="font-size:17px; font-weight:600;">Banco Central → Pluggy (licenciada ITP) → Banco MCP (revende) → Financial Anomaly Autopilot</div>
+    </div>
+    <ul class="list">
+      <li>O dado que chega é o mesmo, técnica e legalmente — vem do Open Finance de verdade, via Pluggy.</li>
+      <li>O risco é de continuidade: o produto fica sujeito às condições que o Banco MCP negociou com a Pluggy. Se ele mudar o preço ou sair do ar, o acesso quebra sem aviso direto da Pluggy.</li>
+      <li>É lógica de atacado × varejo: a Pluggy vende no atacado (R$ 2.500/mês fixo), o Banco MCP compra e revende no varejo (R$ 19,90/conta) — a ponte certa enquanto o produto não atinge os requisitos de credenciamento próprio (ver seção 05).</li>
+    </ul>
+  </section>
+
+  <section>
+    <div class="kicker">Sem número oficial — estimativa, não fato</div>
+    <h2><span class="num">04</span>Quanto custaria com a Pluggy direto?</h2>
+    <p class="lede">A Pluggy não divulga preço por conexão. Os dois cenários abaixo são estimativas, não confirmações.</p>
+    <div class="callout">
+      <div class="k">Cenário otimista</div>
+      <div class="v" style="font-size:17px;">R$ 2.500/mês fixo, se as conexões couberem no "volume base" — vale para 10, 50 ou 100 clientes até estourar um limite não revelado.</div>
+    </div>
+    <div class="callout">
+      <div class="k">Cenário de referência (especulativo, via Belvo)</div>
+      <div class="v" style="font-size:17px;">~R$ 7.000–7.500/mês para 30 conexões, se a Pluggy seguisse a proporção da Belvo (R$ 6.000 / 25 links ≈ R$ 240/conexão)</div>
+    </div>
+    <p>Recomendação concreta: o sandbox da Pluggy é gratuito e sem aprovação — abrir uma conta e perguntar direto no suporte quantas conexões o plano Pro cobre é a única forma de sair da estimativa.</p>
+  </section>
+
+  <section>
+    <div class="kicker">Fora do Brasil — não aplicável, mas útil no pitch</div>
+    <h2><span class="num">05</span>Benchmark: como a Plaid cobra lá fora</h2>
+    <p class="lede">A Plaid (EUA/Canadá/Europa) é a referência mundial do setor e, ao contrário do mercado brasileiro, publica preço por unidade — mas não tem credenciamento no Bacen e não cobre bancos brasileiros.</p>
+    <table>
+      <tr><th>Produto</th><th>Modelo</th><th>Preço</th></tr>
+      <tr><td>Auth / Identity</td><td>Cobrança única por conta</td><td class="num">US$ 0,30 – 1,00</td></tr>
+      <tr><td>Transactions / Liabilities</td><td>Assinatura mensal por conta</td><td class="num">Sob consulta</td></tr>
+      <tr><td>Balance / Signal</td><td>Taxa por chamada de API</td><td class="num">US$ 0,05 – 0,15</td></tr>
+    </table>
+    <p class="source">plaid.com/pricing · support.plaid.com/hc</p>
+  </section>
+
+  <section>
+    <div class="kicker">Aplicando ao produto</div>
+    <h2><span class="num">06</span>Calculadora — custo por usuário</h2>
+    <p class="lede">Cada usuário do Financial Anomaly Autopilot tem em média 3 a 5 contas bancárias. Veja o que isso custa em infraestrutura, escalando o número de usuários — só o modelo Banco MCP permite essa conta; os planos fechados não escalam por unidade.</p>
+
+    <div class="calc">
+      <div class="calc-head">
+        <h3>Custo mensal de infraestrutura</h3>
+        <span class="tag">5 contas / usuário · R$ 9,90 por conta acima da faixa base</span>
+      </div>
+      <div class="calc-rows">
+        <div class="calc-row">
+          <div class="label">10 usuários</div>
+          <div class="bar-track"><div class="bar-fill" style="width:25%"><span>50 contas</span></div></div>
+          <div class="value">R$ 499,00</div>
+        </div>
+        <div class="calc-row">
+          <div class="label">50 usuários</div>
+          <div class="bar-track"><div class="bar-fill" style="width:55%"><span>250 contas</span></div></div>
+          <div class="value">R$ 2.495,00</div>
+        </div>
+        <div class="calc-row">
+          <div class="label">200 usuários</div>
+          <div class="bar-track"><div class="bar-fill" style="width:100%"><span>1.000 contas</span></div></div>
+          <div class="value">R$ 9.980,00</div>
+        </div>
+      </div>
+      <div class="calc-foot">Cálculo: 5 contas × R$ 9,90 × nº de usuários (aproximação — o plano do Banco MCP inclui 5 contas grátis nos primeiros R$ 49,90, o que reduz levemente o custo real nos primeiros usuários). Compare: a Pluggy sozinha, em plano fechado, já custa R$ 2.500/mês fixos — equivalente a ~50 usuários neste modelo por conta, mas sem escalar para baixo se você tiver menos.</div>
+    </div>
+    <p class="source">tabnews.com.br/GuilhermeVieira — post de retorno "Resolvi o problema do Open Finance caro que postei aqui"</p>
+  </section>
+
+  <section>
+    <div class="kicker">Antes de fechar o modelo de negócio</div>
+    <h2><span class="num">07</span>Ressalvas</h2>
+    <ul class="list">
+      <li>O Banco MCP é um intermediário não-oficial — não é a Pluggy contratada direto. Depender dele traz risco de continuidade que vale mencionar no pitch como ponto de atenção, não esconder.</li>
+      <li>Nenhuma fonte confirma o limite de contas incluído no plano Pro da Pluggy (R$ 2.500/mês) nem no plano da Tecnospeed — continua sendo necessário confirmar direto com o comercial de cada uma.</li>
+      <li>Os valores foram obtidos via relatos públicos de desenvolvedores (TabNews), não das páginas oficiais de preço — podem ter mudado desde a data do relato.</li>
+    </ul>
+  </section>
+
+  <div class="final">
+    <p>FINANCIAL ANOMALY AUTOPILOT · RELATÓRIO DE CUSTOS · PREPARADO POR KYSA ROBERT · 29/08/2026</p>
+  </div>
+
+</div>
+</body>
+</html>

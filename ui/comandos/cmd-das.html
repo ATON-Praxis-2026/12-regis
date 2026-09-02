@@ -1,0 +1,361 @@
+<!--
+  REGIS · animação do comando /das
+  ==========================================================================
+  Uma tela por comando, para a apresentação do pitch. Copy verbatim de
+  copy-comandos.md. Padrão visual e mecânica de ui/_padrao-conversa-whatsapp.html.
+
+  COMO USAR NO SLIDE
+  · Abrir o arquivo no navegador e gravar a tela, ou
+  · Embutir: <iframe src="comandos/cmd-das.html?fundo=transparente"
+             width="420" height="620" style="border:0"></iframe>
+  · Forçar o tema: ?tema=dark ou ?tema=light (sem isso segue o sistema)
+  · Tirar o fundo da página: ?fundo=transparente
+  · Clicar no aparelho reinicia a animação na hora
+  · A conversa roda em loop infinito, começa quando entra na tela
+
+  Editar aqui é seguro: as mensagens são as divs com data-step, na ordem da
+  animação. Se mudar a copy, mudar antes em copy-comandos.md (território da Ana).
+-->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Regis · /das</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Karla:wght@400;500;600;700&display=swap">
+<style>
+  :root{
+    color-scheme:light;
+    --bg:#F1F4F1;
+    --font-d:"Manrope",-apple-system,BlinkMacSystemFont,sans-serif;
+    --font-b:"Karla",-apple-system,BlinkMacSystemFont,sans-serif;
+    --wa-frame:#0B100D;
+    --wa-head:#F0F2F5; --wa-head-tx:#111B21; --wa-head-ic:#54656F;
+    --wa-bg:#EFEAE2;
+    --wa-in:#FFFFFF; --wa-out:#D9FDD3; --wa-tx:#111B21; --wa-2:#667781;
+    --wa-day:#FFFFFF; --wa-act:#027EB5; --wa-check:#53BDEB;
+    --wa-field:#FFFFFF; --wa-send:#00A884;
+    --wa-div:rgba(0,0,0,.10); --wa-sel:rgba(0,168,132,.10);
+    --sombra:0 24px 70px rgba(11,16,13,.26);
+  }
+  @media (prefers-color-scheme:dark){
+    :root:not([data-theme="light"]){
+      color-scheme:dark;
+      --bg:#060907;
+      --wa-frame:#000000;
+      --wa-head:#202C33; --wa-head-tx:#E9EDEF; --wa-head-ic:#AEBAC1;
+      --wa-bg:#0B141A;
+      --wa-in:#202C33; --wa-out:#005C4B; --wa-tx:#E9EDEF; --wa-2:#8696A0;
+      --wa-day:#182229; --wa-act:#00A884; --wa-check:#53BDEB;
+      --wa-field:#2A3942; --wa-send:#00A884;
+      --wa-div:rgba(255,255,255,.10); --wa-sel:rgba(0,168,132,.12);
+      --sombra:0 24px 70px rgba(0,0,0,.55);
+    }
+  }
+  :root[data-theme="dark"]{
+    color-scheme:dark;
+    --bg:#060907;
+    --wa-frame:#000000;
+    --wa-head:#202C33; --wa-head-tx:#E9EDEF; --wa-head-ic:#AEBAC1;
+    --wa-bg:#0B141A;
+    --wa-in:#202C33; --wa-out:#005C4B; --wa-tx:#E9EDEF; --wa-2:#8696A0;
+    --wa-day:#182229; --wa-act:#00A884; --wa-check:#53BDEB;
+    --wa-field:#2A3942; --wa-send:#00A884;
+    --wa-div:rgba(255,255,255,.10); --wa-sel:rgba(0,168,132,.12);
+    --sombra:0 24px 70px rgba(0,0,0,.55);
+  }
+
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  body{margin:0;background:var(--bg);font-family:var(--font-b);line-height:1.5;
+       -webkit-font-smoothing:antialiased;
+       min-height:100vh;display:grid;grid-template-columns:minmax(0,1fr);
+       place-items:center;padding:30px 16px}
+  body[data-fundo="transparente"]{background:transparent}
+
+  /* ---------- aparelho ---------- */
+  .phone{width:min(330px,100%);background:var(--wa-frame);border-radius:46px;
+         padding:11px;box-shadow:var(--sombra);position:relative;cursor:pointer}
+  .phone::after{content:"";position:absolute;right:-2px;top:128px;width:3px;height:58px;
+                border-radius:3px;background:var(--wa-frame)}
+  .screen{border-radius:36px;overflow:hidden;background:var(--wa-bg);position:relative}
+  .notch{position:absolute;top:8px;left:50%;transform:translateX(-50%);width:96px;
+         height:25px;background:#000;border-radius:14px;z-index:9}
+
+  /* ---------- cabeçalho ---------- */
+  .wahead{background:var(--wa-head);color:var(--wa-head-tx);display:flex;
+          align-items:center;gap:10px;padding:40px 13px 10px;position:relative;z-index:5}
+  .waback{display:flex;color:var(--wa-head-ic)}
+  .waav{width:38px;height:38px;border-radius:50%;flex:none;background:#00A884;
+        display:grid;place-items:center;font-family:var(--font-d);font-weight:800;
+        font-size:15px;color:#fff}
+  .wameta{flex:1;min-width:0;line-height:1.25}
+  .waname{font-size:15px;font-weight:600}
+  .wastatus{font-size:11.5px;color:var(--wa-2);min-height:15px}
+  .waic{display:flex;gap:15px;color:var(--wa-head-ic)}
+
+  /* ---------- corpo ---------- */
+  .wabody{
+    background-color:var(--wa-bg);
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='90' height='90' viewBox='0 0 90 90'%3E%3Cg fill='none' stroke='%23808080' stroke-opacity='0.10' stroke-width='1.4'%3E%3Ccircle cx='22' cy='20' r='6'/%3E%3Cpath d='M58 12 q9 8 0 17'/%3E%3Crect x='54' y='50' width='15' height='11' rx='2'/%3E%3Cpath d='M12 64 l9 -7 9 7'/%3E%3Cpath d='M40 44 q6 -8 12 0'/%3E%3C/g%3E%3C/svg%3E");
+    padding:14px 9px 14px;display:flex;flex-direction:column;
+    gap:4px;height:474px;overflow:hidden;position:relative;
+  }
+  /* ancora a conversa embaixo sem quebrar o scroll quando ela passa da tela */
+  .wabody::before{content:"";margin-top:auto}
+  .waday{align-self:center;background:var(--wa-day);color:var(--wa-2);font-size:11px;
+         font-weight:500;padding:4px 11px;border-radius:8px;margin-bottom:5px;
+         box-shadow:0 1px 1px rgba(0,0,0,.06);
+         opacity:0;transform:translateY(6px);
+         transition:opacity .3s ease,transform .3s ease}
+  .waday.show{opacity:1;transform:none}
+
+  .bubble{max-width:85%;padding:6px 8px 5px 9px;border-radius:8px;font-size:13.4px;
+          line-height:1.42;position:relative;color:var(--wa-tx);
+          box-shadow:0 1px .5px rgba(0,0,0,.13);
+          opacity:0;transform:translateY(10px) scale(.96);transform-origin:bottom;
+          transition:opacity .32s ease,transform .32s cubic-bezier(.2,.8,.2,1)}
+  .bubble.show{opacity:1;transform:none}
+  .bubble.in{background:var(--wa-in);align-self:flex-start;border-top-left-radius:0}
+  .bubble.out{background:var(--wa-out);align-self:flex-end;border-top-right-radius:0}
+  .bubble.in::before,.bubble.out::before{
+    content:"";position:absolute;top:0;width:9px;height:13px}
+  .bubble.in::before{left:-8px;background:var(--wa-in);
+    clip-path:polygon(100% 0,100% 100%,0 0)}
+  .bubble.out::before{right:-8px;background:var(--wa-out);
+    clip-path:polygon(0 0,0 100%,100% 0)}
+  .bubble .t{float:right;font-size:10.5px;color:var(--wa-2);margin:6px 0 -2px 8px;
+             line-height:1;white-space:nowrap}
+  .bubble .check{color:var(--wa-check);font-weight:700}
+  .bubble b{font-weight:600}
+  .bubble .money{font-family:var(--font-d);font-weight:700;
+                 font-variant-numeric:tabular-nums}
+  .bubble .big{font-family:var(--font-d);font-weight:800;font-size:22px;
+               letter-spacing:-.03em;font-variant-numeric:tabular-nums;
+               display:block;margin:4px 0 2px}
+  .bubble.cmd{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:13px}
+
+  /* botões de resposta rápida do WhatsApp Business */
+  .qr{display:flex;flex-direction:column;gap:1px;margin:6px -8px -5px -9px}
+  .qrb{padding:9px;text-align:center;color:var(--wa-act);font-size:13.5px;
+        font-weight:500;border-top:1px solid var(--wa-div);
+        display:flex;align-items:center;justify-content:center;gap:6px;
+        transition:background .2s}
+  .qrb.tapped{background:var(--wa-sel)}
+  .qrow{display:flex;gap:1px;margin:6px -8px -5px -9px}
+  .qrow .qrb{flex:1;border-top:1px solid var(--wa-div)}
+  .qrow .qrb + .qrb{border-left:1px solid var(--wa-div)}
+
+  .typing{background:var(--wa-in);align-self:flex-start;border-radius:8px;
+          border-top-left-radius:0;padding:10px 11px;display:inline-flex;gap:4px;
+          box-shadow:0 1px .5px rgba(0,0,0,.13);position:relative}
+  .typing::before{content:"";position:absolute;top:0;left:-8px;width:9px;height:13px;
+                  background:var(--wa-in);clip-path:polygon(100% 0,100% 100%,0 0)}
+  .typing i{width:7px;height:7px;border-radius:50%;background:var(--wa-2);
+            animation:blink 1.2s infinite;display:block}
+  .typing i:nth-child(2){animation-delay:.2s}
+  .typing i:nth-child(3){animation-delay:.4s}
+  @keyframes blink{0%,60%,100%{opacity:.3}30%{opacity:1}}
+
+  .wainput{background:var(--wa-head);display:flex;align-items:center;gap:8px;
+           padding:8px 10px;position:relative;z-index:5}
+  .wainput .field{flex:1;background:var(--wa-field);border-radius:999px;
+                  padding:9px 14px;font-size:13px;color:var(--wa-2);
+                  box-shadow:0 1px .5px rgba(0,0,0,.08)}
+  .wainput .send{width:36px;height:36px;border-radius:50%;background:var(--wa-send);
+                 color:#fff;display:grid;place-items:center;flex:none;font-size:14px}
+  .wainput .ic{color:var(--wa-head-ic);font-size:16px;display:flex}
+
+  @media (prefers-reduced-motion:reduce){
+    .bubble,.waday{opacity:1;transform:none;transition:none}
+  }
+</style>
+
+<div class="phone">
+  <div class="screen">
+    <div class="notch"></div>
+
+        <div class="wahead">
+          <span class="waback">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+          </span>
+          <span class="waav">R</span>
+          <div class="wameta">
+            <div class="waname">Regis</div>
+            <div class="wastatus" id="status">online</div>
+          </div>
+          <div class="waic">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 7l-7 5 7 5V7z"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          </div>
+        </div>
+    <div class="wabody" id="body">
+<!-- CONTEUDO -->
+          <div class="waday" data-step>29/08/2026</div>
+
+          <div class="bubble out cmd" data-step>
+            /das<span class="t">9:21 <span class="check">✓✓</span></span>
+          </div>
+
+          <div class="bubble in" data-step>
+            Seu DAS de agosto está pago. Caiu em 18/08 e baixou certo, não precisa fazer nada.<span class="t">9:21</span>
+          </div>
+
+          <div class="bubble in" data-step>
+            Mas achei uma coisa: a competência de junho foi paga duas vezes, <span class="money">R$ 87,05</span>. Já preparei o pedido de restituição.<span class="t">9:22</span>
+            <span class="qrow"><span class="qrb" data-tap>Ver o pedido</span><span class="qrb">Depois</span></span>
+          </div>
+
+          <div class="bubble in" data-step>
+            O de setembro vence dia 20. Eu te lembro dia 18, sem você precisar anotar.<span class="t">9:22</span>
+          </div>
+
+<!-- FIM CONTEUDO -->
+    </div>
+
+        <div class="wainput">
+          <span class="ic">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2M9 9h.01M15 9h.01"/></svg>
+          </span>
+          <div class="field">Mensagem</div>
+          <span class="send">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 14a3 3 0 0 0 3-3V5a3 3 0 0 0-6 0v6a3 3 0 0 0 3 3z"/><path d="M19 11a7 7 0 0 1-14 0H3a9 9 0 0 0 8 8.94V23h2v-3.06A9 9 0 0 0 21 11h-2z"/></svg>
+          </span>
+        </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  var SLOW = 1.25;          // multiplicador global dos delays
+  var PAUSA_FINAL = 3200;   // quanto a conversa fica parada antes de recomeçar
+  function wa(ms){ return Math.round(ms * SLOW); }
+
+  var reduce = typeof window.matchMedia === "function" &&
+               window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  // ?tema=dark|light e ?fundo=transparente, para encaixar no slide
+  try {
+    var q = new URLSearchParams(location.search);
+    var tema = q.get("tema");
+    if (tema === "dark" || tema === "light") document.documentElement.setAttribute("data-theme", tema);
+    if (q.get("fundo") === "transparente") document.body.setAttribute("data-fundo", "transparente");
+  } catch(err){}
+
+  var timers = [];
+  function pushT(fn, ms){ timers.push(setTimeout(fn, ms)); }
+  function clearTimers(){ timers.forEach(clearTimeout); timers.length = 0; }
+
+  var body = document.getElementById("body");
+  var steps = Array.prototype.slice.call(body.querySelectorAll("[data-step]"));
+  var statusEl = document.getElementById("status");
+  var tapBtn = body.querySelector("[data-tap]");
+
+  function scrollDown(){
+    body.scrollTo({ top: body.scrollHeight, behavior: reduce ? "auto" : "smooth" });
+  }
+
+  if (reduce){
+    steps.forEach(function(s){ s.style.display = ""; s.classList.add("show"); });
+    return;
+  }
+
+  var idx = 0;
+
+  function makeTyping(){
+    var t = document.createElement("div");
+    t.className = "typing";
+    t.setAttribute("data-typing", "");
+    t.innerHTML = "<i></i><i></i><i></i>";
+    return t;
+  }
+  function reveal(el){
+    el.style.display = "";
+    void el.offsetWidth;
+    el.classList.add("show");
+    scrollDown();
+  }
+  function resetAll(){
+    clearTimers();
+    body.querySelectorAll("[data-typing]").forEach(function(t){ t.remove(); });
+    steps.forEach(function(s){ s.classList.remove("show"); s.style.display = "none"; });
+    body.querySelectorAll(".qrb.tapped").forEach(function(b){ b.classList.remove("tapped"); });
+    statusEl.textContent = "online";
+    body.scrollTop = 0;
+  }
+  function finish(){
+    // fecha o loop: toca o botão principal, respira e recomeça
+    if (tapBtn){
+      pushT(function(){ tapBtn.classList.add("tapped"); }, wa(900));
+      pushT(function(){ tapBtn.classList.remove("tapped"); }, wa(1900));
+    }
+    pushT(function(){ resetAll(); idx = 0; next(); }, wa(PAUSA_FINAL));
+  }
+  function next(){
+    if (idx >= steps.length){ finish(); return; }
+    var el = steps[idx];
+
+    if (el.classList.contains("waday")){
+      reveal(el); idx++; pushT(next, wa(600)); return;
+    }
+
+    var incoming = el.classList.contains("in");
+
+    if (incoming){
+      statusEl.textContent = "digitando…";
+      var typing = makeTyping();
+      body.appendChild(typing);
+      scrollDown();
+      var len = (el.textContent || "").trim().length;
+      var wait = wa(800 + Math.min(len * 11, 1500));
+      pushT(function(){
+        typing.remove();
+        statusEl.textContent = "online";
+        reveal(el);
+        idx++;
+        pushT(next, wa(700));
+      }, wait);
+    } else {
+      reveal(el);
+      var check = el.querySelector(".check");
+      if (check){
+        check.textContent = "✓";
+        check.style.color = "var(--wa-2)";
+        pushT(function(){ check.textContent = "✓✓"; }, wa(600));
+        pushT(function(){ check.style.color = "var(--wa-check)"; }, wa(1250));
+      }
+      idx++;
+      pushT(next, wa(1450));
+    }
+  }
+
+  resetAll();
+
+  // clicar no aparelho reinicia a animação, útil na hora do pitch
+  var phone = document.querySelector(".phone");
+  if (phone) phone.addEventListener("click", function(){ resetAll(); idx = 0; pushT(next, 260); });
+
+  var played = false, comecouEscondida = false;
+  function start(){
+    if (played) return;
+    played = true;
+    comecouEscondida = document.hidden;
+    pushT(next, wa(500));
+  }
+
+  if ("IntersectionObserver" in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ if (e.isIntersecting) start(); });
+    }, { threshold: 0.25 });
+    io.observe(body);
+  }
+
+  // rede de segurança: em aba de segundo plano ou iframe de slide o observer
+  // pode não disparar, então a conversa começa sozinha depois de um tempo
+  setTimeout(start, 2500);
+
+  // se ela começou com a aba escondida, recomeça do zero quando aparecer
+  document.addEventListener("visibilitychange", function(){
+    if (!document.hidden && comecouEscondida){
+      comecouEscondida = false;
+      resetAll(); idx = 0; pushT(next, wa(400));
+    }
+  });
+})();
+</script>

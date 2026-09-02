@@ -1,0 +1,647 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="A visao de futuro da Regis: o ativo que ela constroi, a metrica do norte, os cinco horizontes, a sequencia regulatoria de 2025 a 2029 e o que mudou no campo competitivo.">
+<meta name="color-scheme" content="light dark">
+<title>Visão de Futuro da Regis</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+
+<style>
+:root{
+  --bg:#EDEFEA; --surface:#FBFCF9; --surface-2:#E4E8E1;
+  --ink:#141A16; --ink-2:#5C6660; --ink-3:#8A938D;
+  --rule:#D3D8CE; --rule-soft:#E1E5DC;
+  --accent:#17564A; --accent-soft:#D6E4DC;
+  --hot:#A8341F; --hot-soft:#F0DCD6;
+  --warm:#8F5E0E; --warm-soft:#EFE3C9;
+  --shadow:0 1px 2px rgba(20,26,22,.05), 0 8px 24px -16px rgba(20,26,22,.22);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0F1211; --surface:#171B18; --surface-2:#242A25;
+    --ink:#E7EBE4; --ink-2:#A2AA9F; --ink-3:#767E74;
+    --rule:#2A302B; --rule-soft:#232823;
+    --accent:#63C8AC; --accent-soft:#1C302A;
+    --hot:#E8785F; --hot-soft:#33201B;
+    --warm:#DFA847; --warm-soft:#2E2717;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -16px rgba(0,0,0,.7);
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0F1211; --surface:#171B18; --surface-2:#242A25;
+  --ink:#E7EBE4; --ink-2:#A2AA9F; --ink-3:#767E74;
+  --rule:#2A302B; --rule-soft:#232823;
+  --accent:#63C8AC; --accent-soft:#1C302A;
+  --hot:#E8785F; --hot-soft:#33201B;
+  --warm:#DFA847; --warm-soft:#2E2717;
+  --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -16px rgba(0,0,0,.7);
+}
+
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--bg);color:var(--ink);
+  font-family:"IBM Plex Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  font-size:16.5px;line-height:1.62;margin:0;-webkit-font-smoothing:antialiased}
+img,svg,video{max-width:100%;height:auto}
+.wrap{max-width:1000px;margin:0 auto;padding:0 28px 92px}
+h1,h2,h3{font-family:Newsreader,Georgia,"Times New Roman",serif;font-weight:500;text-wrap:balance;margin:0}
+p{margin:0}
+a{color:var(--accent);text-decoration-thickness:1px;text-underline-offset:2px}
+a:focus-visible,summary:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:2px}
+.eyebrow{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:11.5px;font-weight:500;
+  letter-spacing:.13em;text-transform:uppercase;color:var(--ink-3)}
+.mono{font-family:"IBM Plex Mono",ui-monospace,monospace}
+
+header.mast{padding:60px 0 0}
+.kicker{display:flex;flex-wrap:wrap;gap:9px;align-items:center;margin-bottom:24px}
+.tag{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;
+  padding:4px 9px;border:1px solid var(--rule);border-radius:2px;color:var(--ink-2)}
+.tag.on{background:var(--accent);border-color:var(--accent);color:var(--bg)}
+h1{font-size:clamp(42px,7.6vw,78px);line-height:1.0;letter-spacing:-.022em}
+h1 em{font-style:italic;color:var(--hot)}
+.standfirst{font-family:Newsreader,Georgia,serif;font-size:clamp(19px,2.4vw,23px);line-height:1.5;
+  color:var(--ink-2);max-width:60ch;margin-top:22px}
+.byline{display:flex;flex-wrap:wrap;gap:8px 22px;margin-top:32px;padding-top:18px;border-top:1px solid var(--rule);
+  font-family:"IBM Plex Mono",monospace;font-size:11.5px;letter-spacing:.06em;color:var(--ink-3);text-transform:uppercase}
+
+.verdict-block{margin-top:36px;border-left:4px solid var(--accent);background:var(--accent-soft);padding:26px 28px}
+.verdict-block .eyebrow{color:var(--accent);margin-bottom:12px;display:block}
+.verdict-block p{font-family:Newsreader,Georgia,serif;font-size:clamp(23px,3.4vw,32px);line-height:1.3;color:var(--ink)}
+
+section{padding-top:58px}
+.shead{display:flex;align-items:baseline;gap:16px;flex-wrap:wrap;padding-bottom:8px}
+.shead h2{font-size:clamp(28px,4vw,40px);letter-spacing:-.015em;line-height:1.11}
+.sdek{max-width:68ch;color:var(--ink-2);margin-top:15px;font-size:16px}
+.sdek strong{color:var(--ink);font-weight:600}
+.sdek+.sdek{margin-top:12px}
+
+/* resumo executivo */
+.exec{margin-top:30px;border:1px solid var(--rule);background:var(--surface);box-shadow:var(--shadow)}
+.exec .top{padding:22px 26px 18px;border-bottom:1px solid var(--rule)}
+.exec .top p{font-family:Newsreader,Georgia,serif;font-size:clamp(19px,2.5vw,24px);line-height:1.4}
+.exec .rows{display:grid;gap:1px;background:var(--rule-soft)}
+.exec .row{background:var(--surface);padding:18px 26px;display:grid;grid-template-columns:180px 1fr;gap:22px;align-items:baseline}
+.exec .row .k{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3)}
+.exec .row .v{font-size:15.4px;line-height:1.55;color:var(--ink-2)}
+.exec .row .v b{color:var(--ink);font-weight:600}
+.exec .row .v .fig{font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums;color:var(--ink);font-weight:600}
+
+/* quem enxerga o que */
+.tblwrap{margin-top:28px;border:1px solid var(--rule);overflow-x:auto}
+table{border-collapse:collapse;width:100%;min-width:720px;background:var(--surface)}
+th{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--ink-3);text-align:left;padding:13px 16px;border-bottom:1px solid var(--rule);font-weight:500}
+td{padding:15px 16px;border-bottom:1px solid var(--rule-soft);font-size:14.6px;vertical-align:top;line-height:1.5;color:var(--ink-2)}
+tr:last-child td{border-bottom:0}
+td.who{color:var(--ink);font-weight:600;white-space:nowrap}
+tr.self td{background:var(--accent-soft)}
+tr.self td.who{color:var(--ink)}
+td b{color:var(--ink);font-weight:600}
+
+/* metrica do norte: barras de tempo */
+.timebars{margin-top:30px;display:grid;gap:1px;background:var(--rule);border:1px solid var(--rule)}
+.tb{background:var(--surface);padding:17px 22px;display:grid;grid-template-columns:190px 1fr 118px;gap:20px;align-items:center}
+.tb .st{font-size:14.6px;color:var(--ink);font-weight:600}
+.tb .st span{display:block;font-weight:400;color:var(--ink-3);font-size:12.6px;line-height:1.4;margin-top:2px}
+.tb .track{height:12px;background:var(--surface-2);position:relative;border-radius:1px;overflow:hidden}
+.tb .track i{position:absolute;top:0;bottom:0;left:0;display:block;background:var(--hot);opacity:.85}
+.tb.b2 .track i{background:var(--warm)}
+.tb.b3 .track i{background:var(--accent)}
+.tb.b4 .track i{background:var(--accent);opacity:1}
+.tb .val{font-family:"IBM Plex Mono",monospace;font-size:13px;color:var(--ink-2);text-align:right;font-variant-numeric:tabular-nums}
+.tb.b4 .val{color:var(--accent);font-weight:600}
+
+/* fronteira da certeza */
+.frontier{margin-top:30px;display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--rule);border:1px solid var(--rule)}
+.fr{background:var(--surface);padding:22px;display:flex;flex-direction:column;gap:9px;position:relative}
+.fr .lvl{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase}
+.fr.s .lvl{color:var(--ink-3)} .fr.r .lvl{color:var(--warm)} .fr.f .lvl{color:var(--accent)}
+.fr h3{font-size:19px;letter-spacing:-.01em}
+.fr p{font-size:14.4px;color:var(--ink-2);line-height:1.5}
+.fr .act{margin-top:auto;padding-top:12px;font-family:"IBM Plex Mono",monospace;font-size:11px;
+  letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3)}
+.arrows{margin-top:14px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;
+  font-family:"IBM Plex Mono",monospace;font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3)}
+.arrows b{color:var(--accent);font-weight:500}
+
+/* horizontes: o desenho principal */
+.rail{margin-top:34px;position:relative;padding-left:34px}
+.rail::before{content:"";position:absolute;left:9px;top:14px;bottom:14px;width:2px;background:var(--rule)}
+.hz{position:relative;padding:0 0 30px}
+.hz::before{content:"";position:absolute;left:-30px;top:9px;width:12px;height:12px;border-radius:50%;
+  background:var(--bg);border:2px solid var(--rule)}
+.hz.now::before{background:var(--accent);border-color:var(--accent)}
+.hz.next::before{border-color:var(--accent)}
+.hz .head{display:flex;gap:12px;align-items:baseline;flex-wrap:wrap}
+.hz .h{font-family:"IBM Plex Mono",monospace;font-size:12px;font-weight:600;letter-spacing:.08em;color:var(--accent)}
+.hz .when{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3)}
+.hz h3{font-size:clamp(21px,2.8vw,26px);letter-spacing:-.014em;margin-top:6px;line-height:1.2}
+.hz .body{margin-top:10px;font-size:15.4px;color:var(--ink-2);max-width:66ch}
+.hz .body b{color:var(--ink);font-weight:600}
+.hz .proof{margin-top:14px;border:1px solid var(--rule);background:var(--surface);padding:14px 18px;display:grid;
+  grid-template-columns:auto 1fr;gap:8px 18px;font-size:14px;line-height:1.5;max-width:70ch}
+.hz .proof dt{font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:.09em;text-transform:uppercase;
+  color:var(--ink-3);padding-top:3px;white-space:nowrap}
+.hz .proof dd{margin:0;color:var(--ink-2)}
+.hz .proof dd b{color:var(--ink);font-weight:600}
+.hz.now h3{color:var(--accent)}
+
+/* linha do tempo regulatoria */
+.reg{margin-top:30px;display:grid;grid-template-columns:repeat(6,1fr);gap:1px;background:var(--rule);border:1px solid var(--rule)}
+.rg{background:var(--surface);padding:18px 16px;display:flex;flex-direction:column;gap:8px}
+.rg .dt{font-family:"IBM Plex Mono",monospace;font-size:11.5px;font-weight:600;letter-spacing:.05em;color:var(--hot)}
+.rg .ttl{font-size:14.2px;color:var(--ink);font-weight:600;line-height:1.35}
+.rg .txt{font-size:13.2px;color:var(--ink-2);line-height:1.45}
+.regnote{margin-top:18px;padding:18px 22px;border-left:4px solid var(--hot);background:var(--hot-soft);
+  font-size:15.4px;line-height:1.55;color:var(--ink)}
+.regnote b{font-weight:600}
+
+/* matriz de posicionamento */
+.matwrap{margin-top:30px;border:1px solid var(--rule);background:var(--surface);overflow-x:auto;box-shadow:var(--shadow)}
+.mat{position:relative;min-width:660px;height:470px;margin:30px 34px 26px}
+.mat .ax{position:absolute;background:var(--rule)}
+.mat .ax.h{left:0;right:0;top:50%;height:1px}
+.mat .ax.v{top:0;bottom:0;left:50%;width:1px}
+.mat .axlab{position:absolute;font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--ink-3);background:var(--surface);padding:3px 7px;white-space:nowrap}
+.mat .quad{position:absolute;font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--ink-3);opacity:.7;max-width:200px;line-height:1.4;white-space:normal}
+.dot{position:absolute;transform:translate(-50%,-50%);display:flex;align-items:center;gap:8px}
+.dot i{width:11px;height:11px;border-radius:50%;background:var(--ink-3);flex:none}
+.dot.hollow i{background:transparent;border:1.5px solid var(--ink-3)}
+.dot span{font-size:12.8px;color:var(--ink-2);white-space:nowrap;line-height:1.2}
+.dot.us i{width:15px;height:15px;background:var(--accent);box-shadow:0 0 0 5px var(--accent-soft)}
+.dot.us span{color:var(--ink);font-weight:600;font-size:14.5px}
+.dot.rt{flex-direction:row-reverse}
+.legend{display:flex;flex-wrap:wrap;gap:8px 26px;padding:0 30px 22px;
+  font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3)}
+.legend b{display:inline-flex;align-items:center;gap:7px;font-weight:400}
+.legend i{width:9px;height:9px;border-radius:50%;background:var(--ink-3);display:inline-block}
+.legend i.ho{background:transparent;border:1.5px solid var(--ink-3)}
+.legend i.ac{background:var(--accent)}
+
+/* constantes */
+.consts{margin-top:28px;display:grid;gap:14px}
+.const{border:1px solid var(--rule);background:var(--surface);padding:20px 24px;display:grid;
+  grid-template-columns:44px 1fr;gap:20px}
+.const .rank{font-family:"IBM Plex Mono",monospace;font-size:24px;font-weight:500;color:var(--accent);line-height:1;padding-top:4px}
+.const h3{font-size:19.5px;letter-spacing:-.012em;margin-bottom:7px;line-height:1.25}
+.const p{color:var(--ink-2);font-size:15px}
+
+/* riscos */
+.risks{margin-top:26px;border-top:1px solid var(--rule)}
+.risk{display:grid;grid-template-columns:270px 1fr;gap:22px;padding:17px 4px;border-bottom:1px solid var(--rule-soft)}
+.risk .r{font-size:15px;color:var(--ink);font-weight:600;line-height:1.4}
+.risk .a{font-size:14.8px;color:var(--ink-2);line-height:1.55}
+.risk .a b{color:var(--ink);font-weight:600}
+
+.callout{margin-top:26px;padding:20px 24px;border:1px dashed var(--rule);background:var(--surface);
+  font-size:15.2px;line-height:1.62;color:var(--ink-2)}
+.callout strong{color:var(--ink);font-weight:600}
+
+.pitch{margin-top:30px;border:1px solid var(--accent);background:var(--accent-soft);padding:28px 30px}
+.pitch .eyebrow{color:var(--accent);display:block;margin-bottom:14px}
+.pitch p{font-family:Newsreader,Georgia,serif;font-size:clamp(18px,2.3vw,22px);line-height:1.48;color:var(--ink)}
+.pitch p+p{margin-top:14px}
+
+details.src-block{margin-top:20px;border:1px solid var(--rule);background:var(--surface)}
+details.src-block summary{cursor:pointer;padding:16px 22px;font-family:"IBM Plex Mono",monospace;font-size:11.5px;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--ink-2);list-style:none;display:flex;justify-content:space-between;gap:12px}
+details.src-block summary::-webkit-details-marker{display:none}
+details.src-block summary::after{content:"+";font-size:15px;line-height:1}
+details.src-block[open] summary::after{content:"\2013"}
+.src-body{padding:4px 22px 22px;border-top:1px solid var(--rule-soft)}
+.src-body ul{margin:14px 0 0;padding-left:0;list-style:none;display:grid;gap:9px}
+.src-body li{font-size:14px;line-height:1.5;color:var(--ink-2);padding-left:14px;position:relative}
+.src-body li::before{content:"";position:absolute;left:0;top:.62em;width:5px;height:1px;background:var(--ink-3)}
+
+footer{margin-top:62px;padding-top:20px;border-top:1px solid var(--rule);
+  font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.07em;text-transform:uppercase;
+  color:var(--ink-3);display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+
+@media (max-width:860px){
+  .reg{grid-template-columns:repeat(2,1fr)}
+  .frontier{grid-template-columns:1fr}
+}
+@media (max-width:740px){
+  .wrap{padding:0 20px 72px}
+  .exec .row{grid-template-columns:1fr;gap:5px}
+  .tb{grid-template-columns:1fr;gap:9px}
+  .tb .val{text-align:left}
+  .const{grid-template-columns:1fr;gap:8px}
+  .const .rank{padding-top:0}
+  .risk{grid-template-columns:1fr;gap:6px}
+  .reg{grid-template-columns:1fr}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none !important;transition:none !important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="mast">
+  <div class="kicker">
+    <span class="tag on">Visão de futuro</span>
+    <span class="tag">Regis &middot; Time 12</span>
+    <span class="tag">30 de agosto de 2026</span>
+  </div>
+  <h1>Para onde<br>a Regis <em>caminha</em>.</h1>
+  <p class="standfirst">Cinco horizontes, um ativo que ninguém tem, quatro constantes que não se negociam e uma janela regulatória que se abre em 2026 e só fecha em 2029. Com o que o mercado confirmou, e com o que ele derrubou.</p>
+  <div class="byline">
+    <span>Documento de proposta</span>
+    <span>Base: BRIEFING.md e ESTUDO-MERCADO.md</span>
+    <span>Números verificados em fonte pública</span>
+  </div>
+
+  <div class="verdict-block">
+    <span class="eyebrow">A visão em uma linha</span>
+    <p>Que ninguém seja o último a saber do próprio dinheiro.</p>
+  </div>
+</header>
+
+<section id="resumo">
+  <div class="shead">
+    <span class="eyebrow">00 &middot; Para quem tem três minutos</span>
+    <h2>Resumo executivo</h2>
+  </div>
+
+  <div class="exec">
+    <div class="top">
+      <p>A Regis é a <b>camada de apuração</b> de quem trabalha sozinho. Ela não move dinheiro. Ela responde quanto entrou, por onde, e o que isso significa diante da lei.</p>
+    </div>
+    <div class="rows">
+      <div class="row">
+        <div class="k">O problema</div>
+        <div class="v">O dinheiro do MEI entra por quatro portas e nunca aparece junto em lugar nenhum. Ele sabe o <b>saldo</b>, que é o que sobrou. O teto é sobre o <b>acumulado</b>, que é o que entrou. São números diferentes, e só um deles tem consequência legal.</div>
+      </div>
+      <div class="row">
+        <div class="k">O ativo</div>
+        <div class="v">A <b>receita bruta reconciliada</b> de quem trabalha sozinho. O banco vê uma conta, a adquirente um canal, a contadora as notas, a Receita fragmentos cruzados. Ninguém tem o número inteiro. A Regis é o primeiro lugar onde ele existe, e do lado da pessoa.</div>
+      </div>
+      <div class="row">
+        <div class="k">A métrica do norte</div>
+        <div class="v">O <b>tempo entre o dinheiro se mexer e a pessoa saber</b>. Hoje são de 3 a 12 meses. O produto leva isso a imediato, e depois a negativo, quando projeta o estouro do teto para outubro em pleno agosto.</div>
+      </div>
+      <div class="row">
+        <div class="k">Por que agora</div>
+        <div class="v">Desde <span class="fig">01/01/2026</span> a e-Financeira reporta a movimentação mensal de PJ acima de <span class="fig">R$ 6.000</span>, e o teto do MEI equivale a <span class="fig">R$ 6.750</span> por mês. <b>A Receita acompanha mês a mês. A pessoa acompanha em maio do ano seguinte.</b></div>
+      </div>
+      <div class="row">
+        <div class="k">O tamanho</div>
+        <div class="v"><span class="fig">12,9 milhões</span> de MEIs ativos e <span class="fig">78%</span> de todas as empresas abertas em 2026. <span class="fig">570 mil</span> desenquadrados por excesso em 2024 e <span class="fig">404.368</span> com Termo de Exclusão por dívida em março de 2026. <b>Não é um mercado a criar, é um mercado sendo punido.</b></div>
+      </div>
+      <div class="row">
+        <div class="k">O que o campo derrubou</div>
+        <div class="v">Canal e proatividade <b>deixaram de ser diferencial</b>. O Jota levantou <span class="fig">R$ 150 milhões</span> em junho de 2026 justamente para virar um agente que se antecipa no WhatsApp, e a Magie vende agente conversacional whitelabel para bancos. Sobra o trabalho. <b>E o trabalho é apuração, que nenhum dos dois faz.</b></div>
+      </div>
+      <div class="row">
+        <div class="k">O caminho</div>
+        <div class="v">Cinco horizontes: uma conversa que revela um número (hoje), dado real e WhatsApp (90 dias), reconciliar as quatro portas (ano 1), atravessar o teto junto com a pessoa (anos 2 e 3), e virar camada de apuração embarcada em quem já tem a base.</div>
+      </div>
+      <div class="row">
+        <div class="k">O limite que não muda</div>
+        <div class="v"><b>A Regis não move dinheiro.</b> É o que torna o acesso aceitável, é o que a separa de todo concorrente novo, e é o que permite que ela leia até as contas deles sem conflito de interesse.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="ativo">
+  <div class="shead">
+    <span class="eyebrow">01 &middot; O ativo</span>
+    <h2>Quem enxerga o quê</h2>
+  </div>
+  <p class="sdek">Detecção de duplicata é feature, qualquer um faz. O ativo é outro, e ele se define por exclusão: <strong>ninguém tem o faturamento inteiro</strong>. Cada participante enxerga um pedaço e nenhum deles tem incentivo para juntar.</p>
+
+  <div class="tblwrap">
+    <table>
+      <thead><tr><th>Quem</th><th>O que enxerga</th><th>O que falta</th></tr></thead>
+      <tbody>
+        <tr><td class="who">O banco</td><td>uma conta</td><td>as outras portas, e o bruto, porque a maquininha deposita líquido</td></tr>
+        <tr><td class="who">A adquirente</td><td>um canal</td><td>todo o resto do faturamento</td></tr>
+        <tr><td class="who">O marketplace</td><td>as vendas dele</td><td>tudo o mais</td></tr>
+        <tr><td class="who">A contadora</td><td>as notas emitidas</td><td>o que entrou sem nota</td></tr>
+        <tr><td class="who">A Receita</td><td>fragmentos cruzados de Pix e cartão</td><td>contexto, e ela não devolve o número para a pessoa</td></tr>
+        <tr><td class="who">A própria pessoa</td><td><b>o saldo</b></td><td><b>o acumulado</b></td></tr>
+        <tr class="self"><td class="who">A Regis</td><td>as quatro portas somadas, com autorização</td><td>o dinheiro em espécie, e ela diz isso em voz alta</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout">
+    <strong>A contradição que a pesquisa capturou:</strong> 13 de 15 MEIs responderam que acompanham o faturamento de perto, e 14 de 15 não souberam dizer quanto falta para o teto. Não é desatenção. É que saldo e acumulado são coisas diferentes, e só uma delas tem consequência legal.
+  </div>
+</section>
+
+<section id="metrica">
+  <div class="shead">
+    <span class="eyebrow">02 &middot; A métrica do norte</span>
+    <h2>Tempo até saber</h2>
+  </div>
+  <p class="sdek">A fórmula que saiu das 14 entrevistas serve de bússola de roadmap: <strong>custo do vazamento = valor da cobrança × meses até alguém perceber.</strong> A Regis não muda o valor. Ela muda o tempo. E a evolução do produto é a evolução desse tempo.</p>
+
+  <div class="timebars">
+    <div class="tb b1">
+      <div class="st">Hoje, sem produto<span>Descobre na declaração de maio, ou quando a Receita avisa</span></div>
+      <div class="track"><i style="width:100%"></i></div>
+      <div class="val">3 a 12 meses</div>
+    </div>
+    <div class="tb b2">
+      <div class="st">Contar o passado<span>Soma o que já entrou e devolve o acumulado do ano</span></div>
+      <div class="track"><i style="width:32%"></i></div>
+      <div class="val">dias</div>
+    </div>
+    <div class="tb b3">
+      <div class="st">Narrar o presente<span>Fala sozinha quando o dinheiro se mexe, sem ninguém abrir nada</span></div>
+      <div class="track"><i style="width:9%"></i></div>
+      <div class="val">imediato</div>
+    </div>
+    <div class="tb b4">
+      <div class="st">Avisar o futuro<span>Projeta o estouro do teto para outubro em pleno agosto</span></div>
+      <div class="track"><i style="width:3%"></i></div>
+      <div class="val">negativo</div>
+    </div>
+  </div>
+
+  <div class="callout">
+    <strong>A pergunta que decide cada item de roadmap:</strong> isso encurta o tempo entre o dinheiro se mexer e a pessoa saber? Se não encurta, não entra. E o terceiro estágio já roda na demo, então a direção não é hipótese.
+  </div>
+</section>
+
+<section id="certeza">
+  <div class="shead">
+    <span class="eyebrow">03 &middot; Como o autopilot amadurece</span>
+    <h2>A fronteira da certeza</h2>
+  </div>
+  <p class="sdek">A tese do produto é autonomia proporcional à certeza. A visão é o que acontece com essa fronteira ao longo do tempo: <strong>a Regis não fica mais autônoma porque ficou mais corajosa, e sim porque as coisas atravessam a fronteira.</strong></p>
+
+  <div class="frontier">
+    <div class="fr s">
+      <span class="lvl">Suspeita</span>
+      <h3>Ela pergunta</h3>
+      <p>Contraparte sem histórico, cobrança fora do dia habitual. Na maioria das vezes é legítimo, então uma pergunta só, e a resposta vira memória.</p>
+      <span class="act">Uma frase, sem alarme</span>
+    </div>
+    <div class="fr r">
+      <span class="lvl">Regra</span>
+      <h3>Ela encaminha</h3>
+      <p>O teto se aproximando, o DAS não pago, a taxa efetiva acima da contratada. É fato, mas a decisão é da pessoa e às vezes da contadora.</p>
+      <span class="act">Explica as opções</span>
+    </div>
+    <div class="fr f">
+      <span class="lvl">Fato</span>
+      <h3>Ela resolve</h3>
+      <p>Duplicata exata, assinatura cobrando depois do cancelamento, repasse menor que a venda. Verificável, sem baseline e sem configuração.</p>
+      <span class="act">Entrega a ação pronta</span>
+    </div>
+  </div>
+
+  <p class="arrows"><b>Suspeita perguntada uma vez &rarr; regra</b> &middot; <b>Regra observada por três meses &rarr; fato</b> &middot; o que era pergunta vira resolução</p>
+
+  <div class="verdict-block" style="margin-top:26px">
+    <span class="eyebrow">A métrica de qualidade que inverte o mercado</span>
+    <p>A maturidade da Regis não é quantos alertas ela manda. É quantos ela deixou de precisar mandar.</p>
+  </div>
+
+  <p class="sdek">No dataset da demo isso já aparece: são <strong>6 falsos positivos que ela escolhe não mostrar</strong>, contra 12 anomalias que ela mostra. Em um ano de uso, a primeira lista precisa ser muito maior que a segunda. Um autopilot que fala mais a cada mês está piorando.</p>
+</section>
+
+<section id="horizontes">
+  <div class="shead">
+    <span class="eyebrow">04 &middot; O desenho</span>
+    <h2>Os cinco horizontes</h2>
+  </div>
+  <p class="sdek">Cada horizonte responde uma pergunta e produz uma prova. Nenhum deles depende de o anterior ter dado certo por sorte: o que passa adiante é evidência, não otimismo.</p>
+
+  <div class="rail">
+
+    <div class="hz now">
+      <div class="head"><span class="h">H0</span><span class="when">Hoje &middot; a demo</span></div>
+      <h3>Uma conversa que revela um número</h3>
+      <p class="body">Angela, cabeleireira MEI, maquininha e marketplace, 367 transações em três meses. A Regis abre afirmando <b>R$ 58.400 faturados e R$ 22.600 até o teto</b>, entrega R$ 1.145,15 recuperáveis, avisa do estouro em 24 de outubro, e fica calada sobre seis coisas normais.</p>
+      <dl class="proof">
+        <dt>Prova</dt><dd>que o número pode ser entregue na <b>primeira mensagem</b>, sem onboarding, sem cadastro, sem a pessoa alimentar nada.</dd>
+        <dt>Honestidade</dt><dd>dados simulados e canal Telegram, ditos no palco antes que perguntem.</dd>
+      </dl>
+    </div>
+
+    <div class="hz next">
+      <div class="head"><span class="h">H1</span><span class="when">Os primeiros 90 dias</span></div>
+      <h3>Trocar o simulado pelo real</h3>
+      <p class="body">Três trocas: <b>dado real</b> por Open Finance em produção, <b>canal real</b> no WhatsApp (a camada de canal já está isolada, é troca e não reconstrução), e <b>ICP real</b>, com 20 MEIs de salão, comércio de bairro e seller.</p>
+      <p class="body" style="margin-top:10px">O terceiro item não é ambição, é <b>dívida da nossa própria pesquisa</b>. A tese de que o valor que cai na conta não é o valor que foi vendido é a única que o formulário não conseguiu testar, porque 13 de 15 respondentes recebem por Pix, que cai inteiro e não tem repasse para conferir.</p>
+      <dl class="proof">
+        <dt>Sustenta</dt><dd><b>82% dos MEIs e micro e pequenas empresas vendem pelo WhatsApp</b> (Sebrae, Pulso dos Pequenos Negócios, 12ª edição, mais de 8.200 entrevistados). O Open Finance tem <b>208,79 milhões de consentimentos ativos</b> e cinco anos de estrada.</dd>
+        <dt>Produz</dt><dd>a taxa de acerto do motor contra extrato real, não contra um gabarito que nós mesmos plantamos.</dd>
+      </dl>
+    </div>
+
+    <div class="hz">
+      <div class="head"><span class="h">H2</span><span class="when">Ano 1</span></div>
+      <h3>Reconciliar as quatro portas</h3>
+      <p class="body">Ler a conta bancária resolve uma porta de quatro. O bruto mora na adquirente e no painel do seller, não no extrato. E este horizonte ficou <b>maior</b> do que o briefing supunha: 97% dos MEIs usam Pix e, para 28% deles, o Pix é mais de três quartos do faturamento. Desde a Resolução CGSN 183/2025 o que entra no CPF conta para o teto, então <b>o Pix deixou de ser o caso fácil</b>.</p>
+      <p class="body" style="margin-top:10px">Aqui também a <b>segunda pessoa vira superfície</b>: metade dos MEIs da amostra não faz a parte fiscal, quem faz é a esposa ou a contadora da família. O relatório mensal vai sozinho para quem organiza. Nenhum concorrente trata a conta como coisa de duas pessoas.</p>
+      <dl class="proof">
+        <dt>Ponto cego</dt><dd>o <b>dinheiro em espécie</b> não tem trilha e não vai ter. A resposta não é fingir precisão, é declarar a margem: "do que passa por conta e maquininha, você faturou R$ X. O que entrou em espécie eu não vejo."</dd>
+      </dl>
+    </div>
+
+    <div class="hz">
+      <div class="head"><span class="h">H3</span><span class="when">Anos 2 e 3</span></div>
+      <h3>A travessia</h3>
+      <p class="body">Todo produto para MEI trata o crescimento do cliente como churn: ele cresce, vira ME, sai do app. A Regis inverte. O teto não é um muro, é uma porta que <b>570 mil pessoas atravessaram só em 2024</b>, quase todas de surpresa e retroativamente. E quem tem o material que essa travessia exige? Só quem acompanhou o ano inteiro, transação a transação.</p>
+      <dl class="proof">
+        <dt>Vira</dt><dd>o produto deixa de ser sobre não estourar o teto e passa a ser sobre <b>estourar no controle</b>. Crescer sem susto.</dd>
+        <dt>Validação</dt><dd>a Contabilizei tem mais de <b>100 mil clientes</b>, não atende MEI, e organiza o funil justamente na migração de MEI para ME. Alguém já construiu escala nesse momento exato.</dd>
+        <dt>Trava</dt><dd>faturamento reconciliado é o documento que falta para provar renda e conseguir crédito. É expansão óbvia e é perigosa: <b>se um dia for, é laudo a pedido da pessoa, nunca oferta</b>. No dia em que a Regis empurrar empréstimo, ela vira comercial de banco e a pessoa para de acreditar no número.</dd>
+      </dl>
+    </div>
+
+    <div class="hz">
+      <div class="head"><span class="h">H4</span><span class="when">Destino</span></div>
+      <h3>A camada de apuração</h3>
+      <p class="body">A conta direta não fecha: duas a três contas por usuário custam de R$ 40 a 60 por mês de infraestrutura, e o concorrente manual cobra R$ 29,90. O caminho é <b>camada, não app avulso</b>. Banco, adquirente e contabilidade já têm o dado e a base.</p>
+      <p class="body" style="margin-top:10px">E aqui o estudo de mercado corrigiu a visão. A posição de <b>camada conversacional</b> já tem ocupante financiado: a Magie vende o MagieOS whitelabel para bancos e fintechs. Então a Regis não disputa o canal. Ela é a <b>camada de apuração</b>, e pode rodar dentro da Magie, do Jota, do Cora ou do Asaas. Concorrente de canal, nesse desenho, vira distribuidor.</p>
+      <dl class="proof">
+        <dt>Espelho</dt><dd>o Estado já cruza os dados. A visão é <b>fechar a assimetria pelo lado de baixo</b>, devolvendo à pessoa a visão que já existe sobre ela.</dd>
+      </dl>
+    </div>
+
+  </div>
+</section>
+
+<section id="regulatorio">
+  <div class="shead">
+    <span class="eyebrow">05 &middot; Por que agora</span>
+    <h2>A régua se multiplica</h2>
+  </div>
+  <p class="sdek">O risco mais citado contra a tese é "e se o teto subir por lei". O <strong>PLP 67/2025</strong>, que leva o limite a R$ 150 mil com correção pelo IPCA, foi aprovado em comissão na Câmara e está apensado, sem virar lei. No Senado, uma comissão aprovou versão com R$ 140 mil. Mas olhar só para o teto é olhar para o lugar errado.</p>
+
+  <div class="reg">
+    <div class="rg"><span class="dt">13/10/2025</span><span class="ttl">CGSN 183/2025</span><span class="txt">Receita recebida no CPF passa a somar no limite do MEI.</span></div>
+    <div class="rg"><span class="dt">01/01/2026</span><span class="ttl">e-Financeira mensal</span><span class="txt">Movimentação de PJ acima de R$ 6.000 por mês vai para a Receita. O teto dá R$ 6.750 por mês.</span></div>
+    <div class="rg"><span class="dt">2026</span><span class="ttl">Ano de teste da reforma</span><span class="txt">0,9% de CBS e 0,1% de IBS, compensados. Sem imposto novo, com decisões a tomar.</span></div>
+    <div class="rg"><span class="dt">04/01/2027</span><span class="ttl">Nota fiscal do MEI</span><span class="txt">Passa a preencher campos de IBS e CBS, para quem hoje quase não emite nota.</span></div>
+    <div class="rg"><span class="dt">2027</span><span class="ttl">Nanoempreendedor</span><span class="txt">Nova categoria até R$ 40,5 mil por ano, sem CNPJ. Uma segunda régua, embaixo do MEI.</span></div>
+    <div class="rg"><span class="dt">2027+</span><span class="ttl">Regime híbrido</span><span class="txt">Opção no Simples para transferir crédito integral ao cliente PJ. Mais uma decisão sem quem ajude a tomar.</span></div>
+  </div>
+
+  <p class="regnote"><b>Entre 2026 e 2029 o MEI ganha mais réguas e mais decisões, não menos.</b> Mesmo que o teto suba para R$ 150 mil, muda o número da régua e não o trabalho: somar receita bruta espalhada por quatro portas e comparar com um limite legal. Esse trabalho não desaparece. Ele se multiplica.</p>
+</section>
+
+<section id="campo">
+  <div class="shead">
+    <span class="eyebrow">06 &middot; O que mudou no campo</span>
+    <h2>Onde a Regis fica sozinha</h2>
+  </div>
+  <p class="sdek">Levantamento de 30 de agosto de 2026. Dois nomes entraram no quadro e derrubaram meio argumento nosso. O <strong>Jota</strong> captou R$ 150 milhões em junho de 2026, tem cerca de 300 mil usuários e R$ 3,5 bilhões de volume anualizado, e o Jota 2.0 é literalmente a virada de assistente reativo para <strong>agente que se antecipa</strong>. A <strong>Magie</strong> tem 150 mil clientes, processou mais de R$ 3 bilhões e responde por 1% dos Pix via Open Finance.</p>
+  <p class="sdek">Ou seja: <strong>falar primeiro deixou de ser diferencial</strong>, e o canal conversacional virou infraestrutura. O que sobra é o trabalho. Os dois eixos que ainda separam alguma coisa são estes.</p>
+
+  <div class="matwrap">
+    <div class="mat">
+      <div class="ax h"></div>
+      <div class="ax v"></div>
+
+      <span class="axlab" style="left:-14px;top:50%;transform:translateY(-50%)">Não mexe no dinheiro</span>
+      <span class="axlab" style="right:-14px;top:50%;transform:translateY(-50%)">Move dinheiro</span>
+      <span class="axlab" style="left:50%;top:-13px;transform:translateX(-50%)">Apura contra a régua legal</span>
+      <span class="axlab" style="left:50%;bottom:-13px;transform:translateX(-50%)">Não apura</span>
+
+      <span class="quad" style="left:0;top:0">Apura e não mexe no dinheiro: só tem uma</span>
+
+      <div class="dot us" style="left:30%;top:15%"><i></i><span>Regis</span></div>
+      <div class="dot hollow" style="left:9%;top:30%"><i></i><span>Meu MEI Digital (só calendário)</span></div>
+      <div class="dot hollow" style="left:9%;top:41%"><i></i><span>Contadora, planilha, caderno</span></div>
+
+      <div class="dot hollow" style="left:13%;top:65%"><i></i><span>FinAI (registro manual)</span></div>
+      <div class="dot hollow" style="left:26%;top:84%"><i></i><span>ALL, Mobills, Organizze</span></div>
+
+      <div class="dot rt" style="left:90%;top:61%"><i></i><span>Bancos</span></div>
+      <div class="dot rt" style="left:72%;top:72%"><i></i><span>Jota</span></div>
+      <div class="dot rt" style="left:90%;top:82%"><i></i><span>Magie</span></div>
+      <div class="dot rt" style="left:70%;top:93%"><i></i><span>Cora, Asaas, InfinitePay</span></div>
+    </div>
+    <div class="legend">
+      <b><i></i> fala primeiro</b>
+      <b><i class="ho"></i> espera ser procurado</b>
+      <b><i class="ac"></i> a Regis</b>
+      <b>Levantado em 30/08/2026</b>
+    </div>
+  </div>
+
+  <div class="callout">
+    <strong>A resposta decorada, se um jurado disser "isso não é o Jota?":</strong> o Jota é uma conta que fala. Ele resolve o dia da pessoa, cobra cliente, paga boleto, categoriza gasto. Ele não soma o ano nem conhece a régua legal, e nenhuma linha do site dele fala de imposto. Nós não somos conta, não movemos dinheiro, e é por isso que podemos ler todas as contas, inclusive a dele, e responder a única pergunta que ninguém responde.
+  </div>
+</section>
+
+<section id="constantes">
+  <div class="shead">
+    <span class="eyebrow">07 &middot; O que nunca muda</span>
+    <h2>Quatro constantes</h2>
+  </div>
+  <p class="sdek">Uma visão só é confiável se tiver constantes. Estas não são negociáveis em nenhum horizonte, e três delas viraram diferenciação de mercado depois do levantamento de concorrentes.</p>
+
+  <div class="consts">
+    <div class="const"><span class="rank">1</span><div><h3>A Regis não move dinheiro</h3><p>É o que torna o acesso aceitável e, agora, é o que a separa do Jota e da Magie. Um produto que é conta quer o dinheiro dentro dele. A Regis não quer, e por isso pode ler as contas de todo mundo sem conflito de interesse. No dia em que ela pagar ou transferir, vira instituição financeira e perde a única coisa que tem de verdade, que é confiança.</p></div></div>
+    <div class="const"><span class="rank">2</span><div><h3>Ela fala primeiro</h3><p>Um autopilot que espera ser aberto é um relatório agendado. Isso deixou de ser exclusividade em junho de 2026, mas continua sendo requisito: o nosso usuário não abre app nenhum.</p></div></div>
+    <div class="const"><span class="rank">3</span><div><h3>Zero entrada manual no fluxo principal</h3><p>A barra nunca foi o app X, é o caderno. Uma autorização única de leitura é aceitável. Alimentar sistema todo dia não é, e é exatamente onde o concorrente de registro manual perde por construção.</p></div></div>
+    <div class="const"><span class="rank">4</span><div><h3>Ela nunca ajuda a esconder faturamento</h3><p>A Regis mede o dinheiro que entra, não o que foi declarado. Diante de um estouro ela mostra o número, explica o que muda e encaminha para a contadora. Segurar nota, atrasar recebimento ou dividir entrada está fora, pelo mesmo motivo que mover dinheiro está fora.</p></div></div>
+  </div>
+</section>
+
+<section id="riscos">
+  <div class="shead">
+    <span class="eyebrow">08 &middot; Onde isso pode morrer</span>
+    <h2>Os riscos, com resposta</h2>
+  </div>
+
+  <div class="risks">
+    <div class="risk"><div class="r">A adquirente ou o banco faz primeiro</div><div class="a">É o cenário mais provável, e por isso <b>distribuição é o plano e não a ameaça</b>. A Cora já entrou em maquininhas depois de crescer em conta PJ, então os canais estão virando multiporta também. Perdemos se insistirmos em ser app avulso brigando por download.</div></div>
+    <div class="risk"><div class="r">O teto muda por lei</div><div class="a">Muda o número da régua, não o trabalho. E a sequência de 2025 a 2029 acrescenta outras réguas: CPF somando, nota fiscal em 2027, nanoempreendedor, regime híbrido.</div></div>
+    <div class="risk"><div class="r">O canal deixar de ser diferencial</div><div class="a"><b>Já deixou.</b> Não competimos por canal nem por LLM, competimos pelo trabalho feito dentro dele. Se a resposta ao "por que não é só uma feature do Jota" não estiver decorada, perdemos a pergunta no palco.</div></div>
+    <div class="risk"><div class="r">A conexão de dado quebra</div><div class="a">Hoje o custo conhecido vem de um revendedor não oficial. Tarefa de H1: relação direta com a licenciada e uma segunda fonte mapeada.</div></div>
+    <div class="risk"><div class="r">Virar mais um app que notifica</div><div class="a">A métrica de maturidade é quantos alertas ela <b>deixou</b> de mandar. Regra dura já valendo: tela com mais de 5 itens sem hierarquia de certeza está errada.</div></div>
+    <div class="risk"><div class="r">O produto acerta e ninguém paga</div><div class="a">É o risco real de um público em nível 2 de consciência: quem não formulou o problema não procura solução. A resposta é distribuição, não aquisição. E ninguém mediu disposição a pagar desse público, nem nós.</div></div>
+    <div class="risk"><div class="r">A tese do repasse não se confirmar</div><div class="a">Então o produto é reconciliação de receita contra a régua legal, que continua de pé sozinho, e o ICP se alarga em vez de estreitar. Perdemos um diferencial, não o produto.</div></div>
+  </div>
+
+  <div class="callout">
+    <strong>O que continua sem prova, e precisa ser dito antes que perguntem:</strong> a tese do repasse (líquido contra bruto) nunca foi a campo. Ninguém mediu quanto esse público pagaria. Não achamos o volume de migração voluntária de MEI para ME, só o involuntário. E os números de embedded finance são de consultoria, não de fonte oficial.
+  </div>
+</section>
+
+<section id="palco">
+  <div class="shead">
+    <span class="eyebrow">09 &middot; Para o palco</span>
+    <h2>A visão em 30 segundos</h2>
+  </div>
+
+  <div class="pitch">
+    <span class="eyebrow">Fechamento do pitch</span>
+    <p>Hoje a Regis conta o passado de uma pessoa. Em 90 dias ela lê conta real e fala no WhatsApp, que é onde 82% dos MEIs já vendem. Em um ano ela reconcilia as quatro portas por onde o dinheiro entra e manda o relatório para a contadora sozinha. Em três anos ela atravessa junto a saída do MEI, que é hoje o momento em que 570 mil pessoas por ano são pegas de surpresa.</p>
+    <p>E o destino é este: desde janeiro de 2026 a Receita acompanha, mês a mês, a movimentação de quase todo MEI que se aproxima do teto. A pessoa acompanha uma vez por ano, em maio. A Regis existe para acabar com essa diferença.</p>
+    <p><b>Ela não vai mexer no dinheiro de ninguém. Ela vai fazer com que ninguém seja o último a saber do próprio.</b></p>
+  </div>
+</section>
+
+<section id="fontes">
+  <div class="shead">
+    <span class="eyebrow">10 &middot; De onde vem cada número</span>
+    <h2>Fontes</h2>
+  </div>
+  <p class="sdek">Verificação feita em 30/08/2026, com prioridade para fonte primária. O status por afirmação está no <strong>ESTUDO-MERCADO.md</strong>, inclusive o que não deu para verificar.</p>
+
+  <details class="src-block">
+    <summary><span>Governo, Receita Federal e legislativo</span></summary>
+    <div class="src-body">
+      <ul>
+        <li><a href="https://www.gov.br/receitafederal/pt-br/assuntos/noticias/2026/marco/receita-federal-emite-termo-de-exclusao-para-devedores-do-simples-nacional-incluindo-mei">Receita Federal, Termo de Exclusão do Simples, março de 2026</a> &middot; 404.368 MEIs, dentro de 1.102.924 devedores, somando R$ 12,9 bilhões</li>
+        <li><a href="https://www.gov.br/receitafederal/pt-br/assuntos/noticias/2025/novembro/simples-nacional-entenda-as-regras-da-resolucao-cgsn-no-183-2025-e-se-proteja-contra-fake-news">Receita Federal sobre a Resolução CGSN nº 183/2025</a> &middot; receita no CPF soma ao limite</li>
+        <li><a href="http://sped.rfb.gov.br/arquivo/download/7858">IN RFB nº 2.278, de 28 de agosto de 2025</a> &middot; e-Financeira, limiar de R$ 6.000 para PJ</li>
+        <li><a href="https://www.camara.leg.br/proposicoesWeb/fichadetramitacao?idProposicao=2487549">Câmara dos Deputados, PLP 67/2025</a> &middot; tramitação do teto de R$ 150 mil</li>
+        <li><a href="https://radardareformatributaria.com/mei-reforma-tributaria-o-que-muda-nota-fiscal-2027-credito/">MEI, nota fiscal e crédito na reforma tributária a partir de 2027</a></li>
+        <li><a href="https://www.gbflaw.com.br/reforma-tributaria-cria-nanoempreendedor-entenda-nova-categoria/">Nanoempreendedor, limite de R$ 40,5 mil</a></li>
+      </ul>
+    </div>
+  </details>
+
+  <details class="src-block">
+    <summary><span>Sebrae, comportamento e canal</span></summary>
+    <div class="src-body">
+      <ul>
+        <li><a href="https://agenciasebrae.com.br/dados/meis-lideram-abertura-de-empresas-no-pais-e-ja-representam-78-dos-novos-negocios-em-2026/">MEIs são 78% das empresas abertas em 2026</a> &middot; 12,9 milhões de ativos e 1,59 milhão de novos em quatro meses</li>
+        <li><a href="https://www.metropoles.com/brasil/whatsapp-se-consolida-nas-vendas-on-line-diz-pesquisa-do-sebrae">Pulso dos Pequenos Negócios, 12ª edição</a> &middot; 82% vendem pelo WhatsApp, mais de 8.200 entrevistados, campo em fevereiro e março de 2026</li>
+        <li><a href="https://agenciasebrae.com.br/economia-e-politica/pix-e-a-principal-forma-de-pagamento-adotada-pelos-pequenos-negocios/">Pix como principal meio de recebimento</a> &middot; 97% dos MEIs usam, e para 28% é mais de 75% do faturamento</li>
+        <li><a href="https://agenciasebrae.com.br/cultura-empreendedora/61-dos-empreendedores-brasileiros-fazem-pagamentos-da-empresa-com-a-conta-pessoal/">61% pagam contas da empresa com a conta pessoal</a> &middot; Hábitos Financeiros 2025, era 60% em 2023</li>
+      </ul>
+    </div>
+  </details>
+
+  <details class="src-block">
+    <summary><span>Concorrência, mercado e infraestrutura</span></summary>
+    <div class="src-body">
+      <ul>
+        <li><a href="https://startupi.com.br/jota-levanta-r150-milhoes/">Jota levanta R$ 150 milhões</a> &middot; Série A liderada pela Haun Ventures, Jota 2.0, cerca de 300 mil usuários e R$ 3,5 bilhões anualizados</li>
+        <li><a href="https://jota.ai/">Jota, site institucional</a> &middot; conta digital no WhatsApp, Open Finance, sem qualquer função fiscal</li>
+        <li><a href="https://magie.com.br/sobre">Magie, site institucional</a> &middot; MagieOS whitelabel, 150 mil clientes, 1% dos Pix via Open Finance</li>
+        <li><a href="https://techcrunch.com/2024/08/22/lux-capital-made-its-first-investment-in-brazil-a-4m-seed-for-ai-fintech-magie">TechCrunch, seed de US$ 4 milhões da Lux Capital na Magie</a></li>
+        <li><a href="https://www.bloomberglinea.com.br/startups/cora-apoiada-por-fundos-dos-eua-entra-em-maquininhas-apos-crescer-em-contas-pj/">Bloomberg Línea, Cora entra em maquininhas</a> &middot; mais de 1,7 milhão de clientes</li>
+        <li><a href="https://www.infomoney.com.br/minhas-financas/numero-de-meis-que-ultrapassaram-o-limite-de-faturamento-saltou-30-vezes-em-2024/">InfoMoney, desenquadramentos saltaram 30 vezes em 2024</a> &middot; análise da Contabilizei sobre dados da Receita</li>
+        <li><a href="https://tiinside.com.br/22/01/2026/open-finance-brasil-lidera-ranking-global-com-128-milhoes-de-consentimentos-ativos/">Open Finance Brasil, consentimentos ativos</a></li>
+      </ul>
+    </div>
+  </details>
+</section>
+
+<footer>
+  <span>Regis &middot; Time 12 &middot; Hackathon Vanguarda</span>
+  <span>Visão de futuro &middot; 30 ago 2026</span>
+</footer>
+
+</div>
+</body>
+</html>

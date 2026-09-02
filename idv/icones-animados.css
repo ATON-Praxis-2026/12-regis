@@ -1,0 +1,150 @@
+/* ---------------------------------------------------------------------------
+   Ícones animados da Regis, num lugar só.
+
+   Par de idv/icones-animados.js. Os desenhos vieram de idv/icone-animado.html,
+   que continua sendo a vitrine onde o time compara os cinco estudos.
+
+   Duas famílias, e a diferença importa:
+
+     laço       o desenho respira sem parar. É para estado, não para evento.
+                Vive no que está acontecendo agora: esperando, lendo.
+     uma vez    .ri-uma toca do zero até o fim e para no desenho pronto.
+                É para evento: confirmei, achei. Repetir só quando acontecer
+                de novo, com Regis.icones.repetir().
+
+   As cores saem do tema de quem usa. O traço segue currentColor e o dinheiro
+   usa --green, então claro e escuro funcionam sem versão nova.
+   --------------------------------------------------------------------------- */
+
+.ri{display:block;fill:currentColor}
+.ri .dinheiro{fill:var(--green,#00C46C)}
+.ri .bica{fill:none;stroke:currentColor;stroke-width:49.6}
+
+/* Três variáveis para quem usa, e a separação importa:
+
+     --ri-dur      compasso do laço (o spinner corre mais que a marca do hero)
+     --ri-dur-uma  compasso do uma vez, que é outra ordem de grandeza
+     --ri-easing   a curva do giro, porque girar e esperar não são a mesma coisa
+
+   --ri-dur e --ri-dur-uma são separadas de propósito. Fossem a mesma, apertar
+   um laço num container apertaria junto toda confirmação dentro dele. */
+
+/* ---- válvula e registro: a alavanca gira no próprio eixo ---- */
+/* A curva padrão é alguém girando um registro: pega, roda, alivia. Ela conta
+   uma ação. Quem usa a válvula como espera troca por linear, senão a volta
+   freia no fim de cada ciclo e a tela parece ter travado em vez de trabalhar. */
+.ri .alavanca{transform-box:fill-box;transform-origin:center;
+  animation:ri-girar var(--ri-dur,2.8s) var(--ri-easing,cubic-bezier(.62,.03,.32,1)) infinite}
+@keyframes ri-girar{0%{transform:rotate(0)}100%{transform:rotate(360deg)}}
+
+/* ---- registro: a moeda sai do cano ---- */
+.ri .moeda{opacity:0;transform-box:fill-box;transform-origin:center}
+.ri .m1{animation:ri-pinga var(--ri-dur,2.8s) linear infinite}
+.ri .m2{animation:ri-pinga var(--ri-dur,2.8s) linear calc(var(--ri-dur,2.8s) / 3) infinite}
+.ri .m3{animation:ri-pinga var(--ri-dur,2.8s) linear calc(var(--ri-dur,2.8s) / 1.5) infinite}
+@keyframes ri-pinga{
+  0%      {opacity:0;transform:translateY(0) scale(.3)}
+  6%      {opacity:1;transform:translateY(12px) scale(1)}
+  27%     {opacity:1;transform:translateY(130px) scale(1)}
+  33%     {opacity:0;transform:translateY(165px) scale(.6)}
+  34%,100%{opacity:0;transform:translateY(165px) scale(.6)}}
+
+/* ---- memória: a linha se escreve e o valor aparece do lado ---- */
+.ri .linha{transform-box:fill-box;transform-origin:left center;transform:scaleX(0)}
+.ri .ponto{transform-box:fill-box;transform-origin:center;transform:scale(0)}
+.ri .l1{animation:ri-escreve  var(--ri-dur,4.6s) cubic-bezier(.2,.7,.3,1) infinite}
+.ri .p1{animation:ri-aparece  var(--ri-dur,4.6s) cubic-bezier(.2,1.5,.4,1) infinite}
+.ri .l2{animation:ri-escreve2 var(--ri-dur,4.6s) cubic-bezier(.2,.7,.3,1) infinite}
+.ri .p2{animation:ri-aparece2 var(--ri-dur,4.6s) cubic-bezier(.2,1.5,.4,1) infinite}
+@keyframes ri-escreve {0%,6% {transform:scaleX(0)}22%,86%{transform:scaleX(1)}96%,100%{transform:scaleX(0)}}
+@keyframes ri-escreve2{0%,36%{transform:scaleX(0)}52%,86%{transform:scaleX(1)}96%,100%{transform:scaleX(0)}}
+@keyframes ri-aparece {0%,22%{transform:scale(0)} 30%,86%{transform:scale(1)} 94%,100%{transform:scale(0)}}
+@keyframes ri-aparece2{0%,52%{transform:scale(0)} 60%,86%{transform:scale(1)} 94%,100%{transform:scale(0)}}
+
+/* ---- cérebro: o check se escreve dentro da cabeça ---- */
+.ri .marca{fill:none;stroke:var(--green,#00C46C);stroke-width:80;
+  stroke-linecap:butt;stroke-linejoin:miter;
+  stroke-dasharray:326;stroke-dashoffset:326;
+  animation:ri-desenha var(--ri-dur,3.4s) cubic-bezier(.25,.9,.3,1) infinite}
+@keyframes ri-desenha{
+  0%,14% {stroke-dashoffset:326;opacity:1}
+  34%,84%{stroke-dashoffset:0;opacity:1}
+  93%    {stroke-dashoffset:0;opacity:0}
+  94%,100%{stroke-dashoffset:326;opacity:0}}
+.ri .cabeca{transform-box:fill-box;transform-origin:center;
+  animation:ri-respira var(--ri-dur,3.4s) cubic-bezier(.3,1.4,.4,1) infinite}
+@keyframes ri-respira{0%,32%{transform:scale(1)}40%{transform:scale(1.05)}52%,100%{transform:scale(1)}}
+
+/* ---- brilho: a faísca no lugar do check ---- */
+.ri .faisca{fill:var(--green,#00C46C);transform-box:fill-box;transform-origin:center;opacity:0}
+.ri .f0{animation:ri-cintila  var(--ri-dur,3.4s) cubic-bezier(.3,1.5,.4,1) infinite}
+.ri .f1{animation:ri-cintila2 var(--ri-dur,3.4s) cubic-bezier(.3,1.6,.4,1) infinite}
+.ri .f2{animation:ri-cintila3 var(--ri-dur,3.4s) cubic-bezier(.3,1.6,.4,1) infinite}
+@keyframes ri-cintila{
+  0%,8%   {transform:scale(0) rotate(-30deg);opacity:0}
+  26%     {transform:scale(1.12) rotate(0deg);opacity:1}
+  34%,84% {transform:scale(1) rotate(0deg);opacity:1}
+  94%,100%{transform:scale(.6) rotate(12deg);opacity:0}}
+@keyframes ri-cintila2{
+  0%,28%  {transform:scale(0);opacity:0}
+  40%     {transform:scale(1.2);opacity:1}
+  46%,80% {transform:scale(1);opacity:1}
+  88%,100%{transform:scale(0);opacity:0}}
+@keyframes ri-cintila3{
+  0%,36%  {transform:scale(0);opacity:0}
+  48%     {transform:scale(1.2);opacity:1}
+  54%,78% {transform:scale(1);opacity:1}
+  86%,100%{transform:scale(0);opacity:0}}
+
+/* ---------------------------------------------------------------------------
+   Uma vez só. Mesmo desenho, outro fim: em vez de apagar para recomeçar, ele
+   para no quadro em que a coisa está pronta. Confirmação que some não confirma
+   nada. É por isso que o fill-mode é forwards e a contagem é 1.
+   --------------------------------------------------------------------------- */
+
+.ri-uma .marca{animation:ri-desenha-uma var(--ri-dur-uma,.62s) cubic-bezier(.25,.9,.3,1) 1 both}
+@keyframes ri-desenha-uma{
+  0%  {stroke-dashoffset:326}
+  100%{stroke-dashoffset:0}}
+.ri-uma .cabeca{animation:ri-respira-uma var(--ri-dur-uma,.62s) cubic-bezier(.3,1.4,.4,1) 1 both}
+@keyframes ri-respira-uma{
+  0%,55%{transform:scale(1)}
+  74%   {transform:scale(1.07)}
+  100%  {transform:scale(1)}}
+
+.ri-uma .faisca{animation:ri-cintila-uma var(--ri-dur-uma,.62s) cubic-bezier(.3,1.5,.4,1) 1 both}
+.ri-uma .f1{animation-delay:calc(var(--ri-dur-uma,.62s) * .28)}
+.ri-uma .f2{animation-delay:calc(var(--ri-dur-uma,.62s) * .44)}
+@keyframes ri-cintila-uma{
+  0%  {transform:scale(0) rotate(-30deg);opacity:0}
+  70% {transform:scale(1.15) rotate(0deg);opacity:1}
+  100%{transform:scale(1) rotate(0deg);opacity:1}}
+
+/* ---------------------------------------------------------------------------
+   Parada no fim. Quando o evento já aconteceu e a tela volta a aparecer, o
+   desenho não pode acontecer de novo: repetir "achei" sem nada novo ter sido
+   achado é exatamente o enfeite que este arquivo existe para evitar. Trocar
+   .ri-uma por .ri-fim segura o desenho pronto, sem voltar para o laço.
+   --------------------------------------------------------------------------- */
+
+.ri-fim *{animation:none !important}
+.ri-fim .moeda{opacity:1}
+.ri-fim .linha{transform:scaleX(1)}
+.ri-fim .ponto{transform:scale(1)}
+.ri-fim .marca{stroke-dashoffset:0}
+.ri-fim .faisca{opacity:1;transform:scale(1)}
+
+/* ---------------------------------------------------------------------------
+   Movimento reduzido: o desenho fica parado e completo, nunca pela metade.
+   Quem tem a preferência ligada precisa ver o check escrito e a moeda no
+   lugar, e não um ícone que nunca terminou de acontecer.
+   --------------------------------------------------------------------------- */
+
+@media (prefers-reduced-motion:reduce){
+  .ri *{animation:none !important}
+  .ri .moeda{opacity:1}
+  .ri .linha{transform:scaleX(1)}
+  .ri .ponto{transform:scale(1)}
+  .ri .marca{stroke-dashoffset:0}
+  .ri .faisca{opacity:1;transform:scale(1)}
+}

@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Resultado da pesquisa e ICP redefinido</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+Condensed:wght@600;700&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #FBFCF9;
+    --bar: #E6EEDF;
+    --rule: #C3CFB9;
+    --ink: #1B2019;
+    --ink-soft: #5E655B;
+    --debit: #A8412A;
+    --debit-bg: #F8E7E1;
+    --debit-rule: #D9A695;
+    --fiscal: #2E3B2C;
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    background-image: repeating-linear-gradient(to bottom, var(--bar) 0 34px, var(--paper) 34px 68px);
+    color: var(--ink);
+    font-family: "IBM Plex Sans", system-ui, sans-serif;
+    font-size: 16px; line-height: 1.65;
+  }
+  .sheet {
+    max-width: 900px; margin: 0 auto; padding: 40px 28px 80px;
+    background: var(--paper);
+    border-left: 1px solid var(--rule); border-right: 1px solid var(--rule);
+    min-height: 100vh;
+  }
+  .eyebrow {
+    font-family: "IBM Plex Mono", monospace; font-size: 12px;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--ink-soft); margin: 0 0 18px;
+  }
+  h1 {
+    font-family: "IBM Plex Sans Condensed", sans-serif; font-weight: 700;
+    font-size: clamp(34px, 7vw, 54px); line-height: 1.02;
+    letter-spacing: -0.01em; margin: 0 0 14px;
+  }
+  .standfirst { font-size: 18px; color: var(--ink-soft); max-width: 46em; margin: 0 0 24px; }
+  .sample-note {
+    font-family: "IBM Plex Mono", monospace; font-size: 12px;
+    border: 1px solid var(--rule); background: #fff;
+    padding: 12px 16px; margin: 0 0 36px; color: var(--ink-soft);
+  }
+  section { margin-bottom: 56px; }
+  h2 {
+    font-family: "IBM Plex Sans Condensed", sans-serif; font-weight: 600;
+    font-size: 26px; line-height: 1.15; margin: 0 0 6px;
+    padding-top: 14px; border-top: 2px solid var(--ink);
+  }
+  h3 {
+    font-family: "IBM Plex Sans Condensed", sans-serif; font-weight: 600;
+    font-size: 19px; margin: 30px 0 8px;
+  }
+  .kicker {
+    font-family: "IBM Plex Mono", monospace; font-size: 11px;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--ink-soft); display: block; margin-bottom: 20px;
+  }
+  p { margin: 0 0 16px; max-width: 46em; }
+  strong { font-weight: 500; }
+  em { font-style: italic; }
+  ul.plain { padding-left: 20px; margin: 0 0 16px; max-width: 46em; }
+  ul.plain li { margin-bottom: 8px; }
+
+  .verdict {
+    display: inline-block; font-family: "IBM Plex Mono", monospace;
+    font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase;
+    padding: 3px 9px; white-space: nowrap;
+  }
+  .v-out { background: var(--debit); color: #FBFCF9; }
+  .v-part { background: #CBD3C4; color: #2B322A; }
+  .v-none { background: transparent; border: 1px dashed var(--rule); color: var(--ink-soft); }
+
+  .hyps { margin: 8px 0 24px; }
+  .hyp {
+    display: grid; grid-template-columns: 34px 1fr auto; gap: 6px 18px;
+    padding: 18px 0; border-top: 1px solid var(--rule); align-items: start;
+  }
+  .hyp:last-child { border-bottom: 1px solid var(--rule); }
+  .hyp-n { font-family: "IBM Plex Mono", monospace; font-size: 12px; color: var(--ink-soft); padding-top: 4px; }
+  .hyp h4 { font-family: "IBM Plex Sans Condensed", sans-serif; font-weight: 600; font-size: 18px; margin: 0 0 4px; }
+  .hyp p { margin: 0; font-size: 15px; }
+  .hyp .ev { font-family: "IBM Plex Mono", monospace; font-size: 12px; color: var(--ink-soft); margin-top: 6px; display: block; }
+
+  .qual { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--rule); border: 1px solid var(--rule); margin: 8px 0 24px; }
+  .qual > div { background: #fff; padding: 22px 24px; }
+  .qual .no { background: var(--debit-bg); }
+  .qual h4 {
+    font-family: "IBM Plex Sans Condensed", sans-serif; font-weight: 600;
+    font-size: 18px; margin: 0 0 12px;
+  }
+  .qual .no h4 { color: var(--debit); }
+  .qual ul { margin: 0; padding-left: 18px; }
+  .qual li { margin-bottom: 8px; font-size: 15px; }
+
+  .icp {
+    background: var(--fiscal); color: #F1F4EC;
+    padding: 28px 30px; margin: 8px 0 24px;
+  }
+  .icp span {
+    font-family: "IBM Plex Mono", monospace; font-size: 11px;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: #A9B5A2; display: block; margin-bottom: 12px;
+  }
+  .icp p {
+    font-family: "IBM Plex Sans Condensed", sans-serif; font-weight: 600;
+    font-size: clamp(20px, 3.4vw, 27px); line-height: 1.25; margin: 0; color: #fff;
+  }
+
+  .callout { background: var(--debit-bg); border: 1px solid var(--debit-rule); padding: 22px 24px; margin: 24px 0; }
+  .callout h3 { margin-top: 0; }
+  .callout p:last-child { margin-bottom: 0; }
+
+  blockquote {
+    margin: 0 0 16px; padding: 0 0 0 18px;
+    border-left: 3px solid var(--rule); color: var(--ink-soft);
+    max-width: 46em; font-style: italic;
+  }
+
+  ol.dec { padding-left: 0; list-style: none; counter-reset: d; margin: 0; }
+  ol.dec li {
+    counter-increment: d; padding: 18px 0 18px 52px;
+    border-top: 1px solid var(--rule); position: relative; max-width: 46em;
+  }
+  ol.dec li:last-child { border-bottom: 1px solid var(--rule); }
+  ol.dec li::before {
+    content: counter(d, decimal-leading-zero); position: absolute; left: 0; top: 18px;
+    font-family: "IBM Plex Mono", monospace; font-size: 12px; color: var(--debit);
+  }
+  ol.dec b {
+    font-family: "IBM Plex Sans Condensed", sans-serif; font-weight: 600;
+    font-size: 18px; display: block; margin-bottom: 2px;
+  }
+
+  footer {
+    font-family: "IBM Plex Mono", monospace; font-size: 12px;
+    color: var(--ink-soft); border-top: 1px solid var(--rule); padding-top: 16px;
+  }
+
+  @media (max-width: 620px) {
+    .sheet { padding: 28px 18px 60px; border: none; }
+    .hyp { grid-template-columns: 1fr; }
+    .qual { grid-template-columns: 1fr; }
+  }
+  @media print {
+    body { background: #fff; }
+    .sheet { border: none; max-width: none; }
+    section { break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+<div class="sheet">
+
+  <p class="eyebrow">Hackathon · Time 12 · Mesa 12 · Documento 05</p>
+  <h1>O que a pesquisa disse</h1>
+  <p class="standfirst">Quinze respostas de MEI. A tese central não se confirmou, e é exatamente por isso que agora sabemos quem é o cliente. Este documento registra o resultado real e redefine o ICP por exclusão.</p>
+  <p class="sample-note">Amostra: 15 respostas · 14 MEI e 1 ME · 13 recebendo só por Pix, transferência ou Wise · faixa de faturamento de zero a acima de R$ 81 mil · coletadas em 29 e 30/08/2026. Amostra pequena e de conveniência, tudo aqui é direcional, não estatístico.</p>
+
+  <section>
+    <h2>Resultado das hipóteses</h2>
+    <span class="kicker">Registrado como saiu, não como queríamos</span>
+    <div class="hyps">
+
+      <div class="hyp">
+        <div class="hyp-n">H1</div>
+        <div>
+          <h4>O MEI não sabe quanto faturou no ano</h4>
+          <p>Todos deram um número de bate-pronto, sem hesitar. Ninguém marcou "não faço ideia". A ressalva que apareceu com a amostra maior: eles sabem o saldo, não sabem o acumulado do ano.</p>
+          <span class="ev">13 de 15: “tenho quase certeza, acompanho de perto”</span>
+        </div>
+        <div><span class="verdict v-out">refutada</span></div>
+      </div>
+
+      <div class="hyp">
+        <div class="hyp-n">H2</div>
+        <div>
+          <h4>O medo do teto aparece sozinho</h4>
+          <p>Ninguém demonstrou receio. Mas quase ninguém sabe a distância até o teto, um perguntou se o limite não tinha subido, e um já estourou e controla o estouro escolhendo o que dá nota.</p>
+          <span class="ev">14 de 15 não sabem a distância exata até o teto</span>
+        </div>
+        <div><span class="verdict v-none">não apareceu</span></div>
+      </div>
+
+      <div class="hyp">
+        <div class="hyp-n">H3</div>
+        <div>
+          <h4>Misturar contas é escolha, não descuido</h4>
+          <p>Conta separada é maioria. Quem mistura tem motivo econômico (abandonou a PJ por tarifa) ou assume a bagunça. Apareceu um caso pior que a mistura: quem varre a PJ para a PF assim que o dinheiro pinga, e torna o saldo inútil como medida de faturamento.</p>
+          <span class="ev">6 de 15 misturam na prática · 9 de 15 mantêm separado</span>
+        </div>
+        <div><span class="verdict v-part">parcial</span></div>
+      </div>
+
+      <div class="hyp">
+        <div class="hyp-n">H4</div>
+        <div>
+          <h4>Ninguém confere se o repasse bate com a venda</h4>
+          <p>Todos conferem, ou não precisam. “Poucas vendas com valores altos e cheios.” “Como se baseia tudo em Pix, tudo o que recebe chega.” Só que quase ninguém tem repasse para conferir: Pix e transferência caem inteiros. A hipótese não caiu, ela nunca chegou a ser testada.</p>
+          <span class="ev">13 de 15 recebem só por Pix, transferência ou Wise · 2 com canal intermediado, ambos com participação pequena</span>
+        </div>
+        <div><span class="verdict v-part">sem teste</span></div>
+      </div>
+
+      <div class="hyp">
+        <div class="hyp-n">H5</div>
+        <div>
+          <h4>A dor dominante é ansiedade, não economia</h4>
+          <p>Tom geral tranquilo. Um respondente com dez parcelas de DAS atrasadas resolveu tudo de uma vez e disse não achar a plataforma ruim. A amostra maior trouxe a primeira exceção explícita, e ela não é sobre dinheiro perdido, é sobre estar errada sem saber.</p>
+          <span class="ev">1 de 15: “fico encucada se estou fazendo certo ou se repentinamente vou ser cobrada por ter preenchido algo errado”</span>
+        </div>
+        <div><span class="verdict v-part">parcial</span></div>
+      </div>
+
+    </div>
+  </section>
+
+  <section>
+    <h2>Por que as hipóteses caíram</h2>
+    <span class="kicker">A resposta está na pergunta sobre canal</span>
+    <p><strong>Quase todo mundo recebe por Pix ou transferência, e só isso.</strong> Das 15 respostas, 13 não passam por intermediário nenhum. As duas exceções são pequenas: 15% em maquininha numa, 30% em link de pagamento na outra. Sem intermediário não existe repasse, não existe taxa de antecipação, não existe retenção, não existe chargeback, e metade do catálogo de anomalias não tem onde acontecer.</p>
+    <p>E o volume é baixo o bastante para caber na memória, mesmo entre os quatro que já passam de R$ 50 mil por ano. As justificativas se repetem quase palavra por palavra:</p>
+    <blockquote>“São poucas vendas no ano.” · “Poucas vendas com valores altos e cheios.” · “Meus contratos são de valor fixo.”</blockquote>
+    <p>Isso confirma a variável mestra do nosso documento de ICP: <strong>o que cria o problema não é ser MEI, é como o dinheiro entra e em que volume</strong>. Triplicar a amostra não mudou a conclusão, reforçou. Não é resultado ruim, é a régua que faltava.</p>
+  </section>
+
+  <section>
+    <h2>O critério de qualificação</h2>
+    <span class="kicker">Quem tem o problema e quem não tem</span>
+    <div class="qual">
+      <div>
+        <h4>Faz sentido para</h4>
+        <ul>
+          <li>Recebimento passa por intermediário: maquininha, marketplace, gateway</li>
+          <li>Volume alto o bastante para não caber na memória</li>
+          <li>O valor recebido pode ser diferente do valor vendido</li>
+          <li>Vários canais que não conversam entre si</li>
+        </ul>
+      </div>
+      <div class="no">
+        <h4>Não faz sentido para</h4>
+        <ul>
+          <li>Pix direto, sem intermediário</li>
+          <li>Poucas vendas por mês</li>
+          <li>Valores cheios e previsíveis, contrato fixo</li>
+          <li>Faturamento muito distante do teto</li>
+        </ul>
+      </div>
+    </div>
+    <p>Isso pode virar tela: um onboarding que pergunta o canal e responde com honestidade — <em>“pelo seu perfil, você provavelmente ainda não precisa disso”</em>. Produto que sabe recusar usuário é raro, e é uma demonstração de confiança que nenhum concorrente faz.</p>
+  </section>
+
+  <section>
+    <h2>ICP redefinido</h2>
+    <span class="kicker">Estreito de propósito</span>
+    <div class="icp">
+      <span>Perfil de cliente ideal</span>
+      <p>MEI com recebimento intermediado — maquininha ou marketplace — com volume alto de transações, em que o valor que cai na conta pode não ser o valor que foi vendido.</p>
+    </div>
+    <p>Comércio de bairro, alimentação, salão, seller. <strong>Não</strong> prestador de serviço que recebe por Pix — e isso agora nós sabemos, não supomos.</p>
+  </section>
+
+  <section>
+    <h2>O achado que ninguém previu</h2>
+    <span class="kicker">Sobrevive a qualquer caminho que a gente escolha</span>
+    <p><strong>Um terço da amostra não faz a parte fiscal, outra pessoa faz.</strong> Esposa, esposa contadora, contadora da família, contador, área financeira. Entre os que fazem sozinhos, quatro relataram atraso: dez parcelas de DAS de uma vez, um parcelamento arrastado por anos, meses acertados no início do ano, e alguém que perde a data e paga multa junto com a fatura seguinte. Uma resumiu assim:</p>
+    <blockquote>“Tive que aprender sozinha.”</blockquote>
+    <p>O padrão não é anomalia que passa despercebida. É <strong>ou você tem alguém, ou você vira o especialista sozinho</strong>. Se isso se repetir no comércio, o produto tem dois usuários, quem vende e quem organiza, e provavelmente é o segundo que abre o app.</p>
+    <div class="callout">
+      <h3>Consequência de design</h3>
+      <p>Se existem dois usuários, o produto precisa de uma saída compartilhável: um resumo que o MEI manda para quem organiza, ou um acesso para essa pessoa. Nenhum concorrente trata a conta como coisa de duas pessoas.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>A objeção do jurado, e a resposta</h2>
+    <span class="kicker">Vai vir. Melhor ter pronto.</span>
+    <p><em>“Vocês entrevistaram o público errado. Por que confiar na tese?”</em></p>
+    <p>Entrevistamos quem estava ao alcance em 30 horas, e o resultado nos disse com clareza quem <strong>não</strong> é o cliente. A tese sobre o público-alvo se apoia em dados secundários — desenquadramentos em massa, custo de antecipação, prazos de repasse — e está marcada explicitamente como não validada em campo. Esta é a pergunta que responderia isso, e é a primeira coisa que faríamos na segunda-feira.</p>
+    <p>Essa resposta é mais forte do que fingir que quinze respostas de Pix validaram um produto para maquininha.</p>
+  </section>
+
+  <section>
+    <h2>Regras para não estragar o argumento</h2>
+    <span class="kicker">A força vem da honestidade — e ela se perde fácil</span>
+    <ol class="dec">
+      <li><b>Nunca dizer “a pesquisa mostra”</b>São quinze respostas de um forms na rede de contatos do time. A formulação certa é “nas quinze respostas que tivemos”. Inflar o número derruba tudo o resto.</li>
+      <li><b>A demo tem que ser do ICP certo</b>Se a tela mostrar um MEI de serviço com Pix, ela contradiz nossa própria tese. A persona da demo recebe por maquininha ou marketplace.</li>
+      <li><b>Dizer que os dados são simulados</b>Antes que perguntem. Simulação declarada é método; simulação escondida é problema.</li>
+      <li><b>Manter as hipóteses refutadas no deck</b>Hipótese que caiu e ficou registrada vale mais que hipótese omitida. É o que separa time que pesquisou de time que ilustrou.</li>
+    </ol>
+  </section>
+
+  <footer>Documento de trabalho · série: 01 enquadramento · 02 catálogo · 03 universo MEI · 04 posicionamento · 05 resultado e ICP.</footer>
+
+</div>
+</body>
+</html>

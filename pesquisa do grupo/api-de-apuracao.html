@@ -1,0 +1,529 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Contrato completo da API de apuracao da Regis: principios, endpoints, objeto de entrada e de saida campo a campo, o bloco de fala, versionamento da regua fiscal, regra de degradacao, o que nao existe de proposito, LGPD e modelos de cobranca.">
+<meta name="color-scheme" content="light dark">
+<title>A API de Apuração</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+
+<style>
+:root{
+  --bg:#EDEFEA; --surface:#FBFCF9; --surface-2:#E4E8E1;
+  --ink:#141A16; --ink-2:#5C6660; --ink-3:#8A938D;
+  --rule:#D3D8CE; --rule-soft:#E1E5DC;
+  --accent:#17564A; --accent-soft:#D6E4DC;
+  --hot:#A8341F; --hot-soft:#F0DCD6;
+  --warm:#8F5E0E; --warm-soft:#EFE3C9;
+  --shadow:0 1px 2px rgba(20,26,22,.05), 0 8px 24px -16px rgba(20,26,22,.22);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0F1211; --surface:#171B18; --surface-2:#242A25;
+    --ink:#E7EBE4; --ink-2:#A2AA9F; --ink-3:#767E74;
+    --rule:#2A302B; --rule-soft:#232823;
+    --accent:#63C8AC; --accent-soft:#1C302A;
+    --hot:#E8785F; --hot-soft:#33201B;
+    --warm:#DFA847; --warm-soft:#2E2717;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -16px rgba(0,0,0,.7);
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0F1211; --surface:#171B18; --surface-2:#242A25;
+  --ink:#E7EBE4; --ink-2:#A2AA9F; --ink-3:#767E74;
+  --rule:#2A302B; --rule-soft:#232823;
+  --accent:#63C8AC; --accent-soft:#1C302A;
+  --hot:#E8785F; --hot-soft:#33201B;
+  --warm:#DFA847; --warm-soft:#2E2717;
+  --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -16px rgba(0,0,0,.7);
+}
+
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--bg);color:var(--ink);
+  font-family:"IBM Plex Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  font-size:16.5px;line-height:1.62;margin:0;-webkit-font-smoothing:antialiased}
+img,svg,video{max-width:100%;height:auto}
+.wrap{max-width:1000px;margin:0 auto;padding:0 28px 92px}
+h1,h2,h3{font-family:Newsreader,Georgia,"Times New Roman",serif;font-weight:500;text-wrap:balance;margin:0}
+p{margin:0}
+a{color:var(--accent);text-decoration-thickness:1px;text-underline-offset:2px}
+a:focus-visible,summary:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:2px}
+.eyebrow{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:11.5px;font-weight:500;
+  letter-spacing:.13em;text-transform:uppercase;color:var(--ink-3)}
+code{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:.88em;
+  background:var(--surface-2);padding:1px 5px;border-radius:2px;color:var(--ink)}
+
+header.mast{padding:60px 0 0}
+.kicker{display:flex;flex-wrap:wrap;gap:9px;align-items:center;margin-bottom:24px}
+.tag{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;
+  padding:4px 9px;border:1px solid var(--rule);border-radius:2px;color:var(--ink-2)}
+.tag.on{background:var(--accent);border-color:var(--accent);color:var(--bg)}
+h1{font-size:clamp(40px,7.2vw,74px);line-height:1.0;letter-spacing:-.022em}
+h1 em{font-style:italic;color:var(--hot)}
+.standfirst{font-family:Newsreader,Georgia,serif;font-size:clamp(19px,2.4vw,23px);line-height:1.5;
+  color:var(--ink-2);max-width:60ch;margin-top:22px}
+.byline{display:flex;flex-wrap:wrap;gap:8px 22px;margin-top:32px;padding-top:18px;border-top:1px solid var(--rule);
+  font-family:"IBM Plex Mono",monospace;font-size:11.5px;letter-spacing:.06em;color:var(--ink-3);text-transform:uppercase}
+
+.verdict-block{margin-top:36px;border-left:4px solid var(--accent);background:var(--accent-soft);padding:26px 28px}
+.verdict-block .eyebrow{color:var(--accent);margin-bottom:12px;display:block}
+.verdict-block p{font-family:Newsreader,Georgia,serif;font-size:clamp(21px,3vw,28px);line-height:1.34;color:var(--ink)}
+
+section{padding-top:58px}
+.shead{display:flex;align-items:baseline;gap:16px;flex-wrap:wrap;padding-bottom:8px}
+.shead h2{font-size:clamp(28px,4vw,40px);letter-spacing:-.015em;line-height:1.11}
+.sdek{max-width:68ch;color:var(--ink-2);margin-top:15px;font-size:16px}
+.sdek strong{color:var(--ink);font-weight:600}
+.sdek+.sdek{margin-top:12px}
+h3.sub{font-size:21px;margin-top:34px;letter-spacing:-.012em}
+h3.sub+.sdek{margin-top:9px}
+
+/* blocos de codigo */
+.code{margin-top:22px;border:1px solid var(--rule);background:var(--surface);box-shadow:var(--shadow)}
+.code .ch{padding:11px 18px;border-bottom:1px solid var(--rule);display:flex;justify-content:space-between;
+  gap:14px;flex-wrap:wrap;font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.09em;
+  text-transform:uppercase;color:var(--ink-3)}
+.code .ch b{color:var(--ink);font-weight:600;letter-spacing:.06em}
+.code .body{overflow-x:auto}
+.code pre{margin:0;padding:20px 18px;font-family:"IBM Plex Mono",ui-monospace,monospace;
+  font-size:12.7px;line-height:1.66;color:var(--ink-2);white-space:pre}
+.code pre b{color:var(--ink);font-weight:500}
+.code pre u{color:var(--accent);text-decoration:none;font-weight:600}
+.code pre i{color:var(--ink-3);font-style:normal}
+.code pre s{color:var(--hot);text-decoration:none}
+
+/* principios */
+.prins{margin-top:28px;display:grid;gap:1px;background:var(--rule);border:1px solid var(--rule)}
+.prin{background:var(--surface);padding:20px 24px;display:grid;grid-template-columns:44px 1fr;gap:20px}
+.prin .rank{font-family:"IBM Plex Mono",monospace;font-size:22px;font-weight:500;color:var(--accent);line-height:1;padding-top:4px}
+.prin h3{font-size:19px;letter-spacing:-.012em;margin-bottom:6px;line-height:1.25}
+.prin p{color:var(--ink-2);font-size:14.8px;line-height:1.55}
+
+/* tabelas */
+.tblwrap{margin-top:24px;border:1px solid var(--rule);overflow-x:auto}
+table{border-collapse:collapse;width:100%;min-width:700px;background:var(--surface)}
+th{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--ink-3);text-align:left;padding:13px 16px;border-bottom:1px solid var(--rule);font-weight:500}
+td{padding:14px 16px;border-bottom:1px solid var(--rule-soft);font-size:14.4px;vertical-align:top;line-height:1.5;color:var(--ink-2)}
+tr:last-child td{border-bottom:0}
+td.k{font-family:"IBM Plex Mono",monospace;font-size:12.4px;color:var(--ink);font-weight:500;white-space:nowrap}
+td.t{font-family:"IBM Plex Mono",monospace;font-size:11.4px;color:var(--ink-3);white-space:nowrap}
+td b{color:var(--ink);font-weight:600}
+tr.hi td{background:var(--accent-soft)}
+
+.callout{margin-top:24px;padding:20px 24px;border:1px dashed var(--rule);background:var(--surface);
+  font-size:15.2px;line-height:1.62;color:var(--ink-2)}
+.callout strong{color:var(--ink);font-weight:600}
+.callout.alert{border-style:solid;border-color:var(--hot);background:var(--hot-soft);color:var(--ink)}
+.callout.ok{border-style:solid;border-color:var(--accent);background:var(--accent-soft);color:var(--ink)}
+
+/* nao existe */
+.nots{margin-top:26px;display:grid;gap:14px}
+.not{border:1px solid var(--rule);background:var(--surface);padding:19px 24px;display:grid;
+  grid-template-columns:1fr 190px;gap:20px;align-items:start}
+.not .w{font-size:15.4px;color:var(--ink);font-weight:600;line-height:1.4}
+.not .w span{display:block;font-weight:400;color:var(--ink-2);font-size:14.2px;margin-top:5px;line-height:1.5}
+.not .p{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;
+  color:var(--hot);text-align:right;padding-top:4px}
+
+footer{margin-top:62px;padding-top:20px;border-top:1px solid var(--rule);
+  font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.07em;text-transform:uppercase;
+  color:var(--ink-3);display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+
+@media (max-width:740px){
+  .wrap{padding:0 20px 72px}
+  .prin{grid-template-columns:1fr;gap:8px}
+  .prin .rank{padding-top:0}
+  .not{grid-template-columns:1fr;gap:8px}
+  .not .p{text-align:left;padding-top:0}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none !important;transition:none !important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="mast">
+  <div class="kicker">
+    <span class="tag on">Contrato</span>
+    <span class="tag">Horizonte 4 &middot; features 20 a 22</span>
+    <span class="tag">30 de agosto de 2026</span>
+  </div>
+  <h1>A API de<br><em>apuração</em>.</h1>
+  <p class="standfirst">O contrato desenhado até o fim: princípios, rotas, entrada e saída campo a campo, o bloco que ninguém copia, o versionamento da régua fiscal, o que a API responde quando não sabe, e o que ela deliberadamente não tem.</p>
+  <div class="byline">
+    <span>Detalha o H4 de VISAO.md</span>
+    <span>Features 20, 21 e 22 de ROADMAP.md</span>
+    <span>Proposta, não especificação aprovada</span>
+  </div>
+
+  <div class="verdict-block">
+    <span class="eyebrow">A decisão que define tudo</span>
+    <p>A API não vende detecção. Ela vende apuração: entra movimentação, sai um número com consequência legal.</p>
+  </div>
+</header>
+
+<section id="principios">
+  <div class="shead">
+    <span class="eyebrow">01 &middot; Antes das rotas</span>
+    <h2>Seis princípios</h2>
+  </div>
+  <p class="sdek">Detecção é commodity. Todo mundo usa IA, o ALL já classificou mais de um milhão de transações, e conectar e classificar virou infraestrutura de mercado. O que sustenta um contrato pago é o que vem depois do achado.</p>
+
+  <div class="prins">
+    <div class="prin"><span class="rank">1</span><div><h3>A unidade de valor é o número, não o alerta</h3><p>Um parceiro que integra só a lista de achados construiu um detector. O produto é o acumulado do ano contra uma régua legal, com a distância e a projeção.</p></div></div>
+    <div class="prin"><span class="rank">2</span><div><h3>Todo achado nasce com nível de certeza</h3><p>Fato, regra ou suspeita. É o que permite ao parceiro decidir a autonomia da própria interface sem reinventar a política.</p></div></div>
+    <div class="prin"><span class="rank">3</span><div><h3>A API entrega o que dizer, não só o que achou</h3><p>Achar é fácil. Saber calar é o produto. O bloco <code>fala</code> é a política de comportamento embalada.</p></div></div>
+    <div class="prin"><span class="rank">4</span><div><h3>Todo resultado é reproduzível</h3><p>Apuração é cálculo legal. A resposta carrega a versão do motor e a versão da régua, e o mesmo período pode ser recalculado com a régua da época.</p></div></div>
+    <div class="prin"><span class="rank">5</span><div><h3>Ela prefere calar a inventar</h3><p>Sem histórico não existe projeção. Sem régua modelada não existe estimativa. Nenhum acumulado sai sem declarar o que não foi observado.</p></div></div>
+    <div class="prin"><span class="rank">6</span><div><h3>Nenhum achado pode ser suprimido pelo parceiro</h3><p>Inclusive, e principalmente, os achados sobre ele. A única supressão possível é a da pessoa, e ela fica registrada.</p></div></div>
+  </div>
+</section>
+
+<section id="rotas">
+  <div class="shead">
+    <span class="eyebrow">02 &middot; Superfície</span>
+    <h2>As rotas</h2>
+  </div>
+  <p class="sdek">Sete rotas e três webhooks. A superfície é pequena de propósito: quanto menor o contrato, mais fácil manter a promessa de reprodutibilidade ao longo dos anos.</p>
+
+  <div class="tblwrap">
+    <table>
+      <thead><tr><th>Rota</th><th>O que faz</th><th>Notas</th></tr></thead>
+      <tbody>
+        <tr class="hi"><td class="k">POST /v1/apuracoes</td><td>Cria uma apuração para uma pessoa e um período.</td><td>Síncrona até um volume; acima disso devolve <code>202</code> e avisa por webhook. Aceita <code>Idempotency-Key</code>.</td></tr>
+        <tr><td class="k">GET /v1/apuracoes/{id}</td><td>Devolve a apuração completa.</td><td>Imutável. Reprocessar gera outro id.</td></tr>
+        <tr><td class="k">GET /v1/apuracoes/{id}/documentos/{doc}</td><td>Baixa um documento gerado.</td><td>Texto ou PDF. Nunca é enviado por nós.</td></tr>
+        <tr class="hi"><td class="k">POST /v1/respostas</td><td>Registra a resposta da pessoa a uma pergunta.</td><td>É assim que a fronteira da certeza se move: "foi eu" vira memória.</td></tr>
+        <tr><td class="k">GET /v1/reguas</td><td>Lista as réguas vigentes e suas versões.</td><td>MEI, nanoempreendedor, ME, EPP. Com vigência.</td></tr>
+        <tr><td class="k">POST /v1/apuracoes:recalcular</td><td>Recalcula um período com versão de régua explícita.</td><td>Para auditoria e para contestação de cálculo.</td></tr>
+        <tr><td class="k">POST /v1/laudos</td><td>Emite laudo de faturamento reconciliado.</td><td>Exige consentimento próprio da pessoa, separado. Feature 19.</td></tr>
+        <tr><td class="t">webhook</td><td><code>apuracao.concluida</code> &middot; <code>fala.sugerida</code> &middot; <code>regua.atualizada</code></td><td>O terceiro é o que avisa o parceiro que a lei mudou.</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section id="entrada">
+  <div class="shead">
+    <span class="eyebrow">03 &middot; O que entra</span>
+    <h2>A entrada</h2>
+  </div>
+  <p class="sdek">Duas formas: o parceiro manda as movimentações que já tem, ou manda o consentimento e a Regis lê via Open Finance. A segunda é a que o parceiro que já é conta vai usar menos, porque ele já tem o dado.</p>
+
+  <div class="code">
+    <div class="ch"><b>POST /v1/apuracoes</b><span>corpo da requisição</span></div>
+    <div class="body"><pre>{
+  "referencia_externa": "cli_88213",         <i>// id da pessoa no sistema do parceiro</i>
+  "pessoa": {
+    "regime": "mei",                          <i>// mei | nanoempreendedor | me | epp</i>
+    "cnpj_hash": "sha256:9f2a…",              <i>// nunca o documento em claro</i>
+    "cpf_hash":  "sha256:41be…",              <i>// necessário desde a CGSN 183/2025</i>
+    "abertura": "2023-03-01",
+    "atividade": "cabeleireiro"
+  },
+  "periodo": { "de": "2026-01-01", "ate": "2026-08-30" },
+
+  "movimentacoes": [
+    {
+      "id": "mov_0031",
+      "data": "2026-08-12T14:22:00-03:00",
+      "valor_centavos": 5590,                 <i>// inteiro, sempre. nunca float</i>
+      "sentido": "saida",                     <i>// entrada | saida</i>
+      "descritor": "PAG*NETFLIX",             <i>// cru, como veio do banco</i>
+      "canal": "cartao",                      <i>// pix_cpf | pix_cnpj | maquininha |
+                                                    marketplace | boleto | cartao | tarifa</i>
+      "contraparte_bruta": "NETFLIX.COM"
+    }
+  ],
+
+  <u>"vendas"</u>: [                                 <i>// opcional, e é o que destrava
+                                                    a reconciliação de repasse</i>
+    {
+      "id": "ven_0044",
+      "data": "2026-08-10",
+      "valor_bruto_centavos": 10000,
+      "canal": "maquininha",
+      "taxa_contratada_bps": 289,             <i>// 2,89% em pontos-base</i>
+      "previsao_repasse": "2026-08-11"
+    }
+  ],
+
+  "contexto": {
+    "contrapartes_conhecidas": ["studio bella", "maria souza"],
+    "respostas_anteriores": [ { "contraparte": "maria souza", "resposta": "fui_eu" } ]
+  },
+
+  "preferencias": {
+    "orcamento_de_fala": { "limite": 3, "janela": "semana" },
+    "fuso": "America/Sao_Paulo"
+  }
+}</pre></div>
+  </div>
+
+  <div class="callout">
+    <strong>Três decisões de tipo que não são estéticas.</strong> Valor sempre em <code>centavos</code> inteiros, porque ponto flutuante em cálculo fiscal é defeito esperando data. Documento sempre em <em>hash</em>, porque a API não precisa do CPF em claro para apurar e não deve carregá-lo. E o <code>descritor</code> vai cru, sem limpeza do parceiro, porque a identificação de contraparte é justamente o que a Regis faz melhor e limpeza prévia destrói sinal.
+  </div>
+</section>
+
+<section id="saida">
+  <div class="shead">
+    <span class="eyebrow">04 &middot; O que sai</span>
+    <h2>A saída, em seis blocos</h2>
+  </div>
+  <p class="sdek">Dois deles são copiáveis em uma tarde. Dois são o produto. Os blocos <code>fala</code> e <code>auditoria</code> estão destacados por isso.</p>
+
+  <div class="code">
+    <div class="ch"><b>200 OK</b><span>resposta completa</span></div>
+    <div class="body"><pre>{
+  "id": "apu_01J8ZK…",
+  "gerado_em": "2026-08-30T09:14:02-03:00",
+
+  <b>"numero"</b>: {
+    "bruto_acumulado_centavos": 5840000,
+    "regua": {
+      "tipo": "mei",
+      "limite_centavos": 8100000,
+      "tolerancia_centavos": 9720000,
+      "versao": "2026.1",
+      "vigencia_de": "2026-01-01"
+    },
+    "distancia_centavos": 2260000,
+    "percentual_do_limite": 72.1,
+    "projecao": {
+      "estouro_em": "2026-10-24",
+      "metodo": "media_movel_3m",
+      "confianca": "media"
+    },
+    <u>"cobertura"</u>: {                             <i>// nunca sai um acumulado sem isto</i>
+      "canais_observados": ["maquininha","marketplace","pix_cnpj","pix_cpf"],
+      "nao_observavel": ["especie"],
+      "percentual_estimado_observado": null,    <i>// null quando não dá para estimar.
+                                                     não inventamos um número</i>
+      "declaracao": "Do que passa por conta e maquininha, você faturou
+                     R$ 58.400. O que entrou em espécie eu não vejo."
+    }
+  },
+
+  <b>"achados"</b>: [
+    {
+      "id": "ach_07",
+      "familia": "duplicidade",                 <i>// duplicidade | recorrencia | valor |
+                                                     conciliacao | fiscal | contraparte</i>
+      "nivel": "fato",                          <i>// fato | regra | suspeita</i>
+      "titulo": "Netflix cobrada duas vezes no dia 12",
+      "valor_recuperavel_centavos": 5590,
+      "evidencia": {
+        "movimentacoes": ["mov_0031","mov_0032"],
+        "regra_aplicada": "duplicidade.janela_24h",
+        "versao_detector": "1.4.0"
+      },
+      "acao_sugerida": { "tipo": "documento", "documento_id": "doc_02" },
+      <s>"sobre_o_parceiro"</s>: false,                <i>// true quando o achado é contra
+                                                     quem contratou a API</i>
+      "confianca": 0.98
+    }
+  ],
+
+  <b>"silenciados"</b>: [
+    {
+      "movimentacoes": ["mov_0110"],
+      "motivo": "aluguel mensal, série estável há 6 meses",
+      "regra": "recorrencia.legitima"
+    }
+  ],
+
+  <u>"fala"</u>: {
+    "agora":   [ { "achado_id": "ach_07",
+                   "texto": "Achei a Netflix cobrada duas vezes dia 12…",
+                   "botoes": ["Ver texto","Foi eu"] } ],
+    "guardar": [ { "achado_id": "ach_11",
+                   "liberar_em": "2026-09-06",
+                   "motivo": "orçamento de fala da semana atingido" } ],
+    "nunca":   [ { "achado_id": "ach_14",
+                   "motivo": "a pessoa já respondeu 'foi eu' para esta contraparte" } ],
+    "orcamento": { "usado": 2, "limite": 3, "janela": "semana" }
+  },
+
+  "documentos": [
+    { "id": "doc_02", "tipo": "contestacao", "formato": "texto",
+      "destinatario": "emissor do cartão", "conteudo": "…" }
+  ],
+
+  <u>"auditoria"</u>: {
+    "versao_motor": "2.1.0",
+    "versao_regua": "2026.1",
+    "detectores": { "duplicidade": "1.4.0", "fiscal": "3.0.1" },
+    "entradas_hash": "sha256:7c1d…",
+    "reproduzivel": true
+  }
+}</pre></div>
+  </div>
+
+  <h3 class="sub">O bloco <code>fala</code>, que é o que ninguém copia</h3>
+  <p class="sdek">Um parceiro que integrar só <code>achados</code> recria um feed de alertas e mata o próprio NPS em duas semanas. É o erro mais previsível de toda integração, e a razão de a política de comportamento vir junto e não como documentação.</p>
+  <p class="sdek">Repare que <code>fala.nunca</code> tem valor de negócio: ele é a prova, para o parceiro, de que o produto está aprendendo e ficando mais quieto. É a métrica de maturidade da Regis atravessando o contrato: <strong>a qualidade não é quantos alertas ela manda, é quantos ela deixou de precisar mandar.</strong></p>
+
+  <h3 class="sub">Como a resposta da pessoa volta</h3>
+  <div class="code">
+    <div class="ch"><b>POST /v1/respostas</b><span>é assim que a fronteira da certeza se move</span></div>
+    <div class="body"><pre>{
+  "apuracao_id": "apu_01J8ZK…",
+  "achado_id": "ach_21",
+  "resposta": "fui_eu",              <i>// fui_eu | nao_reconheco | ja_resolvi | nao_e_receita</i>
+  "aplicar_a": "contraparte"         <i>// contraparte | transacao</i>
+}
+
+<i>// devolve o que mudou, para o parceiro saber o que sumiu da tela</i>
+{ "silenciados_agora": ["ach_21","ach_29"],
+  "contraparte_promovida": "maria souza",
+  "nivel_anterior": "suspeita", "nivel_novo": "conhecida" }</pre></div>
+  </div>
+</section>
+
+<section id="regua">
+  <div class="shead">
+    <span class="eyebrow">05 &middot; O fosso</span>
+    <h2>Versionar a régua</h2>
+  </div>
+  <p class="sdek">Apuração é cálculo legal, então precisa ser reproduzível. <strong>Em 2029 alguém vai precisar recalcular 2026 com as regras de 2026, não com as de 2029.</strong> Isso exige guardar a versão da régua junto com o resultado, e é um requisito que quase ninguém antecipa antes de precisar.</p>
+
+  <div class="code">
+    <div class="ch"><b>GET /v1/reguas</b><span>e o webhook regua.atualizada</span></div>
+    <div class="body"><pre>[
+  { "tipo": "mei", "versao": "2026.1",
+    "limite_centavos": 8100000, "tolerancia_pct": 20,
+    "vigencia_de": "2026-01-01", "vigencia_ate": null,
+    "fundamento": "LC 123/2006 art. 18-A, com CGSN 183/2025",
+    "muda": ["receita no CPF passa a somar no limite"] },
+
+  { "tipo": "nanoempreendedor", "versao": "2027.1",
+    "limite_centavos": 4050000,
+    "vigencia_de": "2027-01-01",
+    "fundamento": "reforma tributária, isenção de CBS em 2027 e IBS em 2029",
+    "estado": <s>"modelada_nao_vigente"</s> }
+]</pre></div>
+  </div>
+
+  <div class="callout ok">
+    <strong>Por que isto é comercial e não técnico.</strong> Manter régua fiscal atualizada é trabalho chato, contínuo e que ninguém quer ter dentro de casa. Entre 2026 e 2029 ela muda várias vezes: o CPF somando desde 2026, a nota fiscal do MEI em 2027, o nanoempreendedor, o regime híbrido, e possivelmente o teto indo para R$ 150 mil se o PLP 67/2025 passar. <strong>É a esteira que segura o parceiro melhor que qualquer cláusula de fidelidade.</strong>
+  </div>
+</section>
+
+<section id="degradacao">
+  <div class="shead">
+    <span class="eyebrow">06 &middot; Quando ela não sabe</span>
+    <h2>A regra de degradação</h2>
+  </div>
+  <p class="sdek">A API prefere calar a inventar, exatamente como o produto. Isso vira comportamento explícito, não bom senso de quem implementa.</p>
+
+  <div class="tblwrap">
+    <table>
+      <thead><tr><th>Situação</th><th>Resposta</th><th>Nunca</th></tr></thead>
+      <tbody>
+        <tr><td>Menos de 3 meses de histórico</td><td class="t">projecao: null + motivo</td><td>uma projeção fraca sem aviso</td></tr>
+        <tr><td>Consentimento expirado</td><td class="t">409 consentimento_expirado</td><td>um número velho apresentado como atual</td></tr>
+        <tr><td>Régua ainda não modelada</td><td class="t">422 regua_indisponivel</td><td>estimar por analogia</td></tr>
+        <tr><td>Movimentações incompletas no período</td><td class="t">200 com cobertura reduzida</td><td>acumulado sem o bloco de cobertura</td></tr>
+        <tr><td>Canal presente mas sem vendas para cruzar</td><td class="t">achado de conciliação suprimido</td><td>acusar repasse curto sem o lado da venda</td></tr>
+        <tr><td>Espécie relevante suspeitada</td><td class="t">declaracao na cobertura</td><td>afirmar faturamento total</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout">
+    <strong>A linha que resume:</strong> um número apurado sem cobertura declarada é pior que número nenhum, porque a pessoa toma decisão fiscal com ele.
+  </div>
+</section>
+
+<section id="naoexiste">
+  <div class="shead">
+    <span class="eyebrow">07 &middot; Ausências deliberadas</span>
+    <h2>O que a API não tem</h2>
+  </div>
+  <p class="sdek">Cada ausência aqui é uma constante do produto virando cláusula de contrato. São as que vão ser pedidas, e a resposta precisa estar decidida antes do primeiro cliente, não durante a negociação.</p>
+
+  <div class="nots">
+    <div class="not"><div class="w">Nenhuma rota que move dinheiro<span>Não paga, não transfere, não contesta no banco, não cancela assinatura. A API prepara o documento e devolve. Quem executa é a pessoa.</span></div><span class="p">constante 1</span></div>
+    <div class="not"><div class="w">Nenhum parâmetro de supressão por família ou contraparte<span>O parceiro não pode desligar "conciliação" nem esconder achados sobre um CNPJ específico. A única supressão é a da pessoa, via <code>/respostas</code>, e ela fica registrada.</span></div><span class="p">princípio 6</span></div>
+    <div class="not"><div class="w">Nenhum campo de oferta, produto recomendado ou score<span>A API não devolve propensão a crédito nem gancho comercial. O laudo existe, é rota separada, exige consentimento próprio e sai a pedido da pessoa.</span></div><span class="p">feature 19</span></div>
+    <div class="not"><div class="w">Nenhuma sugestão de otimização fiscal<span>Segurar nota, dividir entrada ou atrasar recebimento não são saídas possíveis. A API mede o que entrou, não o que foi declarado.</span></div><span class="p">constante 4</span></div>
+    <div class="not"><div class="w">Nenhum modo silencioso<span>Não existe apurar sem gerar o bloco <code>fala</code>. Quem quer só o número recebe o número com a política junto.</span></div><span class="p">princípio 3</span></div>
+  </div>
+
+  <div class="callout alert">
+    <strong>O problema estratégico que chega no primeiro contrato.</strong> A API vai gerar achados sobre o próprio parceiro. A taxa efetiva de 3,49% contra os 2,89% contratados é uma das anomalias do nosso próprio dataset, e num contrato de distribuição o contratante seria a adquirente. <strong>Achado sobre o parceiro nunca é suprimido, e vem marcado com <code>sobre_o_parceiro: true</code> para que ninguém possa alegar que não sabia.</strong> Se isso for inaceitável para ele, ele não é parceiro. Parece caro e é o contrário: um produto que não move dinheiro, não vende crédito e não esconde nada é o único que pode ser embarcado por concorrentes entre si. A neutralidade é o ativo comercial, não o custo dele.
+  </div>
+</section>
+
+<section id="dados">
+  <div class="shead">
+    <span class="eyebrow">08 &middot; Dado de terceiro</span>
+    <h2>Segurança e LGPD</h2>
+  </div>
+  <p class="sdek">A partir do H4 o dado deixa de ser do nosso usuário e passa a ser do usuário de outra empresa. Isso muda a natureza da obrigação, e é a razão de o H4 não poder vir antes do painel de precisão e do isolamento de dados.</p>
+
+  <div class="tblwrap">
+    <table>
+      <thead><tr><th>Tema</th><th>Regra</th></tr></thead>
+      <tbody>
+        <tr><td class="k">Minimização</td><td>Documento sempre em hash. A apuração não precisa de CPF em claro e não o recebe.</td></tr>
+        <tr><td class="k">Isolamento</td><td>Chave por parceiro, dado por pessoa, sem cruzamento entre parceiros. Nenhum modelo é treinado com dado de um parceiro para servir outro.</td></tr>
+        <tr><td class="k">Escopo do consentimento</td><td>Leitura, e só. O escopo é declarado por rota, e o laudo exige consentimento adicional e específico.</td></tr>
+        <tr><td class="k">Retenção</td><td>A apuração é imutável e guardada pelo prazo fiscal, porque é o que torna a reprodutibilidade possível. As movimentações cruas seguem política do parceiro.</td></tr>
+        <tr><td class="k">Direito de apagar</td><td>Rota de expurgo por pessoa, que remove movimentações e documentos e mantém apenas o registro contábil anônimo de que uma apuração existiu.</td></tr>
+        <tr><td class="k">Explicabilidade</td><td>Todo achado carrega <code>regra_aplicada</code> e <code>versao_detector</code>. Nenhum achado sem evidência rastreável até a transação.</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section id="cobranca">
+  <div class="shead">
+    <span class="eyebrow">09 &middot; Receita</span>
+    <h2>Como isso cobra</h2>
+  </div>
+  <p class="sdek">Quatro formatos possíveis, e o piso de qualquer um deles é o custo de ler a conta, hoje conhecido em R$ 19,90 por conta conectada no varejo do revendedor.</p>
+
+  <div class="tblwrap">
+    <table>
+      <thead><tr><th>Formato</th><th>Como funciona</th><th>Serve para</th></tr></thead>
+      <tbody>
+        <tr class="hi"><td class="k">Por apuração fechada</td><td>Uma cobrança por pessoa por mês apurado.</td><td>O mais alinhado ao valor: o parceiro paga quando o número existe.</td></tr>
+        <tr><td class="k">Por conta lida</td><td>Repassa o custo de origem com margem.</td><td>Fácil de explicar, mas cobra por insumo e não por resultado.</td></tr>
+        <tr><td class="k">Success fee</td><td>Percentual do valor recuperado e confirmado.</td><td>Bonito no pitch, difícil de auditar, e não cobre a parte fiscal, que é a mais valiosa.</td></tr>
+        <tr><td class="k">Licença mais volume</td><td>Piso anual mais faixa por apuração.</td><td>Parceiro grande, que quer previsibilidade e exclusividade de vertical.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout">
+    <strong>A cláusula que acompanha o preço.</strong> Não supressão de achado, inclusive sobre o parceiro, e proibição de usar a apuração como insumo de oferta sem consentimento específico da pessoa. Se isso derruba um contrato, derrubou cedo.
+  </div>
+</section>
+
+<section id="antes">
+  <div class="shead">
+    <span class="eyebrow">10 &middot; Ordem</span>
+    <h2>O que precisa vir antes, e o que eu faria primeiro</h2>
+  </div>
+
+  <p class="sdek">Três dependências duras: a <strong>régua parametrizável</strong> (feature 17), sem a qual não existe multi regime nem versionamento; o <strong>painel de precisão</strong> (feature 06), porque vender apuração sem taxa de acerto medida é irresponsável; e o <strong>isolamento de dados</strong>, porque o dado passa a ser de terceiro.</p>
+
+  <div class="callout ok">
+    <strong>E o que eu faria primeiro não é a API.</strong> Seria a apuração como relatório, em lote, na mão, vendida para uma contabilidade só. Descobre-se o contrato certo atendendo alguém antes de congelar o formato em JSON. O erro clássico é desenhar a API pelo que o time acha bonito, e não pelo que o primeiro cliente pede. Tudo o que está neste documento é uma hipótese de contrato, e ela envelhece bem só se for testada dessa forma.
+  </div>
+</section>
+
+<footer>
+  <span>Regis &middot; Time 12 &middot; Hackathon Vanguarda</span>
+  <span>API de apuração &middot; 30 ago 2026</span>
+</footer>
+
+</div>
+</body>
+</html>

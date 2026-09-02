@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wireframe — a conversa e a memória da Regis</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+Condensed:wght@600;700&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #FBFCF9;
+    --bar: #E6EEDF;
+    --rule: #C3CFB9;
+    --ink: #1B2019;
+    --ink-soft: #5E655B;
+    --debit: #A8412A;
+    --debit-bg: #F8E7E1;
+    --debit-rule: #D9A695;
+    --fiscal: #2E3B2C;
+    --go: #2F6B4F;
+    --go-bg: #E1EFE6;
+    --go-rule: #A3C9B2;
+    --ask: #8A6D1F;
+    --ask-bg: #F3ECD8;
+    --ask-rule: #D8C79A;
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    background-image: repeating-linear-gradient(to bottom, var(--bar) 0 34px, var(--paper) 34px 68px);
+    color: var(--ink);
+    font-family: "IBM Plex Sans", system-ui, sans-serif;
+    font-size: 16px; line-height: 1.65;
+  }
+  .sheet {
+    max-width: 1000px; margin: 0 auto; padding: 40px 28px 80px;
+    background: var(--paper);
+    border-left: 1px solid var(--rule); border-right: 1px solid var(--rule);
+    min-height: 100vh;
+  }
+  .eyebrow {
+    font-family: "IBM Plex Mono", monospace; font-size: 12px;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--ink-soft); margin: 0 0 18px;
+  }
+  h1 {
+    font-family: "IBM Plex Sans Condensed", sans-serif; font-weight: 700;
+    font-size: clamp(34px, 7vw, 54px); line-height: 1.02;
+    letter-spacing: -0.01em; margin: 0 0 14px;
+  }
+  .standfirst { font-size: 18px; color: var(--ink-soft); max-width: 46em; margin: 0 0 24px; }
+  .method-note {
+    font-family: "IBM Plex Mono", monospace; font-size: 12px;
+    border: 1px solid var(--rule); background: #fff;
+    padding: 12px 16px; margin: 0 0 36px; color: var(--ink-soft);
+  }
+  section { margin-bottom: 56px; }
+  h2 {
+    font-family: "IBM Plex Sans Condensed", sans-serif; font-weight: 600;
+    font-size: 26px; line-height: 1.15; margin: 0 0 6px;
+    padding-top: 14px; border-top: 2px solid var(--ink);
+  }
+  .kicker {
+    font-family: "IBM Plex Mono", monospace; font-size: 11px;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--ink-soft); display: block; margin-bottom: 20px;
+  }
+  p { margin: 0 0 16px; max-width: 46em; }
+
+  /* legenda de tons */
+  .legend { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 28px; }
+  .chip {
+    font-family: "IBM Plex Mono", monospace; font-size: 11px;
+    letter-spacing: 0.06em; text-transform: uppercase;
+    padding: 5px 11px; border: 1px solid var(--rule); background: #fff;
+    display: inline-flex; align-items: center; gap: 7px;
+  }
+  .dot { width: 9px; height: 9px; border-radius: 50%; display: inline-block; }
+  .dot.resolve { background: var(--go); }
+  .dot.encaminha { background: var(--fiscal); }
+  .dot.pergunta { background: var(--ask); }
+
+  /* duas telas lado a lado */
+  .stage { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start; }
+  .surface-label {
+    font-family: "IBM Plex Sans Condensed", sans-serif; font-weight: 700;
+    font-size: 20px; margin: 0 0 4px;
+  }
+  .surface-sub {
+    font-family: "IBM Plex Mono", monospace; font-size: 12px;
+    color: var(--ink-soft); margin: 0 0 16px;
+  }
+
+  /* moldura de celular */
+  .phone {
+    border: 2px solid var(--ink); border-radius: 26px; background: #fff;
+    overflow: hidden; max-width: 340px; margin: 0 auto;
+    box-shadow: 6px 6px 0 rgba(27,32,25,0.08);
+  }
+  .phone-bar {
+    background: var(--fiscal); color: #F1F4EC; padding: 12px 16px;
+    display: flex; align-items: center; justify-content: space-between;
+    font-family: "IBM Plex Sans Condensed", sans-serif; font-weight: 600; font-size: 15px;
+  }
+  .phone-bar .mono { font-family: "IBM Plex Mono", monospace; font-size: 13px; color: #A9B5A2; }
+  .screen { padding: 16px 14px 20px; }
+
+  /* chat */
+  .msg { max-width: 84%; margin: 0 0 4px; }
+  .bubble {
+    background: #F1F4EC; border: 1px solid var(--rule); border-radius: 4px 14px 14px 14px;
+    padding: 11px 13px; font-size: 14px; line-height: 1.5;
+  }
+  .bubble.resolve { background: var(--go-bg); border-color: var(--go-rule); }
+  .bubble.encaminha { background: #fff; border-color: var(--rule); }
+  .bubble.pergunta { background: var(--ask-bg); border-color: var(--ask-rule); }
+  .msg.me { margin-left: auto; }
+  .msg.me .bubble { background: var(--ink); color: #F1F4EC; border-radius: 14px 4px 14px 14px; border-color: var(--ink); }
+  .big { font-family: "IBM Plex Sans Condensed", sans-serif; font-weight: 700; font-size: 26px; display: block; margin: 4px 0 2px; }
+  .btns { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 9px; }
+  .btn {
+    font-family: "IBM Plex Mono", monospace; font-size: 11px; letter-spacing: 0.04em;
+    border: 1px solid var(--ink); border-radius: 999px; padding: 5px 11px; background: #fff; color: var(--ink);
+  }
+  .tone {
+    font-family: "IBM Plex Mono", monospace; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--ink-soft); margin: 14px 0 5px; display: flex; align-items: center; gap: 6px;
+  }
+  .composer {
+    border-top: 1px solid var(--rule); margin: 16px -14px -20px; padding: 12px 14px;
+    font-family: "IBM Plex Mono", monospace; font-size: 12px; color: var(--ink-soft);
+    display: flex; justify-content: space-between; align-items: center;
+  }
+
+  /* app */
+  .app-num-label {
+    font-family: "IBM Plex Mono", monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--ink-soft); margin: 6px 0 2px;
+  }
+  .app-num { font-family: "IBM Plex Sans Condensed", sans-serif; font-weight: 700; font-size: 44px; line-height: 1; margin: 0 0 16px; }
+  .track { height: 16px; background: var(--bar); border: 1px solid var(--rule); border-radius: 3px; overflow: hidden; }
+  .fill { height: 100%; width: 72%; background: var(--fiscal); }
+  .track-cap { font-family: "IBM Plex Mono", monospace; font-size: 11px; color: var(--ink-soft); margin: 7px 0 20px; }
+  .app-h {
+    font-family: "IBM Plex Mono", monospace; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--ink-soft); border-top: 1px solid var(--rule); padding-top: 12px; margin: 0 0 10px;
+  }
+  .row { display: flex; align-items: flex-start; gap: 9px; font-size: 14px; padding: 8px 0; border-bottom: 1px solid var(--bar); }
+  .row .ic { font-size: 13px; margin-top: 1px; }
+  .row .go-i { color: var(--go); }
+  .row .ask-i { color: var(--ask); }
+  .row .arrow { margin-left: auto; color: var(--ink-soft); }
+  .doc { display: flex; align-items: center; gap: 8px; font-family: "IBM Plex Mono", monospace; font-size: 12px; padding: 7px 0; }
+
+  /* anotações */
+  .notes { margin-top: 22px; }
+  .note {
+    font-family: "IBM Plex Mono", monospace; font-size: 12px; color: var(--ink-soft);
+    border-left: 3px solid var(--rule); padding: 4px 0 4px 14px; margin: 0 0 12px; max-width: 44em;
+  }
+  .note b { color: var(--ink); font-weight: 500; }
+  .note.decide { border-left-color: var(--debit); }
+  .note.decide b { color: var(--debit); }
+
+  footer {
+    font-family: "IBM Plex Mono", monospace; font-size: 12px;
+    color: var(--ink-soft); border-top: 1px solid var(--rule); padding-top: 16px; margin-top: 8px;
+  }
+
+  /* tela de detalhe: contestação */
+  .mini-label {
+    font-family: "IBM Plex Mono", monospace; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--ink-soft); margin: 14px 0 8px;
+  }
+  .evi { display: flex; align-items: center; gap: 8px; font-size: 13px; padding: 7px 0; border-bottom: 1px solid var(--bar); font-family: "IBM Plex Mono", monospace; }
+  .evi .flag { color: var(--debit); font-size: 11px; margin-left: auto; }
+  .draft {
+    background: #fff; border: 1px solid var(--rule); border-left: 3px solid var(--ink);
+    padding: 12px 13px; font-size: 13px; line-height: 1.55; color: var(--ink);
+  }
+  .boundary {
+    background: var(--debit-bg); border: 1px solid var(--debit-rule);
+    font-family: "IBM Plex Mono", monospace; font-size: 11px; color: var(--debit);
+    padding: 9px 12px; margin: 12px 0 10px; line-height: 1.45;
+  }
+  .btn.primary { background: var(--ink); color: #F1F4EC; border-color: var(--ink); }
+
+  /* ramos da pergunta ambígua */
+  .branch {
+    background: #fff; border: 1px solid var(--rule); border-left: 3px solid var(--ask);
+    padding: 12px 14px; margin-bottom: 10px; font-size: 14px; line-height: 1.5;
+  }
+  .branch .bh {
+    font-family: "IBM Plex Sans Condensed", sans-serif; font-weight: 600;
+    font-size: 16px; display: block; margin-bottom: 3px;
+  }
+
+  /* telas de detalhe: resumo e cancelamento */
+  .sum-num { font-family: "IBM Plex Sans Condensed", sans-serif; font-weight: 700; font-size: 32px; line-height: 1; margin: 2px 0 4px; }
+  .steps { counter-reset: s; list-style: none; padding: 0; margin: 4px 0 0; }
+  .steps li { counter-increment: s; position: relative; padding: 8px 0 8px 26px; font-size: 13px; border-bottom: 1px solid var(--bar); }
+  .steps li::before {
+    content: counter(s); position: absolute; left: 0; top: 8px;
+    font-family: "IBM Plex Mono", monospace; font-size: 12px; color: var(--ink-soft);
+  }
+  .relief {
+    background: var(--go-bg); border: 1px solid var(--go-rule); color: var(--go);
+    font-family: "IBM Plex Mono", monospace; font-size: 11px;
+    padding: 9px 12px; margin: 12px 0 10px; line-height: 1.45;
+  }
+
+  @media (max-width: 780px) {
+    .stage { grid-template-columns: 1fr; gap: 48px; }
+  }
+  @media (max-width: 620px) {
+    .sheet { padding: 28px 18px 60px; border: none; }
+  }
+  @media print {
+    body { background: #fff; }
+    .sheet { border: none; max-width: none; }
+    section, .phone { break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+<div class="sheet">
+
+  <p class="eyebrow">Hackathon · Time 12 · Mesa 12 · Documento 07 · Wireframe</p>
+  <h1>A conversa e a memória</h1>
+  <p class="standfirst">Wireframe de baixa fidelidade das duas superfícies da Regis, derivado direto das quatro job stories. A conversa é o produto. O app é a memória, e o usuário pode nunca abrir.</p>
+  <p class="method-note">Isto é um rascunho de estrutura, não de visual. Números e copy são de exemplo (a persona Ana, MEI, faturou R$ 58.400). As anotações em vermelho marcam decisões ainda abertas, para discutir com o time antes de virar tela de verdade.</p>
+
+  <div class="legend">
+    <span class="chip"><span class="dot resolve"></span> Resolve · fato</span>
+    <span class="chip"><span class="dot encaminha"></span> Encaminha · regra</span>
+    <span class="chip"><span class="dot pergunta"></span> Pergunta · suspeita</span>
+  </div>
+
+  <section>
+    <span class="kicker">O mesmo número, duas roupas. Chat é o presente, app é o acumulado.</span>
+
+    <div class="stage">
+
+      <!-- SUPERFICIE 1: CHAT -->
+      <div>
+        <p class="surface-label">1 · A conversa</p>
+        <p class="surface-sub">Telegram no MVP, WhatsApp no produto</p>
+
+        <div class="phone">
+          <div class="phone-bar"><span>Regis</span><span class="mono">agora</span></div>
+          <div class="screen">
+
+            <div class="tone"><span class="dot" style="background:var(--fiscal)"></span> Revela um número, não pede config</div>
+            <div class="msg"><div class="bubble">
+              Oi, Ana. Li seu extrato.
+              <span class="big">Você já faturou R$ 58.400 este ano.</span>
+            </div></div>
+
+            <div class="tone"><span class="dot resolve"></span> Resolve · fato</div>
+            <div class="msg"><div class="bubble resolve">
+              Achei R$ 49,90 cobrado duas vezes no mesmo dia em julho (uma assinatura). Já preparei a contestação pra você conferir.
+              <div class="btns"><span class="btn">Ver contestação</span><span class="btn">Ignorar</span></div>
+            </div></div>
+
+            <div class="tone"><span class="dot encaminha"></span> Encaminha · regra</div>
+            <div class="msg"><div class="bubble encaminha">
+              No seu ritmo, você chega no teto de R$ 81 mil por volta de outubro. Passando dele, o imposto muda, por isso vale saber antes. Preparei um resumo pra sua contadora te ajudar a decidir.
+              <div class="btns"><span class="btn">Ver resumo</span></div>
+            </div></div>
+
+            <div class="tone"><span class="dot pergunta"></span> Pergunta · suspeita</div>
+            <div class="msg"><div class="bubble pergunta">
+              Caiu um Pix de R$ 800 de um remetente novo. Foi venda?
+              <div class="btns"><span class="btn">Foi venda</span><span class="btn">Foi pessoal</span><span class="btn">Não sei</span></div>
+            </div></div>
+
+            <div class="msg me"><div class="bubble">Foi venda</div></div>
+
+            <div class="composer"><span>Escreva uma mensagem...</span><span>➤</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SUPERFICIE 2: APP -->
+      <div>
+        <p class="surface-label">2 · A memória</p>
+        <p class="surface-sub">App web de apoio, mobile first</p>
+
+        <div class="phone">
+          <div class="phone-bar"><span>Regis · sua memória</span><span class="mono">☰</span></div>
+          <div class="screen">
+
+            <p class="app-num-label">Faturamento 2026</p>
+            <p class="app-num">R$ 58.400</p>
+
+            <div class="track"><div class="fill"></div></div>
+            <p class="track-cap">72% do teto · faltam R$ 22.600 · no ritmo atual: out/2026</p>
+
+            <p class="app-h">O que a Regis fez</p>
+            <div class="row"><span class="ic go-i">✓</span> Contestação de R$ 49,90 (assinatura duplicada) <span class="arrow">›</span></div>
+            <div class="row"><span class="ic go-i">✓</span> Resumo enviado pra contadora <span class="arrow">›</span></div>
+            <div class="row"><span class="ic ask-i">?</span> Pix de R$ 800, você marcou "foi venda" <span class="arrow">›</span></div>
+
+            <p class="app-h" style="margin-top:20px">Documentos</p>
+            <div class="doc">📄 Contestacao_julho.pdf</div>
+            <div class="doc">📄 Resumo_contadora.pdf</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="notes">
+      <p class="note"><b>Por que o número no topo dos dois:</b> o job principal é "saber se o que caiu é o que vendi". A âncora é o total real, não um feed de alertas. O alerta vira exceção dentro disso.</p>
+      <p class="note"><b>Por que três cores de balão:</b> autonomia proporcional à certeza. Fato a Regis resolve (verde), regra ela encaminha (neutro), suspeita ela pergunta (âmbar). A cor ensina o usuário a confiar sem ler tudo.</p>
+      <p class="note"><b>Por que o app é só memória:</b> o chat é ruim pra olhar pra trás. O acumulado do ano, o histórico e os documentos pedem uma tela. Mas é consulta, nunca obrigação.</p>
+      <p class="note"><b>Decisão 1 · resolvida: a abertura afirma o número.</b> A Regis vê tudo, então entrega na primeira mensagem em vez de perguntar (perguntar soaria como quiz e adiaria o valor). A pergunta do pitch ("Você sabe quanto já faturou este ano?") não morre: vira a narração no palco (o setup), e a afirmação da Regis é a resposta (o payoff). O "Oi, Ana. Li seu extrato." fica antes do número, pra revelar sem parecer vigilância.</p>
+      <p class="note"><b>Decisão 2 · resolvida: ganho antes do alerta.</b> A ordem é revela o número, depois o ganho (duplicata resolvida), depois a má notícia (teto). Abrir com algo que desarma a ansiedade antes de qualquer coisa que possa assustar.</p>
+      <p class="note"><b>Decisão 3 · resolvida: tom neutro e factual.</b> Troca "passa o teto" por "chega no teto" (chegada, não infração) e "muda seu regime" por "o imposto muda" (concreto no lugar de vago). Fecha na contadora como ajuda pra decidir. Informa sem dramatizar.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>3 · O último metro e o acompanhamento</h2>
+    <span class="kicker">O que acontece depois de "Ver contestação". Onde a Regis para e onde ela volta.</span>
+
+    <div class="stage">
+
+      <!-- tela do detalhe -->
+      <div>
+        <p class="surface-label">A tela da contestação</p>
+        <p class="surface-sub">o rascunho pronto, e o limite visível</p>
+
+        <div class="phone">
+          <div class="phone-bar"><span>‹ Contestação</span><span class="mono">assinatura</span></div>
+          <div class="screen">
+
+            <p class="mini-label">A evidência</p>
+            <div class="evi"><span>12 jul · Assinatura XPTO</span><span>R$ 49,90</span></div>
+            <div class="evi"><span>12 jul · Assinatura XPTO</span><span>R$ 49,90</span><span class="flag">duplicada</span></div>
+
+            <p class="mini-label">O texto pronto</p>
+            <div class="draft">Solicito o estorno de uma cobrança em duplicidade de R$ 49,90, da assinatura XPTO, feita em 12/07/2026. A mesma cobrança consta duas vezes no mesmo dia. Segue o extrato em anexo.</div>
+
+            <div class="boundary">A Regis não envia por você. Copie o texto e mande pelo seu banco ou pela operadora. Depois eu fico de olho na conta e aviso quando o estorno cair.</div>
+
+            <div class="btns">
+              <span class="btn">Copiar texto</span>
+              <span class="btn">Abrir app do banco</span>
+            </div>
+            <div class="btns"><span class="btn primary">Já enviei, pode acompanhar</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- o loop de acompanhamento no chat -->
+      <div>
+        <p class="surface-label">O loop, dias depois</p>
+        <p class="surface-sub">ela vigia o estorno, não a sua ação</p>
+
+        <div class="phone">
+          <div class="phone-bar"><span>Regis</span><span class="mono">dias depois</span></div>
+          <div class="screen">
+
+            <div class="tone"><span class="dot resolve"></span> Resolve · viu o dinheiro voltar</div>
+            <div class="msg"><div class="bubble resolve">
+              O estorno dos R$ 49,90 caiu na sua conta. Fechei. Marquei a XPTO como conhecida, não te aviso de novo por ela. Você recuperou R$ 49,90 este ano.
+            </div></div>
+
+            <p class="mini-label">Se o estorno não aparecer</p>
+
+            <div class="tone"><span class="dot pergunta"></span> Pergunta · oferece ajuda</div>
+            <div class="msg"><div class="bubble pergunta">
+              Ainda não vi o estorno dos R$ 49,90 cair. Quer que eu te lembre como contestar, ou já resolveu?
+              <div class="btns"><span class="btn">Me lembra</span><span class="btn">Já resolvi</span></div>
+            </div></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="notes">
+      <p class="note"><b>O último metro é entrega, não ação.</b> A Regis para no texto pronto e no botão do seu banco. Ela nunca envia, nunca estorna. Assim o limite "não move dinheiro" fica visível na tela, não escondido na copy.</p>
+      <p class="note"><b>O loop é onde nasce o valor.</b> Detectar duplicata muita gente faz. Lembrar, conferir se o dinheiro voltou e marcar a contraparte como conhecida é o que vira "recuperei R$ 49,90". Repare que o valor recuperado volta pro número do ano lá no topo.</p>
+      <p class="note"><b>Decisão 4 · resolvida: o padrão do dado define o tom.</b> Duas cobranças no mesmo dia é fato (resolve, o herói da demo). Recorrência parecida ao longo dos dias é ambígua (pergunta, com os ramos engano / duas / não sei, na Seção 4). Os dois caminhos honram o limite "não move dinheiro".</p>
+      <p class="note"><b>Decisão 5 · resolvida: a Regis vigia o dinheiro, não a sua ação.</b> Ela observa a conta e fecha sozinha quando o estorno cai (fato). Se nada cai, um único toque gentil oferecendo ajuda (pergunta), nunca um lembrete num timer. No produto isso roda via Open Finance. No MVP degrada pro botão "Já enviei", porque sem feed contínuo ela não vê o estorno.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>4 · Quando a duplicata é ambígua</h2>
+    <span class="kicker">O padrão do dado define o tom. Mesmo dia é fato. Recorrência parecida é pergunta.</span>
+
+    <div class="stage">
+
+      <!-- variante pergunta -->
+      <div>
+        <p class="surface-label">A variante pergunta</p>
+        <p class="surface-sub">quando a certeza não fecha</p>
+
+        <div class="phone">
+          <div class="phone-bar"><span>Regis</span><span class="mono">agora</span></div>
+          <div class="screen">
+
+            <div class="tone"><span class="dot pergunta"></span> Pergunta · a certeza não fecha</div>
+            <div class="msg"><div class="bubble pergunta">
+              Vi a XPTO cobrar R$ 49,90 duas vezes este mês, em dias diferentes. Pode ser engano (dá pra contestar) ou duas assinaturas ativas. Qual é?
+              <div class="btns"><span class="btn">Foi engano</span><span class="btn">São duas</span><span class="btn">Não sei</span></div>
+            </div></div>
+
+            <div class="msg me"><div class="bubble">São duas</div></div>
+
+            <div class="tone"><span class="dot encaminha"></span> Encaminha · guia e vigia</div>
+            <div class="msg"><div class="bubble encaminha">
+              Beleza. Eu não cancelo por você, mas te mostro qual cancelar e onde. Depois fico de olho: quando a segunda cobrança sumir, marco como resolvido.
+              <div class="btns"><span class="btn">Ver como cancelar</span></div>
+            </div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- os três ramos -->
+      <div>
+        <p class="surface-label">Os três ramos</p>
+        <p class="surface-sub">a partir da mesma pergunta</p>
+
+        <div class="branch">
+          <span class="bh">Foi engano</span>
+          Cai no fluxo de contestação da Seção 3. A Regis prepara o texto, você envia, ela vigia o estorno cair.
+        </div>
+        <div class="branch">
+          <span class="bh">São duas assinaturas</span>
+          A Regis não cancela por você. Mostra qual e onde cancelar, e vigia se a cobrança parar. Mesmo limite, mesmo handoff da contestação.
+        </div>
+        <div class="branch">
+          <span class="bh">Não sei</span>
+          Ela investiga: mostra desde quando cada cobrança aparece. Ver o histórico costuma revelar se é engano ou duas.
+        </div>
+      </div>
+
+    </div>
+
+    <div class="notes">
+      <p class="note"><b>Por que não é sempre pergunta.</b> Perguntar num caso óbvio (duas cobranças no mesmo minuto) soa como falta de confiança. A Regis lê o padrão primeiro e só pergunta quando a certeza não fecha. É autonomia proporcional à certeza aplicada antes de falar.</p>
+      <p class="note"><b>O ramo "cancela" respeita o mesmo limite.</b> Cancelar assinatura é uma ação sua. A Regis guia e vigia, não cancela. Igual à contestação: ela prepara e acompanha, você executa o último metro.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>5 · As telas de detalhe</h2>
+    <span class="kicker">O que abre nos botões "Ver resumo" e "Ver como cancelar". Duas entregas, o mesmo limite.</span>
+
+    <div class="stage">
+
+      <!-- resumo pra contadora -->
+      <div>
+        <p class="surface-label">O resumo pra contadora</p>
+        <p class="surface-sub">a estrela do JTBD, nenhum concorrente faz</p>
+
+        <div class="phone">
+          <div class="phone-bar"><span>‹ Resumo pra contadora</span><span class="mono">PDF</span></div>
+          <div class="screen">
+
+            <p class="mini-label">Janeiro a agosto de 2026</p>
+            <p class="app-num-label">Faturamento acumulado</p>
+            <p class="sum-num">R$ 58.400</p>
+
+            <p class="mini-label">Por mês (últimos)</p>
+            <div class="evi"><span>Junho</span><span>R$ 7.100</span></div>
+            <div class="evi"><span>Julho</span><span>R$ 8.400</span></div>
+            <div class="evi"><span>Agosto</span><span>R$ 6.900</span></div>
+
+            <p class="mini-label">Teto</p>
+            <div class="evi"><span>72% de R$ 81 mil</span><span>projeção: out/2026</span></div>
+
+            <p class="mini-label">Observações</p>
+            <div class="evi"><span>Assinatura duplicada, em contestação</span><span>R$ 49,90</span></div>
+
+            <div class="relief">Pronto pra enviar. Você não precisou somar nada.</div>
+
+            <div class="btns"><span class="btn primary">Enviar pra contadora</span><span class="btn">Baixar PDF</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- como cancelar -->
+      <div>
+        <p class="surface-label">Como cancelar</p>
+        <p class="surface-sub">o ramo "São duas assinaturas"</p>
+
+        <div class="phone">
+          <div class="phone-bar"><span>‹ Como cancelar</span><span class="mono">XPTO</span></div>
+          <div class="screen">
+
+            <p class="mini-label">A assinatura em duplicidade</p>
+            <div class="evi"><span>XPTO, a segunda ativada em março</span><span>R$ 49,90/mês</span></div>
+
+            <p class="mini-label">Como cancelar</p>
+            <ol class="steps">
+              <li>Abra o app ou site da XPTO</li>
+              <li>Vá em Conta, depois Assinaturas</li>
+              <li>Cancele a segunda assinatura ativa</li>
+            </ol>
+
+            <div class="boundary">Eu não cancelo por você. Depois que cancelar, fico de olho: se a cobrança sumir no próximo mês, marco como resolvido.</div>
+
+            <div class="btns"><span class="btn primary">Já cancelei, pode acompanhar</span><span class="btn">Abrir XPTO</span></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="notes">
+      <p class="note"><b>O resumo é o job diferenciado.</b> "Quando a contadora pergunta o faturamento, quero mandar um resumo pronto, pra não passar a tarde somando." Nenhum concorrente atende. Repare que ele já vem somado: o valor está em você não fazer nada.</p>
+      <p class="note"><b>Enviar é parte do job, não um extra.</b> O job emocional é não carregar sozinha, e mandar pra contadora faz parte disso. Mas quem aperta "Enviar" é você, porque expor dado financeiro pra fora é uma decisão sua.</p>
+      <p class="note"><b>Cancelar segue o mesmo limite da contestação.</b> A Regis guia e vigia, não cancela. Você executa o último metro, ela confere se a cobrança parou. É o padrão "não move dinheiro" de novo.</p>
+    </div>
+  </section>
+
+  <footer>Documento de trabalho · série: 01 enquadramento · 02 catálogo · 03 universo MEI · 04 posicionamento · 05 resultado e ICP · 06 jobs to be done · 07 wireframe.</footer>
+
+</div>
+</body>
+</html>

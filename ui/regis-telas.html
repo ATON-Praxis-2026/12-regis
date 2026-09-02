@@ -1,0 +1,557 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Regis · Prévia de Telas</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Karla:ital,wght@0,400;0,500;0,600;1,400&display=swap">
+<style>
+  :root{
+    --ink:#0B100D;
+    --ink-2:#2C3830;
+    --mute:#6B776F;
+    --faint:#9BA69F;
+    --ground:#EEF1EE;
+    --card:#FFFFFF;
+    --line:#DDE3DE;
+    --line-soft:#E9EDE9;
+    --green:#00A65C;
+    --green-bright:#00C46C;
+    --green-deep:#04663A;
+    --green-wash:#E4F4EC;
+    --screen:#FFFFFF;
+    --screen-2:#F4F7F4;
+    --frame:#0B100D;
+    --shadow:0 1px 2px rgba(11,16,13,.05),0 12px 32px rgba(11,16,13,.10);
+    --font-d:"Manrope",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    --font-b:"Karla",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  }
+  @media (prefers-color-scheme:dark){
+    :root:not([data-theme="light"]){
+      --ink:#F2F5F2; --ink-2:#C8D2CB; --mute:#8C978F; --faint:#697269;
+      --ground:#080B09; --card:#121814; --line:#232C26; --line-soft:#1A211C;
+      --green:#00C46C; --green-bright:#25E084; --green-deep:#7FE0B0; --green-wash:#0E2318;
+      --screen:#121814; --screen-2:#0C1210; --frame:#000000;
+      --shadow:0 1px 2px rgba(0,0,0,.5),0 16px 40px rgba(0,0,0,.55);
+    }
+  }
+  :root[data-theme="dark"]{
+    --ink:#F2F5F2; --ink-2:#C8D2CB; --mute:#8C978F; --faint:#697269;
+    --ground:#080B09; --card:#121814; --line:#232C26; --line-soft:#1A211C;
+    --green:#00C46C; --green-bright:#25E084; --green-deep:#7FE0B0; --green-wash:#0E2318;
+    --screen:#121814; --screen-2:#0C1210; --frame:#000000;
+    --shadow:0 1px 2px rgba(0,0,0,.5),0 16px 40px rgba(0,0,0,.55);
+  }
+  *{box-sizing:border-box}
+  body{
+    background:var(--ground); color:var(--ink);
+    font-family:var(--font-b); line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:1280px;margin:0 auto;padding:56px 28px 96px}
+
+  /* ---------- cabeçalho ---------- */
+  .masthead{display:flex;flex-direction:column;gap:14px;margin-bottom:14px}
+  .brandline{display:flex;align-items:center;gap:12px}
+  .dot{width:26px;height:26px;border-radius:50%;background:var(--green);
+       display:grid;place-items:center;flex:none}
+  .dot span{width:9px;height:9px;border-radius:50%;background:var(--card)}
+  .brand{font-family:var(--font-d);font-weight:800;font-size:20px;letter-spacing:-.02em}
+  h1{font-family:var(--font-d);font-weight:800;font-size:clamp(30px,4.4vw,46px);
+     line-height:1.06;letter-spacing:-.035em;margin:0;max-width:19ch;text-wrap:balance}
+  .lede{font-size:16.5px;color:var(--mute);max-width:62ch;margin:0}
+  .meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
+  .tag{font-family:var(--font-d);font-size:11px;font-weight:600;letter-spacing:.09em;
+       text-transform:uppercase;color:var(--mute);border:1px solid var(--line);
+       border-radius:999px;padding:5px 11px}
+  .tag.on{background:var(--green-wash);border-color:transparent;color:var(--green-deep)}
+
+  .rule{height:1px;background:var(--line);margin:44px 0 12px}
+
+  /* ---------- faixa de telas ---------- */
+  .rail{display:flex;gap:34px;overflow-x:auto;padding:34px 4px 30px;
+        scroll-snap-type:x proximity}
+  .slot{scroll-snap-align:start;flex:none;width:296px;display:flex;
+        flex-direction:column;gap:16px}
+
+  .cap{display:flex;flex-direction:column;gap:5px}
+  .cap .n{font-family:var(--font-d);font-size:10.5px;font-weight:700;letter-spacing:.13em;
+          text-transform:uppercase;color:var(--green-deep)}
+  .cap h3{font-family:var(--font-d);font-size:16px;font-weight:700;margin:0;
+          letter-spacing:-.015em}
+  .cap p{margin:0;font-size:13.5px;color:var(--mute);line-height:1.45}
+  .cap em{font-style:italic;color:var(--ink-2)}
+
+  /* ---------- moldura ---------- */
+  .phone{width:296px;height:610px;background:var(--frame);border-radius:40px;
+         padding:9px;box-shadow:var(--shadow)}
+  .screen{width:100%;height:100%;background:var(--screen);border-radius:32px;
+          overflow:hidden;display:flex;flex-direction:column;position:relative}
+  .status{display:flex;justify-content:space-between;align-items:center;
+          padding:13px 20px 4px;font-family:var(--font-d);font-size:11px;
+          font-weight:700;color:var(--ink)}
+  .status .rt{display:flex;gap:4px;align-items:center;color:var(--faint)}
+  .body{flex:1;overflow:hidden;padding:0 18px 16px;display:flex;
+        flex-direction:column;gap:14px}
+  .head{display:flex;justify-content:space-between;align-items:baseline;padding-top:6px}
+  .head .t{font-family:var(--font-d);font-weight:800;font-size:23px;letter-spacing:-.03em}
+  .head .s{font-size:11.5px;color:var(--faint)}
+
+  /* ---------- anel ---------- */
+  .ringbox{display:flex;flex-direction:column;align-items:center;gap:2px;padding:6px 0 2px}
+  .ringwrap{position:relative;width:170px;height:170px}
+  .ringwrap svg{transform:rotate(-90deg);display:block}
+  .track{fill:none;stroke:var(--green-wash);stroke-width:15}
+  .prog{fill:none;stroke:var(--green);stroke-width:15;stroke-linecap:round;
+        transition:stroke-dashoffset .9s cubic-bezier(.2,.7,.3,1)}
+  .ringmid{position:absolute;inset:0;display:flex;flex-direction:column;
+           align-items:center;justify-content:center;gap:1px}
+  .ringmid .lab{font-family:var(--font-d);font-size:9.5px;font-weight:700;
+                letter-spacing:.12em;text-transform:uppercase;color:var(--mute)}
+  .ringmid .big{font-family:var(--font-d);font-size:31px;font-weight:800;
+                letter-spacing:-.045em;font-variant-numeric:tabular-nums;line-height:1}
+  .ringmid .sub{font-size:11px;color:var(--mute);font-variant-numeric:tabular-nums}
+  .ringfoot{font-size:12px;color:var(--mute);text-align:center;max-width:24ch;
+            line-height:1.35;margin-top:8px}
+  .ringfoot b{color:var(--ink);font-weight:600}
+
+  /* ---------- cards ---------- */
+  .card{background:var(--screen-2);border-radius:16px;padding:13px 14px;
+        display:flex;flex-direction:column;gap:7px}
+  .card.flat{background:transparent;border:1px solid var(--line);padding:12px 14px}
+  .krow{display:flex;justify-content:space-between;align-items:center;gap:10px}
+  .klab{font-family:var(--font-d);font-size:10px;font-weight:700;letter-spacing:.11em;
+        text-transform:uppercase;color:var(--mute)}
+  .kval{font-family:var(--font-d);font-size:21px;font-weight:800;letter-spacing:-.03em;
+        font-variant-numeric:tabular-nums}
+  .kval.sm{font-size:16px}
+  .kval.g{color:var(--green-deep)}
+  .knote{font-size:12px;color:var(--mute);line-height:1.4}
+
+  .duo{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+
+  /* barras semanais */
+  .bars{display:flex;align-items:flex-end;gap:5px;height:44px;margin-top:2px}
+  .bars i{flex:1;background:var(--green-wash);border-radius:3px;display:block}
+  .bars i.on{background:var(--green)}
+  .barlabs{display:flex;gap:5px;margin-top:5px}
+  .barlabs span{flex:1;text-align:center;font-size:9px;color:var(--faint);
+                font-family:var(--font-d);font-weight:600}
+
+  /* ---------- itens por certeza ---------- */
+  .sect{font-family:var(--font-d);font-size:10px;font-weight:700;letter-spacing:.12em;
+        text-transform:uppercase;color:var(--faint);margin:4px 0 -4px}
+  .item{display:flex;gap:11px;padding:11px 12px;border-radius:14px;align-items:flex-start}
+  .item.fact{background:var(--green);color:#fff}
+  .item.rule{background:var(--ink);color:var(--screen)}
+  .item.susp{background:transparent;border:1px dashed var(--line);color:var(--ink)}
+  .mark{width:20px;height:20px;border-radius:50%;flex:none;margin-top:1px;
+        display:grid;place-items:center;font-family:var(--font-d);font-size:11px;
+        font-weight:800}
+  .item.fact .mark{background:rgba(255,255,255,.24);color:#fff}
+  .item.rule .mark{background:rgba(255,255,255,.16);color:var(--screen)}
+  .item.susp .mark{border:1px solid var(--line);color:var(--mute)}
+  .itxt{display:flex;flex-direction:column;gap:2px;min-width:0}
+  .itxt .h{font-family:var(--font-d);font-size:13px;font-weight:700;letter-spacing:-.01em}
+  .itxt .p{font-size:11.5px;opacity:.86;line-height:1.35}
+
+  /* ---------- reconciliação ---------- */
+  .recon{display:flex;flex-direction:column;gap:0;border:1px solid var(--line);
+         border-radius:16px;overflow:hidden}
+  .rline{display:flex;justify-content:space-between;align-items:center;
+         padding:11px 14px;border-bottom:1px solid var(--line-soft);gap:10px}
+  .rline:last-child{border-bottom:0}
+  .rline .l{font-size:12.5px;color:var(--ink-2)}
+  .rline .l small{display:block;font-size:10.5px;color:var(--faint);margin-top:1px}
+  .rline .v{font-family:var(--font-d);font-weight:700;font-size:13.5px;
+            font-variant-numeric:tabular-nums;white-space:nowrap}
+  .rline.tot{background:var(--screen-2)}
+  .rline.tot .l{font-weight:600;color:var(--ink)}
+  .rline.tot .v{font-size:17px;font-weight:800}
+  .neg{color:var(--mute)}
+  .flag{color:var(--green-deep)}
+  .waterfall{display:flex;height:8px;border-radius:4px;overflow:hidden;gap:2px;margin:2px 0 4px}
+  .waterfall i{display:block}
+
+  /* ---------- chat ---------- */
+  .chat{flex:1;display:flex;flex-direction:column;gap:9px;overflow:hidden;
+        padding-top:4px}
+  .bub{max-width:87%;padding:10px 13px;border-radius:17px;font-size:12.8px;
+       line-height:1.45}
+  .bub.in{background:var(--screen-2);border-bottom-left-radius:5px;align-self:flex-start}
+  .bub.in.hi{background:var(--green);color:#fff}
+  .bub.out{background:var(--ink);color:var(--screen);align-self:flex-end;
+           border-bottom-right-radius:5px}
+  .bub b{font-weight:700}
+  .bub .amt{font-family:var(--font-d);font-weight:800;font-variant-numeric:tabular-nums}
+  .btns{display:flex;gap:7px;align-self:flex-start;flex-wrap:wrap}
+  .btn{font-family:var(--font-d);font-size:11.5px;font-weight:700;padding:7px 13px;
+       border-radius:999px;border:1px solid var(--green);color:var(--green-deep);
+       background:transparent}
+  .btn.solid{background:var(--green);color:#fff;border-color:var(--green)}
+  .tstamp{font-size:9.5px;color:var(--faint);text-align:center;
+          font-family:var(--font-d);font-weight:600;letter-spacing:.05em;
+          text-transform:uppercase;margin:2px 0}
+  .chathead{display:flex;align-items:center;gap:9px;padding:8px 0 10px;
+            border-bottom:1px solid var(--line-soft)}
+  .av{width:32px;height:32px;border-radius:50%;background:var(--green);flex:none;
+      display:grid;place-items:center}
+  .av span{width:10px;height:10px;border-radius:50%;background:#fff}
+  .chathead .nm{font-family:var(--font-d);font-weight:700;font-size:14px}
+  .chathead .st{font-size:10.5px;color:var(--green-deep)}
+
+  /* ---------- resumo ---------- */
+  .sum{border:1px solid var(--line);border-radius:16px;padding:14px;
+       display:flex;flex-direction:column;gap:11px}
+  .sumhead{display:flex;flex-direction:column;gap:1px}
+  .sumhead .t{font-family:var(--font-d);font-weight:800;font-size:15px;letter-spacing:-.02em}
+  .sumhead .s{font-size:11px;color:var(--faint)}
+  .srow{display:flex;justify-content:space-between;font-size:12.5px;
+        padding:6px 0;border-bottom:1px solid var(--line-soft)}
+  .srow:last-of-type{border-bottom:0}
+  .srow b{font-family:var(--font-d);font-weight:700;font-variant-numeric:tabular-nums}
+  .share{display:flex;gap:8px;margin-top:2px}
+  .share .btn{flex:1;text-align:center}
+
+  .fab{position:absolute;left:18px;right:18px;bottom:16px;background:var(--ink);
+       color:var(--screen);border-radius:15px;padding:12px;text-align:center;
+       font-family:var(--font-d);font-weight:700;font-size:13px}
+
+  /* ---------- notas ---------- */
+  .notes{display:grid;grid-template-columns:repeat(auto-fit,minmax(258px,1fr));
+         gap:1px;background:var(--line);border:1px solid var(--line);
+         border-radius:14px;overflow:hidden;margin-top:52px}
+  .note{background:var(--card);padding:20px 20px 22px;display:flex;
+        flex-direction:column;gap:7px}
+  .note h4{font-family:var(--font-d);font-size:13.5px;font-weight:700;margin:0;
+           letter-spacing:-.01em}
+  .note p{margin:0;font-size:13.5px;color:var(--mute);line-height:1.5}
+  .note p b{color:var(--ink);font-weight:600}
+  h2{font-family:var(--font-d);font-size:13px;font-weight:700;letter-spacing:.1em;
+     text-transform:uppercase;color:var(--faint);margin:0}
+
+  .foot{margin-top:44px;padding-top:20px;border-top:1px solid var(--line);
+        font-size:13px;color:var(--faint);display:flex;flex-wrap:wrap;gap:6px;
+        justify-content:space-between}
+
+  @media (max-width:640px){
+    .wrap{padding:36px 18px 70px}
+    .rail{gap:26px}
+  }
+  @media (prefers-reduced-motion:reduce){
+    .prog{transition:none}
+  }
+</style>
+
+<div class="wrap">
+
+  <div class="masthead">
+    <div class="brandline">
+      <div class="dot"><span></span></div>
+      <div class="brand">Regis</div>
+    </div>
+    <h1>Ela soma o que entrou. Você só decide.</h1>
+    <p class="lede">Prévia de interface para discussão de UX. A referência é o app Saúde do iPhone e o Samsung Health: um número que resume o estado, um anel que mostra distância até um limite, e detalhe só quando você pede. Aqui o corpo é o caixa, e o limite é o teto do MEI.</p>
+    <div class="meta">
+      <span class="tag on">Prévia · não é final</span>
+      <span class="tag">Dados simulados</span>
+      <span class="tag">Persona do ICP · cabeleireira MEI com maquininha e marketplace</span>
+      <span class="tag">Branco · verde · preto</span>
+    </div>
+  </div>
+
+  <div class="rule"></div>
+  <h2>As cinco telas</h2>
+
+  <div class="rail">
+
+    <!-- 1 · HOJE -->
+    <div class="slot">
+      <div class="phone"><div class="screen">
+        <div class="status"><span>9:41</span><span class="rt">● ● ▮</span></div>
+        <div class="body">
+          <div class="head">
+            <div class="t">Hoje</div>
+            <div class="s">sáb, 29 ago</div>
+          </div>
+
+          <div class="ringbox">
+            <div class="ringwrap">
+              <svg width="170" height="170" viewBox="0 0 170 170" aria-hidden="true">
+                <circle class="track" cx="85" cy="85" r="70"></circle>
+                <circle class="prog" cx="85" cy="85" r="70"
+                        stroke-dasharray="439.8" stroke-dashoffset="123.1"></circle>
+              </svg>
+              <div class="ringmid">
+                <div class="lab">Faturado</div>
+                <div class="big">58.400</div>
+                <div class="sub">de R$ 81.000</div>
+              </div>
+            </div>
+            <p class="ringfoot">Faltam <b>R$ 22.600</b> para o teto. No ritmo atual, você chega em <b>outubro</b>.</p>
+          </div>
+
+          <div class="duo">
+            <div class="card">
+              <div class="klab">Entrou em agosto</div>
+              <div class="kval">R$ 10.548</div>
+            </div>
+            <div class="card">
+              <div class="klab">Ficou no caminho</div>
+              <div class="kval g">R$ 251</div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="krow">
+              <div class="klab">Entradas por semana</div>
+              <div class="knote">ago</div>
+            </div>
+            <div class="bars">
+              <i style="height:52%"></i><i style="height:71%"></i>
+              <i style="height:44%"></i><i class="on" style="height:88%"></i>
+            </div>
+            <div class="barlabs"><span>S1</span><span>S2</span><span>S3</span><span>S4</span></div>
+          </div>
+        </div>
+        <div class="fab">Conferido até hoje · 2 abertos</div>
+      </div></div>
+      <div class="cap">
+        <div class="n">Job story 01</div>
+        <h3>O número antes de tudo</h3>
+        <p><em>"Quero ver o total real que entrou, para saber se estou ganhando o que penso que ganho."</em> O anel não é enfeite: ele responde a distância até o teto, que é a única regra pública e que ninguém tem de cabeça. Nada de configurar antes.</p>
+      </div>
+    </div>
+
+    <!-- 2 · RECONCILIAÇÃO -->
+    <div class="slot">
+      <div class="phone"><div class="screen">
+        <div class="status"><span>9:41</span><span class="rt">● ● ▮</span></div>
+        <div class="body">
+          <div class="head">
+            <div class="t">Sexta, 28</div>
+            <div class="s">34 vendas</div>
+          </div>
+
+          <div class="card">
+            <div class="klab">Você vendeu</div>
+            <div class="kval">R$ 1.284,00</div>
+            <div class="waterfall" aria-hidden="true">
+              <i style="flex:1180;background:var(--green)"></i>
+              <i style="flex:66;background:var(--faint)"></i>
+              <i style="flex:38;background:var(--ink)"></i>
+            </div>
+            <div class="knote">Caiu R$ 1.180,00. A diferença tem três partes.</div>
+          </div>
+
+          <div class="recon">
+            <div class="rline">
+              <div class="l">Taxa da maquininha<small>2,89% em 26 vendas · o combinado</small></div>
+              <div class="v neg">− 37,10</div>
+            </div>
+            <div class="rline">
+              <div class="l">Antecipação automática<small>ligada desde março</small></div>
+              <div class="v neg">− 28,90</div>
+            </div>
+            <div class="rline">
+              <div class="l flag">Repasse do marketplace<small>8 vendas · veio menos que o previsto</small></div>
+              <div class="v flag">− 38,00</div>
+            </div>
+            <div class="rline tot">
+              <div class="l">Caiu na conta</div>
+              <div class="v">R$ 1.180,00</div>
+            </div>
+          </div>
+
+          <div class="item fact">
+            <div class="mark">✓</div>
+            <div class="itxt">
+              <div class="h">Escrevi a cobrança do repasse</div>
+              <div class="p">São R$ 38 sem comissão explicada. Texto pronto para o marketplace.</div>
+            </div>
+          </div>
+        </div>
+      </div></div>
+      <div class="cap">
+        <div class="n">Job story 02</div>
+        <h3>A diferença, decomposta</h3>
+        <p><em>"Quando cai um valor menor do que vendi, quero entender o que foi descontado."</em> Decomposição, não alerta. Duas linhas são normais e ficam em cinza; só a terceira é problema. Sem isso, todo desconto vira susto.</p>
+      </div>
+    </div>
+
+    <!-- 3 · AS TRÊS VOZES -->
+    <div class="slot">
+      <div class="phone"><div class="screen">
+        <div class="status"><span>9:41</span><span class="rt">● ● ▮</span></div>
+        <div class="body">
+          <div class="head">
+            <div class="t">Achados</div>
+            <div class="s">últimos 30 dias</div>
+          </div>
+
+          <div class="sect">Já resolvi ou preparei</div>
+          <div class="item fact">
+            <div class="mark">✓</div>
+            <div class="itxt">
+              <div class="h">Assinatura cobrada duas vezes</div>
+              <div class="p">R$ 55,90 em 12/08 e 12/08. Contestação escrita, é só enviar.</div>
+            </div>
+          </div>
+          <div class="item fact">
+            <div class="mark">✓</div>
+            <div class="itxt">
+              <div class="h">Repasse menor que a venda</div>
+              <div class="p">R$ 38,00. Mensagem pronta para o marketplace.</div>
+            </div>
+          </div>
+
+          <div class="sect">Você decide</div>
+          <div class="item rule">
+            <div class="mark">!</div>
+            <div class="itxt">
+              <div class="h">Teto do MEI em outubro</div>
+              <div class="p">No ritmo atual você passa de R$ 81.000. Te mostro as opções?</div>
+            </div>
+          </div>
+
+          <div class="sect">Uma pergunta só</div>
+          <div class="item susp">
+            <div class="mark">?</div>
+            <div class="itxt">
+              <div class="h">Pix de R$ 340 para Maria Souza</div>
+              <div class="p">Dia 3, contraparte nova. Foi você?</div>
+            </div>
+          </div>
+
+          <div class="card flat">
+            <div class="knote">Outros 6 achados ficaram de fora: são normais para o seu histórico. <b style="color:var(--green-deep)">Ver mesmo assim</b></div>
+          </div>
+        </div>
+      </div></div>
+      <div class="cap">
+        <div class="n">A tese, em forma</div>
+        <h3>Fato, regra, suspeita</h3>
+        <p>Autonomia proporcional à certeza, e a hierarquia é de <em>forma</em>, não de cor de alarme: sólido para o que ela resolveu, escuro para o que exige decisão, contorno para pergunta. A última linha mostra o que ela escolheu não falar.</p>
+      </div>
+    </div>
+
+    <!-- 4 · CHAT -->
+    <div class="slot">
+      <div class="phone"><div class="screen">
+        <div class="status"><span>9:41</span><span class="rt">● ● ▮</span></div>
+        <div class="body">
+          <div class="chathead">
+            <div class="av"><span></span></div>
+            <div>
+              <div class="nm">Regis</div>
+              <div class="st">conferindo suas contas</div>
+            </div>
+          </div>
+
+          <div class="chat">
+            <div class="tstamp">Segunda, 9:02</div>
+            <div class="bub in hi">
+              Bom dia! Semana conferida. Achei <span class="amt">R$ 93,90</span> que não deviam ter saído e já preparei as ações.
+            </div>
+            <div class="bub in">
+              A <b>Netflix</b> cobrou duas vezes dia 12, R$ 55,90 cada. Já escrevi a contestação, é só copiar e mandar pro cartão.
+            </div>
+            <div class="btns">
+              <span class="btn solid">Ver o texto</span>
+              <span class="btn">Foi eu</span>
+            </div>
+            <div class="bub in">
+              E um Pix de <span class="amt">R$ 340</span> pra Maria Souza, dia 3. Nunca vi esse nome antes. Foi você?
+            </div>
+            <div class="bub out">foi sim, é a manicure nova</div>
+            <div class="bub in">
+              Anotei. Não pergunto mais sobre ela.
+            </div>
+          </div>
+        </div>
+      </div></div>
+      <div class="cap">
+        <div class="n">O canal principal</div>
+        <h3>Ela fala primeiro</h3>
+        <p>O app é apoio; o produto mora aqui. A mensagem de segunda chega <em>sem ninguém pedir</em>, e a resposta "foi eu" constrói o que é normal, sem tela de configuração. Uma pergunta por vez.</p>
+      </div>
+    </div>
+
+    <!-- 5 · RESUMO -->
+    <div class="slot">
+      <div class="phone"><div class="screen">
+        <div class="status"><span>9:41</span><span class="rt">● ● ▮</span></div>
+        <div class="body">
+          <div class="head">
+            <div class="t">Resumo</div>
+            <div class="s">agosto</div>
+          </div>
+
+          <div class="sum">
+            <div class="sumhead">
+              <div class="t">Angela Nogueira · MEI</div>
+              <div class="s">01 a 29 de agosto de 2026</div>
+            </div>
+            <div>
+              <div class="srow"><span>Maquininha</span><b>R$ 5.180,00</b></div>
+              <div class="srow"><span>Marketplace</span><b>R$ 2.310,00</b></div>
+              <div class="srow"><span>Pix e dinheiro</span><b>R$ 750,00</b></div>
+              <div class="srow"><span>Taxas e antecipação</span><b class="neg">− R$ 251,00</b></div>
+            </div>
+            <div class="card">
+              <div class="klab">Faturamento no ano</div>
+              <div class="kval">R$ 58.400</div>
+              <div class="knote">72% do teto · DAS de agosto pago em 18/08</div>
+            </div>
+            <div class="share">
+              <span class="btn solid">Mandar para a contadora</span>
+            </div>
+          </div>
+
+          <div class="card flat">
+            <div class="knote"><b style="color:var(--ink)">Quem organiza também recebe.</b> Metade dos MEIs que ouvimos não faz a parte fiscal sozinha: é a esposa, a filha ou a contadora.</div>
+          </div>
+        </div>
+      </div></div>
+      <div class="cap">
+        <div class="n">Job story 04</div>
+        <h3>Pronto para mandar</h3>
+        <p><em>"Quando minha contadora pergunta o faturamento, quero mandar um resumo pronto."</em> Sai do achado dos dois usuários. Compartilhar não é funcionalidade extra, faz parte do trabalho, e nenhum concorrente trata a conta como coisa de duas pessoas.</p>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="rule"></div>
+  <h2>Decisões que estas telas assumem</h2>
+
+  <div class="notes">
+    <div class="note">
+      <h4>O anel mede uma regra, não um humor</h4>
+      <p>No app Saúde o anel fecha quando você se mexe. Aqui ele mede a <b>distância até o teto de R$ 81 mil</b>, que é lei pública e igual para todo mundo. É o único número do produto que não precisa de baseline nem de histórico: é aritmética.</p>
+    </div>
+    <div class="note">
+      <h4>Zero entrada manual</h4>
+      <p>Nenhuma tela pede para cadastrar categoria, contraparte ou valor. O concorrente é o caderno, e a barra é <b>dar menos trabalho que anotar</b>. A conta conecta uma vez pelo Open Finance, você autoriza no banco, e a Regis faz o resto.</p>
+    </div>
+    <div class="note">
+      <h4>Reconciliação, não feed de alertas</h4>
+      <p>A tela 2 mostra três descontos e só um é problema. Se tudo virasse alerta, a pessoa silencia em três dias. <b>O normal precisa aparecer como normal</b> para o anormal ter peso.</p>
+    </div>
+    <div class="note">
+      <h4>O tom desarma, não acusa</h4>
+      <p>A força que mais trava a adoção é o medo do que vai aparecer. Por isso "achei R$ 93 que não deviam ter saído", nunca "detectamos 4 anomalias". <b>Revelar sem soar como acusação.</b></p>
+    </div>
+    <div class="note">
+      <h4>Verde é o dinheiro certo</h4>
+      <p>Verde só aparece onde a Regis <b>já resolveu ou conferiu</b>. O que exige decisão é preto, e o que é dúvida é contorno vazio. Assim a cor carrega significado e não vira decoração, com três valores de marca só.</p>
+    </div>
+    <div class="note">
+      <h4>O que falta decidir</h4>
+      <p>Se o app tem <b>navegação por abas</b> ou é uma tela só que rola. Como fica a <b>primeira semana</b>, quando ainda não há histórico. E se a persona do resumo é a dona ou a contadora, porque provavelmente é a segunda que abre o app.</p>
+    </div>
+  </div>
+
+  <div class="foot">
+    <span>Regis · Financial Anomaly Autopilot · Time 12</span>
+    <span>Prévia de UI para discussão · 29/08/2026</span>
+  </div>
+
+</div>

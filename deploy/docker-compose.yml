@@ -1,0 +1,86 @@
+services:
+  regis:
+    build:
+      context: /opt/regis/app
+      dockerfile: /opt/regis/Dockerfile
+    image: regis-bot:local
+    container_name: regis-bot
+    restart: unless-stopped
+    env_file:
+      - /opt/regis/.env
+    environment:
+      # Quantas mensagens de conversa a Regis lembra. 20 = dez idas e voltas.
+      REGIS_HISTORICO: "20"
+    volumes:
+      - regis-memoria:/dados
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+    # Sem porta exposta e sem Traefik: a Regis fala com o Telegram por long polling,
+    # ela sai para a internet, ninguém entra nela.
+
+  web:
+    build:
+      context: /opt/regis/app
+      dockerfile: /opt/regis/Dockerfile
+    image: regis-bot:local
+    container_name: regis-web
+    restart: unless-stopped
+    env_file:
+      - /opt/regis/.env
+    environment:
+      REGIS_MEMORIA: /dados/memoria.json
+      REGIS_LISTA: /dados/lista-espera.json
+      REGIS_PORTA: "8090"
+      TZ: America/Sao_Paulo
+      # Porta de demonstração: uma conta só, sem cadastro.
+      # A senha real vem do .env do VPS, não fica aqui.
+      REGIS_USUARIO: angela
+      REGIS_SENHA: ${REGIS_SENHA:-TROQUE_ESTA_SENHA}
+      REGIS_SEGREDO: ${REGIS_SEGREDO:-}
+      REGIS_LOGIN: "1"
+      # aviso da lista de espera por e-mail
+      RESEND_API_KEY: ${RESEND_API_KEY:-}
+      REGIS_AVISO_EMAIL: ${REGIS_AVISO_EMAIL:-contato@exemplo.com.br}
+      REGIS_AVISO_DE: ${REGIS_AVISO_DE:-Regis <regis@exemplo.com.br>}
+    volumes:
+      - regis-memoria:/dados
+    ports:
+      - "8090:8090"
+    command: ["python3", "-u", "web/servidor.py"]
+    networks:
+      - default
+      - traefik
+    labels:
+      # HTTPS automático pelo Traefik, no mesmo padrão dos outros serviços do VPS.
+      #
+      # PARA LIGAR O DOMÍNIO PRÓPRIO, são dois passos:
+      #   1. No painel do domínio, criar um registro A apontando para SEU_IP_DO_VPS
+      #      (pode ser o domínio raiz ou um subdomínio, tanto faz)
+      #   2. Rodar ./deploy/deploy.sh (o Host abaixo já está no domínio certo)
+      # O certificado HTTPS o Traefik emite sozinho, em segundos.
+      #
+      # Enquanto isso, a porta 8090 atende normalmente e não depende de DNS nenhum.
+      traefik.enable: "true"
+      traefik.docker.network: traefik
+      traefik.http.routers.regis.rule: "Host(`regis.ia.br`) || Host(`www.regis.ia.br`)"
+      traefik.http.routers.regis.entrypoints: websecure
+      traefik.http.routers.regis.tls.certresolver: letsencrypt
+      traefik.http.services.regis.loadbalancer.server.port: "8090"
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+    # Mesma imagem do bot, comando diferente. Lê o mesmo volume da memória,
+    # então o app reflete o que a pessoa responde no Telegram.
+
+networks:
+  traefik:
+    external: true
+
+volumes:
+  regis-memoria:
+    name: regis-memoria

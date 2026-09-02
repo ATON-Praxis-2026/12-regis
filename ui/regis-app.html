@@ -1,0 +1,1217 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Regis · painel</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Karla:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,400,0,0">
+<link rel="stylesheet" href="../idv/icones-animados.css">
+<style>
+  :root{
+    color-scheme:light;
+    --ink:#0B100D; --ink-2:#3A473F; --mute:#6B776F; --faint:#9BA69F;
+    --bg:#F2F5F2; --card:#FFFFFF; --card-2:#F4F7F4;
+    --line:#E2E8E3; --line-soft:#EDF1ED;
+    --green:#00C46C; --green-deep:#04663A; --green-wash:#E2F3EA;
+    --on-green:#FFFFFF; --on-ink:#F2F5F2;
+    --font-d:"Manrope",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    --font-b:"Karla",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    --font-m:"Consolas",ui-monospace,"SF Mono",Menlo,monospace;
+  }
+  @media (prefers-color-scheme:dark){ :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --ink:#F2F5F2; --ink-2:#C4CFC7; --mute:#8C978F; --faint:#68726B;
+    --bg:#070A08; --card:#111714; --card-2:#0C120F;
+    --line:#222B25; --line-soft:#1A211C;
+    --green:#00C46C; --green-deep:#7FE0B0; --green-wash:#0D2217;
+    --on-green:#04170D; --on-ink:#0B100D;
+  }}
+  :root[data-theme="dark"]{
+    color-scheme:dark;
+    --ink:#F2F5F2; --ink-2:#C4CFC7; --mute:#8C978F; --faint:#68726B;
+    --bg:#070A08; --card:#111714; --card-2:#0C120F;
+    --line:#222B25; --line-soft:#1A211C;
+    --green:#00C46C; --green-deep:#7FE0B0; --green-wash:#0D2217;
+    --on-green:#04170D; --on-ink:#0B100D;
+  }
+
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  html,body{height:100%}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font-b);
+       line-height:1.5;-webkit-font-smoothing:antialiased;overflow:hidden}
+  button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}
+  .material-symbols-outlined{font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24;
+    font-size:20px;line-height:1;vertical-align:middle;-webkit-font-smoothing:antialiased}
+  .mark .material-symbols-outlined{font-size:15px;font-variation-settings:'FILL' 0,'wght' 600,'GRAD' 0,'opsz' 20}
+  .theme .material-symbols-outlined{font-size:18px}
+
+  .shell{display:flex;height:100vh;max-width:1440px;margin:0 auto;
+         border-left:1px solid var(--line);border-right:1px solid var(--line)}
+
+  /* ---------- sidebar ---------- */
+  .side{width:250px;flex:none;background:var(--card);border-right:1px solid var(--line);
+        display:flex;flex-direction:column;padding:26px 18px}
+  .side .logo{padding:2px 8px 0;margin-bottom:34px}
+  .side .logo img{width:104px;height:auto;display:block}
+  .nav{display:flex;flex-direction:column;gap:3px;flex:1}
+  .nav .lab{font-family:var(--font-d);font-size:10.5px;font-weight:700;letter-spacing:.13em;
+            text-transform:uppercase;color:var(--faint);padding:0 12px;margin:8px 0 6px}
+  .nav a{display:flex;align-items:center;gap:12px;padding:11px 12px;border-radius:12px;
+         font-family:var(--font-d);font-size:14.5px;font-weight:600;color:var(--mute);
+         transition:background .15s,color .15s}
+  .nav a .ic{font-size:20px;width:22px;text-align:center;display:inline-flex;justify-content:center}
+  .nav a .dot{margin-left:auto;width:7px;height:7px;border-radius:50%;background:var(--green)}
+  /* A faísca do estudo 4 diz "achei", e para ser lida ela precisa de tamanho.
+     Por isso ela vive no título de Achados e não no ponto da aba: a 15px o
+     desenho vira borrão, e ao lado do ícone da aba viram dois desenhos
+     brigando na mesma linha. Toca uma vez, quando a pessoa chega na tela. */
+  /* só o título que carrega ícone vira flex. O "Olá, Angela" tem um span
+     dentro com o nome, e num h1 flex ele ganharia um vão no meio da frase. */
+  .h1ic{display:inline-flex;flex:none;color:var(--green-deep)}
+  .head h1.com-ic{display:flex;align-items:center;gap:11px}
+  .nav a:hover{background:var(--card-2);color:var(--ink)}
+  .nav a.on{background:var(--green-wash);color:var(--green-deep)}
+  .side .who{display:flex;align-items:center;gap:11px;padding:10px 8px;border-top:1px solid var(--line-soft);margin-top:8px}
+  .side .who .av{width:34px;height:34px;border-radius:50%;background:var(--green);color:var(--on-green);
+                 display:grid;place-items:center;font-family:var(--font-d);font-weight:800;font-size:14px;flex:none;
+                 object-fit:cover;object-position:50% 22%}
+  .side .who .nm{font-family:var(--font-d);font-weight:700;font-size:13.5px;line-height:1.2}
+  .side .who .sb{font-size:11px;color:var(--faint);white-space:nowrap}
+  .side .who .theme{margin-left:auto;width:32px;height:32px;border-radius:50%;background:var(--card-2);
+                    display:grid;place-items:center;font-size:14px}
+
+  /* ---------- main ---------- */
+  .main{flex:1;overflow-y:auto;padding:30px 40px 60px;position:relative}
+  .head{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:24px}
+  .head h1{font-family:var(--font-d);font-weight:800;font-size:27px;letter-spacing:-.03em;margin:0}
+  .head .date{font-size:13.5px;color:var(--faint);font-family:var(--font-d);font-weight:600}
+
+  .view{display:none}
+  .view.on{display:block}
+  @keyframes in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+  /* Entrada escalonada.
+
+     Antes a tela subia como uma placa: um único `in` no .view movia cabeçalho,
+     anel e cartões no mesmo instante. Agora cada bloco tem a sua vez, 70ms
+     depois do anterior, e a tela parece montada por alguém em vez de colada.
+
+     O --i mora no HTML de propósito: a ordem em que as coisas aparecem é
+     decisão de conteúdo, não de folha de estilo.
+
+     E só roda depois de body.pronto, que entra quando o esqueleto sai. Sem
+     essa trava a entrada aconteceria por baixo do esqueleto, que é o mesmo
+     erro que o anel cometia: o movimento existe e ninguém vê. */
+  .sobe{opacity:0}
+  body.pronto .view.on .sobe{animation:in .34s cubic-bezier(.2,.7,.3,1) both;
+       animation-delay:calc(var(--i,0) * 70ms)}
+  @media (prefers-reduced-motion:reduce){ .view{animation:none} }
+
+  .card{background:var(--card);border:1px solid var(--line-soft);border-radius:18px;padding:20px 22px}
+  .klab{font-family:var(--font-d);font-size:10.5px;font-weight:700;letter-spacing:.12em;
+        text-transform:uppercase;color:var(--mute)}
+  .kval{font-family:var(--font-d);font-size:27px;font-weight:800;letter-spacing:-.035em;
+        font-variant-numeric:tabular-nums;line-height:1.1;margin-top:5px}
+  .kval.g{color:var(--green-deep)}
+  .knote{font-size:13px;color:var(--mute);line-height:1.45}
+  .knote b{color:var(--ink);font-weight:600}
+
+  /* dashboard grid */
+  .grid{display:grid;grid-template-columns:minmax(320px,1.1fr) 1fr;gap:18px;align-items:start}
+  .col{display:flex;flex-direction:column;gap:18px}
+
+  .ringcard{display:flex;flex-direction:column;align-items:center;padding:26px 22px 24px}
+  .ringwrap{position:relative;width:210px;height:210px}
+  .ringwrap svg{transform:rotate(-90deg);display:block}
+  .track{fill:none;stroke:var(--green-wash);stroke-width:18}
+  .prog{fill:none;stroke:var(--green);stroke-width:18;stroke-linecap:round;
+        stroke-dasharray:483.8;stroke-dashoffset:483.8;
+        transition:stroke-dashoffset 1.2s cubic-bezier(.2,.75,.25,1)}
+  .prog.go{stroke-dashoffset:135.5}
+  @media (prefers-reduced-motion:reduce){ .prog{transition:none} }
+  .ringmid{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+  .ringmid .lab{font-family:var(--font-d);font-size:10.5px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--mute)}
+  .ringmid .big{font-family:var(--font-d);font-size:40px;font-weight:800;letter-spacing:-.045em;font-variant-numeric:tabular-nums;line-height:1.05}
+  .ringmid .sub2{font-size:12.5px;color:var(--mute)}
+  .ringfoot{font-size:14.5px;color:var(--mute);text-align:center;max-width:30ch;line-height:1.45;margin-top:16px}
+  .ringfoot b{color:var(--ink);font-weight:600}
+
+  .duo{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  .bars{display:flex;align-items:flex-end;gap:8px;height:60px;margin-top:10px}
+  .bars i{flex:1;background:var(--green-wash);border-radius:4px;display:block;transition:height .7s cubic-bezier(.2,.7,.3,1)}
+  .bars i.on{background:var(--green)}
+  .barlabs{display:flex;gap:8px;margin-top:7px}
+  .barlabs span{flex:1;text-align:center;font-size:10.5px;color:var(--faint);font-family:var(--font-d);font-weight:600}
+
+  /* itens de achado */
+  .sect{font-family:var(--font-d);font-size:11px;font-weight:700;letter-spacing:.13em;
+        text-transform:uppercase;color:var(--faint);margin:6px 0 2px}
+  .item{display:flex;gap:14px;padding:16px 18px;border-radius:16px;align-items:flex-start}
+  .item + .item{margin-top:12px}
+  .item.fact{background:var(--green);color:var(--on-green)}
+  .item.rule{background:var(--ink);color:var(--on-ink)}
+  .item.susp{background:transparent;border:1px dashed var(--line);color:var(--ink)}
+  /* Respondido no chat. Continua na tela de propósito: sumir sem deixar rastro
+     faz parecer que a resposta se perdeu. Ele apaga, não desaparece. */
+  .item.done{background:transparent;border:1px solid var(--line-soft);color:var(--mute)}
+  .item.done .mark{border:0;background:var(--green-wash);color:var(--green-deep)}
+  .item.done .h{text-decoration:line-through;text-decoration-color:var(--line)}
+  .mark{width:24px;height:24px;border-radius:50%;flex:none;margin-top:1px;display:grid;place-items:center;
+        font-family:var(--font-d);font-size:13px;font-weight:800}
+  .item.fact .mark{background:rgba(255,255,255,.26)}
+  .item.rule .mark{background:rgba(255,255,255,.16)}
+  .item.susp .mark{border:1px solid var(--line);color:var(--mute)}
+  .itxt .h{font-family:var(--font-d);font-size:15.5px;font-weight:700;letter-spacing:-.012em}
+  .itxt .p{font-size:13.2px;opacity:.9;line-height:1.42;margin-top:3px}
+
+  /* reconciliação */
+  .recon .rline{display:flex;justify-content:space-between;align-items:center;padding:13px 0;border-bottom:1px solid var(--line-soft);gap:12px}
+  .recon .rline:last-child{border-bottom:0}
+  .recon .l{font-size:14px;color:var(--ink-2)}
+  .recon .l small{display:block;font-size:12px;color:var(--faint);margin-top:2px}
+  .recon .v{font-family:var(--font-d);font-weight:700;font-size:15px;font-variant-numeric:tabular-nums;white-space:nowrap}
+  .recon .tot{padding-top:14px}
+  .recon .tot .l{font-weight:600;color:var(--ink)}
+  .recon .tot .v{font-size:19px;font-weight:800}
+  .neg{color:var(--mute)} .flag{color:var(--green-deep)}
+  .waterfall{display:flex;height:10px;border-radius:6px;overflow:hidden;gap:2px;margin:12px 0 6px}
+  .waterfall i{display:block}
+
+  /* chat */
+  .chatwrap{max-width:560px}
+  .chat{display:flex;flex-direction:column;gap:11px}
+  .bub{max-width:75%;padding:12px 15px;border-radius:18px;font-size:14.5px;line-height:1.45}
+  .bub.in{background:var(--card);border:1px solid var(--line-soft);border-bottom-left-radius:6px;align-self:flex-start}
+  .bub.in.hi{background:var(--green);color:var(--on-green);border-color:transparent}
+  .bub.out{background:var(--ink);color:var(--on-ink);align-self:flex-end;border-bottom-right-radius:6px}
+  .bub .amt{font-family:var(--font-d);font-weight:800}
+  .btns{display:flex;gap:9px;align-self:flex-start;flex-wrap:wrap;margin-top:2px}
+  .btn{font-family:var(--font-d);font-size:13.5px;font-weight:700;padding:10px 18px;border-radius:999px;
+       border:1px solid var(--green);color:var(--green-deep);transition:transform .12s}
+  .btn:hover{transform:translateY(-1px)}
+  .btn.solid{background:var(--green);color:var(--on-green);border-color:var(--green)}
+  .tstamp{font-size:11px;color:var(--faint);text-align:center;font-family:var(--font-d);font-weight:700;
+          letter-spacing:.08em;text-transform:uppercase;margin:6px 0}
+
+  /* resumo */
+  .srow{display:flex;justify-content:space-between;font-size:14.5px;padding:12px 0;border-bottom:1px solid var(--line-soft)}
+  .srow:last-of-type{border-bottom:0}
+  .srow b{font-family:var(--font-d);font-weight:700;font-variant-numeric:tabular-nums}
+  .srow .pct{font-family:var(--font-d);color:var(--mute);font-weight:600}
+  .wide{width:100%;text-align:center;padding:15px;margin-top:4px}
+
+  /* a voz dos dados: mono só nos rótulos e metadados (Consolas, com fallback) */
+  .klab,.sect,.nav .lab,.ringmid .lab,.head .date,.tstamp,
+  .recon .l small,.side .who .sb,.barlabs span{ font-family:var(--font-m); }
+
+  /* drawer de detalhe */
+  .scrim{position:fixed;inset:0;background:rgba(11,16,13,.42);opacity:0;pointer-events:none;
+    transition:opacity .25s;z-index:40}
+  .scrim.on{opacity:1;pointer-events:auto}
+  .drawer{position:fixed;top:0;right:0;bottom:0;width:min(460px,100%);background:var(--bg);
+    border-left:1px solid var(--line);box-shadow:-16px 0 50px rgba(11,16,13,.18);
+    transform:translateX(102%);transition:transform .32s cubic-bezier(.2,.7,.3,1);z-index:41}
+  .drawer.on{transform:none}
+  @media (prefers-reduced-motion:reduce){ .scrim,.drawer{transition:none} }
+  .dpane{display:none;height:100%;flex-direction:column}
+  .dpane.on{display:flex}
+  .dhead{display:flex;align-items:center;justify-content:space-between;gap:12px;
+    padding:20px 22px;border-bottom:1px solid var(--line-soft)}
+  .dhead .t{font-family:var(--font-d);font-weight:800;font-size:18px;letter-spacing:-.02em}
+  .dhead .sub{font-family:var(--font-m);font-size:11px;color:var(--faint);text-transform:uppercase;letter-spacing:.1em}
+  .close{width:34px;height:34px;border-radius:50%;background:var(--card-2);display:grid;place-items:center;color:var(--mute);flex:none}
+  .dbody{flex:1;overflow-y:auto;padding:20px 22px;display:flex;flex-direction:column;gap:16px}
+  .dfoot{padding:16px 22px;border-top:1px solid var(--line-soft);display:flex;gap:10px}
+  .evi{border:1px solid var(--line-soft);border-radius:14px;overflow:hidden}
+  .evi .e{display:flex;justify-content:space-between;padding:12px 15px;border-bottom:1px solid var(--line-soft);font-size:13.5px}
+  .evi .e:last-child{border-bottom:0}
+  .evi .e .w{font-family:var(--font-m);font-size:12px;color:var(--mute)}
+  .evi .e.flag,.evi .e.flag .w{color:var(--green-deep)}
+  .draft{background:var(--card);border:1px solid var(--line-soft);border-left:3px solid var(--green);
+    border-radius:12px;padding:14px 16px;font-size:13.5px;line-height:1.5;color:var(--ink-2)}
+  .note-lim{background:var(--card-2);border:1px solid var(--line-soft);border-radius:12px;
+    padding:12px 14px;font-family:var(--font-m);font-size:11.5px;line-height:1.5;color:var(--mute)}
+  .note-lim b{color:var(--green-deep);font-weight:600}
+  .note-ok{background:var(--green-wash);border:1px solid var(--green-wash);border-radius:12px;
+    padding:12px 14px;font-family:var(--font-m);font-size:11.5px;color:var(--green-deep);line-height:1.5}
+  .btn.full{flex:1;justify-content:center;display:flex}
+
+  /* estados: carregando e vazio */
+  .skel{position:absolute;inset:0;background:var(--bg);z-index:20;padding:30px 40px;
+    display:flex;flex-direction:column;gap:18px;transition:opacity .45s}
+  .skel.hide{opacity:0;pointer-events:none}
+  .skel .head{margin-bottom:24px}
+  /* O estudo 2 no lugar onde a pessoa espera: a linha se escrevendo sozinha
+     é exatamente o que está acontecendo atrás da tela, e ninguém digitou.
+     O compasso é 1,4s e não os 4,6s da vitrine porque o esqueleto vive 1,5s:
+     no compasso original a pessoa via um quinto da animação e ia embora antes
+     do valor aparecer do lado, que é justamente a parte que conta a história. */
+  .skel-ic{display:block;color:var(--faint);margin-bottom:16px;--ri-dur:1.4s}
+  .sk{background:var(--card-2);border-radius:14px;position:relative;overflow:hidden}
+  .sk::after{content:"";position:absolute;inset:0;transform:translateX(-100%);
+    background:linear-gradient(90deg,transparent,rgba(0,196,108,.10),transparent);animation:shimmer 1.25s infinite}
+  @keyframes shimmer{100%{transform:translateX(100%)}}
+  @media (prefers-reduced-motion:reduce){ .sk::after{animation:none} }
+  .empty{display:flex;flex-direction:column;align-items:center;text-align:center;padding:26px 20px;gap:9px}
+  .empty .eic{width:56px;height:56px;border-radius:50%;background:var(--green-wash);color:var(--green-deep);display:grid;place-items:center}
+  .empty .eic .material-symbols-outlined{font-size:28px}
+  .empty .et{font-family:var(--font-d);font-weight:800;font-size:17px}
+  .empty .ep{font-size:13.5px;color:var(--mute);max-width:34ch;line-height:1.5}
+
+  /* histórico (linha do tempo, só leitura) */
+  .timeline{max-width:640px}
+  .tl-day{font-family:var(--font-m);font-size:11px;text-transform:uppercase;letter-spacing:.1em;
+    color:var(--faint);margin:22px 0 12px}
+  .tl-day:first-child{margin-top:0}
+  .tl-item{display:flex;gap:14px;padding-bottom:16px}
+  .tl-dot{width:26px;height:26px;border-radius:50%;flex:none;display:grid;place-items:center}
+  .tl-dot .material-symbols-outlined{font-size:15px}
+  .tl-dot.fato{background:var(--green);color:var(--on-green)}
+  .tl-dot.regra{background:var(--ink);color:var(--on-ink)}
+  .tl-dot.susp{background:var(--card);border:1px solid var(--line);color:var(--mute)}
+  .tl-dot.info{background:var(--green-wash);color:var(--green-deep)}
+  .tl-body{flex:1}
+  .tl-time{font-family:var(--font-m);font-size:11px;color:var(--faint)}
+  .tl-h{font-family:var(--font-d);font-weight:700;font-size:15px;margin:1px 0 2px}
+  .tl-p{font-size:13.5px;color:var(--mute);line-height:1.45;max-width:52ch}
+
+  /* microinterações: o clique responde */
+  .item[data-drawer],.item[data-go],.card[data-drawer]{cursor:pointer;
+       transition:transform .14s ease,box-shadow .14s ease}
+  .item[data-drawer]:hover,.item[data-go]:hover,.card[data-drawer]:hover{
+       transform:translateY(-2px);box-shadow:0 8px 22px rgba(11,16,13,.10)}
+  .item[data-drawer]:active,.item[data-go]:active,.card[data-drawer]:active{
+       transform:translateY(0);box-shadow:none}
+  .btn{cursor:pointer}
+  .btn:active{transform:translateY(1px)}
+  .btn[disabled]{opacity:.55;cursor:default;transform:none}
+
+  /* o achado que ela já mandou, e a Regis passou a vigiar */
+  .item.watch{background:var(--card-2);border:1px solid var(--line);color:var(--ink)}
+  .item.watch .mark{background:var(--green-wash);color:var(--green-deep)}
+  .item.watch .itxt .p{opacity:.75}
+
+  /* aviso curto de confirmação */
+  #toast{position:fixed;left:50%;bottom:26px;transform:translate(-50%,14px);z-index:60;
+         max-width:min(420px,calc(100vw - 40px));display:flex;align-items:center;gap:10px;
+         padding:13px 18px;border-radius:14px;background:var(--ink);color:var(--on-ink);
+         font-size:13.5px;line-height:1.4;box-shadow:0 12px 32px rgba(11,16,13,.24);
+         opacity:0;pointer-events:none;transition:opacity .18s ease,transform .18s ease}
+  #toast.on{opacity:1;transform:translate(-50%,0)}
+  #toast .material-symbols-outlined{font-size:19px;color:var(--green);flex:none}
+
+  @media (prefers-reduced-motion:reduce){
+    .sobe{opacity:1}
+    body.pronto .view.on .sobe{animation:none}
+    .item[data-drawer],.item[data-go],.card[data-drawer],.btn,#toast{transition:none}
+    .item[data-drawer]:hover,.item[data-go]:hover,.card[data-drawer]:hover{transform:none}
+    .btn:active{transform:none}
+    #toast,#toast.on{transform:translate(-50%,0)}
+  }
+
+  /* onboarding: a conexão pelo Open Finance, antes de existir número */
+  #onb{position:fixed;inset:0;z-index:70;background:var(--bg);display:grid;place-items:center;padding:24px}
+  #onb[hidden]{display:none}
+  .onb-card{width:min(520px,100%);text-align:center}
+  .onb-logo{height:34px;margin-bottom:34px}
+  .onb-card h1{font-family:var(--font-d);font-size:31px;font-weight:800;letter-spacing:-.025em;
+       line-height:1.18;margin:0 0 14px;text-wrap:balance}
+  .onb-card .lead{font-size:15px;color:var(--mute);line-height:1.55;margin:0 auto 30px;max-width:40ch}
+  .onb-passo{display:none;flex-direction:column;align-items:center;gap:12px}
+  .onb-passo.on{display:flex}
+  .onb-passo .btn{width:100%;max-width:330px;padding:14px 18px;font-size:14.5px}
+  .onb-nota{display:flex;align-items:flex-start;gap:9px;text-align:left;margin:26px auto 0;max-width:400px;
+       padding:13px 15px;border-radius:13px;background:var(--card);border:1px solid var(--line-soft);
+       font-size:12.6px;color:var(--mute);line-height:1.5}
+  .onb-nota .material-symbols-outlined{font-size:18px;color:var(--green-deep);flex:none;margin-top:1px}
+  .onb-status{display:flex;align-items:center;gap:11px;font-size:15px;color:var(--ink);
+       font-family:var(--font-d);font-weight:600}
+  /* Espera é o único momento em que a pessoa fica olhando, e é o estudo 5
+     que ocupa ele: a alavanca girando no próprio eixo, mais rápida que na
+     vitrine porque aqui ela é medida de tempo, não marca. */
+  .onb-giro{flex:none;color:var(--green);--ri-dur:1.5s;--ri-easing:linear}
+  /* O vazamento só existe antes de conectar. Depois disso a Regis está do
+     lado da pessoa, e moeda pingando ali seria dizer que ela ainda perde. */
+  .onb-vaza{display:flex;justify-content:center;color:var(--ink-2);margin:-6px 0 6px}
+  .onb-vaza .ri{width:clamp(64px,17vw,84px);height:auto}
+  /* ----------------------------------------------------------------------
+     Responsivo, três formatos e não dois.
+
+     Acima de 980px a sidebar inteira. Entre 761 e 980 ela encolhe para
+     ícones, que é o notebook pequeno e o tablet deitado. Abaixo de 760 a
+     navegação desce para a barra de abas, que é onde o polegar alcança, e
+     o drawer lateral vira uma folha que sobe. É o mesmo app, não é outro.
+     ---------------------------------------------------------------------- */
+
+  @media (max-width:1080px){ .grid{grid-template-columns:1fr} }
+
+  /* notebook pequeno e tablet: a sidebar vira trilho de ícones */
+  @media (min-width:761px) and (max-width:980px){
+    .side{width:74px;padding:20px 10px}
+    .side .logo,.nav .lab,.side .who .nm,.side .who .sb{display:none}
+    .nav a{justify-content:center;gap:0}
+    .nav a span:not(.ic):not(.dot){display:none}
+    /* avatar e botão de tema lado a lado não cabem em 74px, então empilham */
+    .side .who{flex-direction:column;justify-content:center;gap:8px;padding:12px 0}
+    .side .who .theme{margin-left:0}
+    .main{padding:24px 26px 50px}
+  }
+
+  /* celular: barra de abas embaixo */
+  @media (max-width:760px){
+    .shell{border-left:0;border-right:0}
+
+    .side{position:fixed;left:0;right:0;bottom:0;width:auto;z-index:44;
+          flex-direction:row;padding:0;border-right:0;border-top:1px solid var(--line);
+          padding-bottom:env(safe-area-inset-bottom)}
+    .side .logo,.nav .lab{display:none}
+    .nav{flex-direction:row;gap:0}
+    .nav a{flex:1;flex-direction:column;align-items:center;justify-content:center;
+           gap:3px;padding:9px 2px 8px;border-radius:0;font-size:10.5px;position:relative}
+    .nav a .ic{width:auto;font-size:22px}
+    .nav a:hover{background:none}
+    .nav a.on{background:none;color:var(--green-deep)}
+    .nav a .dot{position:absolute;top:6px;left:calc(50% + 8px);margin:0}
+
+    /* o chip da pessoa não cabe na barra. O nome dela já está no "Olá,
+       Angela" do topo, então aqui sobra só o botão de tema. */
+    .side .who{position:fixed;top:14px;right:14px;padding:0;margin:0;
+               border-top:0;background:none;z-index:45}
+    .side .who .av,.side .who .nm,.side .who .sb{display:none}
+    .side .who .theme{background:var(--card);border:1px solid var(--line-soft)}
+
+    .main{padding:20px 16px 92px}
+    .head{flex-direction:column;align-items:flex-start;gap:5px}
+    .head h1{font-size:23px;padding-right:48px}
+    .duo{grid-template-columns:1fr}
+    .ringwrap{width:min(210px,62vw);height:auto;aspect-ratio:1}
+    .ringwrap svg{width:100%;height:auto}
+    .ringmid .big{font-size:clamp(30px,9vw,40px)}
+
+    /* o drawer sobe do rodapé em vez de entrar pela direita, e passa por
+       cima da barra de abas, senão as abas ficam boiando na frente dele */
+    .scrim{z-index:46}
+    .drawer{z-index:47;top:auto;left:0;right:0;bottom:0;width:100%;height:auto;max-height:86vh;
+            border-left:0;border-top:1px solid var(--line);border-radius:20px 20px 0 0;
+            box-shadow:0 -16px 50px rgba(11,16,13,.22);transform:translateY(102%)}
+    .drawer.on{transform:none}
+    .dpane{max-height:86vh}
+    .dhead,.dbody,.dfoot{padding-left:18px;padding-right:18px}
+    .dfoot{flex-direction:column;padding-bottom:calc(16px + env(safe-area-inset-bottom))}
+    .dfoot .btn{width:100%}
+
+    #toast{bottom:calc(84px + env(safe-area-inset-bottom));width:calc(100% - 28px);max-width:none}
+    .onb-card h1{font-size:25px}
+    .onb-logo{margin-bottom:26px}
+  }
+
+</style>
+</head>
+<body>
+<div class="shell">
+
+  <!-- SIDEBAR -->
+  <aside class="side">
+    <div class="logo"><img src="../idv/Regis%20Logo.svg" alt="Regis"></div>
+    <nav class="nav">
+      <span class="lab">Painel</span>
+      <a class="on" data-go="hoje"><span class="ic material-symbols-outlined">dashboard</span><span>Hoje</span></a>
+      <a data-go="achados"><span class="ic material-symbols-outlined">task_alt</span><span>Achados</span><span class="dot"></span></a>
+      <a data-go="historico"><span class="ic material-symbols-outlined">history</span><span>Histórico</span></a>
+      <a data-go="resumo"><span class="ic material-symbols-outlined">summarize</span><span>Resumo</span></a>
+    </nav>
+    <div class="who">
+      <img class="av" src="../idv/angela-avatar.png" alt="Angela Nogueira">
+      <div>
+        <div class="nm" data-regis="perfil.primeiro_nome">Angela</div>
+        <div class="sb">MEI · cabeleireira</div>
+      </div>
+      <button class="theme" id="theme" aria-label="Alternar tema"><span class="material-symbols-outlined">contrast</span></button>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="main">
+
+    <div class="skel" id="skel">
+      <div class="head">
+        <span class="skel-ic" data-icone="memoria" data-tam="26"></span>
+        <div class="sk" style="width:180px;height:30px"></div>
+        <div class="sk" style="width:150px;height:16px"></div>
+      </div>
+      <div class="grid">
+        <div class="sk" style="height:300px"></div>
+        <div class="col">
+          <div class="sk" style="height:118px"></div>
+          <div class="sk" style="height:250px"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- HOJE -->
+    <section class="view on" data-v="hoje">
+      <div class="head sobe" style="--i:0">
+        <h1>Olá, <span data-regis="perfil.primeiro_nome">Angela</span></h1>
+        <div class="date">sábado, 29 de agosto de 2026</div>
+      </div>
+
+      <div class="grid">
+        <div class="card ringcard sobe" style="--i:1">
+          <div class="ringwrap">
+            <svg width="210" height="210" viewBox="0 0 200 200" aria-hidden="true">
+              <circle class="track" cx="100" cy="100" r="77"></circle>
+              <circle class="prog" id="ring" cx="100" cy="100" r="77"></circle>
+            </svg>
+            <div class="ringmid">
+              <div class="lab">Faturado em 2026</div>
+              <div class="big" data-regis="resumo.faturado_curto">58.400</div>
+              <div class="sub2">de R$ <span data-regis="resumo.teto_curto">81.000</span></div>
+            </div>
+          </div>
+          <p class="ringfoot">Faltam <b>R$ <span data-regis="resumo.falta_curto">22.600</span></b> para o teto. No ritmo atual, você chega em <b data-regis="resumo.estouro_mes">outubro</b>.</p>
+        </div>
+
+        <div class="col">
+          <div class="duo sobe" style="--i:2">
+            <div class="card">
+              <div class="klab">Faturado em agosto</div>
+              <div class="kval">R$ 10.800</div>
+              <div class="knote" style="margin-top:6px">maior mês do ano</div>
+            </div>
+            <div class="card">
+              <div class="klab">Entradas por semana</div>
+              <div class="bars">
+                <i style="height:52%"></i><i style="height:71%"></i>
+                <i style="height:44%"></i><i class="on" style="height:88%"></i>
+              </div>
+              <div class="barlabs"><span>S1</span><span>S2</span><span>S3</span><span>S4</span></div>
+            </div>
+          </div>
+
+          <div class="card sobe" style="--i:3">
+            <div class="sect" style="margin-bottom:12px">Precisa de você</div>
+            <div id="pv-items">
+            <div class="item fact" data-drawer="contestacao" data-achado="resumo-contestacoes" style="cursor:pointer">
+              <div class="mark"><span class="material-symbols-outlined">check</span></div>
+              <div class="itxt"><div class="h">2 contestações prontas</div>
+                <div class="p">R$ 93,90 no total. É só conferir e enviar.</div></div>
+            </div>
+            <div class="item rule" data-go="achados" data-achado="AN-10">
+              <div class="mark"><span class="material-symbols-outlined">priority_high</span></div>
+              <div class="itxt"><div class="h">Teto do MEI em outubro</div>
+                <div class="p">No ritmo atual você chega a R$ 81.000. Te mostro as opções?</div></div>
+            </div>
+            <div class="item susp" data-go="historico" data-achado="AN-11">
+              <div class="mark"><span class="material-symbols-outlined">help</span></div>
+              <div class="itxt"><div class="h">Um Pix de R$ 340 para Maria Souza</div>
+                <div class="p">Dia 3, contraparte nova. Foi você?</div></div>
+            </div>
+            </div>
+            <div class="empty" id="pv-empty" style="display:none">
+              <div class="eic" data-icone="cerebro" data-tam="30" data-uma></div>
+              <div class="et">Tudo em dia</div>
+              <div class="ep">Conferi suas contas e nada precisa de você agora. Se aparecer algo, eu te chamo.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card sobe" data-drawer="recon" style="--i:4;margin-top:18px;cursor:pointer">
+        <div class="head" style="margin-bottom:6px">
+          <div><div class="klab">Sexta, 28 de agosto</div>
+            <div class="kval" style="font-size:22px">Caiu na conta R$ 1.180,00</div></div>
+          <div class="date">de R$ 1.284,00 vendidos · 34 vendas</div>
+        </div>
+        <div class="waterfall" aria-hidden="true">
+          <i style="flex:1180;background:var(--green)"></i>
+          <i style="flex:66;background:var(--faint)"></i>
+          <i style="flex:38;background:var(--ink)"></i>
+        </div>
+        <div class="recon">
+          <div class="rline"><div class="l">Taxa da maquininha<small>2,89% em 26 vendas · é o combinado</small></div><div class="v neg">− 37,10</div></div>
+          <div class="rline"><div class="l">Antecipação automática<small>ligada desde março</small></div><div class="v neg">− 28,90</div></div>
+          <div class="rline"><div class="l flag">Repasse do marketplace<small>8 vendas · veio menos que o previsto</small></div><div class="v flag">− 38,00</div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ACHADOS -->
+    <section class="view" data-v="achados">
+      <div class="head sobe" style="--i:0"><h1 class="com-ic"><span class="h1ic" data-icone="brilho" data-tam="32" data-uma></span>Achados</h1><div class="date">últimos 30 dias</div></div>
+      <div class="grid">
+        <div class="col sobe" style="--i:1">
+          <div class="sect">Já resolvi ou preparei</div>
+          <div class="card" style="padding:0;overflow:hidden">
+            <div class="item fact" data-drawer="contestacao" data-achado="netflix" style="border-radius:0;cursor:pointer"><div class="mark"><span class="material-symbols-outlined">check</span></div>
+              <div class="itxt"><div class="h">Netflix cobrada duas vezes</div>
+                <div class="p">R$ 55,90 duas vezes no dia 12. Contestação escrita, é só enviar.</div></div></div>
+            <div class="item fact" style="border-radius:0"><div class="mark"><span class="material-symbols-outlined">check</span></div>
+              <div class="itxt"><div class="h">Repasse menor que a venda</div>
+                <div class="p">R$ 38,00 no marketplace. Mensagem pronta para a adquirente.</div></div></div>
+            <div class="item fact" style="border-radius:0"><div class="mark"><span class="material-symbols-outlined">check</span></div>
+              <div class="itxt"><div class="h">DAS de junho pago em duplicidade</div>
+                <div class="p">R$ 87,05. Pedido de restituição preparado.</div></div></div>
+          </div>
+        </div>
+        <div class="col sobe" style="--i:2">
+          <div class="sect">Você decide</div>
+          <div class="item rule"><div class="mark"><span class="material-symbols-outlined">priority_high</span></div>
+            <div class="itxt"><div class="h">Teto do MEI em outubro</div>
+              <div class="p">No ritmo atual você chega a R$ 81.000. Passando dele, o imposto muda. Te mostro as opções.</div></div></div>
+
+          <div class="sect" style="margin-top:8px">Uma pergunta só</div>
+          <div class="item susp" data-go="historico" data-achado="AN-11"><div class="mark"><span class="material-symbols-outlined">help</span></div>
+            <div class="itxt"><div class="h">Pix de R$ 340 para Maria Souza</div>
+              <div class="p">Dia 3, contraparte nova. Foi você?</div></div></div>
+
+          <div class="card" style="margin-top:12px">
+            <div class="knote">Outros <b><span data-regis="contagem.silenciados">5</span> achados</b> ficaram de fora: são normais para o seu histórico.</div>
+            <div id="silenciados" hidden></div>
+            <button class="btn wide" style="margin-top:10px" id="ver-silenciados">Ver mesmo assim</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- HISTÓRICO -->
+    <section class="view" data-v="historico">
+      <div class="head sobe" style="--i:0"><h1>Histórico</h1><div class="date">tudo que a Regis fez e falou</div></div>
+      <div class="timeline sobe" style="--i:1">
+
+        <div class="tl-day">Hoje, 29 de agosto</div>
+        <div class="tl-item">
+          <div class="tl-dot fato"><span class="material-symbols-outlined">check</span></div>
+          <div class="tl-body"><div class="tl-time">08:14</div>
+            <div class="tl-h">Repasse do marketplace veio curto</div>
+            <div class="tl-p">R$ 38 sem comissão explicada. Escrevi a cobrança pra adquirente.</div></div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot susp"><span class="material-symbols-outlined">help</span></div>
+          <div class="tl-body"><div class="tl-time">08:14</div>
+            <div class="tl-h">Perguntei sobre um Pix de R$ 340</div>
+            <div class="tl-p">Maria Souza, contraparte nova. Ainda esperando você dizer se foi venda.</div></div>
+        </div>
+
+        <div class="tl-day">Sexta, 28 de agosto</div>
+        <div class="tl-item">
+          <div class="tl-dot info"><span class="material-symbols-outlined">done_all</span></div>
+          <div class="tl-body"><div class="tl-time">fim do dia</div>
+            <div class="tl-h">Conferi o dia</div>
+            <div class="tl-p">Caiu na conta R$ 1.180 de R$ 1.284 vendidos. Taxa e antecipação normais, só o repasse era problema.</div></div>
+        </div>
+
+        <div class="tl-day">18 de agosto</div>
+        <div class="tl-item">
+          <div class="tl-dot fato"><span class="material-symbols-outlined">check</span></div>
+          <div class="tl-body"><div class="tl-time">manhã</div>
+            <div class="tl-h">DAS de agosto conferido</div>
+            <div class="tl-p">Pago em 18/08 e baixou certo. Não precisou fazer nada.</div></div>
+        </div>
+
+        <div class="tl-day">12 de agosto</div>
+        <div class="tl-item">
+          <div class="tl-dot fato"><span class="material-symbols-outlined">check</span></div>
+          <div class="tl-body"><div class="tl-time">21:47</div>
+            <div class="tl-h">Netflix cobrada duas vezes</div>
+            <div class="tl-p">R$ 55,90 em duplicidade no mesmo dia. Contestação preparada.</div></div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot regra"><span class="material-symbols-outlined">priority_high</span></div>
+          <div class="tl-body"><div class="tl-time">manhã</div>
+            <div class="tl-h">Avisei sobre o teto</div>
+            <div class="tl-p">No ritmo de hoje, você chega ao teto em outubro. Preparei o resumo pra contadora.</div></div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- RESUMO -->
+    <section class="view" data-v="resumo">
+      <div class="head sobe" style="--i:0"><h1>Resumo</h1><div class="date">para você e para quem organiza</div></div>
+      <div class="grid">
+        <div class="col sobe" style="--i:1">
+          <div class="card">
+            <div class="klab">Faturamento no ano</div>
+            <div class="kval">R$ <span data-regis="resumo.faturado_txt">58.400,00</span></div>
+            <div class="knote" style="margin-top:6px"><span data-regis="resumo.percentual_txt">72,1%</span> do teto · faltam R$ <span data-regis="resumo.falta_curto">22.600</span> · chega ao teto em <span data-regis="resumo.estouro_mes">outubro</span></div>
+          </div>
+          <div class="card">
+            <div class="klab" style="margin-bottom:6px">Por canal de recebimento</div>
+            <div class="srow"><span>Maquininha crédito</span><span class="pct">36,7%</span></div>
+            <div class="srow"><span>Maquininha débito</span><span class="pct">27,9%</span></div>
+            <div class="srow"><span>Marketplace (BelezaNet)</span><span class="pct">27,4%</span></div>
+            <div class="srow"><span>Pix</span><span class="pct">8,0%</span></div>
+          </div>
+        </div>
+        <div class="col sobe" style="--i:2">
+          <div class="card">
+            <div class="klab" style="margin-bottom:6px">Situação fiscal</div>
+            <div class="srow"><span>DAS de agosto</span><b class="flag">pago em 18/08</b></div>
+            <div class="srow"><span>DAS de junho (duplicado)</span><b>restituição preparada</b></div>
+            <div class="srow"><span>DASN 2025</span><b class="flag">entregue em maio</b></div>
+          </div>
+          <button class="btn solid wide" data-drawer="resumo">Mandar para a contadora</button>
+          <div class="card">
+            <div class="knote"><b>Quem organiza também recebe.</b> Metade dos MEIs que ouvimos não faz a parte fiscal sozinha. O resumo vai pronto, sem ninguém somar nada.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<div class="scrim" id="scrim"></div>
+<aside class="drawer" id="drawer">
+
+  <div class="dpane" data-pane="recon">
+    <div class="dhead"><div><div class="t">Sexta, 28 de agosto</div><div class="sub">reconciliação do dia</div></div>
+      <button class="close"><span class="material-symbols-outlined">close</span></button></div>
+    <div class="dbody">
+      <div class="card"><div class="klab">Você vendeu</div><div class="kval">R$ 1.284,00</div>
+        <div class="knote" style="margin-top:6px">Caiu na conta <b>R$ 1.180,00</b>. A diferença tem três partes, e só uma é problema.</div></div>
+      <div class="recon">
+        <div class="rline"><div class="l">Taxa da maquininha<small>2,89% em 26 vendas · é o combinado</small></div><div class="v neg">− 37,10</div></div>
+        <div class="rline"><div class="l">Antecipação automática<small>ligada desde março</small></div><div class="v neg">− 28,90</div></div>
+        <div class="rline"><div class="l flag">Repasse do marketplace<small>8 vendas · veio menos que o previsto</small></div><div class="v flag">− 38,00</div></div>
+      </div>
+      <div class="item fact"><div class="mark"><span class="material-symbols-outlined">check</span></div>
+        <div class="itxt"><div class="h">Escrevi a cobrança do repasse</div><div class="p">R$ 38 sem comissão explicada. O texto pra adquirente está pronto.</div></div></div>
+      <div class="note-lim"><b>Sobre a antecipação.</b> Ligada desde março, já custou R$ 312 nos três meses. No ritmo de hoje, R$ 1.248 por ano.</div>
+    </div>
+    <div class="dfoot"><button class="btn full">Ver como desligar a antecipação</button></div>
+  </div>
+
+  <div class="dpane" data-pane="contestacao">
+    <div class="dhead"><div><div class="t">Contestação</div><div class="sub">Netflix · cobrança dobrada</div></div>
+      <button class="close"><span class="material-symbols-outlined">close</span></button></div>
+    <div class="dbody">
+      <div class="evi">
+        <div class="e"><span>12/08, 09:14 · Netflix</span><span class="w">R$ 55,90</span></div>
+        <div class="e flag"><span>12/08, 21:47 · Netflix</span><span class="w">R$ 55,90 · repetida</span></div>
+      </div>
+      <div class="draft">Solicito o estorno de uma cobrança em duplicidade de R$ 55,90. A assinatura da Netflix foi lançada duas vezes no mesmo dia 12/08/2026. Peço o estorno de uma delas.</div>
+      <div class="note-lim"><b>A Regis não envia por você.</b> Copie o texto e mande pelo app do seu cartão. Quando o estorno cair, eu te aviso.</div>
+    </div>
+    <div class="dfoot"><button class="btn solid full" data-acao="copiar">Copiar texto</button><button class="btn full" data-acao="enviei" data-achado="netflix">Já enviei</button></div>
+  </div>
+
+  <div class="dpane" data-pane="resumo">
+    <div class="dhead"><div><div class="t">Resumo pra contadora</div><div class="sub">janeiro a agosto de 2026</div></div>
+      <button class="close"><span class="material-symbols-outlined">close</span></button></div>
+    <div class="dbody">
+      <div class="card"><div class="klab">Faturamento no ano</div><div class="kval">R$ <span data-regis="resumo.faturado_txt">58.400,00</span></div>
+        <div class="knote" style="margin-top:6px"><span data-regis="resumo.percentual_txt">72,1%</span> do teto · faltam R$ <span data-regis="resumo.falta_curto">22.600</span> · chega ao teto em <span data-regis="resumo.estouro_mes">outubro</span></div></div>
+      <div class="card">
+        <div class="klab" style="margin-bottom:4px">Por canal</div>
+        <div class="srow"><span>Maquininha crédito</span><span class="pct">36,7%</span></div>
+        <div class="srow"><span>Maquininha débito</span><span class="pct">27,9%</span></div>
+        <div class="srow"><span>Marketplace (BelezaNet)</span><span class="pct">27,4%</span></div>
+        <div class="srow"><span>Pix</span><span class="pct">8,0%</span></div>
+      </div>
+      <div class="note-ok">Pronto pra enviar. Já vem somado, você não precisou fazer conta nenhuma.</div>
+    </div>
+    <div class="dfoot"><button class="btn solid full">Enviar pra contadora</button><button class="btn full">Baixar PDF</button></div>
+  </div>
+
+</aside>
+
+<!-- Onboarding. A copy é a mesma do /start em copy-comandos.md, de propósito:
+     quem chega aqui pelo chat não pode ouvir duas versões da mesma frase.
+     Não pede configuração, não pede senha e não pede arquivo. A pessoa
+     autoriza dentro do banco dela, que é como o Open Finance funciona. -->
+<div id="onb" hidden>
+  <div class="onb-card">
+    <img class="onb-logo" src="../idv/Regis%20Logo.svg" alt="Regis">
+    <h1>Você sabe quanto já faturou este ano?</h1>
+    <p class="lead">Eu leio o que entra e o que sai da sua conta, confiro tudo e só te chamo quando
+      precisa de você.</p>
+
+    <div class="onb-passo on" data-passo="convite">
+      <div class="onb-vaza" data-icone="registro" data-tam="84"></div>
+      <button class="btn solid" data-acao="conectar">Conectar conta</button>
+      <button class="btn" data-acao="exemplo">Usar um exemplo</button>
+    </div>
+
+    <div class="onb-passo" data-passo="autorizando">
+      <div class="onb-status"><span class="onb-giro" data-icone="valvula" data-tam="24"></span>Abrindo o seu banco</div>
+      <p class="lead" style="margin:0">É você que autoriza, lá dentro. Eu nunca vejo a sua senha.</p>
+    </div>
+
+    <div class="onb-passo" data-passo="lendo">
+      <div class="onb-status"><span class="onb-giro" data-icone="valvula" data-tam="24"></span>Conectado. Lendo os últimos 90 dias</div>
+      <p class="lead" style="margin:0">São 367 movimentações. Já te digo o número.</p>
+    </div>
+
+    <div class="onb-nota">
+      <span class="material-symbols-outlined">lock</span>
+      <span>A conexão é pelo Open Finance e serve só para leitura. Eu confiro, somo e preparo
+        documento. <b>Eu não movo o seu dinheiro</b>, nunca.</span>
+    </div>
+  </div>
+</div>
+
+<div id="toast" role="status" aria-live="polite"></div>
+
+<script src="../idv/icones-animados.js"></script>
+
+<script>
+  var TITLES = { hoje:"Hoje", achados:"Achados", historico:"Histórico", resumo:"Resumo" };
+  var faiscaJaTocou = false;
+  function show(v){
+    var views = document.querySelectorAll(".view");
+    for (var i=0;i<views.length;i++) views[i].classList.toggle("on", views[i].dataset.v===v);
+    var links = document.querySelectorAll(".nav a");
+    for (var j=0;j<links.length;j++) links[j].classList.toggle("on", links[j].dataset.go===v);
+    var m = document.querySelector(".main"); if (m) m.scrollTop = 0;
+    /* Guarda a aba aberta. Quando chega resposta do Telegram a página
+       recarrega, e sem isso ela voltaria para Hoje, fechando justamente a
+       tela que provava que o chat mudou o app. */
+    try { sessionStorage.setItem("regis-aba", v); } catch (e) {}
+    /* Chegar em Achados é o instante da descoberta, e a faísca toca sozinha
+       quando a tela aparece. Da segunda visita em diante ela congela: repetir
+       "achei" sem nada novo ter sido achado esvazia a palavra. Quando chega
+       achado de verdade a página recarrega (ver a função checar, no fim do
+       arquivo), e aí a primeira visita acontece de novo. */
+    if (v === "achados"){
+      if (faiscaJaTocou && window.Regis && Regis.icones){
+        Regis.icones.congelar(document.querySelector("[data-v='achados'] .h1ic"));
+      }
+      faiscaJaTocou = true;
+    }
+  }
+  function openDrawer(name){
+    var ps = document.querySelectorAll(".dpane");
+    for (var i=0;i<ps.length;i++) ps[i].classList.toggle("on", ps[i].dataset.pane===name);
+    document.getElementById("scrim").classList.add("on");
+    document.getElementById("drawer").classList.add("on");
+  }
+  function closeDrawer(){
+    document.getElementById("scrim").classList.remove("on");
+    document.getElementById("drawer").classList.remove("on");
+  }
+  document.addEventListener("click", function(e){
+    if (e.target.closest(".close") || e.target.classList.contains("scrim")){ closeDrawer(); return; }
+    var d = e.target.closest("[data-drawer]");
+    if (d){ openDrawer(d.dataset.drawer); return; }
+    var el = e.target.closest("[data-go]");
+    if (el){ show(el.dataset.go); }
+  });
+  document.addEventListener("keydown", function(e){ if (e.key==="Escape") closeDrawer(); });
+
+  var root = document.documentElement;
+  function prefersDark(){ return window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches; }
+  try{ var st = localStorage.getItem("regis-theme"); if (st) root.setAttribute("data-theme", st); }catch(err){}
+  document.getElementById("theme").addEventListener("click", function(){
+    var now = root.getAttribute("data-theme"); if (!now) now = prefersDark() ? "dark":"light";
+    var next = now==="dark" ? "light":"dark"; root.setAttribute("data-theme", next);
+    try{ localStorage.setItem("regis-theme", next); }catch(err){}
+  });
+
+  /* ----------------------------------------------------------------------
+     A revelação do número.
+
+     Antes o anel começava a encher aos 300ms e levava 1,2s, enquanto o
+     esqueleto só saía aos 1050ms. Ele enchia inteiro por baixo do esqueleto,
+     e a pessoa via o anel já cheio: a promessa do pitch acontecia escondida.
+     Agora o movimento espera a tela aparecer. Os 260ms são o tempo do
+     esqueleto ficar translúcido o bastante para não comer o começo.
+
+     O número conta junto, na mesma batida e na mesma curva. É a resposta à
+     pergunta que abre tudo, e resposta que só materializa não é revelação.
+     ---------------------------------------------------------------------- */
+
+  var DURACAO_ANEL = 1200;
+
+  function contarAte(el, alvo){
+    var inicio = null;
+    el.dataset.contando = "1";
+    function quadro(agora){
+      if (inicio === null) inicio = agora;
+      var t = Math.min((agora - inicio) / DURACAO_ANEL, 1);
+      /* mesma sensação da curva do anel: corre cedo, alivia no fim */
+      var suave = 1 - Math.pow(1 - t, 3);
+      /* o alvo pode mudar no meio, se os dados do motor chegarem atrasados */
+      var fim = Number(el.dataset.alvo) || alvo;
+      el.textContent = Math.round(fim * suave).toLocaleString("pt-BR");
+      if (t < 1) window.requestAnimationFrame(quadro);
+      else { el.textContent = fim.toLocaleString("pt-BR"); delete el.dataset.contando; }
+    }
+    window.requestAnimationFrame(quadro);
+  }
+
+  function revelarNumero(){
+    var anel = document.getElementById("ring");
+    if (anel){
+      anel.classList.add("go");
+      /* com dados do motor o destino é o percentual real. Sem eles, a classe
+         .go sozinha já leva ao valor escrito no CSS. */
+      if (anel.dataset.destino) anel.style.strokeDashoffset = anel.dataset.destino;
+    }
+
+    var big = document.querySelector(".ringmid .big");
+    if (!big) return;
+    /* só conta o que é número inteiro. Qualquer outro formato fica como está,
+       porque contagem errada é pior que nenhuma. */
+    var alvo = parseInt(big.textContent.replace(/\./g, ""), 10);
+    if (!alvo || alvo < 0) return;
+    var reduzido = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduzido) return;
+    big.dataset.alvo = alvo;
+    contarAte(big, alvo);
+  }
+
+  // estado carregando: some depois de mostrar o skeleton
+  function acabouDeLer(){
+    var s = document.getElementById("skel");
+    if (s) s.classList.add("hide");
+    /* 460ms é a duração do fade do esqueleto (.45s no CSS) mais uma folga.
+       Antes eram 260ms, e aí a entrada e o anel começavam com o esqueleto
+       ainda 42% opaco: o anel perdia o primeiro terço por baixo do véu, que
+       é a mesma falha de antes em dose menor. Agora o véu sai primeiro, e só
+       então os cartões sobem e o anel enche, tudo na mesma batida. */
+    window.setTimeout(function(){
+      document.body.classList.add("pronto");
+      revelarNumero();
+    }, 460);
+  }
+  window.setTimeout(acabouDeLer, 1050);
+
+  // estado vazio, demonstrável com #vazio na URL
+  if (location.hash === "#vazio"){
+    var it=document.getElementById("pv-items"), em=document.getElementById("pv-empty");
+    if(it) it.style.display="none"; if(em) em.style.display="flex";
+  }
+
+  /* ----------------------------------------------------------------------
+     Microinterações: todo clique responde.
+
+     São três: copiar o texto pronto, dizer "já enviei" (e o achado vira
+     acompanhamento) e o toast que confirma. A regra do produto vale aqui
+     também: a Regis não envia nada, ela prepara e depois vigia.
+     ---------------------------------------------------------------------- */
+
+  var toast = document.getElementById("toast");
+  var toastRelogio = null;
+  /* O ícone do toast pode ser um Material Symbol pelo nome, ou um dos nossos
+     animados com o prefixo "regis:". A confirmação de que ela anotou é o
+     estudo 3, que toca uma vez e para no check escrito: confirmação que some
+     não confirma nada. */
+  function avisar(texto, icone){
+    if (!toast) return;
+    toast.textContent = "";
+    var ic;
+    if (icone && icone.indexOf("regis:") === 0 && window.Regis && Regis.icones){
+      ic = Regis.icones.criar(icone.slice(6), 21, true);
+    }
+    if (!ic){
+      ic = document.createElement("span");
+      ic.className = "material-symbols-outlined";
+      ic.textContent = (icone && icone.indexOf("regis:") === 0) ? "check_circle" : (icone || "check_circle");
+    }
+    var tx = document.createElement("span");
+    tx.textContent = texto;
+    toast.appendChild(ic);
+    toast.appendChild(tx);
+    toast.classList.add("on");
+    window.clearTimeout(toastRelogio);
+    toastRelogio = window.setTimeout(function(){ toast.classList.remove("on"); }, 3400);
+  }
+
+  /* O time testa pelo IP do VPS, que não é contexto seguro, e lá o
+     navigator.clipboard não existe. Por isso o caminho antigo fica. */
+  function copiarAntigo(texto){
+    try{
+      var area = document.createElement("textarea");
+      area.value = texto;
+      area.setAttribute("readonly", "");
+      area.style.position = "fixed";
+      area.style.top = "-1000px";
+      document.body.appendChild(area);
+      area.select();
+      var deu = document.execCommand("copy");
+      document.body.removeChild(area);
+      return deu;
+    }catch(err){ return false; }
+  }
+  function copiar(texto, quandoTerminar){
+    if (navigator.clipboard && window.isSecureContext){
+      navigator.clipboard.writeText(texto).then(
+        function(){ quandoTerminar(true); },
+        function(){ quandoTerminar(copiarAntigo(texto)); });
+    } else {
+      quandoTerminar(copiarAntigo(texto));
+    }
+  }
+
+  /* O que cada achado vira depois que ela diz que enviou. */
+  var ACOMPANHANDO = {
+    netflix: {
+      icone: "visibility",
+      titulo: "Acompanhando o estorno da Netflix",
+      texto: "Você enviou a contestação. Eu confiro todo dia e te aviso quando os R$ 55,90 voltarem.",
+      aviso: "Anotado. Fico de olho e te aviso quando o estorno cair."
+    }
+  };
+
+  var CHAVE_ENVIADOS = "regis-enviados";
+  function lerEnviados(){
+    try{ return JSON.parse(window.localStorage.getItem(CHAVE_ENVIADOS) || "[]"); }
+    catch(err){ return []; }
+  }
+  function gravarEnviado(chave){
+    try{
+      var lista = lerEnviados();
+      if (lista.indexOf(chave) === -1) lista.push(chave);
+      window.localStorage.setItem(CHAVE_ENVIADOS, JSON.stringify(lista));
+    }catch(err){}
+  }
+
+  function marcarAcompanhando(chave){
+    var estado = ACOMPANHANDO[chave];
+    if (!estado) return;
+    var itens = document.querySelectorAll(".item[data-achado='" + chave + "']");
+    for (var i=0;i<itens.length;i++){
+      var item = itens[i];
+      item.classList.remove("fact", "rule", "susp");
+      item.classList.add("watch");
+      var icone = item.querySelector(".mark .material-symbols-outlined");
+      if (icone) icone.textContent = estado.icone;
+      var h = item.querySelector(".itxt .h"); if (h) h.textContent = estado.titulo;
+      var p = item.querySelector(".itxt .p"); if (p) p.textContent = estado.texto;
+    }
+    /* Saiu uma das duas contestações, então o card do "Precisa de você"
+       desconta. R$ 93,90 eram 55,90 da Netflix mais 38,00 do repasse. */
+    if (chave === "netflix"){
+      var resumo = document.querySelector(".item[data-achado='resumo-contestacoes']");
+      if (resumo){
+        var rh = resumo.querySelector(".itxt .h");
+        var rp = resumo.querySelector(".itxt .p");
+        if (rh) rh.textContent = "1 contestação pronta";
+        if (rp) rp.textContent = "R$ 38,00 do repasse. É só conferir e enviar.";
+      }
+    }
+  }
+
+  /* #limpar na URL zera o que foi marcado, para o próximo teste do time. */
+  if (location.hash === "#limpar"){
+    try{ window.localStorage.removeItem(CHAVE_ENVIADOS); }catch(err){}
+  }
+  var jaEnviados = lerEnviados();
+  for (var k=0;k<jaEnviados.length;k++) marcarAcompanhando(jaEnviados[k]);
+
+  /* ----------------------------------------------------------------------
+     Onboarding: o estado antes de existir número.
+
+     Vive na URL como #conectar, mesma convenção do #vazio, para não entrar
+     na frente da demo por acidente. A promessa do pitch abre a tela e o
+     número só aparece depois da conexão, nunca antes.
+     ---------------------------------------------------------------------- */
+
+  var onb = document.getElementById("onb");
+  function passoOnb(nome){
+    if (!onb) return;
+    var ps = onb.querySelectorAll(".onb-passo");
+    for (var i=0;i<ps.length;i++) ps[i].classList.toggle("on", ps[i].dataset.passo === nome);
+  }
+  function fecharOnb(){
+    if (!onb) return;
+    onb.hidden = true;
+    /* o painel volta a carregar, então o número aparece sendo lido na hora */
+    var s = document.getElementById("skel");
+    if (s){
+      s.classList.remove("hide");
+      /* o anel volta a zero para encher de novo. Quem acabou de conectar
+         precisa ver o número chegando, não já chegado. */
+      var anel = document.getElementById("ring");
+      if (anel){ anel.classList.remove("go"); anel.style.strokeDashoffset = ""; }
+      window.setTimeout(acabouDeLer, 900);
+    }
+  }
+  function talvezAbrirOnb(){
+    if (location.hash === "#conectar" && onb){ passoOnb("convite"); onb.hidden = false; }
+  }
+  talvezAbrirOnb();
+  /* trocar só o hash não recarrega a página, e quem testa digita na URL */
+  window.addEventListener("hashchange", talvezAbrirOnb);
+
+  document.addEventListener("click", function(e){
+    var botao = e.target.closest("[data-acao]");
+    if (!botao) return;
+    var acao = botao.dataset.acao;
+
+    if (acao === "conectar"){
+      passoOnb("autorizando");
+      window.setTimeout(function(){ passoOnb("lendo"); }, 1700);
+      window.setTimeout(function(){
+        fecharOnb();
+        passoOnb("convite");
+        avisar("Conta conectada. Era só isso que eu precisava.", "link");
+      }, 3400);
+      return;
+    }
+
+    if (acao === "exemplo"){
+      fecharOnb();
+      passoOnb("convite");
+      avisar("Mostrando com dados de exemplo.", "science");
+      return;
+    }
+
+    if (acao === "copiar"){
+      var pane = botao.closest(".dpane");
+      var rascunho = pane && pane.querySelector(".draft");
+      if (!rascunho) return;
+      var original = botao.textContent;
+      copiar(rascunho.textContent.trim(), function(deu){
+        if (deu){
+          botao.textContent = "Copiado";
+          window.setTimeout(function(){ botao.textContent = original; }, 1800);
+          avisar("Texto copiado. É só colar no app do seu cartão.", "content_copy");
+        } else {
+          avisar("Não consegui copiar. Selecione o texto e copie na mão.", "error");
+        }
+      });
+      return;
+    }
+
+    if (acao === "enviei"){
+      var chave = botao.dataset.achado;
+      var estado = ACOMPANHANDO[chave];
+      marcarAcompanhando(chave);
+      gravarEnviado(chave);
+      closeDrawer();
+      avisar((estado && estado.aviso) || "Anotado. Fico de olho.", "regis:cerebro");
+    }
+  });
+</script>
+
+<script>
+/* Preenche a tela com o que o motor calculou (ui/dados.json).
+   Se o arquivo não existir, a tela fica com os valores escritos no HTML.
+   Para atualizar: python3 ui/gerar-dados.py */
+(function(){
+  function achar(obj, caminho){
+    return caminho.split(".").reduce(function(o,k){
+      return (o && o[k] !== undefined) ? o[k] : undefined; }, obj);
+  }
+  fetch("/api/estado", {cache:"no-store"}).catch(function(){ return fetch("dados.json",{cache:"no-store"}); })
+    .then(function(r){ if(!r.ok) throw new Error("sem dados.json"); return r.json(); })
+    .then(function(d){
+      /* versões curtas, sem centavos, para os números grandes */
+      var r = d.resumo || {};
+      r.faturado_curto = (r.faturado_txt || "").replace(/,\d\d$/, "");
+      r.teto_curto     = (r.teto_txt     || "").replace(/,\d\d$/, "");
+      r.falta_curto    = (r.falta_txt    || "").replace(/,\d\d$/, "");
+      r.percentual_txt = r.percentual ? String(r.percentual).replace(".", ",") + "%" : "";
+      d.resumo = r;
+
+      document.querySelectorAll("[data-regis]").forEach(function(el){
+        var v = achar(d, el.getAttribute("data-regis"));
+        if (v === undefined || v === null || v === "") return;
+        /* se este número está contando agora, mudo o alvo em vez do texto:
+           escrever por cima faria a contagem pular no meio do caminho */
+        if (el.dataset.contando) el.dataset.alvo = parseInt(String(v).replace(/\./g, ""), 10) || el.dataset.alvo;
+        else el.textContent = v;
+      });
+
+      /* O anel acompanha o percentual real. Só que o destino fica guardado e
+         quem pinta é a revelação, lá em cima. Escrever o stroke-dashoffset
+         aqui, na hora que o fetch volta, atropelava a classe .go e fazia o
+         anel encher por baixo do esqueleto: o movimento acontecia, ninguém
+         via. Se a revelação já passou, pinto agora mesmo. */
+      var anel = document.querySelector(".prog, #ring");
+      if (anel && r.percentual) {
+        var raio = parseFloat(anel.getAttribute("r") || 0);
+        if (raio) {
+          var volta = 2 * Math.PI * raio;
+          anel.setAttribute("stroke-dasharray", volta.toFixed(1));
+          anel.dataset.destino = (volta * (1 - r.percentual/100)).toFixed(1);
+          if (anel.classList.contains("go")) anel.style.strokeDashoffset = anel.dataset.destino;
+        }
+      }
+      /* o que a Regis achou e escolheu não falar */
+      var caixa = document.getElementById("silenciados");
+      var botao = document.getElementById("ver-silenciados");
+      if (caixa && d.silenciados && d.silenciados.length) {
+        caixa.innerHTML = d.silenciados.map(function(s){
+          return '<div style="display:flex;gap:9px;padding:9px 0;border-top:1px solid var(--line-soft)">'
+               + '<span class="material-symbols-outlined" style="font-size:17px;opacity:.45;flex:none">volume_off</span>'
+               + '<div><div style="font-weight:600;font-size:13px">' + s.titulo + '</div>'
+               + '<div class="knote" style="font-size:12px">' + (s.explicacao || "") + '</div></div></div>';
+        }).join("");
+        if (botao) {
+          botao.addEventListener("click", function(){
+            caixa.hidden = !caixa.hidden;
+            botao.textContent = caixa.hidden ? "Ver mesmo assim" : "Esconder de novo";
+          });
+        }
+      }
+      refletirAchados(d);
+      document.documentElement.setAttribute("data-fonte", "motor");
+    })
+    .catch(function(){ document.documentElement.setAttribute("data-fonte", "html"); });
+
+  /* Volta para a aba que estava aberta antes do recarregamento. */
+  try {
+    var abaSalva = sessionStorage.getItem("regis-aba");
+    if (abaSalva && TITLES[abaSalva] && abaSalva !== "hoje") show(abaSalva);
+  } catch (e) {}
+
+  /* Os cards abaixo são escritos à mão no HTML, e cada um carrega o id do
+     achado que representa. Aqui eles reagem ao que a pessoa respondeu no
+     Telegram: some da lista de achados quer dizer respondido, e aí o card
+     apaga em vez de sumir, porque sumir sem rastro parece bug. Quando ela
+     responde "não fui eu", o servidor promove a suspeita a fato, e o card
+     muda de cara para mostrar que virou coisa séria. */
+  function refletirAchados(d){
+    var porId = {};
+    (d.achados || []).forEach(function(a){ porId[a.id] = a; });
+    var cards = document.querySelectorAll("[data-achado]");
+    for (var i = 0; i < cards.length; i++){
+      var card = cards[i];
+      var achado = porId[card.dataset.achado];
+      var titulo = card.querySelector(".h");
+      var texto = card.querySelector(".p");
+      var icone = card.querySelector(".mark .material-symbols-outlined");
+      if (!achado){
+        card.classList.remove("susp", "rule", "fact");
+        card.classList.add("done");
+        if (icone) icone.textContent = "check_circle";
+        if (texto) texto.textContent = "Você respondeu no chat. Anotado, não pergunto mais.";
+      } else if (achado.confirmado_no_chat){
+        card.classList.remove("susp", "done", "rule");
+        card.classList.add("fact");
+        if (icone) icone.textContent = "priority_high";
+        if (titulo) titulo.textContent = achado.titulo;
+        if (texto) texto.textContent = "Você disse que não foi você. Preparei a contestação no chat.";
+      }
+    }
+  }
+
+  /* Fica olhando o servidor. Quando a Angela responde algo no Telegram, a
+     tela muda sozinha em poucos segundos. Não há selo dizendo que está ligada:
+     a prova é a tela mudar, e estado de sistema não é assunto de quem usa. */
+  var ultimo = null;
+  function checar(){
+    fetch("/api/estado", {cache:"no-store"})
+      .then(function(r){ return r.ok ? r.json() : null; })
+      .then(function(d){
+        if (!d) return;
+        var assinatura = JSON.stringify([d.contagem, d.aprendido_no_chat]);
+        if (ultimo !== null && assinatura !== ultimo) {
+          refletirAchados(d);
+          window.location.reload();
+          return;
+        }
+        ultimo = assinatura;
+      })
+      .catch(function(){ /* servidor fora do ar: a tela fica como está */ });
+  }
+  checar();
+  window.setInterval(checar, 3000);
+})();
+</script>
+</body>
+</html>

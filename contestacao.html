@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Contestação de cobrança em duplicidade</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FFFFFF; --ink:#0B100D; --soft:#69756D; --rule:#E1E7E2;
+    --go:#04663A; --go-bg:#E2F3EA; --go-rule:#A3C9B2; --brand:#00C46C;
+  }
+  @page{ size:A4; margin:22mm 20mm; }
+  *{ box-sizing:border-box; }
+  body{
+    margin:0; background:#EDEFEA; color:var(--ink);
+    font-family:"IBM Plex Sans",system-ui,sans-serif; font-size:12pt; line-height:1.6;
+  }
+  .sheet{
+    background:var(--paper); max-width:210mm; min-height:297mm; margin:20px auto;
+    padding:22mm 20mm; box-shadow:0 6px 30px rgba(27,32,25,.14);
+  }
+  @media print{ body{background:#fff;} .sheet{box-shadow:none;margin:0;min-height:auto;padding:0;} }
+
+  .brand{
+    display:flex; align-items:center; justify-content:space-between;
+    border-bottom:2px solid var(--ink); padding-bottom:10px; margin-bottom:26px;
+  }
+  .brand .logo{ height:21px; width:auto; display:block; }
+  .brand .tag{ font-family:"IBM Plex Mono",monospace; font-size:9pt; color:var(--soft);
+    text-transform:uppercase; letter-spacing:.12em; }
+
+  h1{ font-size:19pt; font-weight:700; line-height:1.15; margin:0 0 4px; }
+  .sub{ font-family:"IBM Plex Mono",monospace; font-size:9.5pt; color:var(--soft);
+    text-transform:uppercase; letter-spacing:.1em; margin:0 0 26px; }
+
+  .meta{ display:grid; grid-template-columns:auto 1fr; gap:4px 16px; margin:0 0 24px;
+    font-size:11pt; }
+  .meta .k{ font-family:"IBM Plex Mono",monospace; font-size:9pt; color:var(--soft);
+    text-transform:uppercase; letter-spacing:.08em; padding-top:2px; }
+
+  p{ margin:0 0 14px; max-width:52em; }
+
+  .evi{ border:1px solid var(--rule); background:#fff; margin:18px 0 20px; }
+  .evi .row{ display:flex; justify-content:space-between; align-items:center;
+    padding:11px 16px; border-bottom:1px solid var(--rule); font-size:11pt; }
+  .evi .row:last-child{ border-bottom:0; }
+  .evi .row.head{ background:var(--go-bg); color:var(--go); font-family:"IBM Plex Mono",monospace;
+    font-size:9pt; text-transform:uppercase; letter-spacing:.1em; }
+  .evi .when{ font-family:"IBM Plex Mono",monospace; }
+  .evi .val{ font-weight:600; font-variant-numeric:tabular-nums; }
+  .evi .flag{ color:var(--go); }
+
+  .ask{ font-weight:600; }
+  .sign{ margin-top:30px; }
+  .sign .who{ font-weight:600; }
+
+  .foot{
+    margin-top:34px; border-top:1px solid var(--rule); padding-top:14px;
+    font-family:"IBM Plex Mono",monospace; font-size:9pt; color:var(--soft); line-height:1.5;
+  }
+  .foot b{ color:var(--go); font-weight:500; }
+</style>
+</head>
+<body>
+<div class="sheet">
+
+  <div class="brand">
+    <img class="logo" src="idv/Regis%20Logo.svg" alt="Regis">
+    <div class="tag">Documento preparado · 29 ago 2026</div>
+  </div>
+
+  <h1>Contestação de cobrança em duplicidade</h1>
+  <p class="sub">Assinatura cobrada duas vezes no mesmo dia</p>
+
+  <div class="meta">
+    <div class="k">Para</div><div>A operadora do meu cartão</div>
+    <div class="k">De</div><div>Angela, titular do cartão</div>
+    <div class="k">Assunto</div><div>Estorno de uma cobrança em duplicidade, R$ 55,90</div>
+  </div>
+
+  <p>Prezados,</p>
+
+  <p>Solicito o estorno de uma cobrança que apareceu em duplicidade no meu cartão. A assinatura da Netflix, no valor de R$ 55,90, foi lançada duas vezes no mesmo dia 12 de agosto de 2026.</p>
+
+  <div class="evi">
+    <div class="row head"><span>Lançamento</span><span>Valor</span></div>
+    <div class="row"><span class="when">12/08/2026, 09:14 · NETFLIX.COM</span><span class="val">R$ 55,90</span></div>
+    <div class="row"><span class="when flag">12/08/2026, 21:47 · NETFLIX.COM</span><span class="val flag">R$ 55,90 (repetida)</span></div>
+  </div>
+
+  <p>Trata-se do mesmo serviço, cobrado duas vezes. <span class="ask">Peço o estorno de uma das cobranças, no valor de R$ 55,90.</span> Fico à disposição para enviar qualquer comprovante.</p>
+
+  <div class="sign">
+    <p>Atenciosamente,</p>
+    <p class="who">Angela</p>
+  </div>
+
+  <div class="foot">
+    Documento preparado pela Regis a partir do seu extrato. <b>A Regis não move dinheiro:</b> confira este texto e envie pelo aplicativo do seu cartão ou pela central de atendimento. Quando o estorno cair na conta, a Regis avisa você.
+  </div>
+
+</div>
+</body>
+</html>

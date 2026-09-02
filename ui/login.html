@@ -1,0 +1,150 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Entrar · Regis</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Karla:wght@400;500;600;700&display=swap">
+<style>
+  :root{
+    color-scheme:dark;
+    --ink:#F2F5F2; --mute:#8B968E; --faint:#68726B;
+    --bg:#070A08; --card:#111714; --linha:#212A24; --campo:#0C120F;
+    --green:#00C46C; --green-deep:#84E4B6; --green-wash:#0D2217; --on-green:#04170D;
+    --erro:#FF7A6B;
+    --d:"Manrope",-apple-system,BlinkMacSystemFont,sans-serif;
+    --b:"Karla",-apple-system,BlinkMacSystemFont,sans-serif;
+  }
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  html,body{height:100%}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--b);
+       display:flex;align-items:center;justify-content:center;padding:24px;
+       -webkit-font-smoothing:antialiased;
+       background-image:radial-gradient(ellipse 70% 50% at 50% -10%,rgba(0,196,108,.10),transparent 70%)}
+
+  .caixa{width:100%;max-width:372px;display:flex;flex-direction:column;gap:26px}
+
+  .marca{display:flex;flex-direction:column;align-items:center;gap:14px}
+  .marca img{width:96px;height:auto;display:block}
+  .marca .fala{font-size:14.5px;color:var(--mute);text-align:center;line-height:1.5;
+               max-width:29ch;text-wrap:balance}
+
+  form{background:var(--card);border:1px solid var(--linha);border-radius:20px;
+       padding:24px 22px;display:flex;flex-direction:column;gap:15px}
+  label{display:flex;flex-direction:column;gap:7px}
+  label span{font-family:var(--d);font-size:10.5px;font-weight:700;letter-spacing:.13em;
+             text-transform:uppercase;color:var(--mute)}
+  input{background:var(--campo);border:1px solid var(--linha);border-radius:12px;
+        padding:13px 15px;font-family:var(--b);font-size:15px;color:var(--ink);
+        transition:border-color .16s,box-shadow .16s;width:100%}
+  input::placeholder{color:var(--faint)}
+  input:focus{outline:none;border-color:var(--green);
+              box-shadow:0 0 0 3px rgba(0,196,108,.14)}
+  input:disabled{opacity:.5}
+
+  button{background:var(--green);color:var(--on-green);border:0;border-radius:12px;
+         padding:14px;font-family:var(--d);font-weight:800;font-size:15px;cursor:pointer;
+         transition:transform .12s,opacity .16s;margin-top:4px}
+  button:hover{opacity:.92}
+  button:active{transform:scale(.985)}
+  button:disabled{opacity:.55;cursor:default;transform:none}
+  button:focus-visible{outline:2px solid var(--green-deep);outline-offset:3px}
+
+  .erro{background:rgba(255,122,107,.10);border:1px solid rgba(255,122,107,.3);
+        color:var(--erro);border-radius:11px;padding:11px 13px;font-size:13.5px;
+        display:none}
+  .erro.on{display:block}
+
+  .nota{display:flex;gap:10px;align-items:flex-start;background:var(--green-wash);
+        border-radius:13px;padding:13px 15px;font-size:12.8px;color:var(--green-deep);
+        line-height:1.5}
+  .nota b{font-weight:700}
+  .nota .ic{flex:none;opacity:.8}
+
+  .rodape{text-align:center;font-size:12px;color:var(--faint);line-height:1.6}
+  .rodape a{color:var(--green-deep);text-decoration:none;border-bottom:1px solid transparent}
+  .rodape a:hover{border-bottom-color:currentColor}
+
+  @media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+<div class="caixa">
+
+  <div class="marca">
+    <img src="../idv/Regis%20Logo.svg" alt="Regis">
+    <p class="fala">Eu confiro o dinheiro que entra e sai da sua conta e te aviso quando algo não bate.</p>
+  </div>
+
+  <form id="form" autocomplete="off">
+    <div class="erro" id="erro"></div>
+
+    <label>
+      <span>Usuário</span>
+      <input id="usuario" name="usuario" type="text" placeholder="angela"
+             autocapitalize="none" autocorrect="off" spellcheck="false" required>
+    </label>
+
+    <label>
+      <span>Senha</span>
+      <input id="senha" name="senha" type="password" placeholder="••••••••" required>
+    </label>
+
+    <button type="submit" id="botao">Entrar</button>
+  </form>
+
+  <div class="nota">
+    <span class="ic">◍</span>
+    <div><b>Demonstração.</b> Uma conta só, a da Angela, com dados simulados de um salão. Não existe cadastro e nenhum dado real de ninguém passa por aqui.</div>
+  </div>
+
+  <p class="rodape">
+    A Regis também atende no Telegram, em
+    <a href="https://t.me/ChamaARegisBot" target="_blank" rel="noopener">@ChamaARegisBot</a>
+  </p>
+
+</div>
+
+<script>
+(function(){
+  var form = document.getElementById("form");
+  var erro = document.getElementById("erro");
+  var botao = document.getElementById("botao");
+  var usuario = document.getElementById("usuario");
+  var senha = document.getElementById("senha");
+
+  function mostrarErro(texto){
+    erro.textContent = texto;
+    erro.classList.add("on");
+    senha.focus();
+    senha.select();
+  }
+
+  form.addEventListener("submit", function(evento){
+    evento.preventDefault();
+    erro.classList.remove("on");
+    botao.disabled = true;
+    botao.textContent = "Entrando...";
+
+    fetch("/api/entrar", {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify({usuario: usuario.value, senha: senha.value})
+    })
+    .then(function(r){ return r.json(); })
+    .then(function(d){
+      if (d && d.ok) {
+        var destino = new URLSearchParams(location.search).get("de");
+        location.href = destino || "/regis-app.html";
+        return;
+      }
+      botao.disabled = false;
+      botao.textContent = "Entrar";
+      mostrarErro("Usuário ou senha não conferem. Confere com o time.");
+    })
+    .catch(function(){
+      botao.disabled = false;
+      botao.textContent = "Entrar";
+      mostrarErro("Não consegui falar com o servidor. Tenta de novo.");
+    });
+  });
+
+  usuario.focus();
+})();
+</script>

@@ -1,0 +1,4 @@
+# A única dependência da Regis, e ela é opcional.
+# Serve para a conversa livre com IA (bot/conversa_ia.py). Sem ela instalada o
+# bot sobe igual e responde só pelo caminho determinístico.
+anthropic>=0.125.0

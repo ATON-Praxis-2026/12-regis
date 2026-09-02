@@ -1,0 +1,12 @@
+.DS_Store
+# dado bruto do forms com respostas identificaveis: fica local, o .md anonimizado vai
+pesquisa do grupo/respostas-forms/*.csv
+pesquisa do grupo/respostas-forms/*.zip
+
+# segredos locais: token do bot, chave da API. Nunca versionar.
+.env
+bot/.env
+*.env
+!.env.exemplo
+
+# gerado por ui/gerar-dados.py, nao editar a mao

@@ -1,0 +1,472 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="De-para entre os cinco horizontes da visao da Regis e as 22 features do roadmap: o filtro de entrada, o mapa por horizonte, a cadeia de dependencia e o que fica de fora com a constante que cada exclusao protege.">
+<meta name="color-scheme" content="light dark">
+<title>Da Visão à Feature</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+
+<style>
+:root{
+  --bg:#EDEFEA; --surface:#FBFCF9; --surface-2:#E4E8E1;
+  --ink:#141A16; --ink-2:#5C6660; --ink-3:#8A938D;
+  --rule:#D3D8CE; --rule-soft:#E1E5DC;
+  --accent:#17564A; --accent-soft:#D6E4DC;
+  --hot:#A8341F; --hot-soft:#F0DCD6;
+  --warm:#8F5E0E; --warm-soft:#EFE3C9;
+  --shadow:0 1px 2px rgba(20,26,22,.05), 0 8px 24px -16px rgba(20,26,22,.22);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0F1211; --surface:#171B18; --surface-2:#242A25;
+    --ink:#E7EBE4; --ink-2:#A2AA9F; --ink-3:#767E74;
+    --rule:#2A302B; --rule-soft:#232823;
+    --accent:#63C8AC; --accent-soft:#1C302A;
+    --hot:#E8785F; --hot-soft:#33201B;
+    --warm:#DFA847; --warm-soft:#2E2717;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -16px rgba(0,0,0,.7);
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0F1211; --surface:#171B18; --surface-2:#242A25;
+  --ink:#E7EBE4; --ink-2:#A2AA9F; --ink-3:#767E74;
+  --rule:#2A302B; --rule-soft:#232823;
+  --accent:#63C8AC; --accent-soft:#1C302A;
+  --hot:#E8785F; --hot-soft:#33201B;
+  --warm:#DFA847; --warm-soft:#2E2717;
+  --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -16px rgba(0,0,0,.7);
+}
+
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--bg);color:var(--ink);
+  font-family:"IBM Plex Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  font-size:16.5px;line-height:1.62;margin:0;-webkit-font-smoothing:antialiased}
+img,svg,video{max-width:100%;height:auto}
+.wrap{max-width:1000px;margin:0 auto;padding:0 28px 92px}
+h1,h2,h3{font-family:Newsreader,Georgia,"Times New Roman",serif;font-weight:500;text-wrap:balance;margin:0}
+p{margin:0}
+a{color:var(--accent);text-decoration-thickness:1px;text-underline-offset:2px}
+a:focus-visible,summary:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:2px}
+.eyebrow{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:11.5px;font-weight:500;
+  letter-spacing:.13em;text-transform:uppercase;color:var(--ink-3)}
+
+header.mast{padding:60px 0 0}
+.kicker{display:flex;flex-wrap:wrap;gap:9px;align-items:center;margin-bottom:24px}
+.tag{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;
+  padding:4px 9px;border:1px solid var(--rule);border-radius:2px;color:var(--ink-2)}
+.tag.on{background:var(--accent);border-color:var(--accent);color:var(--bg)}
+h1{font-size:clamp(42px,7.6vw,78px);line-height:1.0;letter-spacing:-.022em}
+h1 em{font-style:italic;color:var(--hot)}
+.standfirst{font-family:Newsreader,Georgia,serif;font-size:clamp(19px,2.4vw,23px);line-height:1.5;
+  color:var(--ink-2);max-width:60ch;margin-top:22px}
+.byline{display:flex;flex-wrap:wrap;gap:8px 22px;margin-top:32px;padding-top:18px;border-top:1px solid var(--rule);
+  font-family:"IBM Plex Mono",monospace;font-size:11.5px;letter-spacing:.06em;color:var(--ink-3);text-transform:uppercase}
+
+.verdict-block{margin-top:36px;border-left:4px solid var(--accent);background:var(--accent-soft);padding:26px 28px}
+.verdict-block .eyebrow{color:var(--accent);margin-bottom:12px;display:block}
+.verdict-block p{font-family:Newsreader,Georgia,serif;font-size:clamp(21px,3vw,28px);line-height:1.34;color:var(--ink)}
+
+section{padding-top:58px}
+.shead{display:flex;align-items:baseline;gap:16px;flex-wrap:wrap;padding-bottom:8px}
+.shead h2{font-size:clamp(28px,4vw,40px);letter-spacing:-.015em;line-height:1.11}
+.sdek{max-width:68ch;color:var(--ink-2);margin-top:15px;font-size:16px}
+.sdek strong{color:var(--ink);font-weight:600}
+.sdek+.sdek{margin-top:12px}
+
+/* filtro: quatro portoes */
+.gates{margin-top:30px;display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--rule);border:1px solid var(--rule)}
+.gate{background:var(--surface);padding:20px 18px;display:flex;flex-direction:column;gap:9px}
+.gate .n{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.1em;color:var(--accent);font-weight:600}
+.gate h3{font-size:17px;line-height:1.28;letter-spacing:-.01em}
+.gate p{font-size:13.6px;color:var(--ink-2);line-height:1.45}
+.gatefoot{margin-top:16px;padding:16px 20px;border:1px dashed var(--rule);background:var(--surface);
+  font-size:15px;color:var(--ink-2);line-height:1.6}
+.gatefoot b{color:var(--ink);font-weight:600}
+
+/* o mapa: horizonte para features */
+.band{margin-top:26px;border:1px solid var(--rule);background:var(--surface);box-shadow:var(--shadow)}
+.band .bh{padding:20px 24px 18px;border-bottom:1px solid var(--rule);display:grid;grid-template-columns:78px 1fr;gap:20px;align-items:start}
+.band .bh .hz{font-family:"IBM Plex Mono",monospace;font-size:22px;font-weight:600;color:var(--accent);line-height:1;padding-top:3px}
+.band .bh .when{display:block;font-size:9.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-3);font-weight:400;margin-top:7px}
+.band .bh h3{font-size:clamp(20px,2.6vw,25px);letter-spacing:-.014em;line-height:1.2}
+.band .bh .q{margin-top:7px;font-size:14.6px;color:var(--ink-2);line-height:1.5}
+.band .bh .q b{color:var(--ink);font-weight:600}
+.feats{display:grid;gap:1px;background:var(--rule-soft)}
+.feat{background:var(--surface);padding:15px 24px;display:grid;grid-template-columns:34px 1fr 132px;gap:16px;align-items:baseline}
+.feat .fn{font-family:"IBM Plex Mono",monospace;font-size:12.5px;color:var(--ink-3);font-variant-numeric:tabular-nums;padding-top:2px}
+.feat .ft{font-size:15px;color:var(--ink);line-height:1.45}
+.feat .ft span{display:block;font-size:13.4px;color:var(--ink-2);margin-top:3px;line-height:1.45}
+.feat .lv{font-family:"IBM Plex Mono",monospace;font-size:9.5px;letter-spacing:.09em;text-transform:uppercase;
+  text-align:right;padding-top:4px}
+.lv.fato{color:var(--accent)} .lv.regra{color:var(--warm)} .lv.susp{color:var(--ink-3)}
+.lv.comp{color:var(--hot)} .lv.infra{color:var(--ink-3)}
+.feat.p0{background:var(--accent-soft)}
+.feat.p0 .fn{color:var(--accent);font-weight:600}
+.band .done{padding:14px 24px;border-top:1px solid var(--rule-soft);font-size:14px;color:var(--ink-2);line-height:1.5}
+.band .done b{color:var(--ink);font-weight:600}
+
+/* faixa de niveis */
+.levels{margin-top:30px;display:grid;grid-template-columns:repeat(auto-fit,minmax(168px,1fr));gap:1px;background:var(--rule);border:1px solid var(--rule)}
+.lvbox{background:var(--surface);padding:20px 18px;display:flex;flex-direction:column;gap:7px}
+.lvbox .fig{font-family:"IBM Plex Mono",monospace;font-size:34px;line-height:1;font-weight:500;letter-spacing:-.03em}
+.lvbox.a .fig{color:var(--accent)} .lvbox.b .fig{color:var(--warm)}
+.lvbox.c .fig{color:var(--ink-3)} .lvbox.d .fig{color:var(--hot)} .lvbox.e .fig{color:var(--ink-3)}
+.lvbox .lab{font-size:14.4px;color:var(--ink);line-height:1.4}
+.lvbox .sub{font-size:13.2px;color:var(--ink-2);line-height:1.45}
+
+/* cadeia de dependencia */
+.dep{margin-top:30px;border:1px solid var(--rule);background:var(--surface);padding:26px 28px;box-shadow:var(--shadow)}
+.node{padding:9px 0 9px 20px;border-left:2px solid var(--rule);margin-left:6px}
+.node.root{border-left:0;margin-left:0;padding-left:0}
+.node .nm{font-size:15.4px;color:var(--ink);font-weight:600;line-height:1.4}
+.node .nm em{font-style:normal;font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--ink-3);margin-left:9px;font-weight:400}
+.node .why{font-size:13.8px;color:var(--ink-2);line-height:1.45;margin-top:2px}
+.node.key{border-left-color:var(--accent)}
+.node.key .nm{color:var(--accent)}
+
+/* fora do roadmap */
+.tblwrap{margin-top:28px;border:1px solid var(--rule);overflow-x:auto}
+table{border-collapse:collapse;width:100%;min-width:680px;background:var(--surface)}
+th{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--ink-3);text-align:left;padding:13px 16px;border-bottom:1px solid var(--rule);font-weight:500}
+td{padding:15px 16px;border-bottom:1px solid var(--rule-soft);font-size:14.6px;vertical-align:top;line-height:1.5;color:var(--ink-2)}
+tr:last-child td{border-bottom:0}
+td.f{color:var(--ink);font-weight:600}
+td.c{font-family:"IBM Plex Mono",monospace;font-size:11.5px;color:var(--hot);white-space:nowrap}
+
+/* decisoes abertas */
+.opens{margin-top:26px;display:grid;gap:14px}
+.open{border:1px solid var(--rule);background:var(--surface);padding:20px 24px;display:grid;
+  grid-template-columns:44px 1fr;gap:20px}
+.open .rank{font-family:"IBM Plex Mono",monospace;font-size:24px;font-weight:500;color:var(--warm);line-height:1;padding-top:4px}
+.open h3{font-size:19px;letter-spacing:-.012em;margin-bottom:7px;line-height:1.25}
+.open p{color:var(--ink-2);font-size:15px}
+.open p+p{margin-top:9px}
+.open .rec{margin-top:11px;padding:11px 15px;background:var(--surface-2);border-left:2px solid var(--accent);
+  font-size:14.4px;color:var(--ink);line-height:1.5}
+
+.callout{margin-top:26px;padding:20px 24px;border:1px dashed var(--rule);background:var(--surface);
+  font-size:15.2px;line-height:1.62;color:var(--ink-2)}
+.callout strong{color:var(--ink);font-weight:600}
+
+footer{margin-top:62px;padding-top:20px;border-top:1px solid var(--rule);
+  font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.07em;text-transform:uppercase;
+  color:var(--ink-3);display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+
+@media (max-width:860px){
+  .gates{grid-template-columns:repeat(2,1fr)}
+}
+@media (max-width:740px){
+  .wrap{padding:0 20px 72px}
+  .feat{grid-template-columns:28px 1fr;gap:12px}
+  .feat .lv{grid-column:2;text-align:left;padding-top:0}
+  .band .bh{grid-template-columns:1fr;gap:8px}
+  .open{grid-template-columns:1fr;gap:8px}
+  .open .rank{padding-top:0}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none !important;transition:none !important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="mast">
+  <div class="kicker">
+    <span class="tag on">Mapa</span>
+    <span class="tag">Visão &rarr; Roadmap</span>
+    <span class="tag">30 de agosto de 2026</span>
+  </div>
+  <h1>Da visão<br>à <em>feature</em>.</h1>
+  <p class="standfirst">Os cinco horizontes de um lado, as 22 features do outro, e a linha que liga cada uma ao horizonte que ela empurra. Mais o filtro que toda feature atravessa antes de entrar, e a lista do que fica de fora com a constante que cada exclusão protege.</p>
+  <div class="byline">
+    <span>Une VISAO.md e ROADMAP.md</span>
+    <span>Documento de proposta</span>
+    <span>Time 12</span>
+  </div>
+
+  <div class="verdict-block">
+    <span class="eyebrow">A regra deste documento</span>
+    <p>Cada feature existe para empurrar um horizonte. Feature que não empurra nenhum não entra, por melhor que pareça.</p>
+  </div>
+</header>
+
+<section id="filtro">
+  <div class="shead">
+    <span class="eyebrow">01 &middot; Antes da prioridade</span>
+    <h2>O filtro de entrada</h2>
+  </div>
+  <p class="sdek">Prioridade é a segunda conversa. A primeira é se a feature tem direito de existir. São quatro perguntas, e <strong>falhou uma, não entra</strong>. É o que impede o roadmap de virar um app de finanças comum em seis meses.</p>
+
+  <div class="gates">
+    <div class="gate">
+      <span class="n">01</span>
+      <h3>Encurta o tempo até a pessoa saber?</h3>
+      <p>É a métrica do norte. O produto não muda o valor da cobrança, muda o tempo entre o dinheiro se mexer e alguém perceber.</p>
+    </div>
+    <div class="gate">
+      <span class="n">02</span>
+      <h3>Nasce com nível de certeza declarado?</h3>
+      <p>Fato ela resolve, regra ela encaminha, suspeita ela pergunta. Feature sem nível vira feed de alertas, que é o que o produto existe para não ser.</p>
+    </div>
+    <div class="gate">
+      <span class="n">03</span>
+      <h3>Respeita as quatro constantes?</h3>
+      <p>Não move dinheiro, fala primeiro, zero entrada manual no fluxo principal, nunca ajuda a esconder faturamento.</p>
+    </div>
+    <div class="gate">
+      <span class="n">04</span>
+      <h3>Funciona sem a pessoa abrir nada?</h3>
+      <p>O usuário pode nunca abrir o app, e tudo bem. Se a feature só existe em tela, ela não existe.</p>
+    </div>
+  </div>
+
+  <p class="gatefoot"><b>Como usar na prática:</b> quando alguém propuser uma feature, ler as quatro em voz alta antes de discutir esforço. A maioria das ideias boas morre na 3 ou na 4, e morrer ali economiza uma sprint.</p>
+</section>
+
+<section id="mapa">
+  <div class="shead">
+    <span class="eyebrow">02 &middot; O de-para</span>
+    <h2>O mapa</h2>
+  </div>
+  <p class="sdek">Cada faixa é um horizonte da visão, com a pergunta que ele responde e as features que respondem. O nível de certeza vem na direita, porque é ele que define o comportamento. As linhas destacadas são as <strong>P0</strong>: sem elas, o resto do horizonte não acontece.</p>
+
+  <div class="band">
+    <div class="bh">
+      <div class="hz">H0<span class="when">Hoje</span></div>
+      <div>
+        <h3>Uma conversa que revela um número</h3>
+        <p class="q">Responde: <b>o número pode ser entregue sem configuração?</b></p>
+      </div>
+    </div>
+    <div class="feats">
+      <div class="feat"><span class="fn">·</span><span class="ft">Identificação de contraparte<span>Descritor bruto vira quem é de verdade, com regras de gateway, imposto, tarifa e antecipação</span></span><span class="lv infra">habilita tudo</span></div>
+      <div class="feat"><span class="fn">·</span><span class="ft">Duplicidade, recorrência e desvio de valor<span>Assinatura fantasma, cancelamento não honrado, reajuste silencioso</span></span><span class="lv fato">fato</span></div>
+      <div class="feat"><span class="fn">·</span><span class="ft">Conciliação de venda contra repasse<span>Cruza o que foi vendido com o que caiu</span></span><span class="lv fato">fato</span></div>
+      <div class="feat"><span class="fn">·</span><span class="ft">Motor fiscal<span>Acumulado do ano, projeção de estouro, DAS por competência</span></span><span class="lv regra">regra</span></div>
+      <div class="feat"><span class="fn">·</span><span class="ft">Suspeita e silenciamento<span>Contraparte sem histórico, e o que já foi respondido não volta a perguntar</span></span><span class="lv susp">suspeita</span></div>
+    </div>
+    <p class="done"><b>Está no repositório</b>, em <code>motor/</code> e <code>bot/</code>. E a dívida também: os limiares de 24 horas e de 28 a 31 dias nunca foram testados contra dado real.</p>
+  </div>
+
+  <div class="band">
+    <div class="bh">
+      <div class="hz">H1<span class="when">90 dias</span></div>
+      <div>
+        <h3>Trocar o simulado pelo real</h3>
+        <p class="q">Responde: <b>funciona com dado real e com o ICP de verdade?</b></p>
+      </div>
+    </div>
+    <div class="feats">
+      <div class="feat p0"><span class="fn">01</span><span class="ft">Conexão Open Finance de verdade<span>Consentimento, renovação, múltiplas contas, conta que caiu</span></span><span class="lv infra">infraestrutura</span></div>
+      <div class="feat p0"><span class="fn">02</span><span class="ft">Importar 12 meses retroativos na conexão<span>É o que permite abrir afirmando um número, em vez de pedir três meses de paciência. Resolve de graça o que é normal no dia 1</span></span><span class="lv fato">fato e regra</span></div>
+      <div class="feat p0"><span class="fn">03</span><span class="ft">Canal WhatsApp<span>Meta Cloud API no lugar do Telegram. A camada de canal já está isolada, é troca e não reconstrução</span></span><span class="lv infra">canal</span></div>
+      <div class="feat p0"><span class="fn">04</span><span class="ft">Orçamento de fala<span>Limite duro por semana, uma pergunta por vez, suspeita agrupada e adiada</span></span><span class="lv comp">comportamento</span></div>
+      <div class="feat"><span class="fn">05</span><span class="ft">Contraparte aprendida com persistência<span>"Foi eu" nunca é perguntado duas vezes, entre sessões</span></span><span class="lv susp">aprendizado</span></div>
+      <div class="feat"><span class="fn">06</span><span class="ft">Painel de precisão interno<span>Acerto e falso positivo por detector, contra extrato real. Sem isso, aumentar autonomia é chute</span></span><span class="lv infra">interno</span></div>
+      <div class="feat"><span class="fn">07</span><span class="ft">Resumo de tranquilidade<span>"Conferido, nada pendente, R$ X encontrados"</span></span><span class="lv comp">comportamento</span></div>
+    </div>
+  </div>
+
+  <div class="band">
+    <div class="bh">
+      <div class="hz">H2<span class="when">Ano 1</span></div>
+      <div>
+        <h3>Reconciliar as quatro portas</h3>
+        <p class="q">Responde: <b>dá para somar o faturamento inteiro, e não só o que passou pela conta?</b></p>
+      </div>
+    </div>
+    <div class="feats">
+      <div class="feat"><span class="fn">08</span><span class="ft">Reconciliação de adquirente<span>Reconstrói o bruto a partir do líquido. É a tese que nunca foi a campo, então esta feature é o teste dela</span></span><span class="lv fato">fato</span></div>
+      <div class="feat"><span class="fn">09</span><span class="ft">Reconciliação de marketplace<span>Mesma lógica, com retenção e prazo de repasse</span></span><span class="lv fato">fato</span></div>
+      <div class="feat p0"><span class="fn">10</span><span class="ft">Receita de atividade no Pix do CPF<span>Separa venda de dinheiro pessoal sem pedir categorização. Atende os 97% de MEIs que usam Pix, não só o recorte de maquininha</span></span><span class="lv susp">suspeita que vira regra</span></div>
+      <div class="feat"><span class="fn">11</span><span class="ft">Declaração de margem<span>A Regis diz o tamanho do que ela não vê. Um produto que informa a própria margem de erro é mais confiável que um que arredonda</span></span><span class="lv comp">comportamento</span></div>
+      <div class="feat"><span class="fn">12</span><span class="ft">A segunda pessoa vira superfície<span>Relatório mensal indo sozinho para quem organiza, e acesso próprio para ela</span></span><span class="lv infra">saída</span></div>
+      <div class="feat"><span class="fn">13</span><span class="ft">Preparação da DASN<span>Montar a declaração anual com o número reconciliado. Preparar, nunca enviar</span></span><span class="lv regra">regra</span></div>
+      <div class="feat"><span class="fn">14</span><span class="ft">Auditoria do silêncio<span>Registro do que ela achou e escolheu não mandar, com o motivo</span></span><span class="lv comp">comportamento</span></div>
+    </div>
+  </div>
+
+  <div class="band">
+    <div class="bh">
+      <div class="hz">H3<span class="when">Anos 2 e 3</span></div>
+      <div>
+        <h3>A travessia</h3>
+        <p class="q">Responde: <b>a Regis atravessa o teto junto, em vez de perder a pessoa ali?</b></p>
+      </div>
+    </div>
+    <div class="feats">
+      <div class="feat"><span class="fn">15</span><span class="ft">Simulador de travessia<span>"Se você fechar o ano em R$ X, isto muda no seu imposto." Nunca sugere segurar nota</span></span><span class="lv regra">regra</span></div>
+      <div class="feat"><span class="fn">16</span><span class="ft">Dossiê de desenquadramento<span>O ano inteiro reconciliado, no formato que a contadora precisa. É a vantagem estrutural sobre a contabilidade, que recebe a pessoa sem histórico</span></span><span class="lv regra">regra</span></div>
+      <div class="feat p0"><span class="fn">17</span><span class="ft">Régua parametrizável<span>O motor deixa de conhecer um teto e passa a conhecer um conjunto: MEI, nanoempreendedor, ME e EPP. É o que protege o produto se o teto subir para R$ 150 mil</span></span><span class="lv regra">regra</span></div>
+      <div class="feat"><span class="fn">18</span><span class="ft">Acompanhamento pós migração<span>Régua nova e obrigações novas: nota fiscal com IBS e CBS em 2027, decisão do regime híbrido</span></span><span class="lv regra">regra</span></div>
+      <div class="feat"><span class="fn">19</span><span class="ft">Laudo de faturamento, com trava<span>Emitido a pedido da pessoa. A Regis nunca oferece crédito nem recebe por indicação</span></span><span class="lv fato">fato</span></div>
+    </div>
+  </div>
+
+  <div class="band">
+    <div class="bh">
+      <div class="hz">H4<span class="when">Destino</span></div>
+      <div>
+        <h3>A camada de apuração</h3>
+        <p class="q">Responde: <b>a Regis roda dentro de quem já tem a base?</b></p>
+      </div>
+    </div>
+    <div class="feats">
+      <div class="feat"><span class="fn">20</span><span class="ft">API de apuração<span>Entra movimentação, sai o número, os achados com nível de certeza e os documentos. Sem interface, sem marca</span></span><span class="lv infra">infraestrutura</span></div>
+      <div class="feat"><span class="fn">21</span><span class="ft">Conversa embarcada<span>O parceiro põe a marca dele. Não disputamos o canal, disputamos o trabalho: rodar dentro do Jota ou da Magie é vitória, não derrota</span></span><span class="lv infra">infraestrutura</span></div>
+      <div class="feat"><span class="fn">22</span><span class="ft">Multi régua e multi regime<span>O mesmo motor servindo a base inteira do parceiro, não só um recorte</span></span><span class="lv infra">infraestrutura</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="niveis">
+  <div class="shead">
+    <span class="eyebrow">03 &middot; O que o mapa revela</span>
+    <h2>Quatro features para calar, duas para perguntar</h2>
+  </div>
+  <p class="sdek">Classificando as 22 features numeradas por natureza, aparece uma proporção que não foi planejada e que descreve bem o produto: <strong>a Regis investe mais em não falar do que em perguntar.</strong> É a tese da fronteira da certeza virando alocação de esforço.</p>
+
+  <div class="levels">
+    <div class="lvbox a">
+      <span class="fig">4</span>
+      <span class="lab">Resolvem sozinhas</span>
+      <span class="sub">Fato. Entregam a ação pronta, sem baseline e sem configuração.</span>
+    </div>
+    <div class="lvbox b">
+      <span class="fig">5</span>
+      <span class="lab">Encaminham</span>
+      <span class="sub">Regra. Explicam as opções e passam a decisão para a pessoa ou para a contadora.</span>
+    </div>
+    <div class="lvbox c">
+      <span class="fig">2</span>
+      <span class="lab">Perguntam e aprendem</span>
+      <span class="sub">Suspeita. Uma frase, e a resposta move a fronteira da certeza.</span>
+    </div>
+    <div class="lvbox d">
+      <span class="fig">4</span>
+      <span class="lab">Existem para ela falar menos</span>
+      <span class="sub">Comportamento. Orçamento de fala, resumo, declaração de margem e auditoria do silêncio.</span>
+    </div>
+    <div class="lvbox e">
+      <span class="fig">7</span>
+      <span class="lab">Não aparecem para ninguém</span>
+      <span class="sub">Infraestrutura, canal e saída. Conexão, WhatsApp, painel de precisão, a contadora e a camada do H4.</span>
+    </div>
+  </div>
+
+  <div class="callout">
+    <strong>É a métrica de maturidade virando roadmap:</strong> a qualidade da Regis não é quantos alertas ela manda, é quantos ela deixou de precisar mandar. Quatro features inteiras servem a isso, e nenhuma delas aparece numa lista de funcionalidades de concorrente.
+  </div>
+</section>
+
+<section id="dependencia">
+  <div class="shead">
+    <span class="eyebrow">04 &middot; A ordem</span>
+    <h2>O que destrava o quê</h2>
+  </div>
+  <p class="sdek">O esforço não se divide por anomalia, ele se concentra em poucas peças. Quem lê o roadmap como lista de 22 itens paralelos vai priorizar errado.</p>
+
+  <div class="dep">
+    <div class="node root">
+      <p class="nm">Identificação de contraparte <em>já de pé</em></p>
+      <p class="why">É o pré-requisito de quase tudo, e é onde o LLM ganha de regex.</p>
+      <div class="node">
+        <p class="nm">Duplicidade, recorrência e valor <em>fato · já de pé</em></p>
+      </div>
+      <div class="node">
+        <p class="nm">Conciliação de venda contra repasse <em>fato</em></p>
+        <p class="why">Só fica completa com as features 08 e 09, que leem o lado da venda.</p>
+      </div>
+      <div class="node">
+        <p class="nm">Motor fiscal <em>regra · já de pé</em></p>
+        <div class="node">
+          <p class="nm">Régua parametrizável <em>feature 17</em></p>
+          <p class="why">Protege o produto contra mudança de lei e abre o nanoempreendedor e o ME.</p>
+          <div class="node">
+            <p class="nm">Multi regime <em>feature 22</em></p>
+            <p class="why">É o que o parceiro de distribuição compra.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="node key" style="margin-top:22px">
+      <p class="nm">Importar 12 meses retroativos na conexão <em>feature 02</em></p>
+      <p class="why">Não depende de nada e faz tudo o que está acima funcionar já na primeira mensagem. É barata, é a que ninguém lembra, e é a que eu construiria primeiro depois do hackathon.</p>
+    </div>
+  </div>
+</section>
+
+<section id="fora">
+  <div class="shead">
+    <span class="eyebrow">05 &middot; A outra metade do roadmap</span>
+    <h2>O que fica de fora, e o que isso protege</h2>
+  </div>
+  <p class="sdek">Cada uma destas alguém vai pedir, provavelmente no dia 90. A coluna da direita é o motivo, e ela quase sempre aponta para uma das quatro constantes.</p>
+
+  <div class="tblwrap">
+    <table>
+      <thead><tr><th>Feature pedida</th><th>Protege</th><th>Por quê</th></tr></thead>
+      <tbody>
+        <tr><td class="f">Categorização manual de gastos</td><td class="c">constante 3</td><td>Perde para o caderno por construção. Quem depende de registro não acha o que a pessoa não sabe que existe.</td></tr>
+        <tr><td class="f">Orçamento e metas</td><td class="c">constante 2</td><td>Orçar pressupõe que você vai abrir. Nosso usuário não abre. É o trabalho do ALL, não o nosso.</td></tr>
+        <tr><td class="f">Cancelar assinatura, contestar, pagar o DAS</td><td class="c">constante 1</td><td>Move dinheiro ou age em nome da pessoa. A Regis prepara, a pessoa executa.</td></tr>
+        <tr><td class="f">Conta digital, cartão, rendimento</td><td class="c">constante 1</td><td>Vira Jota e Magie, com menos dinheiro e menos estrada. E quem é conta quer o saldo dentro dela.</td></tr>
+        <tr><td class="f">Oferta de crédito</td><td class="c">constante 1</td><td>Mata a credibilidade do número. Só laudo a pedido, que é a feature 19.</td></tr>
+        <tr><td class="f">Otimização fiscal</td><td class="c">constante 4</td><td>Segurar nota, dividir entrada ou atrasar recebimento. A Regis mede o que entra, não o que foi declarado.</td></tr>
+        <tr><td class="f">Antifraude</td><td class="c">posicionamento</td><td>O banco pega primeiro e antifraude de emissor é maduro. Não competir.</td></tr>
+        <tr><td class="f">Feed de alertas</td><td class="c">tese inteira</td><td>Tela com mais de 5 itens sem hierarquia de certeza é o produto virando o que ele existe para não ser.</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section id="decisoes">
+  <div class="shead">
+    <span class="eyebrow">06 &middot; Em aberto</span>
+    <h2>As três que o roadmap não decide sozinho</h2>
+  </div>
+  <p class="sdek">São decisões de produto e de tom, não de engenharia. Deixá-las implícitas no código é como elas costumam ser decididas por acidente.</p>
+
+  <div class="opens">
+    <div class="open">
+      <span class="rank">1</span>
+      <div>
+        <h3>O dinheiro em espécie</h3>
+        <p>Não tem trilha, e para comércio de bairro pode ser fatia grande do faturamento. Ou a Regis declara a margem e aceita ficar cega, ou abre uma exceção à regra de zero entrada manual com uma pergunta agregada por semana.</p>
+        <p class="rec"><b>Recomendação:</b> declarar a margem e não perguntar. Pergunta semanal é gesto recorrente, e gesto recorrente é exatamente o que perde para o caderno.</p>
+      </div>
+    </div>
+    <div class="open">
+      <span class="rank">2</span>
+      <div>
+        <h3>Até onde a inferência de receita no CPF vai sem perguntar</h3>
+        <p>Errar para mais assusta a pessoa com um teto que ela não estourou. Errar para menos é o erro perigoso, o que ela descobre em maio, tarde demais.</p>
+        <p class="rec"><b>Precisa de:</b> uma política explícita de quando inferir e quando perguntar, não um limiar escolhido dentro do código.</p>
+      </div>
+    </div>
+    <div class="open">
+      <span class="rank">3</span>
+      <div>
+        <h3>Quantas mensagens por semana é o teto</h3>
+        <p>Define se a Regis vira presença ou vira spam. É a decisão que sustenta a feature 04, o orçamento de fala.</p>
+        <p class="rec"><b>Estado:</b> já está sendo respondida na prática dentro do bot, onde a conferência foi fechada em três mensagens. Vale subir isso de detalhe de implementação para regra escrita.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span>Regis &middot; Time 12 &middot; Hackathon Vanguarda</span>
+  <span>Da visão à feature &middot; 30 ago 2026</span>
+</footer>
+
+</div>
+</body>
+</html>

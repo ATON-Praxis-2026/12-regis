@@ -1,0 +1,116 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Regis · Telas</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Karla:wght@400;500;600&display=swap">
+<style>
+  :root{
+    color-scheme:light;
+    --ink:#0B100D; --mute:#69756D; --faint:#98A39C;
+    --bg:#F1F4F1; --card:#FFFFFF; --line:#E1E7E2;
+    --green:#00A65C; --green-deep:#04663A; --green-wash:#E2F3EA; --on-green:#FFFFFF;
+    --font-d:"Manrope",-apple-system,BlinkMacSystemFont,sans-serif;
+    --font-b:"Karla",-apple-system,BlinkMacSystemFont,sans-serif;
+  }
+  @media (prefers-color-scheme:dark){
+    :root:not([data-theme="light"]){
+      color-scheme:dark;
+      --ink:#F2F5F2; --mute:#8B968E; --faint:#68726B;
+      --bg:#070A08; --card:#111714; --line:#212A24;
+      --green:#00C46C; --green-deep:#84E4B6; --green-wash:#0C2016; --on-green:#04170D;
+    }
+  }
+  *{box-sizing:border-box}
+  body{background:var(--bg);color:var(--ink);font-family:var(--font-b);line-height:1.5;
+       -webkit-font-smoothing:antialiased}
+  .wrap{max-width:860px;margin:0 auto;padding:60px 26px 90px}
+  .brand{display:flex;align-items:center;gap:11px;margin-bottom:26px}
+  .dot{width:28px;height:28px;border-radius:50%;background:var(--green);
+       display:grid;place-items:center;flex:none}
+  .dot i{width:10px;height:10px;border-radius:50%;background:var(--on-green);display:block}
+  .brand span{font-family:var(--font-d);font-weight:800;font-size:20px;letter-spacing:-.02em}
+  h1{font-family:var(--font-d);font-weight:800;font-size:clamp(30px,4.5vw,42px);
+     line-height:1.06;letter-spacing:-.035em;margin:0 0 12px;text-wrap:balance}
+  .lede{font-size:16.5px;color:var(--mute);max-width:60ch;margin:0 0 8px}
+  .hint{font-size:14px;color:var(--faint);margin:14px 0 0}
+  .hint code{font-family:ui-monospace,Menlo,monospace;font-size:13px;
+             background:var(--card);border:1px solid var(--line);
+             padding:2px 6px;border-radius:5px}
+  .grid{display:grid;gap:14px;margin-top:36px}
+  a.card{display:flex;align-items:center;gap:18px;background:var(--card);
+         border:1px solid var(--line);border-radius:18px;padding:20px;
+         text-decoration:none;color:inherit;transition:transform .14s,border-color .14s}
+  a.card:hover{transform:translateY(-2px);border-color:var(--green)}
+  a.card:focus-visible{outline:2px solid var(--green);outline-offset:3px}
+  .ic{width:46px;height:46px;border-radius:13px;background:var(--green-wash);
+      color:var(--green-deep);display:grid;place-items:center;font-size:19px;flex:none}
+  .tx{flex:1;min-width:0}
+  .tx h2{font-family:var(--font-d);font-size:16.5px;font-weight:700;margin:0 0 3px;
+         letter-spacing:-.015em}
+  .tx p{margin:0;font-size:14px;color:var(--mute);line-height:1.45}
+  .arw{color:var(--faint);font-size:20px;flex:none}
+  .tag{display:inline-block;font-family:var(--font-d);font-size:10px;font-weight:700;
+       letter-spacing:.1em;text-transform:uppercase;color:var(--green-deep);
+       background:var(--green-wash);padding:3px 8px;border-radius:999px;margin-left:8px;
+       vertical-align:middle}
+  .foot{margin-top:44px;padding-top:22px;border-top:1px solid var(--line);
+        font-size:13.5px;color:var(--faint)}
+</style>
+
+<div class="wrap">
+  <div class="brand"><span class="dot"><i></i></span><span>Regis</span></div>
+
+  <h1>As telas, num lugar só</h1>
+  <p class="lede">Protótipos da Regis para o pitch. Tudo roda offline, sem instalar nada: é só abrir cada arquivo no navegador.</p>
+  <p class="hint">Se os links abaixo não abrirem, você provavelmente está vendo isto pelo GitHub. Baixe a pasta e abra o <code>ui/index.html</code> no navegador, ou dê dois cliques direto no arquivo que quiser.</p>
+
+  <div class="grid">
+
+    <a class="card" href="regis-conversa.html">
+      <span class="ic">💬</span>
+      <span class="tx">
+        <h2>A conversa <span class="tag">para a hero</span></h2>
+        <p>A Regis falando no WhatsApp, com a conversa se montando sozinha em loop. Tem tema claro e escuro no botão.</p>
+      </span>
+      <span class="arw">›</span>
+    </a>
+
+    <a class="card" href="regis-app.html">
+      <span class="ic">📱</span>
+      <span class="tx">
+        <h2>O app de apoio <span class="tag">celular e computador</span></h2>
+        <p>O mesmo app nos dois: abas embaixo no celular, painel com sidebar no computador. O anel mostra a distância até o teto.</p>
+      </span>
+      <span class="arw">›</span>
+    </a>
+
+    <a class="card" href="regis-telas.html">
+      <span class="ic">🗂️</span>
+      <span class="tx">
+        <h2>As cinco telas anotadas <span class="tag">para discutir UX</span></h2>
+        <p>Cada tela com a job story que ela atende e a decisão de design por trás. É a versão para o time analisar.</p>
+      </span>
+      <span class="arw">›</span>
+    </a>
+
+    <a class="card" href="comandos/index.html">
+      <span class="ic">🎬</span>
+      <span class="tx">
+        <h2>As animações dos comandos <span class="tag">para o pitch</span></h2>
+        <p>Uma tela por comando do bot (/start, /teto, /das, /resumo, /contador, /silencio, /reset), cada uma em loop e num arquivo só dela, pronta pra entrar no slide.</p>
+      </span>
+      <span class="arw">›</span>
+    </a>
+
+    <a class="card" href="_padrao-conversa-whatsapp.html">
+      <span class="ic">🧩</span>
+      <span class="tx">
+        <h2>O padrão de conversa <span class="tag">base das próximas</span></h2>
+        <p>Template com as instruções no topo do arquivo. Toda tela nova de conversa sai daqui, é só trocar o conteúdo das bolhas.</p>
+      </span>
+      <span class="arw">›</span>
+    </a>
+
+  </div>
+
+  <p class="foot">Regis · Financial Anomaly Autopilot · Time 12 · Hackathon Vanguarda 2026</p>
+</div>

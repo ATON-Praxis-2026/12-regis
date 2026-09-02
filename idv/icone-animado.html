@@ -1,0 +1,368 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ícone animado da Regis</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Karla:wght@400;500;600;700&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,400,0,0">
+<style>
+  :root{
+    color-scheme:light;
+    --ink:#0B100D; --ink-2:#3A473F; --mute:#6B776F; --faint:#9BA69F;
+    --bg:#F2F5F2; --card:#FFFFFF; --card-2:#F4F7F4;
+    --line:#E2E8E3; --line-soft:#EDF1ED;
+    --green:#00C46C; --green-deep:#04663A; --green-wash:#E2F3EA;
+    --font-d:"Manrope",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    --font-b:"Karla",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  }
+  @media (prefers-color-scheme:dark){
+    :root:not([data-theme="light"]){
+      color-scheme:dark;
+      --ink:#F2F5F2; --ink-2:#C4CFC7; --mute:#8C978F; --faint:#68726B;
+      --bg:#070A08; --card:#111714; --card-2:#0C120F;
+      --line:#222B25; --line-soft:#1A211C;
+      --green:#25E084; --green-deep:#7FE0B0; --green-wash:#0D2217;
+    }
+  }
+  :root[data-theme="dark"]{
+    color-scheme:dark;
+    --ink:#F2F5F2; --ink-2:#C4CFC7; --mute:#8C978F; --faint:#68726B;
+    --bg:#070A08; --card:#111714; --card-2:#0C120F;
+    --line:#222B25; --line-soft:#1A211C;
+    --green:#25E084; --green-deep:#7FE0B0; --green-wash:#0D2217;
+  }
+
+  *{box-sizing:border-box}
+  body{margin:0; background:var(--bg); color:var(--ink);
+       font-family:var(--font-b); line-height:1.5; -webkit-font-smoothing:antialiased}
+  .wrap{max-width:1000px; margin:0 auto; padding:32px 20px 80px}
+
+  header{display:flex; align-items:flex-start; gap:20px}
+  h1{font-family:var(--font-d); font-weight:800; letter-spacing:-.035em;
+     font-size:clamp(26px,4.4vw,38px); line-height:1.08; margin:0}
+  .lead{color:var(--mute); font-size:15px; max-width:58ch; margin:12px 0 0}
+  .tools{margin-left:auto; display:flex; gap:8px; flex:none}
+  .tool{border:1px solid var(--line); background:var(--card); color:var(--ink-2);
+        border-radius:999px; padding:9px 15px; font-family:var(--font-b); font-size:13px;
+        font-weight:600; cursor:pointer; transition:border-color .18s,color .18s}
+  .tool:hover{border-color:var(--green); color:var(--green-deep)}
+
+  .grid{display:grid; gap:18px; margin-top:30px;
+        grid-template-columns:repeat(auto-fit,minmax(320px,1fr))}
+  .card{background:var(--card); border:1px solid var(--line); border-radius:20px;
+        padding:24px; display:flex; flex-direction:column}
+  .stage{background:var(--card-2); border-radius:14px; display:grid; place-items:center;
+         padding:28px; margin-bottom:20px; min-height:210px}
+
+  .tag{font-family:var(--font-d); font-size:10.5px; font-weight:700; letter-spacing:.09em;
+       text-transform:uppercase; color:var(--green-deep); background:var(--green-wash);
+       padding:4px 10px; border-radius:999px; margin-bottom:10px; align-self:flex-start}
+  h2{font-family:var(--font-d); font-weight:800; letter-spacing:-.025em; font-size:19px; margin:0 0 7px}
+  .desc{color:var(--mute); font-size:14px; margin:0 0 18px}
+  .desc b{color:var(--ink-2); font-weight:600}
+
+  .sizes{display:flex; align-items:flex-end; gap:18px; padding-top:16px;
+         border-top:1px solid var(--line-soft); margin-top:auto}
+  .size{display:flex; flex-direction:column; align-items:center; gap:7px}
+  .size i{font-style:normal; font-size:10.5px; color:var(--faint);
+          font-family:var(--font-d); font-weight:600}
+  .copy{margin-left:auto; border:0; background:none; color:var(--faint);
+        font-family:var(--font-b); font-size:12px; font-weight:600; cursor:pointer; padding:6px 0}
+  .copy:hover{color:var(--green-deep)}
+
+  .prova{margin-top:22px; background:var(--card); border:1px solid var(--line);
+         border-radius:20px; padding:24px}
+  .fila{display:flex; align-items:center; gap:26px; flex-wrap:wrap; margin-top:18px}
+  .fila .un{display:flex; flex-direction:column; align-items:center; gap:8px}
+  .fila .un i{font-style:normal; font-size:10.5px; color:var(--faint);
+              font-family:var(--font-d); font-weight:600}
+  .divisor{width:1px; height:52px; background:var(--line)}
+  .material-symbols-outlined{font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 40;
+    font-size:40px; line-height:1; color:var(--ink)}
+
+  .ico{display:block; fill:currentColor}
+  .ico .dinheiro{fill:var(--green)}
+  .ico .bica{fill:none; stroke:currentColor; stroke-width:49.6}
+
+  /* estudo 1: a alavanca gira no proprio eixo e a moeda sai do cano */
+  .alavanca{transform-box:fill-box; transform-origin:center;
+            animation:girar 2.8s cubic-bezier(.62,.03,.32,1) infinite}
+  @keyframes girar{ 0%{transform:rotate(0)} 100%{transform:rotate(360deg)} }
+
+  .moeda{opacity:0; transform-box:fill-box; transform-origin:center}
+  .m1{animation:pinga 2.8s linear infinite}
+  .m2{animation:pinga 2.8s linear .93s infinite}
+  .m3{animation:pinga 2.8s linear 1.86s infinite}
+  @keyframes pinga{
+    0%       {opacity:0; transform:translateY(0) scale(.3)}
+    6%       {opacity:1; transform:translateY(12px) scale(1)}
+    27%      {opacity:1; transform:translateY(130px) scale(1)}
+    33%      {opacity:0; transform:translateY(165px) scale(.6)}
+    34%,100% {opacity:0; transform:translateY(165px) scale(.6)}
+  }
+
+  /* estudo 2: o outro sentido de registro. a linha e escrita, o valor aparece */
+  .linha{transform-box:fill-box; transform-origin:left center; transform:scaleX(0)}
+  .ponto{transform-box:fill-box; transform-origin:center; transform:scale(0)}
+  .l1{animation:escreve 4.6s cubic-bezier(.2,.7,.3,1) infinite}
+  .p1{animation:aparece 4.6s cubic-bezier(.2,1.5,.4,1) infinite}
+  .l2{animation:escreve2 4.6s cubic-bezier(.2,.7,.3,1) infinite}
+  .p2{animation:aparece2 4.6s cubic-bezier(.2,1.5,.4,1) infinite}
+  @keyframes escreve{
+    0%,6%{transform:scaleX(0)} 22%,86%{transform:scaleX(1)} 96%,100%{transform:scaleX(0)} }
+  @keyframes aparece{
+    0%,22%{transform:scale(0)} 30%,86%{transform:scale(1)} 94%,100%{transform:scale(0)} }
+  @keyframes escreve2{
+    0%,36%{transform:scaleX(0)} 52%,86%{transform:scaleX(1)} 96%,100%{transform:scaleX(0)} }
+  @keyframes aparece2{
+    0%,52%{transform:scale(0)} 60%,86%{transform:scale(1)} 94%,100%{transform:scale(0)} }
+
+  /* estudo 3: o check se escreve dentro da cabeça e ela dá um respiro */
+  .marca{fill:none; stroke:var(--green); stroke-width:80;
+         stroke-linecap:butt; stroke-linejoin:miter;
+         stroke-dasharray:326; stroke-dashoffset:326;
+         animation:desenha 3.4s cubic-bezier(.25,.9,.3,1) infinite}
+  @keyframes desenha{
+    0%,14%  {stroke-dashoffset:326; opacity:1}
+    34%,84% {stroke-dashoffset:0; opacity:1}
+    93%     {stroke-dashoffset:0; opacity:0}
+    94%,100%{stroke-dashoffset:326; opacity:0}
+  }
+  .cabeca{transform-box:fill-box; transform-origin:center;
+          animation:respira 3.4s cubic-bezier(.3,1.4,.4,1) infinite}
+  @keyframes respira{
+    0%,32%{transform:scale(1)} 40%{transform:scale(1.05)} 52%,100%{transform:scale(1)} }
+
+  /* estudo 4: o mesmo desenho, com brilho no lugar do check */
+  .faisca{fill:var(--green); transform-box:fill-box; transform-origin:center; opacity:0}
+  .f0{animation:cintila 3.4s cubic-bezier(.3,1.5,.4,1) infinite}
+  .f1{animation:cintila2 3.4s cubic-bezier(.3,1.6,.4,1) infinite}
+  .f2{animation:cintila3 3.4s cubic-bezier(.3,1.6,.4,1) infinite}
+  @keyframes cintila{
+    0%,8%   {transform:scale(0) rotate(-30deg); opacity:0}
+    26%     {transform:scale(1.12) rotate(0deg); opacity:1}
+    34%,84% {transform:scale(1) rotate(0deg); opacity:1}
+    94%,100%{transform:scale(.6) rotate(12deg); opacity:0}
+  }
+  @keyframes cintila2{
+    0%,28%  {transform:scale(0); opacity:0}
+    40%     {transform:scale(1.2); opacity:1}
+    46%,80% {transform:scale(1); opacity:1}
+    88%,100%{transform:scale(0); opacity:0}
+  }
+  @keyframes cintila3{
+    0%,36%  {transform:scale(0); opacity:0}
+    48%     {transform:scale(1.2); opacity:1}
+    54%,78% {transform:scale(1); opacity:1}
+    86%,100%{transform:scale(0); opacity:0}
+  }
+
+  body.parado *{animation-play-state:paused !important}
+
+  .nota{margin-top:24px; border-left:2px solid var(--green); padding:2px 0 2px 16px;
+        color:var(--mute); font-size:14px; max-width:72ch}
+  .nota b{color:var(--ink-2); font-weight:600}
+  @media (prefers-reduced-motion:reduce){
+    *{animation:none !important}
+    .moeda{opacity:1} .linha{transform:scaleX(1)} .ponto{transform:scale(1)}
+    .marca{stroke-dashoffset:0} .faisca{opacity:1; transform:scale(1)}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div>
+      <h1>Ícone animado da Regis</h1>
+      <p class="lead">Cinco estudos. Os dois primeiros são os dois sentidos da palavra que dá nome ao produto: registro é a peça que fecha a passagem da água, e registro é a anotação que fica. Os dois últimos são o mesmo desenho com dois finais: um confirma que guardou, o outro diz que achou. O quinto é o registro sozinho, sem a bica. Os cinco saem dos arquivos oficiais do Material Symbols, os mesmos que o app usa.</p>
+    </div>
+    <div class="tools">
+      <button class="tool" id="tema">Tema</button>
+      <button class="tool" id="pausa">Pausar</button>
+    </div>
+  </header>
+
+  <div class="grid">
+
+    <div class="card">
+      <div class="stage"><span data-icone="registro" data-tam="140"></span></div>
+      <span class="tag">Estudo 1 · a peça</span>
+      <h2>Registro com a bica</h2>
+      <p class="desc">O <b>valve</b> do Material com a curva da torneira crescendo para a direita, no mesmo peso e na mesma grade. A alavanca gira no próprio eixo e a moeda sai do cano. É o vazamento e quem fecha ele, no mesmo desenho.</p>
+      <div class="sizes">
+        <div class="size"><span data-icone="registro" data-tam="48"></span><i>48</i></div>
+        <div class="size"><span data-icone="registro" data-tam="32"></span><i>32</i></div>
+        <div class="size"><span data-icone="registro" data-tam="24"></span><i>24</i></div>
+        <div class="size"><span data-icone="registro" data-tam="20"></span><i>20</i></div>
+        <button class="copy" data-copiar="registro">copiar SVG</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="stage"><span data-icone="memoria" data-tam="140"></span></div>
+      <span class="tag">Estudo 2 · a memória</span>
+      <h2>Registro que fica</h2>
+      <p class="desc">O <b>receipt_long</b> se escrevendo sozinho. A linha entra da esquerda, o valor aparece do lado, e vem a próxima. É o que a Regis faz sem ninguém digitar nada, e é o outro sentido do nome dela.</p>
+      <div class="sizes">
+        <div class="size"><span data-icone="memoria" data-tam="48"></span><i>48</i></div>
+        <div class="size"><span data-icone="memoria" data-tam="32"></span><i>32</i></div>
+        <div class="size"><span data-icone="memoria" data-tam="24"></span><i>24</i></div>
+        <div class="size"><span data-icone="memoria" data-tam="20"></span><i>20</i></div>
+        <button class="copy" data-copiar="memoria">copiar SVG</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="stage"><span data-icone="cerebro" data-tam="140"></span></div>
+      <span class="tag">Estudo 3 · extra</span>
+      <h2>Registrou e guardou</h2>
+      <p class="desc">A cabeça da família <b>psychology</b>, que no Material carrega uma engrenagem, aqui carrega um check que se escreve sozinho. É o instante em que a Regis anota e guarda, e a cabeça dá um respiro quando termina. Serve de confirmação sem precisar de palavra nenhuma.</p>
+      <div class="sizes">
+        <div class="size"><span data-icone="cerebro" data-tam="48"></span><i>48</i></div>
+        <div class="size"><span data-icone="cerebro" data-tam="32"></span><i>32</i></div>
+        <div class="size"><span data-icone="cerebro" data-tam="24"></span><i>24</i></div>
+        <div class="size"><span data-icone="cerebro" data-tam="20"></span><i>20</i></div>
+        <button class="copy" data-copiar="cerebro">copiar SVG</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="stage"><span data-icone="brilho" data-tam="140"></span></div>
+      <span class="tag">Estudo 4 · extra</span>
+      <h2>O brilho no lugar do check</h2>
+      <p class="desc">A mesma cabeça, com a faísca do <b>auto_awesome</b> onde estava o check. Troca a confirmação pelo instante de descoberta: em vez de dizer guardei, ela diz achei. Serve para o momento em que a Regis encontra algo que ninguém tinha visto.</p>
+      <div class="sizes">
+        <div class="size"><span data-icone="brilho" data-tam="48"></span><i>48</i></div>
+        <div class="size"><span data-icone="brilho" data-tam="32"></span><i>32</i></div>
+        <div class="size"><span data-icone="brilho" data-tam="24"></span><i>24</i></div>
+        <div class="size"><span data-icone="brilho" data-tam="20"></span><i>20</i></div>
+        <button class="copy" data-copiar="brilho">copiar SVG</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="stage"><span data-icone="valvula" data-tam="140"></span></div>
+      <span class="tag">Estudo 5 · o registro sozinho</span>
+      <h2>Registro girando</h2>
+      <p class="desc">O <b>valve</b> do Material inteiro, sem a bica e sem moeda, com a alavanca girando no próprio eixo. É o estudo 1 despido: serve de estado de trabalho, de ícone de carregamento e de marca pequena, onde a torneira inteira não caberia.</p>
+      <div class="sizes">
+        <div class="size"><span data-icone="valvula" data-tam="48"></span><i>48</i></div>
+        <div class="size"><span data-icone="valvula" data-tam="32"></span><i>32</i></div>
+        <div class="size"><span data-icone="valvula" data-tam="24"></span><i>24</i></div>
+        <div class="size"><span data-icone="valvula" data-tam="20"></span><i>20</i></div>
+        <button class="copy" data-copiar="valvula">copiar SVG</button>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="prova">
+    <h2>Prova de família</h2>
+    <p class="desc" style="margin-bottom:0">Os nossos cinco à esquerda, ao lado dos originais que serviram de base e dos ícones que o app já usa. Mesmo peso, mesma grade, mesmo acabamento. Se algum destoar, é aqui que aparece.</p>
+    <div class="fila">
+      <div class="un"><span data-icone="registro" data-tam="40"></span><i>nosso</i></div>
+      <div class="un"><span data-icone="memoria" data-tam="40"></span><i>nosso</i></div>
+      <div class="un"><span data-icone="cerebro" data-tam="40"></span><i>nosso</i></div>
+      <div class="un"><span data-icone="brilho" data-tam="40"></span><i>nosso</i></div>
+      <div class="un"><span data-icone="valvula" data-tam="40"></span><i>nosso</i></div>
+      <div class="divisor"></div>
+      <div class="un"><span class="material-symbols-outlined">valve</span><i>valve</i></div>
+      <div class="un"><span class="material-symbols-outlined">receipt_long</span><i>receipt_long</i></div>
+      <div class="un"><span class="material-symbols-outlined">paid</span><i>paid</i></div>
+      <div class="un"><span class="material-symbols-outlined">psychology</span><i>psychology</i></div>
+      <div class="un"><span class="material-symbols-outlined">auto_awesome</span><i>auto_awesome</i></div>
+      <div class="divisor"></div>
+      <div class="un"><span class="material-symbols-outlined">dashboard</span><i>dashboard</i></div>
+      <div class="un"><span class="material-symbols-outlined">task_alt</span><i>task_alt</i></div>
+      <div class="un"><span class="material-symbols-outlined">summarize</span><i>summarize</i></div>
+    </div>
+  </div>
+
+  <p class="nota">Tudo é SVG e CSS, sem biblioteca e sem imagem. A grade é a mesma do Material (viewBox de 960), o traço acompanha a cor do texto e o dinheiro usa o verde da marca, então funciona no claro e no escuro sem versão nova. Quem tiver movimento reduzido ligado no sistema vê o desenho parado e completo.</p>
+
+</div>
+<template id="t-valvula">
+  <svg class="ico" viewBox="0 -960 960 960" aria-hidden="true">
+    <path d="M160-120v-320h80v40h120v-120h-40v-80h320v80h-40v120h120v-40h80v320h-80v-40H240v40h-80Zm80-120h480v-80H520v-200h-80v200H240v80Zm240 0Z"/>
+    <path d="M440-760h80v120h-80z"/>
+    <path class="alavanca" d="M280-840h400v80H280z"/>
+  </svg>
+</template>
+
+<template id="t-registro">
+  <svg class="ico" viewBox="0 -960 960 960" aria-hidden="true">
+    <g transform="translate(30.8,-409.2) scale(.62)">
+      <path d="M160-120v-320h80v40h120v-120h-40v-80h320v80h-40v120h120v-40h80v320h-80v-40H240v40h-80Zm80-120h480v-80H520v-200h-80v200H240v80Zm240 0Z"/>
+      <path d="M440-760h80v120h-80z"/>
+      <path class="alavanca" d="M280-840h400v80H280z"/>
+    </g>
+    <path class="bica" d="M527-632.6H620a179.6 179.6 0 0 1 179.6 179.6V-320"/>
+    <path class="bica" d="M527-533.4H620a80.4 80.4 0 0 1 80.4 80.4V-320"/>
+    <g class="moeda m1"><g transform="translate(644.4,-126.4) scale(.22)"><path class="dinheiro" d="M444-200h70v-50q50-9 86-39t36-89q0-42-24-77t-96-61q-60-20-83-35t-23-41q0-26 18.5-41t53.5-15q32 0 50 15.5t26 38.5l64-26q-11-35-40.5-61T516-710v-50h-70v50q-50 11-78 44t-28 74q0 47 27.5 76t86.5 50q63 23 87.5 41t24.5 47q0 33-23.5 48.5T486-314q-33 0-58.5-20.5T390-396l-66 26q14 48 43.5 77.5T444-252v52Zm36 120q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"/></g></g>
+    <g class="moeda m2"><g transform="translate(644.4,-126.4) scale(.22)"><path class="dinheiro" d="M444-200h70v-50q50-9 86-39t36-89q0-42-24-77t-96-61q-60-20-83-35t-23-41q0-26 18.5-41t53.5-15q32 0 50 15.5t26 38.5l64-26q-11-35-40.5-61T516-710v-50h-70v50q-50 11-78 44t-28 74q0 47 27.5 76t86.5 50q63 23 87.5 41t24.5 47q0 33-23.5 48.5T486-314q-33 0-58.5-20.5T390-396l-66 26q14 48 43.5 77.5T444-252v52Zm36 120q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"/></g></g>
+    <g class="moeda m3"><g transform="translate(644.4,-126.4) scale(.22)"><path class="dinheiro" d="M444-200h70v-50q50-9 86-39t36-89q0-42-24-77t-96-61q-60-20-83-35t-23-41q0-26 18.5-41t53.5-15q32 0 50 15.5t26 38.5l64-26q-11-35-40.5-61T516-710v-50h-70v50q-50 11-78 44t-28 74q0 47 27.5 76t86.5 50q63 23 87.5 41t24.5 47q0 33-23.5 48.5T486-314q-33 0-58.5-20.5T390-396l-66 26q14 48 43.5 77.5T444-252v52Zm36 120q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"/></g></g>
+  </svg>
+</template>
+
+<template id="t-memoria">
+  <svg class="ico memoria" viewBox="0 -960 960 960" aria-hidden="true">
+    <path d="M240-80q-50 0-85-35t-35-85v-120h120v-560l60 60 60-60 60 60 60-60 60 60 60-60 60 60 60-60 60 60 60-60v680q0 50-35 85t-85 35H240Zm480-80q17 0 28.5-11.5T760-200v-560H320v440h360v120q0 17 11.5 28.5T720-160ZM240-160h360v-80H200v40q0 17 11.5 28.5T240-160Zm-40 0v-80 80Z"/>
+    <path class="linha l1" d="M360-680h240v80H360Z"/>
+    <path class="ponto p1 dinheiro" d="M680-600q-17 0-28.5-11.5T640-640q0-17 11.5-28.5T680-680q17 0 28.5 11.5T720-640q0 17-11.5 28.5T680-600Z"/>
+    <path class="linha l2" d="M360-560h240v80H360Z"/>
+    <path class="ponto p2 dinheiro" d="M680-480q-17 0-28.5-11.5T640-520q0-17 11.5-28.5T680-560q17 0 28.5 11.5T720-520q0 17-11.5 28.5T680-480Z"/>
+  </svg>
+</template>
+<template id="t-brilho">
+  <svg class="ico brilho" viewBox="0 -960 960 960" aria-hidden="true">
+    <path class="cabeca" d="M240-80v-172q-57-52-88.5-121.5T120-520q0-150 105-255t255-105q125 0 221.5 73.5T827-615l52 205q5 19-7 34.5T840-360h-80v120q0 33-23.5 56.5T680-160h-80v80h-80v-160h160v-200h108l-38-155q-23-91-98-148t-172-57q-116 0-198 81t-82 197q0 60 24.5 114t69.5 96l26 24v208h-80Zm254-360Z"/>
+    <g class="faisca f0"><g transform="translate(322.5,-310) scale(.4375)"><path d="M360-160L260-380L40-480L260-580L360-800L460-580L680-480L460-380Z"/></g></g>
+    <g class="faisca f1"><g transform="translate(565,-580) scale(.125)"><path d="M360-160L260-380L40-480L260-580L360-800L460-580L680-480L460-380Z"/></g></g>
+    <g class="faisca f2"><g transform="translate(330.6,-347.5) scale(.109)"><path d="M360-160L260-380L40-480L260-580L360-800L460-580L680-480L460-380Z"/></g></g>
+  </svg>
+</template>
+
+<template id="t-cerebro">
+  <svg class="ico" viewBox="0 -960 960 960" aria-hidden="true">
+    <path class="cabeca" d="M240-80v-172q-57-52-88.5-121.5T120-520q0-150 105-255t255-105q125 0 221.5 73.5T827-615l52 205q5 19-7 34.5T840-360h-80v120q0 33-23.5 56.5T680-160h-80v80h-80v-160h160v-200h108l-38-155q-23-91-98-148t-172-57q-116 0-198 81t-82 197q0 60 24.5 114t69.5 96l26 24v208h-80Zm254-360Z"/>
+    <path class="marca" d="M365-520.7 442.1-443.6 595-596.5"/>
+  </svg>
+</template>
+
+<script>
+  const tpl = n => document.getElementById('t-' + n).content.firstElementChild.cloneNode(true);
+
+  document.querySelectorAll('[data-icone]').forEach(slot => {
+    const svg = tpl(slot.dataset.icone), t = slot.dataset.tam;
+    svg.setAttribute('width', t); svg.setAttribute('height', t);
+    slot.appendChild(svg);
+  });
+
+  document.getElementById('tema').onclick = () => {
+    const escuro = getComputedStyle(document.body).backgroundColor === 'rgb(7, 10, 8)';
+    document.documentElement.setAttribute('data-theme', escuro ? 'light' : 'dark');
+  };
+
+  const bt = document.getElementById('pausa');
+  bt.onclick = () => {
+    document.body.classList.toggle('parado');
+    bt.textContent = document.body.classList.contains('parado') ? 'Continuar' : 'Pausar';
+  };
+
+  document.querySelectorAll('[data-copiar]').forEach(b => {
+    b.onclick = async () => {
+      const svg = tpl(b.dataset.copiar);
+      svg.setAttribute('width', '48'); svg.setAttribute('height', '48');
+      try {
+        await navigator.clipboard.writeText(svg.outerHTML);
+        const antes = b.textContent; b.textContent = 'copiado';
+        setTimeout(() => b.textContent = antes, 1400);
+      } catch (e) { b.textContent = 'copie do arquivo'; }
+    };
+  });
+</script>
+</body>
+</html>

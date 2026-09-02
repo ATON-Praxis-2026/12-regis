@@ -1,0 +1,585 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Pesquisa de mercado sobre MEI e o dinheiro que entra: o teto de R$ 81 mil, por que somar o faturamento e impossivel, e o benchmark nacional para cada pergunta do formulario de campo.">
+<meta name="color-scheme" content="light dark">
+<title>O Teto Invisível</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+
+<style>
+:root{
+  --bg:#EDEFEA; --surface:#FBFCF9; --surface-2:#E4E8E1;
+  --ink:#141A16; --ink-2:#5C6660; --ink-3:#8A938D;
+  --rule:#D3D8CE; --rule-soft:#E1E5DC;
+  --accent:#17564A; --accent-soft:#D6E4DC;
+  --hot:#A8341F; --hot-soft:#F0DCD6;
+  --warm:#8F5E0E; --warm-soft:#EFE3C9;
+  --shadow:0 1px 2px rgba(20,26,22,.05), 0 8px 24px -16px rgba(20,26,22,.22);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0F1211; --surface:#171B18; --surface-2:#242A25;
+    --ink:#E7EBE4; --ink-2:#A2AA9F; --ink-3:#767E74;
+    --rule:#2A302B; --rule-soft:#232823;
+    --accent:#63C8AC; --accent-soft:#1C302A;
+    --hot:#E8785F; --hot-soft:#33201B;
+    --warm:#DFA847; --warm-soft:#2E2717;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -16px rgba(0,0,0,.7);
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0F1211; --surface:#171B18; --surface-2:#242A25;
+  --ink:#E7EBE4; --ink-2:#A2AA9F; --ink-3:#767E74;
+  --rule:#2A302B; --rule-soft:#232823;
+  --accent:#63C8AC; --accent-soft:#1C302A;
+  --hot:#E8785F; --hot-soft:#33201B;
+  --warm:#DFA847; --warm-soft:#2E2717;
+  --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -16px rgba(0,0,0,.7);
+}
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);
+  font-family:"IBM Plex Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  font-size:16.5px;line-height:1.62;margin:0;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1000px;margin:0 auto;padding:0 28px 92px}
+h1,h2,h3{font-family:Newsreader,Georgia,"Times New Roman",serif;font-weight:500;text-wrap:balance;margin:0}
+p{margin:0}
+a{color:var(--accent);text-decoration-thickness:1px;text-underline-offset:2px}
+a:focus-visible,summary:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:2px}
+.eyebrow{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:11.5px;font-weight:500;
+  letter-spacing:.13em;text-transform:uppercase;color:var(--ink-3)}
+.mono{font-family:"IBM Plex Mono",ui-monospace,monospace}
+.num{font-family:"IBM Plex Mono",ui-monospace,monospace;font-variant-numeric:tabular-nums}
+
+header.mast{padding:60px 0 0}
+.kicker{display:flex;flex-wrap:wrap;gap:9px;align-items:center;margin-bottom:24px}
+.tag{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;
+  padding:4px 9px;border:1px solid var(--rule);border-radius:2px;color:var(--ink-2)}
+.tag.on{background:var(--accent);border-color:var(--accent);color:var(--bg)}
+h1{font-size:clamp(44px,8vw,82px);line-height:.99;letter-spacing:-.022em}
+h1 em{font-style:italic;color:var(--hot)}
+.standfirst{font-family:Newsreader,Georgia,serif;font-size:clamp(19px,2.4vw,23px);line-height:1.5;
+  color:var(--ink-2);max-width:60ch;margin-top:22px}
+.byline{display:flex;flex-wrap:wrap;gap:8px 22px;margin-top:32px;padding-top:18px;border-top:1px solid var(--rule);
+  font-family:"IBM Plex Mono",monospace;font-size:11.5px;letter-spacing:.06em;color:var(--ink-3);text-transform:uppercase}
+
+.verdict-block{margin-top:36px;border-left:4px solid var(--accent);background:var(--accent-soft);padding:26px 28px}
+.verdict-block .eyebrow{color:var(--accent);margin-bottom:12px;display:block}
+.verdict-block p{font-family:Newsreader,Georgia,serif;font-size:clamp(21px,2.9vw,27px);line-height:1.38;color:var(--ink)}
+
+section{padding-top:58px}
+.shead{display:flex;align-items:baseline;gap:16px;flex-wrap:wrap;padding-bottom:8px}
+.shead h2{font-size:clamp(28px,4vw,40px);letter-spacing:-.015em;line-height:1.11}
+.sdek{max-width:68ch;color:var(--ink-2);margin-top:15px;font-size:16px}
+.sdek strong{color:var(--ink);font-weight:600}
+
+/* threshold bar — the ceiling motif */
+.teto{margin-top:32px;border:1px solid var(--rule);background:var(--surface);padding:26px 26px 22px;box-shadow:var(--shadow)}
+.teto .cap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-bottom:8px}
+.teto .cap span{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3)}
+.tbar{position:relative;height:44px;background:var(--surface-2);border-radius:2px;overflow:hidden}
+.tbar .fill{position:absolute;top:0;bottom:0;left:0;background:var(--accent);opacity:.85}
+.tbar .over{position:absolute;top:0;bottom:0;background:var(--hot);opacity:.9}
+.tline{position:absolute;top:-6px;bottom:-6px;width:2px;background:var(--ink)}
+.tlabel{margin-top:12px;display:flex;flex-wrap:wrap;gap:22px}
+.tlabel div{display:flex;flex-direction:column;gap:2px}
+.tlabel b{font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums;font-size:19px;font-weight:500}
+.tlabel span{font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3)}
+.tlabel .k1 b{color:var(--accent)} .tlabel .k2 b{color:var(--warm)} .tlabel .k3 b{color:var(--hot)}
+.teto .note{margin-top:16px;padding-top:14px;border-top:1px solid var(--rule-soft);font-size:14.5px;color:var(--ink-2)}
+.teto .note b{color:var(--ink);font-weight:600}
+
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1px;background:var(--rule);
+  border:1px solid var(--rule);margin-top:30px}
+.stat{background:var(--surface);padding:22px 20px 18px;display:flex;flex-direction:column;gap:9px}
+.stat .fig{font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums;font-size:36px;line-height:1;
+  font-weight:500;letter-spacing:-.03em}
+.stat .fig small{font-size:18px;letter-spacing:0;color:var(--ink-2)}
+.stat .lab{font-size:14.5px;line-height:1.42;color:var(--ink)}
+.stat .src{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.05em;color:var(--ink-3);
+  text-transform:uppercase;margin-top:auto;padding-top:6px}
+.stat.hot .fig{color:var(--hot)} .stat.acc .fig{color:var(--accent)} .stat.wrm .fig{color:var(--warm)}
+.bar{height:6px;background:var(--surface-2);position:relative;overflow:hidden;border-radius:1px}
+.bar i{position:absolute;top:0;bottom:0;left:0;background:var(--accent);display:block}
+.bar.hot i{background:var(--hot)} .bar.wrm i{background:var(--warm)}
+
+/* mechanism chain */
+.chain{margin-top:30px;display:grid;gap:1px;background:var(--rule);border:1px solid var(--rule)}
+.link{background:var(--surface);padding:20px 22px;display:grid;grid-template-columns:40px 1fr;gap:20px}
+.link .n{font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--hot);font-weight:600;padding-top:5px;letter-spacing:.05em}
+.link h3{font-size:19px;margin-bottom:6px;letter-spacing:-.01em}
+.link p{color:var(--ink-2);font-size:15px}
+.link p b{color:var(--ink);font-weight:600}
+
+/* form mapping table */
+.tblwrap{margin-top:28px;border:1px solid var(--rule);overflow-x:auto}
+table{border-collapse:collapse;width:100%;min-width:820px;background:var(--surface)}
+th{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--ink-3);text-align:left;padding:13px 16px;border-bottom:1px solid var(--rule);font-weight:500}
+td{padding:16px;border-bottom:1px solid var(--rule-soft);font-size:14.6px;vertical-align:top;line-height:1.5}
+tr:last-child td{border-bottom:0}
+td.q{font-family:"IBM Plex Mono",monospace;font-size:12.5px;color:var(--ink);font-weight:500;white-space:nowrap}
+td.q span{display:block;font-family:"IBM Plex Sans",sans-serif;font-size:12.5px;color:var(--ink-3);
+  font-weight:400;white-space:normal;margin-top:5px;max-width:150px;letter-spacing:0;text-transform:none}
+td.bm{color:var(--ink-2)}
+td.bm b{font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums;color:var(--hot);font-weight:600}
+td.watch{color:var(--ink-2)}
+td.watch b{color:var(--ink);font-weight:600}
+
+/* insights */
+.ins{margin-top:28px;display:grid;gap:14px}
+.insight{border:1px solid var(--rule);background:var(--surface);padding:22px 24px;display:grid;
+  grid-template-columns:44px 1fr;gap:20px}
+.insight .rank{font-family:"IBM Plex Mono",monospace;font-size:26px;font-weight:500;color:var(--accent);
+  line-height:1;padding-top:5px;font-variant-numeric:tabular-nums}
+.insight h3{font-size:20.5px;letter-spacing:-.012em;margin-bottom:9px;line-height:1.24}
+.insight p{color:var(--ink-2);font-size:15.2px}
+.insight p+p{margin-top:10px}
+.insight .payoff{margin-top:13px;padding:12px 15px;background:var(--surface-2);border-left:2px solid var(--accent);
+  font-size:14.5px;color:var(--ink);line-height:1.5}
+.insight .payoff b{font-weight:600}
+
+/* gaps */
+.gaps{margin-top:26px;border-top:1px solid var(--rule)}
+.gap{display:grid;grid-template-columns:96px 1fr;gap:20px;padding:16px 4px;border-bottom:1px solid var(--rule-soft)}
+.gap .pri{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;padding-top:4px}
+.gap.hi .pri{color:var(--hot)} .gap.md .pri{color:var(--warm)} .gap.lo .pri{color:var(--ink-3)}
+.gap p{font-size:15.2px}
+.gap p b{font-weight:600}
+.gap p em{font-style:normal;display:block;color:var(--ink-3);font-size:13.6px;margin-top:4px}
+
+.callout{margin-top:26px;padding:20px 24px;border:1px dashed var(--rule);background:var(--surface);
+  font-size:15.2px;line-height:1.62;color:var(--ink-2)}
+.callout strong{color:var(--ink);font-weight:600}
+.callout.alert{border-style:solid;border-color:var(--hot);background:var(--hot-soft);color:var(--ink)}
+
+details.src-block{margin-top:20px;border:1px solid var(--rule);background:var(--surface)}
+details.src-block summary{cursor:pointer;padding:16px 22px;font-family:"IBM Plex Mono",monospace;font-size:11.5px;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--ink-2);list-style:none;display:flex;justify-content:space-between;gap:12px}
+details.src-block summary::-webkit-details-marker{display:none}
+details.src-block summary::after{content:"+";font-size:15px;line-height:1}
+details.src-block[open] summary::after{content:"\2013"}
+.src-body{padding:4px 22px 22px;border-top:1px solid var(--rule-soft)}
+.src-body ul{margin:14px 0 0;padding-left:0;list-style:none;display:grid;gap:9px}
+.src-body li{font-size:14px;line-height:1.5;color:var(--ink-2);padding-left:14px;position:relative}
+.src-body li::before{content:"";position:absolute;left:0;top:.62em;width:5px;height:1px;background:var(--ink-3)}
+
+footer{margin-top:62px;padding-top:20px;border-top:1px solid var(--rule);
+  font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.07em;text-transform:uppercase;
+  color:var(--ink-3);display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+
+@media (max-width:740px){
+  .wrap{padding:0 20px 72px}
+  .link,.insight{grid-template-columns:1fr;gap:8px}
+  .insight .rank,.link .n{padding-top:0}
+  .gap{grid-template-columns:1fr;gap:6px}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none !important;transition:none !important}}
+</style>
+
+<style>
+/* reset minimo para uso standalone */
+html{-webkit-text-size-adjust:100%}
+body{margin:0}
+img,svg,video{max-width:100%;height:auto}
+table{border-collapse:collapse}
+button,input,select,textarea{font:inherit;color:inherit}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="mast">
+  <div class="kicker">
+    <span class="tag on">Pesquisa de mercado</span>
+    <span class="tag">MEI &middot; O dinheiro que entra</span>
+    <span class="tag">Agosto 2026</span>
+  </div>
+  <h1>O teto que<br>ninguém <em>consegue</em><br>enxergar.</h1>
+  <p class="standfirst">O MEI tem um limite legal de R$ 81 mil por ano. Ele recebe por Pix, maquininha, dinheiro e boleto, tudo numa conta só, misturado com o dinheiro de casa. Ninguém consegue somar isso de cabeça — e, desde 2024, a Receita soma sozinha.</p>
+  <div class="byline">
+    <span>Dossiê para validação de problema</span>
+    <span>Recorte: microempreendedor individual</span>
+    <span>Calibrado pelo formulário de campo</span>
+  </div>
+
+  <div class="verdict-block">
+    <span class="eyebrow">Veredito</span>
+    <p>Para o MEI, a anomalia financeira não é uma cobrança duplicada. É o próprio faturamento — um número que ele é obrigado por lei a controlar e é estruturalmente impedido de calcular.</p>
+  </div>
+</header>
+
+<section id="teto">
+  <div class="shead">
+    <span class="eyebrow">01 — O limite</span>
+    <h2>A régua que define tudo</h2>
+  </div>
+  <p class="sdek">Todo o problema orbita um número congelado desde 2018. O teto do MEI é de <strong>R$ 81.000 por ano</strong> — uma média de R$ 6.750 por mês. Passar dele não é uma multa: é a perda do regime.</p>
+
+  <div class="teto">
+    <div class="cap">
+      <span>Receita bruta anual do MEI</span>
+      <span>Zona de risco em vermelho</span>
+    </div>
+    <div class="tbar">
+      <div class="fill" style="width:69%"></div>
+      <div class="over" style="left:69%;width:14%"></div>
+      <div class="tline" style="left:69%"></div>
+    </div>
+    <div class="tlabel">
+      <div class="k1"><b>R$ 81.000</b><span>Teto legal &middot; R$ 6.750/mês</span></div>
+      <div class="k2"><b>R$ 97.200</b><span>Excesso de até 20% &middot; DAS complementar</span></div>
+      <div class="k3"><b>Acima disso</b><span>Desenquadramento retroativo a janeiro</span></div>
+    </div>
+    <p class="note">A diferença entre as duas faixas é brutal e quase ninguém sabe dela. Até 20% de excesso, o MEI paga um DAS complementar e migra para ME em janeiro do ano seguinte. <b>Acima de 20%, o desenquadramento retroage a janeiro do ano corrente</b> — ou seja, o ano inteiro é recalculado como microempresa, com juros e multa sobre impostos que ele nunca soube que devia.</p>
+  </div>
+
+  <div class="stats">
+    <div class="stat acc">
+      <div class="fig">12,9<small> mi</small></div>
+      <div class="lab">MEIs ativos no Brasil. A categoria responde por <strong>78% de todas as empresas abertas</strong> em 2026.</div>
+      <div class="src">Sebrae &middot; out 2025 / 2026</div>
+    </div>
+    <div class="stat hot">
+      <div class="fig">570<small> mil</small></div>
+      <div class="lab">MEIs desenquadrados em 2024 por ultrapassar o teto — <strong>30 vezes mais que em 2023.</strong></div>
+      <div class="src">Contabilizei sobre dados da Receita Federal</div>
+    </div>
+    <div class="stat hot">
+      <div class="fig">404<small> mil</small></div>
+      <div class="lab">MEIs receberam Termo de Exclusão do Simples Nacional em março de 2026, por dívida.</div>
+      <div class="src">Receita Federal &middot; mar 2026</div>
+    </div>
+    <div class="stat wrm">
+      <div class="fig">61<small>%</small></div>
+      <div class="bar wrm"><i style="width:61%"></i></div>
+      <div class="lab">dos empreendedores pagam contas da empresa com a conta pessoal. Era 60% em 2023 — não melhorou.</div>
+      <div class="src">Sebrae &middot; Hábitos Financeiros 2025</div>
+    </div>
+    <div class="stat hot">
+      <div class="fig">68<small>%</small></div>
+      <div class="bar hot"><i style="width:68%"></i></div>
+      <div class="lab">não têm previsão do saldo de caixa do próprio negócio nem para o mês seguinte.</div>
+      <div class="src">Sebrae</div>
+    </div>
+    <div class="stat wrm">
+      <div class="fig">R$ 0</div>
+      <div class="lab">de reajuste no teto desde 2018. Oito anos de inflação depois, o mesmo R$ 81 mil — e três projetos parados no Congresso.</div>
+      <div class="src">PLP 67/2025 e PLP 186/2026</div>
+    </div>
+  </div>
+</section>
+
+<section id="mecanismo">
+  <div class="shead">
+    <span class="eyebrow">02 — O mecanismo</span>
+    <h2>Por que somar é impossível, e não só chato</h2>
+  </div>
+  <p class="sdek">Este é o ponto que separa o nosso produto de um app de anotação. O MEI não deixa de somar por preguiça. Existe uma cadeia de cinco elos que torna o número genuinamente incalculável à mão — e cada elo é uma oportunidade de produto.</p>
+
+  <div class="chain">
+    <div class="link">
+      <div class="n">01</div>
+      <div>
+        <h3>O dinheiro entra por quatro portas diferentes</h3>
+        <p>Pix na chave pessoal, Pix na conta PJ, maquininha, dinheiro vivo, boleto, plataforma de app. <b>56% das micro e pequenas empresas usam maquininha</b> — e quase nenhuma usa só ela. Não existe um extrato único onde o faturamento apareça inteiro.</p>
+      </div>
+    </div>
+    <div class="link">
+      <div class="n">02</div>
+      <div>
+        <h3>Tudo cai na mesma conta do dinheiro de casa</h3>
+        <p>61% misturam. Na prática, o extrato tem a venda do cliente, o Pix da irmã, o salário do cônjuge e o reembolso do amigo — <b>tudo com a mesma aparência.</b> Separar receita de negócio do resto exige julgamento transação a transação, e ninguém faz isso 400 vezes por mês.</p>
+      </div>
+    </div>
+    <div class="link">
+      <div class="n">03</div>
+      <div>
+        <h3>A maquininha deposita líquido. O teto conta bruto.</h3>
+        <p>Este é o erro mais caro e mais invisível da lista. A venda de R$ 100 cai como R$ 96,50 depois da taxa — e taxas podem consumir <b>até 3% da receita</b>. Quem controla pelo que entrou na conta <b>subestima o próprio faturamento sistematicamente</b>, e chega ao teto antes do que a planilha diz. O erro é sempre na direção perigosa.</p>
+      </div>
+    </div>
+    <div class="link">
+      <div class="n">04</div>
+      <div>
+        <h3>A ferramenta de controle é papel</h3>
+        <p>Planilha 30%, caderno 25%, aplicativo ou sistema 20%, contador 13%, <b>nenhum controle 10%</b>. Metade dos donos de pequenos negócios tem controle financeiro classificado como precário. Nada disso reconcilia repasse de adquirente.</p>
+      </div>
+    </div>
+    <div class="link">
+      <div class="n">05</div>
+      <div>
+        <h3>E o resultado só aparece um ano depois</h3>
+        <p>O MEI descobre que estourou o teto na declaração anual, em maio do ano seguinte — ou pior, quando a Receita avisa. <b>Não existe nenhum sinal durante o ano.</b> É um velocímetro que só liga depois da multa.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="agora">
+  <div class="shead">
+    <span class="eyebrow">03 — Por que agora</span>
+    <h2>A fiscalização virou algoritmo</h2>
+  </div>
+  <p class="sdek">O que mudou não foi a regra. Foi a capacidade do Estado de enxergar. E é isso que transforma um problema antigo em uma dor aguda com data.</p>
+
+  <div class="callout alert">
+    <strong>O dado que sustenta o pitch inteiro:</strong> os desenquadramentos por excesso de faturamento saltaram <strong>30 vezes</strong> de 2023 para 2024, chegando a mais de 570 mil MEIs. A causa apontada não foi mudança de lei — foi o cruzamento automático de transações de Pix e cartão pela Receita Federal. O MEI passou a ser somado por uma máquina que ele não vê e não consegue auditar.
+  </div>
+
+  <div class="chain" style="margin-top:26px">
+    <div class="link">
+      <div class="n">↗</div>
+      <div>
+        <h3>A e-Financeira agora enxerga a conta de pagamento</h3>
+        <p>Desde 1º de janeiro de 2026, instituições financeiras <em>e instituições de pagamento</em> reportam à Receita a movimentação mensal consolidada — entradas e saídas — de pessoas jurídicas que ultrapassem <b>R$ 6.000 por mês</b>. Repare na aritmética: o teto do MEI equivale a R$ 6.750 por mês. <b>Praticamente todo MEI que se aproxima do limite já está sendo reportado todo mês.</b></p>
+      </div>
+    </div>
+    <div class="link">
+      <div class="n">↗</div>
+      <div>
+        <h3>A dívida do MEI cai no CPF do dono</h3>
+        <p>O CNPJ do MEI é vinculado ao CPF. DAS atrasado vira negativação do titular, e interrompe a contribuição previdenciária — o que pode bloquear acesso a auxílio-doença, salário-maternidade e aposentadoria. <b>A anomalia fiscal não fica na empresa: ela atravessa para a vida pessoal.</b></p>
+      </div>
+    </div>
+    <div class="link">
+      <div class="n">↗</div>
+      <div>
+        <h3>O teto está congelado e a reforma chegando</h3>
+        <p>R$ 81 mil desde 2018, sem reajuste, enquanto os preços subiram. Cada ano que passa, mais MEIs cruzam o limite sem ter crescido de verdade. Em paralelo, a reforma tributária começa a alíquota de teste em 2026 e o MEI deixa de gerar crédito para clientes PJ — <b>só 11% das empresas se dizem preparadas</b> para as mudanças.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="formulario">
+  <div class="shead">
+    <span class="eyebrow">04 — O campo</span>
+    <h2>O formulário, pergunta por pergunta</h2>
+  </div>
+  <p class="sdek">A pesquisa <em>"Pesquisa rápida com MEI: o dinheiro que entra"</em> está bem construída — ela mede a coisa certa. Abaixo, o que cada pergunta testa e o <strong>benchmark nacional</strong> contra o qual comparar as respostas quando o campo voltar. Se os números baterem, vocês têm validação de amostra; se divergirem muito, vocês têm um viés de recrutamento a declarar.</p>
+
+  <div class="tblwrap">
+    <table>
+      <thead>
+        <tr><th style="width:150px">Pergunta</th><th style="width:30%">O que ela testa</th><th style="width:30%">Benchmark nacional</th><th>O que observar</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="q">Tipo de CNPJ<span>MEI / ME / Outro</span></td>
+          <td>Segmentação. MEI e ME são negócios diferentes: ME normalmente tem contador, MEI quase nunca.</td>
+          <td class="bm">MEI representa <b>78%</b> das empresas abertas em 2026; <b>12,9 mi</b> ativos.</td>
+          <td class="watch">Se vier muito ME, a dor muda de dono — vira dor do contador, não do empreendedor. <b>Segmentem os resultados antes de ler qualquer outra pergunta.</b></td>
+        </tr>
+        <tr>
+          <td class="q">1 · Faturamento estimado<span>faixas + "não faço ideia"</span></td>
+          <td>Se o MEI sabe o próprio número — a pergunta central de toda a tese.</td>
+          <td class="bm"><b>68%</b> não têm previsão de saldo de caixa nem para o mês seguinte.</td>
+          <td class="watch"><b>Somem "Não faço ideia" + "nunca somei".</b> Esse número único é o slide de abertura do pitch. Qualquer coisa acima de 40% já sustenta a tese sozinha.</td>
+        </tr>
+        <tr>
+          <td class="q">1b · Confiança<span>"foi chute mesmo"</span></td>
+          <td>A qualidade da resposta anterior. É a melhor pergunta do formulário — separa quem sabe de quem <em>acha</em> que sabe.</td>
+          <td class="bm"><b>50%</b> dos donos de pequenos negócios têm controle financeiro precário.</td>
+          <td class="watch">O cruzamento que importa: <b>quem marcou uma faixa alta E respondeu "foi chute"</b>. Esse é o perfil em risco real de desenquadramento — e o seu usuário-alvo mais valioso.</td>
+        </tr>
+        <tr>
+          <td class="q">1c · Teto<span>"não sabia que tinha teto"</span></td>
+          <td>Consciência do risco legal, que é a dor que o produto vende.</td>
+          <td class="bm"><b>570 mil</b> desenquadrados em 2024, alta de 30× sobre 2023.</td>
+          <td class="watch">A resposta mais valiosa não é "não sabia" — é <b>"sei que existe, mas não sei quanto falta"</b>. Isso é demanda explícita e já formulada pelo próprio usuário. Contem separado.</td>
+        </tr>
+        <tr>
+          <td class="q">2 · Canais de entrada<span>aberta</span></td>
+          <td>A fragmentação, que é a causa raiz de tudo. Justifica tecnicamente por que a soma é impossível à mão.</td>
+          <td class="bm"><b>56%</b> das MPMEs usam maquininha; Pix é o canal mais barato e mais adotado.</td>
+          <td class="watch">Contem a <b>média de canais citados por pessoa</b>. Três ou mais é o limiar em que somar de cabeça deixa de ser viável — e é o número que justifica a agregação via Open Finance no pitch.</td>
+        </tr>
+        <tr>
+          <td class="q">3 · Conta única<span>aberta</span></td>
+          <td>A mistura entre dinheiro pessoal e da empresa.</td>
+          <td class="bm"><b>61%</b> pagam contas da empresa com conta pessoal — estável desde 2023 (60%).</td>
+          <td class="watch">Se a amostra der perto de 60%, vocês podem afirmar representatividade. <b>Anotem também quem tem conta PJ mas continua recebendo na chave Pix pessoal</b> — é o caso mais comum e o mais invisível.</td>
+        </tr>
+        <tr>
+          <td class="q">4 · Conferência de valores<span>aberta</span></td>
+          <td>Se o MEI percebe a diferença entre o que vendeu e o que caiu na conta.</td>
+          <td class="bm">Taxas de maquininha consomem <b>até 3%</b> da receita; adquirentes podem reter ou errar repasses.</td>
+          <td class="watch">A pergunta mais subestimada do formulário. <b>Se ninguém confere, todo mundo está calculando o teto sobre o líquido</b> — e portanto subestimando o próprio faturamento. Puxem esse fio na resposta aberta.</td>
+        </tr>
+        <tr>
+          <td class="q">5 · Impostos e DAS<span>aberta</span></td>
+          <td>A dor fiscal concreta e o vocabulário real que a pessoa usa para descrevê-la.</td>
+          <td class="bm"><b>404 mil</b> MEIs receberam Termo de Exclusão em março de 2026; DAS entre R$ 82 e R$ 87.</td>
+          <td class="watch">Garimpem as palavras exatas: "susto", "não sabia", "atrasei", "descobri depois". <b>Uma citação literal boa vale mais no palco que qualquer gráfico</b> — e a linguagem do usuário é a copy do produto.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout">
+    <strong>Uma ressalva metodológica sobre a pergunta 1.</strong> As opções "Não faço ideia" e "Sei mais ou menos o mês, mas nunca somei" estão na mesma lista das faixas de valor. Isso mistura <em>resposta</em> com <em>metadado</em>: quem marca uma delas sai da distribuição de faturamento, e a distribuição que sobra fica enviesada para quem tem mais controle. Não é um erro fatal — só não apresentem "X% dos MEIs faturam entre R$ 40 e 60 mil" como se fosse a amostra inteira. <strong>Reportem sempre sobre a base de quem respondeu uma faixa, e digam o tamanho dessa base.</strong>
+  </div>
+</section>
+
+<section id="insights">
+  <div class="shead">
+    <span class="eyebrow">05 — Insights</span>
+    <h2>Cinco leituras para o produto</h2>
+  </div>
+  <p class="sdek">Ordenadas por peso estratégico. A primeira é o reposicionamento do tema inteiro.</p>
+
+  <div class="ins">
+    <div class="insight">
+      <div class="rank">1</div>
+      <div>
+        <h3>Para o MEI, a anomalia é a receita — não a despesa.</h3>
+        <p>O tema fala em "valor fora do padrão" e "despesa que ninguém aprovou". Traduzido para o MEI, isso não é uma assinatura esquecida: é <em>um mês que joga a média anual acima de R$ 6.750</em>, e é <em>um DAS complementar retroativo com juros que ninguém aprovou nem viu chegando.</em></p>
+        <p>Essa tradução resolve, de quebra, a tensão do dossiê anterior — a de que "dinheiro vazando" pressupõe abundância. Aqui não pressupõe nada: <strong style="font-weight:600;color:var(--ink)">o alerta tem valor exatamente quando o negócio vai bem</strong>, porque crescer é justamente o que aciona o risco.</p>
+        <div class="payoff"><b>Consequência:</b> o autopilot monitora entrada contra um limite legal, não saída contra um orçamento. Muda a fonte de dados, a tela e a promessa.</div>
+      </div>
+    </div>
+
+    <div class="insight">
+      <div class="rank">2</div>
+      <div>
+        <h3>Somos o espelho do algoritmo da Receita.</h3>
+        <p>A Receita já soma o Pix e o cartão do MEI — foi assim que os desenquadramentos saltaram 30 vezes. Desde janeiro de 2026, a e-Financeira reporta movimentação de PJ acima de R$ 6.000 por mês, praticamente o teto mensal do MEI. <strong style="font-weight:600;color:var(--ink)">O Estado tem o número. O empreendedor não.</strong></p>
+        <p>Essa assimetria é o produto inteiro em uma frase, e é uma frase que ninguém no júri vai esquecer.</p>
+        <div class="payoff"><b>Consequência:</b> a promessa não é "organize suas finanças". É <b>"veja o que a Receita já vê sobre você"</b> — urgência imediata, sem precisar convencer ninguém de que planejamento é importante.</div>
+      </div>
+    </div>
+
+    <div class="insight">
+      <div class="rank">3</div>
+      <div>
+        <h3>O erro do líquido versus bruto é a anomalia mais bem escondida do Brasil.</h3>
+        <p>Quem controla pelo extrato conta R$ 96,50 numa venda de R$ 100. O teto conta os R$ 100. O erro é pequeno por transação, acumula o ano inteiro e <strong style="font-weight:600;color:var(--ink)">aponta sempre na direção do perigo</strong> — a pessoa se acha mais longe do teto do que está.</p>
+        <p>É detectável de forma automática cruzando o valor da venda com o repasse da adquirente, e é exatamente o "possível erro" que o enunciado do desafio pede.</p>
+        <div class="payoff"><b>Consequência:</b> um detector que reconstrói o bruto a partir do líquido entrega um número que <b>nenhuma planilha do usuário tem</b> — e que o app do banco também não tem.</div>
+      </div>
+    </div>
+
+    <div class="insight">
+      <div class="rank">4</div>
+      <div>
+        <h3>O CPF é a alavanca emocional, não o CNPJ.</h3>
+        <p>A dívida do MEI cai no CPF do dono: negativação, e interrupção da contribuição ao INSS que pode bloquear auxílio-doença, salário-maternidade e aposentadoria. Some a isso que <strong style="font-weight:600;color:var(--ink)">61% já misturam as duas contas</strong> — para o MEI, a fronteira entre empresa e vida pessoal nunca existiu de verdade.</p>
+        <p>É a ponte entre este dossiê e a pesquisa de finanças pessoais: não são dois produtos, é o mesmo bolso.</p>
+        <div class="payoff"><b>Consequência:</b> falem em "seu nome" e "sua aposentadoria", não em "compliance fiscal do seu CNPJ". A dor é pessoal e a linguagem tem que ser.</div>
+      </div>
+    </div>
+
+    <div class="insight">
+      <div class="rank">5</div>
+      <div>
+        <h3>Aqui o banco não é concorrente — e essa é a diferença em relação ao B2C.</h3>
+        <p>No dossiê de finanças pessoais, o maior risco era competir com o copiloto de IA gratuito do Nubank. Aqui a lógica muda: <strong style="font-weight:600;color:var(--ink)">nenhum banco enxerga o dinheiro que entrou em dinheiro vivo, na maquininha de outro adquirente ou na chave Pix pessoal.</strong> E nenhum deles tem incentivo para calcular obrigação tributária de cliente.</p>
+        <p>A conta PJ resolve pagamento. Ninguém resolve <em>apuração</em>.</p>
+        <div class="payoff"><b>Consequência:</b> o espaço competitivo é contra contador e planilha, não contra banco. Isso muda a análise de concorrência do pitch — e melhora muito.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="lacunas">
+  <div class="shead">
+    <span class="eyebrow">06 — Lacunas</span>
+    <h2>O que eu acrescentaria ao formulário</h2>
+  </div>
+  <p class="sdek">O formulário está bom e não precisa ser refeito. Se ainda der para editar antes de disparar, estas são as adições em ordem de retorno.</p>
+
+  <div class="gaps">
+    <div class="gap hi">
+      <div class="pri">Alta</div>
+      <div><p><b>"Você já passou do teto, ou já levou algum susto com imposto? Conta o que aconteceu."</b><em>É o evento de dor mais agudo que existe nessa população, e o formulário atual não o captura. Uma história real aqui vale o pitch inteiro — e identifica quem já tem disposição a pagar.</em></p></div>
+    </div>
+    <div class="gap hi">
+      <div class="pri">Alta</div>
+      <div><p><b>"Da última vez que você precisou saber quanto tinha faturado, como você fez? Passo a passo."</b><em>O formulário todo é declarativo. Esta é a única pergunta de comportamento observado — e comportamento passado é o único preditor confiável. Se a resposta for longa e cheia de passos manuais, está provado que o problema é real.</em></p></div>
+    </div>
+    <div class="gap md">
+      <div class="pri">Média</div>
+      <div><p><b>"Quem cuida disso: você, um contador, alguém da família?"</b><em>Define quem é o usuário e quem é o comprador. Se um contador já resolve, a dor está terceirizada e o produto tem outro alvo.</em></p></div>
+    </div>
+    <div class="gap md">
+      <div class="pri">Média</div>
+      <div><p><b>Na pergunta 4, oferecer a distinção explicitamente: "você anota o valor da venda ou o valor que caiu na conta?"</b><em>A pergunta aberta atual dificilmente vai extrair isso sozinha, e é o insight nº 3 deste dossiê. Vale uma pergunta fechada de 5 segundos.</em></p></div>
+    </div>
+    <div class="gap lo">
+      <div class="pri">Baixa</div>
+      <div><p><b>Uma pergunta de contato opcional, ao final.</b><em>Quem responder "foi chute mesmo" e ainda assim deixar o contato é candidato a entrevista em profundidade — e, depois do hackathon, a primeiro usuário.</em></p></div>
+    </div>
+  </div>
+
+  <div class="callout">
+    <strong>O número que eu levaria para o slide de abertura:</strong> a soma de quem respondeu "Não faço ideia" ou "Sei mais ou menos o mês, mas nunca somei" na pergunta 1, cruzada com "foi chute mesmo" na 1b. Uma frase do tipo <em>"X de cada 10 MEIs que ouvimos não sabem quanto faturaram este ano — e a Receita sabe"</em> resolve a apresentação do problema em sete segundos.
+  </div>
+</section>
+
+<section id="fontes">
+  <div class="shead">
+    <span class="eyebrow">07 — Procedência</span>
+    <h2>Fontes e ressalvas</h2>
+  </div>
+
+  <div class="callout">
+    <strong>Duas ressalvas antes de citar.</strong> O dado de que <em>68% dos MEIs não têm previsão de saldo de caixa</em> vem de um levantamento Sebrae mais antigo — use como ordem de grandeza, não como número de 2026. Já os dados de mistura de contas e método de controle são da pesquisa Hábitos Financeiros 2025 do Sebrae, recente e comparável com 2023.<br><br>
+    O número de <strong>570 mil desenquadramentos em 2024</strong> é uma análise da Contabilizei sobre dados públicos da Receita Federal, não uma publicação oficial da Receita. É amplamente reportado pela imprensa financeira e consistente com o movimento de fiscalização, mas atribuam corretamente: "segundo análise da Contabilizei sobre dados da Receita".
+  </div>
+
+  <details class="src-block">
+    <summary><span>MEI: universo, teto e fiscalização</span></summary>
+    <div class="src-body">
+      <ul>
+        <li><a href="https://www.infomoney.com.br/minhas-financas/numero-de-meis-que-ultrapassaram-o-limite-de-faturamento-saltou-30-vezes-em-2024/">InfoMoney — Número de MEIs que ultrapassaram o limite de faturamento saltou 30 vezes em 2024</a> &middot; análise Contabilizei sobre dados da Receita Federal</li>
+        <li><a href="https://www.gov.br/receitafederal/pt-br/assuntos/noticias/2026/marco/receita-federal-emite-termo-de-exclusao-para-devedores-do-simples-nacional-incluindo-mei">Receita Federal — Termo de Exclusão para devedores do Simples Nacional, incluindo MEI</a> &middot; 1.102.924 devedores, dos quais 404.368 MEIs, R$ 12,9 bi em dívidas, março de 2026</li>
+        <li><a href="https://www.gov.br/memp/pt-br/teto-do-mei">Portal Gov.br — Teto do MEI</a> &middot; regra oficial do limite de R$ 81 mil e faixas de desenquadramento</li>
+        <li><a href="https://agenciasebrae.com.br/dados/meis-lideram-abertura-de-empresas-no-pais-e-ja-representam-78-dos-novos-negocios-em-2026/">Agência Sebrae — MEIs representam 78% dos novos negócios em 2026</a></li>
+        <li><a href="https://agenciabrasil.ebc.com.br/economia/noticia/2026-03/abertura-de-pequenos-negocios-bate-recorde-em-2026">Agência Brasil — Abertura de pequenos negócios bate recorde em 2026</a> &middot; 3,6 milhões de aberturas, alta de quase 14%</li>
+        <li><a href="https://datasebrae.com.br/perfil-do-microempreendedor-individual/">DataSebrae — Perfil do Microempreendedor Individual</a> &middot; renda, escolaridade, setores e origem na informalidade</li>
+        <li><a href="https://www.contabilizei.com.br/contabilidade-online/faturamento-mei-2026/">Contabilizei — Limite MEI 2026 e propostas de novo teto</a> &middot; PLP 67/2025 e PLP 186/2026</li>
+      </ul>
+    </div>
+  </details>
+
+  <details class="src-block">
+    <summary><span>Comportamento financeiro do pequeno negócio</span></summary>
+    <div class="src-body">
+      <ul>
+        <li><a href="https://agenciasebrae.com.br/cultura-empreendedora/61-dos-empreendedores-brasileiros-fazem-pagamentos-da-empresa-com-a-conta-pessoal/">Agência Sebrae — 61% dos empreendedores pagam contas da empresa com a conta pessoal</a> &middot; Hábitos Financeiros 2025, com recortes por setor e região</li>
+        <li><a href="https://sebraepr.com.br/impulsiona/habitosfinanceiro2025/">Sebrae/PR — Pesquisa Hábitos Financeiros 2025</a> &middot; relatório completo, 117 páginas</li>
+        <li><a href="https://rn.agenciasebrae.com.br/economia-e-politica/cerca-de-60-dos-meis-ainda-misturam-financas-do-negocio-com-contas-pessoais/">Agência Sebrae RN — Cerca de 60% dos MEIs misturam finanças do negócio com as pessoais</a></li>
+        <li><a href="https://www.inovacaosebraeminas.com.br/artigo/gestao-financeira-para-mei">Sebrae Minas — Gestão financeira para MEI</a> &middot; 68% sem previsão de saldo de caixa, 22% com formação em gestão financeira</li>
+        <li><a href="https://www.imperiocontabilidade.com.br/post/concilia%C3%A7%C3%A3o-de-cart%C3%B5es-como-evitar-perdas-com-taxas-ocultas">Império Contabilidade — Conciliação de cartões e taxas ocultas</a> &middot; perdas de até 3% da receita e falhas de repasse da adquirente</li>
+      </ul>
+    </div>
+  </details>
+
+  <details class="src-block">
+    <summary><span>Fiscalização digital e reforma tributária</span></summary>
+    <div class="src-body">
+      <ul>
+        <li><a href="https://www.contabeis.com.br/noticias/72618/receita-federal-amplia-fiscalizacao-com-novas-regras-da-e-financeira/">Contábeis — Receita Federal amplia fiscalização com novas regras da e-Financeira</a> &middot; IN RFB 2.278/2025, limite de R$ 6.000/mês para PJ</li>
+        <li><a href="https://www.sindifiscalms.org.br/novidade/o-que-a-receita-federal-vai-monitorar-nas-contas-bancarias-em-2026/71629">Sindifiscal-MS — O que a Receita Federal vai monitorar nas contas bancárias em 2026</a></li>
+        <li><a href="https://www.serasa.com.br/limpa-nome-online/blog/o-que-acontece-se-nao-pagar-o-das-mei/">Serasa — O que acontece se não pagar o DAS do MEI</a> &middot; vínculo CNPJ–CPF, negativação e interrupção previdenciária</li>
+        <li><a href="https://digital.sebraers.com.br/blog/mei/consequencias-da-inadimplencia-do-mei-entenda-os-riscos-e-impactos/">Sebrae RS — Consequências da inadimplência do MEI</a></li>
+        <li><a href="https://www.contabeis.com.br/noticias/78686/sn-podera-ter-ibs-e-cbs-quitados-automaticamente-pelo-split-payment/">Contábeis — Simples Nacional, IBS, CBS e split payment</a> &middot; cronograma da reforma para pequenos negócios</li>
+        <li><a href="https://exame.com/bussola/em-2026-pequenas-e-medias-empresas-precisarao-se-adaptar-um-novo-imposto/">Exame — PMEs precisarão se adaptar a um novo imposto em 2026</a> &middot; apenas 11% se dizem preparadas</li>
+      </ul>
+    </div>
+  </details>
+</section>
+
+<footer>
+  <span><a href="https://claude.ai/code/artifact/79585db6-844d-4757-b200-103c55b660fc">Dossiê de finanças pessoais</a> &middot; <a href="https://claude.ai/code/artifact/597d3f7f-e3e3-40ec-b566-bb81353e0734">Briefing do tema</a></span>
+  <span>Dossiê MEI &middot; 29 ago 2026</span>
+</footer>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Jobs to be Done — o que o MEI contrata a gente para fazer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+Condensed:wght@600;700&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #FBFCF9;
+    --bar: #E6EEDF;
+    --rule: #C3CFB9;
+    --ink: #1B2019;
+    --ink-soft: #5E655B;
+    --debit: #A8412A;
+    --debit-bg: #F8E7E1;
+    --debit-rule: #D9A695;
+    --fiscal: #2E3B2C;
+    --go: #2F6B4F;
+    --go-bg: #E1EFE6;
+    --go-rule: #A3C9B2;
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    background-image: repeating-linear-gradient(to bottom, var(--bar) 0 34px, var(--paper) 34px 68px);
+    color: var(--ink);
+    font-family: "IBM Plex Sans", system-ui, sans-serif;
+    font-size: 16px; line-height: 1.65;
+  }
+  .sheet {
+    max-width: 900px; margin: 0 auto; padding: 40px 28px 80px;
+    background: var(--paper);
+    border-left: 1px solid var(--rule); border-right: 1px solid var(--rule);
+    min-height: 100vh;
+  }
+  .eyebrow {
+    font-family: "IBM Plex Mono", monospace; font-size: 12px;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--ink-soft); margin: 0 0 18px;
+  }
+  h1 {
+    font-family: "IBM Plex Sans Condensed", sans-serif; font-weight: 700;
+    font-size: clamp(34px, 7vw, 54px); line-height: 1.02;
+    letter-spacing: -0.01em; margin: 0 0 14px;
+  }
+  .standfirst { font-size: 18px; color: var(--ink-soft); max-width: 46em; margin: 0 0 24px; }
+  .method-note {
+    font-family: "IBM Plex Mono", monospace; font-size: 12px;
+    border: 1px solid var(--rule); background: #fff;
+    padding: 12px 16px; margin: 0 0 36px; color: var(--ink-soft);
+  }
+  section { margin-bottom: 56px; }
+  h2 {
+    font-family: "IBM Plex Sans Condensed", sans-serif; font-weight: 600;
+    font-size: 26px; line-height: 1.15; margin: 0 0 6px;
+    padding-top: 14px; border-top: 2px solid var(--ink);
+  }
+  h3 {
+    font-family: "IBM Plex Sans Condensed", sans-serif; font-weight: 600;
+    font-size: 19px; margin: 30px 0 8px;
+  }
+  .kicker {
+    font-family: "IBM Plex Mono", monospace; font-size: 11px;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--ink-soft); display: block; margin-bottom: 20px;
+  }
+  p { margin: 0 0 16px; max-width: 46em; }
+  strong { font-weight: 500; }
+  em { font-style: italic; }
+  blockquote {
+    margin: 0 0 16px; padding: 0 0 0 18px;
+    border-left: 3px solid var(--rule); color: var(--ink-soft);
+    max-width: 46em; font-style: italic;
+  }
+
+  .tagev {
+    display: inline-block; font-family: "IBM Plex Mono", monospace;
+    font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase;
+    padding: 3px 9px; white-space: nowrap; vertical-align: 3px; margin-left: 8px;
+  }
+  .e-yes { background: var(--ink); color: #FBFCF9; }
+  .e-hyp { background: transparent; border: 1px dashed var(--rule); color: var(--ink-soft); }
+
+  .jobmain { background: var(--fiscal); color: #F1F4EC; padding: 30px 32px; margin: 8px 0 24px; }
+  .jobmain span {
+    font-family: "IBM Plex Mono", monospace; font-size: 11px;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: #A9B5A2; display: block; margin-bottom: 14px;
+  }
+  .jobmain p {
+    font-family: "IBM Plex Sans Condensed", sans-serif; font-weight: 600;
+    font-size: clamp(20px, 3.4vw, 28px); line-height: 1.28; margin: 0; color: #fff; max-width: none;
+  }
+
+  .levels { display: grid; gap: 1px; background: var(--rule); border: 1px solid var(--rule); margin: 8px 0 24px; }
+  .level { background: #fff; padding: 20px 22px; }
+  .level h4 {
+    font-family: "IBM Plex Sans Condensed", sans-serif; font-weight: 600;
+    font-size: 18px; margin: 0 0 6px;
+  }
+  .level p { margin: 0; font-size: 15px; }
+
+  .forces { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--rule); border: 1px solid var(--rule); margin: 8px 0 20px; }
+  .force { background: #fff; padding: 20px 22px; }
+  .force.pro { background: var(--go-bg); }
+  .force.con { background: var(--debit-bg); }
+  .force h4 {
+    font-family: "IBM Plex Sans Condensed", sans-serif; font-weight: 600;
+    font-size: 17px; margin: 0 0 4px;
+  }
+  .force.pro h4 { color: var(--go); }
+  .force.con h4 { color: var(--debit); }
+  .force .dir {
+    font-family: "IBM Plex Mono", monospace; font-size: 10px;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    display: block; margin-bottom: 10px; color: var(--ink-soft);
+  }
+  .force ul { margin: 0; padding-left: 18px; }
+  .force li { margin-bottom: 7px; font-size: 15px; }
+
+  ul.stories { list-style: none; padding: 0; margin: 8px 0 20px; }
+  ul.stories li {
+    padding: 18px 0; border-top: 1px solid var(--rule); max-width: 46em; font-size: 16px;
+  }
+  ul.stories li:last-child { border-bottom: 1px solid var(--rule); }
+  ul.stories b { font-weight: 500; }
+  ul.stories .why {
+    display: block; font-family: "IBM Plex Mono", monospace;
+    font-size: 12px; color: var(--ink-soft); margin-top: 8px;
+  }
+  ul.stories li.star { background: #fff; border-left: 3px solid var(--debit); padding-left: 16px; }
+
+  .callout { background: var(--debit-bg); border: 1px solid var(--debit-rule); padding: 22px 24px; margin: 24px 0; }
+  .callout h3 { margin-top: 0; }
+  .callout p:last-child { margin-bottom: 0; }
+
+  ol.dec { padding-left: 0; list-style: none; counter-reset: d; margin: 0; }
+  ol.dec li {
+    counter-increment: d; padding: 18px 0 18px 52px;
+    border-top: 1px solid var(--rule); position: relative; max-width: 46em;
+  }
+  ol.dec li:last-child { border-bottom: 1px solid var(--rule); }
+  ol.dec li::before {
+    content: counter(d, decimal-leading-zero); position: absolute; left: 0; top: 18px;
+    font-family: "IBM Plex Mono", monospace; font-size: 12px; color: var(--debit);
+  }
+  ol.dec b {
+    font-family: "IBM Plex Sans Condensed", sans-serif; font-weight: 600;
+    font-size: 18px; display: block; margin-bottom: 2px;
+  }
+
+  footer {
+    font-family: "IBM Plex Mono", monospace; font-size: 12px;
+    color: var(--ink-soft); border-top: 1px solid var(--rule); padding-top: 16px;
+  }
+
+  @media (max-width: 620px) {
+    .sheet { padding: 28px 18px 60px; border: none; }
+    .forces { grid-template-columns: 1fr; }
+  }
+  @media print {
+    body { background: #fff; }
+    .sheet { border: none; max-width: none; }
+    section { break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+<div class="sheet">
+
+  <p class="eyebrow">Hackathon · Time 12 · Mesa 12 · Documento 06</p>
+  <h1>Jobs to be Done</h1>
+  <p class="standfirst">O que o MEI contrata a gente para fazer — e as forças que decidem se ele troca o caderno pelo produto.</p>
+  <p class="method-note">Ressalva de método: JTBD sério nasce de entrevista com o público que qualifica. Nossas seis conversas são com o perfil que <strong>não</strong> qualifica (Pix direto, baixo volume). Cada item aqui está marcado como <span class="tagev e-yes">evidenciado</span> ou <span class="tagev e-hyp">hipótese</span>. Não apagar essas marcas no deck.</p>
+
+  <section>
+    <h2>O job principal</h2>
+    <span class="kicker">A situação, não a ferramenta</span>
+    <div class="jobmain">
+      <span>Job principal</span>
+      <p>Quando o dinheiro entra por vários canais que não conversam entre si, quero saber se o que caiu na conta é o que eu realmente vendi — para não descobrir tarde demais que perdi dinheiro ou que estourei um limite.</p>
+    </div>
+    <p>Note o que ficou de fora: não tem “monitorar anomalias”, não tem “usar IA”, não tem “organizar as finanças”. Job descreve a situação e o resultado esperado. Se a frase menciona a nossa solução, ainda não é um job.</p>
+  </section>
+
+  <section>
+    <h2>Os três níveis</h2>
+    <span class="kicker">O funcional é o que se demonstra. O emocional é o que faz voltar.</span>
+    <div class="levels">
+      <div class="level">
+        <h4>Funcional <span class="tagev e-hyp">hipótese</span></h4>
+        <p>Saber quanto entrou de verdade, quanto ficou retido no caminho, e a que distância estou do teto.</p>
+      </div>
+      <div class="level">
+        <h4>Emocional <span class="tagev e-yes">evidenciado</span></h4>
+        <p>Parar de carregar isso sozinha. Metade da amostra delegou a outra pessoa e uma resumiu: “tive que aprender sozinha”. A dor não é ignorância — é solidão operacional.</p>
+      </div>
+      <div class="level">
+        <h4>Social <span class="tagev e-hyp">hipótese</span></h4>
+        <p>Não parecer amador para o contador, o sócio ou a família. Quem delega entrega o problema a quem entende mais, e isso tem custo de imagem.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>As quatro forças</h2>
+    <span class="kicker">O que decide a troca do caderno pelo produto</span>
+    <div class="forces">
+      <div class="force pro">
+        <h4>Empurram para fora do hábito</h4>
+        <span class="dir">a favor da mudança</span>
+        <ul>
+          <li>O volume cresceu e não cabe mais na cabeça</li>
+          <li>Um susto concreto: taxa inesperada, repasse menor, conhecido desenquadrado</li>
+          <li>A contadora avisou que está apertado</li>
+        </ul>
+      </div>
+      <div class="force pro">
+        <h4>Puxam para o novo</h4>
+        <span class="dir">a favor da mudança</span>
+        <ul>
+          <li>Ver um número que nunca se teve</li>
+          <li>Sensação de que alguém está cuidando</li>
+          <li>Repasse conferido sem trabalho manual</li>
+        </ul>
+      </div>
+      <div class="force con">
+        <h4>Ansiedade que trava</h4>
+        <span class="dir">contra a mudança</span>
+        <ul>
+          <li><strong>Medo do que vai descobrir</strong> — a pessoa com dez parcelas atrasadas conviveu bem com isso até resolver</li>
+          <li>Receio de dar acesso à conta bancária</li>
+          <li>“E se o número me obrigar a tomar uma decisão?”</li>
+        </ul>
+      </div>
+      <div class="force con">
+        <h4>Hábito que segura</h4>
+        <span class="dir">contra a mudança</span>
+        <ul>
+          <li>O caderno funciona bem o suficiente</li>
+          <li>A esposa contadora já resolve</li>
+          <li>Nunca deu problema até hoje</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="callout">
+      <h3>A leitura estratégica</h3>
+      <p>As forças de hábito e ansiedade são fortes, e o empurrão só aparece depois de um susto. Ou seja: <strong>o produto precisa provocar o susto de forma segura</strong> — revelar o problema sem soar como acusação.</p>
+      <p>É a mesma decisão de “revelar antes de resolver” do documento 04, agora com justificativa de comportamento e não só de consciência.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Job stories</h2>
+    <span class="kicker">Formato que já contém o gatilho — melhor que persona</span>
+    <ul class="stories">
+      <li><b>Quando</b> recebo por maquininha e marketplace no mesmo mês, <b>quero</b> ver o total real que entrou, <b>para</b> saber se estou ganhando o que penso que ganho.<span class="why">tela: número consolidado no topo</span></li>
+      <li><b>Quando</b> cai um valor menor do que vendi, <b>quero</b> entender o que foi descontado, <b>para</b> decidir se contesto ou se é taxa normal.<span class="why">tela: decomposição da diferença, não alerta</span></li>
+      <li><b>Quando</b> chega o fim do ano, <b>quero</b> saber a distância até o teto, <b>para</b> decidir se seguro venda ou me preparo para mudar de regime.<span class="why">tela: barra de progresso fiscal</span></li>
+      <li class="star"><b>Quando</b> minha contadora pergunta o faturamento, <b>quero</b> mandar um resumo pronto, <b>para</b> não passar a tarde somando.<span class="why">nasce do achado dos dois usuários — nenhum concorrente atende</span></li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>O que isso muda no produto</h2>
+    <span class="kicker">Consequências diretas para a construção</span>
+    <ol class="dec">
+      <li><b>Não é um feed de alertas</b>Se o job é “saber se o que caiu é o que vendi”, a interface principal é uma reconciliação contínua com um número no topo. O alerta vira exceção dentro dela.</li>
+      <li><b>Compartilhar não é extra</b>Se o job emocional é não carregar sozinha, mandar o resumo para quem organiza faz parte do job — não é funcionalidade secundária.</li>
+      <li><b>O tom precisa desarmar a ansiedade</b>A força que mais trava é o medo do que vai aparecer. Linguagem de acusação mata a adoção antes do primeiro uso.</li>
+      <li><b>Comparar com o caderno, não com apps</b>A barra é “menos trabalho que anotar”. Qualquer entrada manual no fluxo principal perde essa comparação.</li>
+    </ol>
+  </section>
+
+  <footer>Documento de trabalho — série: 01 enquadramento · 02 catálogo · 03 universo MEI · 04 posicionamento · 05 resultado e ICP · 06 jobs to be done.</footer>
+
+</div>
+</body>
+</html>

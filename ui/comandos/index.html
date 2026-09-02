@@ -1,0 +1,125 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Regis · Animações dos comandos</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Karla:wght@400;500;600&display=swap">
+<style>
+  :root{
+    color-scheme:light;
+    --ink:#0B100D; --mute:#69756D; --faint:#98A39C;
+    --bg:#F1F4F1; --card:#FFFFFF; --line:#E1E7E2;
+    --green:#00A65C; --green-deep:#04663A; --green-wash:#E2F3EA;
+    --font-d:"Manrope",-apple-system,BlinkMacSystemFont,sans-serif;
+    --font-b:"Karla",-apple-system,BlinkMacSystemFont,sans-serif;
+  }
+  @media (prefers-color-scheme:dark){
+    :root:not([data-theme="light"]){
+      color-scheme:dark;
+      --ink:#F2F5F2; --mute:#8B968E; --faint:#68726B;
+      --bg:#070A08; --card:#111714; --line:#212A24;
+      --green:#00C46C; --green-deep:#84E4B6; --green-wash:#0C2016;
+    }
+  }
+  *{box-sizing:border-box}
+  body{background:var(--bg);color:var(--ink);font-family:var(--font-b);line-height:1.5;
+       -webkit-font-smoothing:antialiased}
+  .wrap{max-width:1180px;margin:0 auto;padding:56px 26px 90px}
+  .brand{display:flex;align-items:center;gap:11px;margin-bottom:24px}
+  .dot{width:28px;height:28px;border-radius:50%;background:var(--green);
+       display:grid;place-items:center;flex:none}
+  .dot i{width:10px;height:10px;border-radius:50%;background:#fff;display:block}
+  .brand span{font-family:var(--font-d);font-weight:800;font-size:20px;letter-spacing:-.02em}
+  h1{font-family:var(--font-d);font-weight:800;font-size:clamp(30px,4.5vw,42px);
+     line-height:1.06;letter-spacing:-.035em;margin:0 0 12px;text-wrap:balance}
+  .lede{font-size:16.5px;color:var(--mute);max-width:64ch;margin:0 0 6px}
+  .hint{font-size:14px;color:var(--faint);margin:14px 0 0;max-width:70ch}
+  .hint code{font-family:ui-monospace,Menlo,monospace;font-size:12.5px;
+             background:var(--card);border:1px solid var(--line);
+             padding:2px 6px;border-radius:5px}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(392px,1fr));
+        gap:30px;margin-top:40px}
+  .item{margin:0;background:var(--card);border:1px solid var(--line);
+        border-radius:22px;padding:18px 18px 20px;display:flex;flex-direction:column;gap:14px}
+  .item iframe{width:100%;height:700px;border:0;border-radius:16px;display:block}
+  figcaption h2{font-family:var(--font-d);font-size:16px;font-weight:700;margin:0 0 4px;
+                display:flex;align-items:center;gap:9px;letter-spacing:-.015em}
+  figcaption h2 code{font-family:ui-monospace,Menlo,monospace;font-size:15px}
+  .ic{width:30px;height:30px;border-radius:9px;background:var(--green-wash);
+      color:var(--green-deep);display:grid;place-items:center;font-size:15px;flex:none}
+  figcaption p{margin:0 0 8px;font-size:14px;color:var(--mute);line-height:1.45}
+  figcaption a{font-family:var(--font-d);font-size:13px;font-weight:700;
+               color:var(--green-deep);text-decoration:none}
+  figcaption a:hover{text-decoration:underline}
+  .foot{margin-top:48px;padding-top:22px;border-top:1px solid var(--line);
+        font-size:13.5px;color:var(--faint)}
+</style>
+
+<div class="wrap">
+  <div class="brand"><span class="dot"><i></i></span><span>Regis</span></div>
+
+  <h1>Uma animação por comando</h1>
+  <p class="lede">Cada comando do bot virou uma tela sozinha, em loop, para entrar na apresentação sem depender das outras. A copy é a de <code>copy-comandos.md</code>, palavra por palavra.</p>
+  <p class="hint">Para colocar no slide: abra o arquivo e grave a tela, ou embuta com
+  <code>&lt;iframe src="cmd-teto.html?fundo=transparente"&gt;</code>. Dá para forçar o tema com
+  <code>?tema=dark</code> ou <code>?tema=light</code>, e clicar no aparelho reinicia a animação na hora.</p>
+
+  <div class="grid">
+      <figure class="item">
+        <iframe src="cmd-start.html?fundo=transparente" title="Regis · /start" loading="lazy" scrolling="no"></iframe>
+        <figcaption>
+          <h2><span class="ic">👋</span> <code>/start</code></h2>
+          <p>Ela se apresenta e conecta a conta. Nenhuma configuração, nenhum cadastro.</p>
+          <a href="cmd-start.html">abrir sozinho ›</a>
+        </figcaption>
+      </figure>
+      <figure class="item">
+        <iframe src="cmd-teto.html?fundo=transparente" title="Regis · /teto" loading="lazy" scrolling="no"></iframe>
+        <figcaption>
+          <h2><span class="ic">📈</span> <code>/teto</code></h2>
+          <p>Faturamento do ano e distância do teto. É a promessa do pitch.</p>
+          <a href="cmd-teto.html">abrir sozinho ›</a>
+        </figcaption>
+      </figure>
+      <figure class="item">
+        <iframe src="cmd-das.html?fundo=transparente" title="Regis · /das" loading="lazy" scrolling="no"></iframe>
+        <figcaption>
+          <h2><span class="ic">🧾</span> <code>/das</code></h2>
+          <p>O DAS do mês, a duplicidade que ela achou e o lembrete do próximo.</p>
+          <a href="cmd-das.html">abrir sozinho ›</a>
+        </figcaption>
+      </figure>
+      <figure class="item">
+        <iframe src="cmd-resumo.html?fundo=transparente" title="Regis · /resumo" loading="lazy" scrolling="no"></iframe>
+        <figcaption>
+          <h2><span class="ic">🫱</span> <code>/resumo</code></h2>
+          <p>Resumo de tranquilidade agora, sem esperar segunda.</p>
+          <a href="cmd-resumo.html">abrir sozinho ›</a>
+        </figcaption>
+      </figure>
+      <figure class="item">
+        <iframe src="cmd-contador.html?fundo=transparente" title="Regis · /contador" loading="lazy" scrolling="no"></iframe>
+        <figcaption>
+          <h2><span class="ic">📤</span> <code>/contador</code></h2>
+          <p>Ela gera o resumo do ano e pergunta se manda pra contadora. Quem confirma é a pessoa.</p>
+          <a href="cmd-contador.html">abrir sozinho ›</a>
+        </figcaption>
+      </figure>
+      <figure class="item">
+        <iframe src="cmd-silencio.html?fundo=transparente" title="Regis · /silencio" loading="lazy" scrolling="no"></iframe>
+        <figcaption>
+          <h2><span class="ic">🤫</span> <code>/silencio</code></h2>
+          <p>O que ela achou e escolheu não mandar. É o momento que prova a tese.</p>
+          <a href="cmd-silencio.html">abrir sozinho ›</a>
+        </figcaption>
+      </figure>
+      <figure class="item">
+        <iframe src="cmd-reset.html?fundo=transparente" title="Regis · /reset" loading="lazy" scrolling="no"></iframe>
+        <figcaption>
+          <h2><span class="ic">↺</span> <code>/reset</code></h2>
+          <p>Zera o estado do chat para repetir a demo na frente do júri.</p>
+          <a href="cmd-reset.html">abrir sozinho ›</a>
+        </figcaption>
+      </figure>
+  </div>
+
+  <p class="foot">Regis · Financial Anomaly Autopilot · Time 12 · Hackathon Vanguarda 2026</p>
+</div>

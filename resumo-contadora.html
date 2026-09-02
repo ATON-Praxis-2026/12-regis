@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Resumo para a contadora</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FFFFFF; --ink:#0B100D; --soft:#69756D; --rule:#E1E7E2;
+    --go:#04663A; --go-bg:#E2F3EA; --go-rule:#A3C9B2; --fiscal:#04663A; --brand:#00C46C;
+  }
+  @page{ size:A4; margin:12mm; }
+  *{ box-sizing:border-box; }
+  body{
+    margin:0; background:#EDEFEA; color:var(--ink);
+    font-family:"IBM Plex Sans",system-ui,sans-serif; font-size:11.5pt; line-height:1.55;
+  }
+  .sheet{
+    background:var(--paper); max-width:210mm; min-height:297mm; margin:20px auto;
+    padding:15mm; box-shadow:0 6px 30px rgba(27,32,25,.14);
+  }
+  @media print{ body{background:#fff;} .sheet{box-shadow:none;margin:0;min-height:auto;padding:0;} }
+
+  .brand{
+    display:flex; align-items:center; justify-content:space-between;
+    border-bottom:2px solid var(--ink); padding-bottom:10px; margin-bottom:22px;
+  }
+  .brand .logo{ height:20px; width:auto; display:block; }
+  .brand .tag{ font-family:"IBM Plex Mono",monospace; font-size:9pt; color:var(--soft);
+    text-transform:uppercase; letter-spacing:.12em; }
+
+  h1{ font-size:18pt; font-weight:700; margin:0 0 4px; }
+  .sub{ font-family:"IBM Plex Mono",monospace; font-size:9.5pt; color:var(--soft);
+    margin:0 0 14px; }
+
+  .hero{ background:var(--fiscal); color:#F1F4EC; padding:14px 18px; margin:0 0 6px; }
+  .hero .lab{ font-family:"IBM Plex Mono",monospace; font-size:9pt; letter-spacing:.14em;
+    text-transform:uppercase; color:#A9B5A2; margin:0 0 6px; }
+  .hero .big{ font-size:26pt; font-weight:700; line-height:1; letter-spacing:-.02em;
+    font-variant-numeric:tabular-nums; }
+  .hero .note{ font-size:10.5pt; color:#D6DDCF; margin-top:8px; }
+
+  h2{ font-family:"IBM Plex Mono",monospace; font-size:9pt; letter-spacing:.13em;
+    text-transform:uppercase; color:var(--soft); border-top:1px solid var(--rule);
+    padding-top:7px; margin:10px 0 6px; }
+
+  .rows{ }
+  .r{ display:flex; justify-content:space-between; align-items:baseline;
+    padding:5px 0; border-bottom:1px solid #E7ECE3; font-size:11pt; }
+  .r:last-child{ border-bottom:0; }
+  .r .v{ font-weight:600; font-variant-numeric:tabular-nums; }
+  .r .pct{ font-family:"IBM Plex Mono",monospace; color:var(--soft); font-size:10pt; }
+
+  .fisc .r .v.ok{ color:var(--go); }
+  ul{ margin:4px 0 0; padding-left:18px; }
+  li{ margin-bottom:5px; font-size:11pt; max-width:52em; }
+  li b{ font-weight:600; }
+
+  .foot{
+    margin-top:14px; border-top:1px solid var(--rule); padding-top:11px;
+    font-family:"IBM Plex Mono",monospace; font-size:9pt; color:var(--soft); line-height:1.5;
+  }
+  .foot b{ color:var(--go); font-weight:500; }
+</style>
+</head>
+<body>
+<div class="sheet">
+
+  <div class="brand">
+    <img class="logo" src="idv/Regis%20Logo.svg" alt="Regis">
+    <div class="tag">Gerado · 29 ago 2026</div>
+  </div>
+
+  <h1>Resumo para a contadora</h1>
+  <p class="sub">Angela · MEI, cabeleireira · janeiro a agosto de 2026</p>
+
+  <div class="hero">
+    <div class="lab">Faturamento bruto no ano</div>
+    <div class="big">R$ 58.400,00</div>
+    <div class="note">72,1% do teto de R$ 81.000. Faltam R$ 22.600. No ritmo atual, chega ao teto em outubro de 2026.</div>
+  </div>
+
+  <h2>Por mês (receita bruta)</h2>
+  <div class="rows">
+    <div class="r"><span>Janeiro a maio (consolidado)</span><span class="v">R$ 30.000,00</span></div>
+    <div class="r"><span>Junho</span><span class="v">R$ 8.200,00</span></div>
+    <div class="r"><span>Julho</span><span class="v">R$ 9.400,00</span></div>
+    <div class="r"><span>Agosto (até 29)</span><span class="v">R$ 10.800,00</span></div>
+  </div>
+
+  <h2>Por canal de recebimento</h2>
+  <div class="rows">
+    <div class="r"><span>Maquininha crédito</span><span class="pct">36,7%</span></div>
+    <div class="r"><span>Maquininha débito</span><span class="pct">27,9%</span></div>
+    <div class="r"><span>Marketplace (BelezaNet)</span><span class="pct">27,4%</span></div>
+    <div class="r"><span>Pix</span><span class="pct">8,0%</span></div>
+  </div>
+
+  <h2>Situação fiscal</h2>
+  <div class="rows fisc">
+    <div class="r"><span>DAS de agosto</span><span class="v ok">pago em 18/08, baixou certo</span></div>
+    <div class="r"><span>DAS de junho, competência 06/2026</span><span class="v">pago em duplicidade (R$ 87,05), restituição preparada</span></div>
+    <div class="r"><span>DASN 2025</span><span class="v ok">entregue em maio</span></div>
+  </div>
+
+  <h2>Observações da Regis</h2>
+  <ul>
+    <li>No ritmo atual, o faturamento <b>chega ao teto em outubro</b>. Vale decidir entre segurar venda ou preparar a migração de regime.</li>
+    <li>Contestação de <b>R$ 55,90</b> (Netflix, cobrança dobrada) em andamento, o estorno ainda não caiu.</li>
+    <li>Antecipação da maquininha ligada desde março custou <b>R$ 312</b> no trimestre, fica registrado para decidir se desliga.</li>
+  </ul>
+
+  <div class="foot">
+    Documento preparado pela Regis, já somado a partir do extrato e conferido contra as vendas. <b>A Regis organiza e prepara, a decisão fiscal é da contadora.</b> Angela não precisou fazer conta nenhuma.
+  </div>
+
+</div>
+</body>
+</html>

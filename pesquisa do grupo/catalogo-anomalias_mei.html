@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Catálogo de anomalias — PF e PJ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+Condensed:wght@600;700&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #FBFCF9;
+    --bar: #E6EEDF;
+    --rule: #C3CFB9;
+    --ink: #1B2019;
+    --ink-soft: #5E655B;
+    --debit: #A8412A;
+    --debit-bg: #F8E7E1;
+    --debit-rule: #D9A695;
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    background-image: repeating-linear-gradient(to bottom, var(--bar) 0 34px, var(--paper) 34px 68px);
+    color: var(--ink);
+    font-family: "IBM Plex Sans", system-ui, sans-serif;
+    font-size: 16px;
+    line-height: 1.65;
+  }
+  .sheet {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 40px 28px 80px;
+    background: var(--paper);
+    border-left: 1px solid var(--rule);
+    border-right: 1px solid var(--rule);
+    min-height: 100vh;
+  }
+  .eyebrow {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin: 0 0 18px;
+  }
+  h1 {
+    font-family: "IBM Plex Sans Condensed", sans-serif;
+    font-weight: 700;
+    font-size: clamp(34px, 7vw, 54px);
+    line-height: 1.02;
+    letter-spacing: -0.01em;
+    margin: 0 0 14px;
+  }
+  .standfirst { font-size: 18px; color: var(--ink-soft); max-width: 46em; margin: 0 0 32px; }
+  h2 {
+    font-family: "IBM Plex Sans Condensed", sans-serif;
+    font-weight: 600;
+    font-size: 26px;
+    line-height: 1.15;
+    margin: 0 0 6px;
+    padding-top: 14px;
+    border-top: 2px solid var(--ink);
+  }
+  h3 {
+    font-family: "IBM Plex Sans Condensed", sans-serif;
+    font-weight: 600;
+    font-size: 19px;
+    margin: 28px 0 10px;
+  }
+  .kicker {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    display: block;
+    margin-bottom: 20px;
+  }
+  section { margin-bottom: 56px; }
+  p { margin: 0 0 16px; max-width: 46em; }
+  strong { font-weight: 500; }
+  em { font-style: italic; }
+
+  .tag {
+    display: inline-block;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 3px 9px;
+    border-radius: 999px;
+    border: 1px solid transparent;
+    white-space: nowrap;
+  }
+  .t-dup { background: #EDE7F5; border-color: #C6B8E0; color: #4B3572; }
+  .t-val { background: #F8E7E1; border-color: #D9A695; color: #7A2E1C; }
+  .t-rec { background: #DFF0EA; border-color: #A6CFC2; color: #1E5346; }
+  .t-con { background: #F6EAD6; border-color: #D9BE8C; color: #5E3D12; }
+  .t-com { background: #E3EDF7; border-color: #A9C4DF; color: #27496F; }
+  .t-pro { background: #EDF1DC; border-color: #C0CC97; color: #47521D; }
+  .t-cil { background: #F7E3EC; border-color: #DFAFC4; color: #6E2C48; }
+  .t-fis { background: #2E3B2C; border-color: #2E3B2C; color: #F1F4EC; }
+
+  .cert {
+    display: inline-block;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 3px 9px;
+    border-radius: 0;
+    white-space: nowrap;
+  }
+  .c-fato { background: var(--ink); color: #FBFCF9; }
+  .c-regra { background: #CBD3C4; color: #2B322A; }
+  .c-susp { background: transparent; border: 1px dashed var(--rule); color: var(--ink-soft); }
+
+  .legend { border: 1px solid var(--rule); padding: 20px 22px; margin: 0 0 28px; background: #fff; }
+  .legend p { margin: 0 0 12px; }
+  .legend-row { display: flex; flex-wrap: wrap; gap: 10px 8px; margin-bottom: 14px; }
+  .legend-row:last-child { margin-bottom: 0; }
+  .legend-label {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    width: 100%;
+    margin-bottom: 2px;
+  }
+
+  .filters { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 8px; }
+  .filters button {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 999px;
+    border: 1px solid var(--rule);
+    background: #fff;
+    color: var(--ink-soft);
+    cursor: pointer;
+  }
+  .filters button:hover { border-color: var(--ink-soft); color: var(--ink); }
+  .filters button:focus-visible { outline: 2px solid var(--debit); outline-offset: 2px; }
+  .filters button[aria-pressed="true"] { background: var(--ink); border-color: var(--ink); color: #FBFCF9; }
+  .filter-note { font-family: "IBM Plex Mono", monospace; font-size: 11px; color: var(--ink-soft); margin: 0 0 24px; }
+
+  ul.items { list-style: none; padding: 0; margin: 0; }
+  ul.items li {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 6px 20px;
+    align-items: baseline;
+    padding: 14px 0;
+    border-top: 1px solid var(--rule);
+  }
+  ul.items li:last-child { border-bottom: 1px solid var(--rule); }
+  ul.items li.is-hidden { display: none; }
+  .item-tags { display: flex; gap: 6px; flex-wrap: wrap; justify-content: flex-end; }
+  .empty-note { display: none; padding: 14px 0; color: var(--ink-soft); font-family: "IBM Plex Mono", monospace; font-size: 12px; }
+  .empty-note.is-visible { display: block; }
+
+  table { width: 100%; border-collapse: collapse; margin: 8px 0 20px; font-size: 15px; }
+  caption { text-align: left; font-family: "IBM Plex Mono", monospace; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-soft); padding-bottom: 8px; }
+  th, td { text-align: left; padding: 11px 12px 11px 0; border-bottom: 1px solid var(--rule); vertical-align: top; }
+  thead th { font-family: "IBM Plex Mono", monospace; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-soft); border-bottom: 1px solid var(--ink); font-weight: 400; }
+
+  .callout { background: var(--debit-bg); border: 1px solid var(--debit-rule); padding: 22px 24px; margin: 24px 0; }
+  .callout p:last-child { margin-bottom: 0; }
+  .callout h3 { margin-top: 0; }
+
+  footer { font-family: "IBM Plex Mono", monospace; font-size: 12px; color: var(--ink-soft); border-top: 1px solid var(--rule); padding-top: 16px; }
+
+  @media (max-width: 620px) {
+    .sheet { padding: 28px 18px 60px; border: none; }
+    ul.items li { grid-template-columns: 1fr; }
+    .item-tags { justify-content: flex-start; }
+    table { font-size: 14px; }
+  }
+  @media print {
+    body { background: #fff; }
+    .sheet { border: none; max-width: none; }
+    .filters, .filter-note { display: none; }
+    section { break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+<div class="sheet">
+
+  <p class="eyebrow">Hackathon · Time 12 · Mesa 12 · Documento 02</p>
+  <h1>Catálogo de anomalias</h1>
+  <p class="standfirst">Tudo que um autopilot financeiro poderia encontrar, separado por pessoa física, MEI e pessoa jurídica. Cada item carrega duas etiquetas: <strong>de que tipo é</strong> e <strong>quanta certeza temos</strong>. A segunda é a que decide o comportamento do produto.</p>
+
+  <section>
+    <h2>Como ler as etiquetas</h2>
+    <span class="kicker">Dois eixos, não um</span>
+
+    <p>O <strong>tipo</strong> (etiqueta colorida e arredondada) diz de qual família a anomalia vem. Serve para agrupar detectores: cada família precisa de uma lógica diferente para ser encontrada.</p>
+
+    <p>A <strong>certeza</strong> (etiqueta retangular) diz o quanto podemos afirmar que aquilo é de fato um problema. É o eixo mais importante do documento, porque um autopilot que trata os três níveis do mesmo jeito perde a confiança da pessoa no primeiro alerta errado.</p>
+
+    <div class="legend">
+      <div class="legend-row">
+        <span class="legend-label">Tipo</span>
+        <span class="tag t-dup">duplicidade</span>
+        <span class="tag t-val">valor</span>
+        <span class="tag t-rec">recorrência</span>
+        <span class="tag t-con">contraparte</span>
+        <span class="tag t-com">comportamento</span>
+        <span class="tag t-pro">processo</span>
+        <span class="tag t-cil">conciliação</span>
+        <span class="tag t-fis">fiscal</span>
+      </div>
+      <div class="legend-row">
+        <span class="legend-label">Certeza</span>
+        <span class="cert c-fato">fato</span>
+        <span class="cert c-regra">regra</span>
+        <span class="cert c-susp">suspeita</span>
+      </div>
+    </div>
+
+    <p>Uma família foge do padrão de propósito: <span class="tag t-fis">fiscal</span> é a única em fundo sólido, porque é a única cuja consequência não é dinheiro perdido, e sim perder o próprio regime. Ela só aparece no bloco MEI.</p>
+
+    <p><span class="cert c-fato">fato</span> &nbsp;É verificável, não é opinião. Duplicata exata, estorno que não caiu, teste grátis convertido. O autopilot pode agir sozinho ou já entregar a ação pronta.</p>
+    <p><span class="cert c-regra">regra</span> &nbsp;Também é fato, mas só existe se conhecermos a política de quem usa: alçada, limite, obrigatoriedade de nota. O autopilot acusa e encaminha para quem decide.</p>
+    <p><span class="cert c-susp">suspeita</span> &nbsp;É desvio estatístico, não erro. Valor atípico, fornecedor novo, horário estranho. Na maioria das vezes é legítimo — aqui o autopilot não pode alarmar: pergunta, contextualiza ou registra em silêncio.</p>
+  </section>
+
+  <section>
+    <h2>Filtrar por tipo</h2>
+    <span class="kicker">Vale a pena olhar uma família por vez</span>
+    <div class="filters" id="filters">
+      <button type="button" data-filter="all" aria-pressed="true">todas</button>
+      <button type="button" data-filter="dup" aria-pressed="false">duplicidade</button>
+      <button type="button" data-filter="val" aria-pressed="false">valor</button>
+      <button type="button" data-filter="rec" aria-pressed="false">recorrência</button>
+      <button type="button" data-filter="con" aria-pressed="false">contraparte</button>
+      <button type="button" data-filter="com" aria-pressed="false">comportamento</button>
+      <button type="button" data-filter="pro" aria-pressed="false">processo</button>
+      <button type="button" data-filter="cil" aria-pressed="false">conciliação</button>
+      <button type="button" data-filter="fis" aria-pressed="false">fiscal</button>
+    </div>
+    <p class="filter-note" id="filterNote">Mostrando todas as anomalias.</p>
+  </section>
+
+  <section>
+    <h2>Só pessoa física</h2>
+    <span class="kicker">Poucas transações, uma pessoa só, memória própria funciona</span>
+    <ul class="items">
+      <li data-type="rec"><span>Assinatura esquecida — streaming, academia, app — que continua rodando</span><span class="item-tags"><span class="tag t-rec">recorrência</span><span class="cert c-fato">fato</span></span></li>
+      <li data-type="rec"><span>Teste grátis que virou pago sem aviso claro</span><span class="item-tags"><span class="tag t-rec">recorrência</span><span class="cert c-fato">fato</span></span></li>
+      <li data-type="dup"><span>Mesma assinatura cobrada pela loja de aplicativos e pelo site do serviço</span><span class="item-tags"><span class="tag t-dup">duplicidade</span><span class="cert c-fato">fato</span></span></li>
+      <li data-type="rec"><span>Compra parcelada que a pessoa perdeu de vista — quantas faltam?</span><span class="item-tags"><span class="tag t-rec">recorrência</span><span class="cert c-fato">fato</span></span></li>
+      <li data-type="val"><span>Anuidade de cartão que voltou a ser cobrada depois da isenção</span><span class="item-tags"><span class="tag t-val">valor</span><span class="cert c-fato">fato</span></span></li>
+      <li data-type="val"><span>Seguro ou serviço embutido que nunca foi contratado conscientemente</span><span class="item-tags"><span class="tag t-val">valor</span><span class="cert c-susp">suspeita</span></span></li>
+      <li data-type="com"><span>Cobrança de familiar no cartão adicional</span><span class="item-tags"><span class="tag t-com">comportamento</span><span class="cert c-susp">suspeita</span></span></li>
+      <li data-type="com"><span>Teste de cartão: sequência de valores baixos antes de uma fraude maior</span><span class="item-tags"><span class="tag t-com">comportamento</span><span class="cert c-susp">suspeita</span></span></li>
+      <li data-type="rec"><span>Assinatura de terceiro rodando no seu cartão</span><span class="item-tags"><span class="tag t-rec">recorrência</span><span class="cert c-susp">suspeita</span></span></li>
+    </ul>
+    <p class="empty-note">Nenhuma anomalia desta família aqui.</p>
+  </section>
+
+  <section>
+    <h2>MEI — o caso híbrido</h2>
+    <span class="kicker">PJ no papel, PF na prática · teto de R$ 81.000 desde 2019</span>
+    <p>O MEI é pessoa jurídica, mas se comporta como pessoa física: uma pessoa só, sem contador, sem ERP, sem política interna. A diferença é que ele carrega uma camada que a PF não tem — obrigação fiscal com prazo e consequência. E, ao contrário da empresa média, essa regra é <strong>pública e igual para todo mundo</strong>: não precisamos configurar nada para verificá-la.</p>
+    <p>Aqui a anomalia mais valiosa não está na despesa, está na <strong>receita</strong> — porque faturar demais é que dói. Desde 2025, rendimentos recebidos como pessoa física ligados à atividade também entram na conta do limite, o que transforma a velha bagunça de misturar contas em risco fiscal direto.</p>
+    <ul class="items">
+      <li data-type="fis"><span>Faturamento acumulado em ritmo de estourar o teto anual</span><span class="item-tags"><span class="tag t-fis">fiscal</span><span class="cert c-regra">regra</span></span></li>
+      <li data-type="fis"><span>Receita recebida no CPF, ligada à atividade, fora da conta do limite</span><span class="item-tags"><span class="tag t-fis">fiscal</span><span class="cert c-regra">regra</span></span></li>
+      <li data-type="fis"><span>DAS do mês não pago</span><span class="item-tags"><span class="tag t-fis">fiscal</span><span class="cert c-fato">fato</span></span></li>
+      <li data-type="fis"><span>Declaração anual (DASN-SIMEI) não entregue no prazo</span><span class="item-tags"><span class="tag t-fis">fiscal</span><span class="cert c-regra">regra</span></span></li>
+      <li data-type="fis"><span>Notificação da Receita parada na caixa postal eletrônica</span><span class="item-tags"><span class="tag t-fis">fiscal</span><span class="cert c-fato">fato</span></span></li>
+      <li data-type="fis"><span>Insumo do negócio pago pelo Pix pessoal — some do controle e do faturamento</span><span class="item-tags"><span class="tag t-fis">fiscal</span><span class="cert c-susp">suspeita</span></span></li>
+      <li data-type="dup"><span>DAS pago duas vezes no mesmo mês</span><span class="item-tags"><span class="tag t-dup">duplicidade</span><span class="cert c-fato">fato</span></span></li>
+      <li data-type="cil"><span>DAS pago que não baixou o mês correspondente</span><span class="item-tags"><span class="tag t-cil">conciliação</span><span class="cert c-fato">fato</span></span></li>
+      <li data-type="val"><span>Antecipação automática ligada sem a pessoa ter percebido</span><span class="item-tags"><span class="tag t-val">valor</span><span class="cert c-fato">fato</span></span></li>
+      <li data-type="val"><span>Taxa efetiva da maquininha diferente da contratada</span><span class="item-tags"><span class="tag t-val">valor</span><span class="cert c-regra">regra</span></span></li>
+      <li data-type="val"><span>Empréstimo sendo descontado automaticamente das vendas diárias</span><span class="item-tags"><span class="tag t-val">valor</span><span class="cert c-fato">fato</span></span></li>
+      <li data-type="val"><span>Tarifa de conta PJ que deixou de ser gratuita</span><span class="item-tags"><span class="tag t-val">valor</span><span class="cert c-fato">fato</span></span></li>
+      <li data-type="cil"><span>Repasse de marketplace menor que a venda, sem comissão ou retenção explicada</span><span class="item-tags"><span class="tag t-cil">conciliação</span><span class="cert c-fato">fato</span></span></li>
+      <li data-type="cil"><span>Venda confirmada cujo repasse nunca chegou</span><span class="item-tags"><span class="tag t-cil">conciliação</span><span class="cert c-fato">fato</span></span></li>
+      <li data-type="cil"><span>Chargeback ou estorno descontado sem aviso</span><span class="item-tags"><span class="tag t-cil">conciliação</span><span class="cert c-fato">fato</span></span></li>
+      <li data-type="rec"><span>Assinatura de ferramenta de trabalho misturada com pessoal no mesmo cartão</span><span class="item-tags"><span class="tag t-rec">recorrência</span><span class="cert c-susp">suspeita</span></span></li>
+    </ul>
+    <p class="empty-note">Nenhuma anomalia desta família aqui.</p>
+  </section>
+
+  <section>
+    <h2>Só pessoa jurídica</h2>
+    <span class="kicker">Muitas transações, várias pessoas, memória própria não funciona</span>
+    <ul class="items">
+      <li data-type="pro"><span>Despesa realizada sem aprovação prévia</span><span class="item-tags"><span class="tag t-pro">processo</span><span class="cert c-regra">regra</span></span></li>
+      <li data-type="pro"><span>Gasto acima da alçada de quem aprovou</span><span class="item-tags"><span class="tag t-pro">processo</span><span class="cert c-regra">regra</span></span></li>
+      <li data-type="pro"><span>Valor quebrado em partes para ficar abaixo do limite de aprovação</span><span class="item-tags"><span class="tag t-pro">processo</span><span class="cert c-susp">suspeita</span></span></li>
+      <li data-type="pro"><span>Despesa lançada sem nota fiscal anexada</span><span class="item-tags"><span class="tag t-pro">processo</span><span class="cert c-regra">regra</span></span></li>
+      <li data-type="pro"><span>Gasto pessoal em cartão corporativo</span><span class="item-tags"><span class="tag t-pro">processo</span><span class="cert c-susp">suspeita</span></span></li>
+      <li data-type="rec"><span>Licença de software de pessoa que já saiu da empresa</span><span class="item-tags"><span class="tag t-rec">recorrência</span><span class="cert c-fato">fato</span></span></li>
+      <li data-type="con"><span>Mesmo fornecedor cadastrado duas vezes com nomes diferentes</span><span class="item-tags"><span class="tag t-con">contraparte</span><span class="cert c-fato">fato</span></span></li>
+      <li data-type="con"><span>Dados bancários de fornecedor conhecido que mudaram — golpe do boleto</span><span class="item-tags"><span class="tag t-con">contraparte</span><span class="cert c-susp">suspeita</span></span></li>
+      <li data-type="val"><span>Taxa de maquininha diferente da contratada</span><span class="item-tags"><span class="tag t-val">valor</span><span class="cert c-regra">regra</span></span></li>
+      <li data-type="val"><span>Reajuste contratual acima do índice combinado</span><span class="item-tags"><span class="tag t-val">valor</span><span class="cert c-regra">regra</span></span></li>
+      <li data-type="cil"><span>Divergência entre extrato e sistema no fechamento</span><span class="item-tags"><span class="tag t-cil">conciliação</span><span class="cert c-fato">fato</span></span></li>
+      <li data-type="cil"><span>Recebível que não entrou na data esperada</span><span class="item-tags"><span class="tag t-cil">conciliação</span><span class="cert c-fato">fato</span></span></li>
+      <li data-type="cil"><span>Classificação contábil claramente errada</span><span class="item-tags"><span class="tag t-cil">conciliação</span><span class="cert c-susp">suspeita</span></span></li>
+      <li data-type="dup"><span>Pagamento feito duas vezes — uma pelo financeiro, outra pelo sócio</span><span class="item-tags"><span class="tag t-dup">duplicidade</span><span class="cert c-fato">fato</span></span></li>
+    </ul>
+    <p class="empty-note">Nenhuma anomalia desta família aqui.</p>
+  </section>
+
+  <section>
+    <h2>Comum aos dois</h2>
+    <span class="kicker">Mesma anomalia, peso completamente diferente</span>
+    <ul class="items">
+      <li data-type="dup"><span>Cobrança duplicada do mesmo fornecedor em janela curta</span><span class="item-tags"><span class="tag t-dup">duplicidade</span><span class="cert c-fato">fato</span></span></li>
+      <li data-type="dup"><span>Boleto pago duas vezes — uma pelo app, outra pelo banco</span><span class="item-tags"><span class="tag t-dup">duplicidade</span><span class="cert c-fato">fato</span></span></li>
+      <li data-type="dup"><span>Pix reenviado por parecer que não tinha caído</span><span class="item-tags"><span class="tag t-dup">duplicidade</span><span class="cert c-fato">fato</span></span></li>
+      <li data-type="val"><span>Assinatura ou serviço que subiu de preço sem aviso</span><span class="item-tags"><span class="tag t-val">valor</span><span class="cert c-fato">fato</span></span></li>
+      <li data-type="val"><span>Tarifa bancária nova ou pacote alterado</span><span class="item-tags"><span class="tag t-val">valor</span><span class="cert c-fato">fato</span></span></li>
+      <li data-type="val"><span>Juros, multa ou IOF que não deveriam existir</span><span class="item-tags"><span class="tag t-val">valor</span><span class="cert c-regra">regra</span></span></li>
+      <li data-type="rec"><span>Serviço cancelado que continua sendo cobrado</span><span class="item-tags"><span class="tag t-rec">recorrência</span><span class="cert c-fato">fato</span></span></li>
+      <li data-type="rec"><span>Cobrança que parou de aparecer — anomalia de ausência</span><span class="item-tags"><span class="tag t-rec">recorrência</span><span class="cert c-fato">fato</span></span></li>
+      <li data-type="con"><span>Pagamento para contraparte sem nenhum histórico</span><span class="item-tags"><span class="tag t-con">contraparte</span><span class="cert c-susp">suspeita</span></span></li>
+      <li data-type="com"><span>Cobrança fora do dia habitual do ciclo</span><span class="item-tags"><span class="tag t-com">comportamento</span><span class="cert c-susp">suspeita</span></span></li>
+      <li data-type="com"><span>Transação de madrugada, fim de semana ou feriado</span><span class="item-tags"><span class="tag t-com">comportamento</span><span class="cert c-susp">suspeita</span></span></li>
+      <li data-type="cil"><span>Estorno prometido que nunca caiu</span><span class="item-tags"><span class="tag t-cil">conciliação</span><span class="cert c-fato">fato</span></span></li>
+    </ul>
+    <p class="empty-note">Nenhuma anomalia desta família aqui.</p>
+
+    <table>
+      <caption>A mesma anomalia pesa diferente de cada lado</caption>
+      <thead>
+        <tr><th scope="col">Anomalia</th><th scope="col">Na pessoa física</th><th scope="col">Na pessoa jurídica</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Cobrança duplicada</td><td>Irrita, valor baixo</td><td>Volume alto, passa despercebida</td></tr>
+        <tr><td>Boleto pago duas vezes</td><td>Raro</td><td>Frequente, dinheiro parado</td></tr>
+        <tr><td>Aumento de preço sem aviso</td><td>Sensação de traição</td><td>Impacto direto em margem</td></tr>
+        <tr><td>Tarifa bancária nova</td><td>Alguns reais</td><td>Milhares por mês em conta PJ</td></tr>
+        <tr><td>Estorno que nunca caiu</td><td>A pessoa desiste de cobrar</td><td>Fica pendurado no contas a receber</td></tr>
+        <tr><td>Contraparte nova</td><td>Quase sempre normal</td><td>Sinal forte de fraude</td></tr>
+        <tr><td>Cobrança que sumiu</td><td>Ninguém nota</td><td>Quebra a conciliação</td></tr>
+        <tr><td>Horário atípico</td><td>Sinal fraco</td><td>Sinal forte</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>O que a divisão muda no design</h2>
+    <span class="kicker">Quatro consequências práticas</span>
+
+    <h3>Escala</h3>
+    <p>Pessoa física tem dezenas de transações por mês e reconhece cada uma. Empresa tem centenas ou milhares e ninguém reconhece nada de memória. Na PF o autopilot compete com <em>“eu olharia se quisesse”</em>. Na PJ ele compete com <em>“é humanamente impossível olhar”</em>.</p>
+
+    <h3>Quem age</h3>
+    <p>Na PF a mesma pessoa detecta, decide e resolve. Na PJ isso se parte em três pessoas diferentes — e o produto vira ferramenta de coordenação, não de detecção. É a diferença mais subestimada entre os dois lados.</p>
+
+    <h3>A família dominante</h3>
+    <p>Na PF é <span class="tag t-rec">recorrência</span> — assinatura que não morre. Na PJ é <span class="tag t-pro">processo</span> — regra interna quebrada. São motores completamente diferentes: recorrência se detecta com padrão temporal, processo exige conhecer a política da empresa.</p>
+
+    <h3>Por que o MEI resolve o impasse</h3>
+    <p>Na PJ, quase tudo marcado como <span class="cert c-regra">regra</span> depende de conhecer a política interna da empresa — o que não dá para cadastrar em 30 horas. No MEI, a regra é lei pública e idêntica para todos: o teto é o mesmo, o DAS vence todo dia 20, a declaração é em maio. Ganhamos a camada de regra sem configurar nada.</p>
+
+    <h3>O que dá para demonstrar em 30 horas</h3>
+    <p>Tudo marcado como <span class="cert c-fato">fato</span> é demonstrável sem treinar baseline e sem cadastrar política interna. Tudo marcado como <span class="cert c-regra">regra</span> exige configuração prévia. Tudo marcado como <span class="cert c-susp">suspeita</span> exige histórico que não teremos no protótipo.</p>
+
+    <div class="callout">
+      <h3>A tese que sai daqui</h3>
+      <p>O nível de autonomia do autopilot varia com o nível de certeza da anomalia. Fato ele resolve, regra ele encaminha, suspeita ele apenas pergunta.</p>
+      <p>Nenhum concorrente comunica isso claramente — a maioria joga tudo no mesmo feed de alertas. Essa separação é ao mesmo tempo a nossa decisão de produto e o nosso argumento de UX.</p>
+    </div>
+  </section>
+
+  <footer>Documento de trabalho — atualizar conforme o time escolher o segmento e o enquadramento.</footer>
+
+</div>
+
+<script>
+  (function () {
+    var bar = document.getElementById('filters');
+    var note = document.getElementById('filterNote');
+    var items = Array.prototype.slice.call(document.querySelectorAll('ul.items li'));
+    var lists = Array.prototype.slice.call(document.querySelectorAll('ul.items'));
+    var names = { all: 'todas as anomalias', dup: 'duplicidade', val: 'valor', rec: 'recorrência', con: 'contraparte', com: 'comportamento', pro: 'processo', cil: 'conciliação', fis: 'fiscal' };
+
+    bar.addEventListener('click', function (e) {
+      var btn = e.target.closest('button');
+      if (!btn) return;
+      var filter = btn.dataset.filter;
+
+      Array.prototype.forEach.call(bar.querySelectorAll('button'), function (b) {
+        b.setAttribute('aria-pressed', String(b === btn));
+      });
+
+      items.forEach(function (li) {
+        li.classList.toggle('is-hidden', filter !== 'all' && li.dataset.type !== filter);
+      });
+
+      lists.forEach(function (list) {
+        var visible = list.querySelectorAll('li:not(.is-hidden)').length;
+        var empty = list.parentNode.querySelector('.empty-note');
+        if (empty) empty.classList.toggle('is-visible', visible === 0);
+      });
+
+      note.textContent = filter === 'all'
+        ? 'Mostrando todas as anomalias.'
+        : 'Mostrando apenas: ' + names[filter] + '.';
+    });
+  })();
+</script>
+</body>
+</html>

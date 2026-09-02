@@ -1,0 +1,184 @@
+{
+  "gerado_em": "",
+  "perfil": {
+    "nome": "Angela Nogueira",
+    "primeiro_nome": "Angela",
+    "negocio": "cabeleireira MEI no Studio Bella"
+  },
+  "resumo": {
+    "faturado": 58400.0,
+    "faturado_txt": "58.400,00",
+    "teto": 81000.0,
+    "teto_txt": "81.000,00",
+    "percentual": 72.1,
+    "falta": 22600.0,
+    "falta_txt": "22.600,00",
+    "estouro": "2026-10-24",
+    "estouro_mes": "outubro",
+    "recuperavel": 1145.15,
+    "recuperavel_txt": "1.145,15",
+    "transacoes_conferidas": 367
+  },
+  "achados": [
+    {
+      "id": "AN-01",
+      "certeza": "fato",
+      "tipo": "duplicidade",
+      "titulo": "Pagamento para Beleza Distribuidora saiu duas vezes no mesmo dia",
+      "explicacao": "Achei R$ 487,60 saindo duas vezes para a Beleza Distribuidora no dia 14/07, uma às 09:12 e outra às 16:48, com 7,6 horas de diferença. Mesmo valor, mesmo fornecedor, então foi o mesmo boleto pago duas vezes. Dá para pedir de volta.",
+      "valor": 487.6,
+      "valor_txt": "487,60",
+      "tem_acao": true,
+      "acao_titulo": "Pedido de devolução para o fornecedor"
+    },
+    {
+      "id": "AN-02",
+      "certeza": "fato",
+      "tipo": "valor",
+      "titulo": "A antecipação automática levou R$ 312,00 do seu crédito",
+      "explicacao": "A antecipação automática está ligada desde 02/03/2026 e desconta 2,99% de todo crédito, todo dia. No extrato que li são 57 descontos que somam R$ 312,00, cerca de R$ 104,00 por mês. É o preço de receber hoje o que cairia amanhã, e pelo que consta ninguém te avisou que estava ligada.",
+      "valor": 312.0,
+      "valor_txt": "312,00",
+      "tem_acao": true,
+      "acao_titulo": "Como desligar a antecipação automática"
+    },
+    {
+      "id": "AN-03",
+      "certeza": "fato",
+      "tipo": "recorrencia",
+      "titulo": "A Agenda Salão App continua cobrando depois do cancelamento",
+      "explicacao": "Você cancelou a Agenda Salão App em 12/06/2026, protocolo AGS-2026-88421, e mesmo assim ela cobrou R$ 39,90 em 22/06/2026, 22/07/2026 e 22/08/2026. São R$ 119,70 que saíram depois do cancelamento, e esse dinheiro volta.",
+      "valor": 119.7,
+      "valor_txt": "119,70",
+      "tem_acao": true,
+      "acao_titulo": "Cobrança do estorno e da baixa do cancelamento"
+    },
+    {
+      "id": "AN-04",
+      "certeza": "fato",
+      "tipo": "duplicidade",
+      "titulo": "DAS da competência 06/2026 pago duas vezes",
+      "explicacao": "O DAS da competência 06/2026 foi pago duas vezes, em 17/07/2026 e de novo em 20/07/2026, R$ 87,05 cada. É a mesma guia paga em dobro, e esse valor volta como restituição ou entra como crédito no próximo DAS.",
+      "valor": 87.05,
+      "valor_txt": "87,05",
+      "tem_acao": true,
+      "acao_titulo": "Pedido de restituição do DAS pago em duplicidade"
+    },
+    {
+      "id": "AN-05",
+      "certeza": "fato",
+      "tipo": "duplicidade",
+      "titulo": "Netflix cobrada duas vezes no dia 12/08",
+      "explicacao": "A Netflix veio duas vezes no dia 12/08, R$ 55,90 cada, uma às 09:14 e outra às 21:47. São 12,6 horas de diferença e a mesma mensalidade. Esse dinheiro volta.",
+      "valor": 55.9,
+      "valor_txt": "55,90",
+      "tem_acao": true,
+      "acao_titulo": "Contestação da cobrança repetida"
+    },
+    {
+      "id": "AN-06",
+      "certeza": "fato",
+      "tipo": "conciliacao",
+      "titulo": "O repasse da BelezaNet veio R$ 38,00 menor",
+      "explicacao": "O repasse da BelezaNet que caiu em 28/08/2026 cobriu 11 atendimentos que somam R$ 1.042,00. Com a comissão de 12% que está no contrato deveriam ter caído R$ 916,96, e caíram R$ 878,96. Faltam R$ 38,00 sem nenhuma retenção explicada.",
+      "valor": 38.0,
+      "valor_txt": "38,00",
+      "tem_acao": true,
+      "acao_titulo": "Cobrança da diferença do repasse"
+    },
+    {
+      "id": "AN-07",
+      "certeza": "fato",
+      "tipo": "valor",
+      "titulo": "Sua conta PJ deixou de ser gratuita, R$ 29,90 por mês",
+      "explicacao": "A sua conta no Banco Sudeste era isenta de tarifa até 31/07/2026. Em 05/08/2026 entrou a primeira cobrança de manutenção, R$ 29,90, sem aviso que tenha chegado até você. Se ficar assim, são R$ 358,80 por ano numa conta que era de graça.",
+      "valor": 29.9,
+      "valor_txt": "29,90",
+      "tem_acao": true,
+      "acao_titulo": "Pedido de isenção da tarifa"
+    },
+    {
+      "id": "AN-08",
+      "certeza": "fato",
+      "tipo": "valor",
+      "titulo": "A SomPro Música Ambiente subiu de preço sem avisar",
+      "explicacao": "A SomPro Música Ambiente cobrava R$ 32,90 por mês e em 08/08/2026 passou a cobrar R$ 47,90, uma alta de 45,6% sem nenhum aviso. São R$ 15,00 a mais por mês, R$ 180,00 no ano se ficar assim.",
+      "valor": 15.0,
+      "valor_txt": "15,00",
+      "tem_acao": true,
+      "acao_titulo": "Pedido de explicação ou cancelamento"
+    },
+    {
+      "id": "AN-09",
+      "certeza": "regra",
+      "tipo": "valor",
+      "titulo": "A maquininha passou a descontar 3,49% em vez de 2,89%",
+      "explicacao": "De 19/08/2026 até 29/08/2026 as vendas no crédito vieram com desconto de 3,49%, e o seu contrato com a Cielo diz 2,89%. São 24 vendas, R$ 1.838,00 de volume, e R$ 11,03 a mais de taxa nesse período. Vale conferir com a Cielo antes que vire mês cheio.",
+      "valor": 11.03,
+      "valor_txt": "11,03",
+      "tem_acao": true,
+      "acao_titulo": "Contestação da taxa para a adquirente"
+    },
+    {
+      "id": "AN-10",
+      "certeza": "regra",
+      "tipo": "fiscal",
+      "titulo": "No ritmo de hoje o teto estoura em outubro",
+      "explicacao": "Até 29/08/2026 você já faturou R$ 58.400,00 neste ano, que é 72,1% do teto de R$ 81.000,00. Faltam R$ 22.600,00. Se o movimento seguir crescendo como nos últimos três meses, o teto de R$ 81.000,00 é alcançado por volta de 24/10/2026. Não é dinheiro perdido, é uma decisão para tomar com antecedência.",
+      "valor": null,
+      "valor_txt": null,
+      "tem_acao": true,
+      "acao_titulo": "As três saídas, para decidir com calma"
+    },
+    {
+      "id": "AN-11",
+      "certeza": "suspeita",
+      "tipo": "contraparte",
+      "titulo": "Pix de R$ 340,00 para Maria Souza, nome novo na conta",
+      "explicacao": "Saiu um Pix de R$ 340,00 para Maria Souza em 03/08/2026, e essa é a primeira vez que esse nome aparece na sua conta. Pode ser gente nova trabalhando com você, pode ser compra pontual. Se foi você, me diz que eu registro e não pergunto de novo.",
+      "valor": null,
+      "valor_txt": null,
+      "tem_acao": false,
+      "acao_titulo": null
+    },
+    {
+      "id": "AN-12",
+      "certeza": "suspeita",
+      "tipo": "comportamento",
+      "titulo": "Pix de R$ 268,00 às 03:41 de um domingo",
+      "explicacao": "Em 19/07/2026, um domingo, saiu R$ 268,00 às 03:41 para Beleza Distribuidora, que você conhece. Todo o resto da sua conta acontece entre 06:00 e 23:59. Pode ter sido agendamento, pode ter sido você mesma. Só quero ouvir de você antes de deixar passar.",
+      "valor": null,
+      "valor_txt": null,
+      "tem_acao": false,
+      "acao_titulo": null
+    }
+  ],
+  "silenciados": [
+    {
+      "titulo": "Studio Bella, mensalidade estável",
+      "explicacao": "Sai R$ 1.850,00 todo mês, 3 vezes seguidas, sempre no mesmo dia e no mesmo valor. É contraparte conhecida e o valor não mudou, então não tem por que te avisar."
+    },
+    {
+      "titulo": "Vivo Fibra, mensalidade estável",
+      "explicacao": "Sai R$ 119,90 todo mês, 3 vezes seguidas, sempre no mesmo dia e no mesmo valor. É contraparte conhecida e o valor não mudou, então não tem por que te avisar."
+    },
+    {
+      "titulo": "Os outros repasses da BelezaNet bateram",
+      "explicacao": "Conferi 11 repasses do período, R$ 5.939,12 no total, contra as vendas de cada ciclo. Todos fecharam certinho com a comissão de 12%. Nada para te avisar aqui."
+    },
+    {
+      "titulo": "A taxa do débito está batendo com o contrato",
+      "explicacao": "Conferi as 99 vendas no débito do período, R$ 7.912,00 de volume, e o desconto da Cielo foi de 1,49% em todas. É exatamente a taxa contratada, então não tem nada a fazer aqui."
+    },
+    {
+      "titulo": "Contrapartes que aparecem pouco, e são suas conhecidas",
+      "explicacao": "No período, 2 nomes receberam pagamento uma ou duas vezes só: Drogaria São Paulo, Supermercado Bom Preço. Eles já estão no seu histórico, então é contraparte pouco frequente, não contraparte nova. Não vou te perguntar sobre eles."
+    }
+  ],
+  "contagem": {
+    "fatos": 8,
+    "regras": 2,
+    "suspeitas": 2,
+    "silenciados": 5
+  }
+}

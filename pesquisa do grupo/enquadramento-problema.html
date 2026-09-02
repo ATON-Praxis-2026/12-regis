@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Enquadramento do problema — Financial Anomaly Autopilot</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+Condensed:wght@600;700&family=IBM+Plex+Sans:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #FBFCF9;
+    --bar: #E6EEDF;
+    --rule: #C3CFB9;
+    --ink: #1B2019;
+    --ink-soft: #5E655B;
+    --debit: #A8412A;
+    --debit-bg: #F8E7E1;
+    --debit-rule: #D9A695;
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    background-image: repeating-linear-gradient(
+      to bottom,
+      var(--bar) 0px, var(--bar) 34px,
+      var(--paper) 34px, var(--paper) 68px
+    );
+    color: var(--ink);
+    font-family: "IBM Plex Sans", system-ui, sans-serif;
+    font-size: 16px;
+    line-height: 1.65;
+  }
+  .sheet {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 40px 28px 80px;
+    background: var(--paper);
+    border-left: 1px solid var(--rule);
+    border-right: 1px solid var(--rule);
+    min-height: 100vh;
+  }
+  .eyebrow {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin: 0 0 18px;
+  }
+  h1 {
+    font-family: "IBM Plex Sans Condensed", sans-serif;
+    font-weight: 700;
+    font-size: clamp(34px, 7vw, 54px);
+    line-height: 1.02;
+    letter-spacing: -0.01em;
+    margin: 0 0 14px;
+  }
+  .standfirst {
+    font-size: 18px;
+    color: var(--ink-soft);
+    max-width: 46em;
+    margin: 0 0 28px;
+  }
+  .meta {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 12px;
+    color: var(--ink-soft);
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    padding: 10px 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 28px;
+    margin-bottom: 56px;
+  }
+  section { margin-bottom: 56px; }
+  h2 {
+    font-family: "IBM Plex Sans Condensed", sans-serif;
+    font-weight: 600;
+    font-size: 26px;
+    line-height: 1.15;
+    margin: 0 0 6px;
+    padding-top: 14px;
+    border-top: 2px solid var(--ink);
+  }
+  .kicker {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    display: block;
+    margin-bottom: 20px;
+  }
+  p { margin: 0 0 16px; max-width: 46em; }
+  strong { font-weight: 500; }
+  em { font-style: italic; }
+  .diagram-scroll { overflow-x: auto; margin: 8px 0 18px; }
+  .diagram-scroll svg { display: block; min-width: 620px; width: 100%; height: auto; }
+  .entries { display: grid; gap: 0; }
+  .entry {
+    display: grid;
+    grid-template-columns: 92px 1fr;
+    gap: 0 20px;
+    padding: 22px 0;
+    border-top: 1px solid var(--rule);
+    align-items: start;
+  }
+  .entry:last-child { border-bottom: 1px solid var(--rule); }
+  .entry-code {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 12px;
+    color: var(--ink-soft);
+    letter-spacing: 0.06em;
+    padding-top: 4px;
+  }
+  .entry h3 {
+    font-family: "IBM Plex Sans Condensed", sans-serif;
+    font-weight: 600;
+    font-size: 21px;
+    margin: 0 0 10px;
+  }
+  .entry dl { margin: 0; display: grid; grid-template-columns: max-content 1fr; gap: 6px 14px; }
+  .entry dt {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    padding-top: 3px;
+  }
+  .entry dd { margin: 0; }
+  .entry dd.risk { color: var(--debit); }
+  .flag {
+    display: inline-block;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--debit);
+    background: var(--debit-bg);
+    border: 1px solid var(--debit-rule);
+    padding: 2px 7px;
+    margin-left: 8px;
+    vertical-align: 3px;
+  }
+  .callout {
+    background: var(--debit-bg);
+    border: 1px solid var(--debit-rule);
+    padding: 22px 24px;
+    margin: 24px 0;
+  }
+  .callout p:last-child { margin-bottom: 0; }
+  ul.listen { list-style: none; padding: 0; margin: 0; }
+  ul.listen li { padding: 18px 0; border-top: 1px solid var(--rule); max-width: 46em; }
+  ul.listen li:last-child { border-bottom: 1px solid var(--rule); }
+  ul.listen b {
+    font-family: "IBM Plex Sans Condensed", sans-serif;
+    font-weight: 600;
+    font-size: 18px;
+    display: block;
+    margin-bottom: 4px;
+  }
+  ol.open { padding-left: 0; list-style: none; counter-reset: q; margin: 0; }
+  ol.open li {
+    counter-increment: q;
+    padding: 16px 0 16px 52px;
+    border-top: 1px solid var(--rule);
+    position: relative;
+    max-width: 46em;
+  }
+  ol.open li:last-child { border-bottom: 1px solid var(--rule); }
+  ol.open li::before {
+    content: counter(q, decimal-leading-zero);
+    position: absolute;
+    left: 0;
+    top: 16px;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 12px;
+    color: var(--debit);
+  }
+  footer {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 12px;
+    color: var(--ink-soft);
+    border-top: 1px solid var(--rule);
+    padding-top: 16px;
+  }
+  @media (max-width: 560px) {
+    .sheet { padding: 28px 18px 60px; border: none; }
+    .entry { grid-template-columns: 1fr; gap: 8px; }
+    .entry dl { grid-template-columns: 1fr; gap: 2px 0; }
+    .entry dt { padding-top: 8px; }
+  }
+  @media print {
+    body { background: #fff; }
+    .sheet { border: none; max-width: none; }
+    section { break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+<div class="sheet">
+
+  <p class="eyebrow">Hackathon · Time 12 · Mesa 12</p>
+  <h1>Enquadramento do problema</h1>
+  <p class="standfirst">Financial Anomaly Autopilot. Este documento não propõe solução — ele existe para a gente decidir <em>qual problema</em> vai atacar antes de escrever a primeira linha.</p>
+  <div class="meta">
+    <span>Tema 20 · Financeiro</span>
+    <span>Status: para discussão</span>
+    <span>Pesquisa: entrevistas em campo</span>
+  </div>
+
+  <section>
+    <h2>O ciclo do vazamento</h2>
+    <span class="kicker">Onde o dinheiro se perde de verdade</span>
+    <p>O brief fala em detectar. Mas uma cobrança errada percorre um caminho bem mais longo do que a detecção, e o tempo se perde em pontos específicos.</p>
+    <div class="diagram-scroll">
+      <svg viewBox="0 0 680 250" role="img" xmlns="http://www.w3.org/2000/svg">
+        <title>Ciclo de uma cobrança errada</title>
+        <desc>Seis etapas em sequência: acontece, aparece no extrato, alguém percebe, entende se é erro, age e resolve. As etapas Percebe e Age estão destacadas como os pontos onde o tempo se perde.</desc>
+        <defs>
+          <marker id="ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M2 1L8 5L2 9" fill="none" stroke="#5E655B" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+          </marker>
+        </defs>
+
+        <rect x="20" y="20" width="200" height="52" rx="3" fill="#FFFFFF" stroke="#C3CFB9"/>
+        <text x="120" y="41" text-anchor="middle" font-family="IBM Plex Sans Condensed, sans-serif" font-weight="600" font-size="15" fill="#1B2019">Acontece</text>
+        <text x="120" y="60" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="12" fill="#5E655B">você não controla</text>
+
+        <rect x="240" y="20" width="200" height="52" rx="3" fill="#FFFFFF" stroke="#C3CFB9"/>
+        <text x="340" y="41" text-anchor="middle" font-family="IBM Plex Sans Condensed, sans-serif" font-weight="600" font-size="15" fill="#1B2019">Aparece</text>
+        <text x="340" y="60" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="12" fill="#5E655B">dias depois</text>
+
+        <rect x="460" y="20" width="200" height="52" rx="3" fill="#F8E7E1" stroke="#D9A695"/>
+        <text x="560" y="41" text-anchor="middle" font-family="IBM Plex Sans Condensed, sans-serif" font-weight="600" font-size="15" fill="#7A2E1C">Percebe</text>
+        <text x="560" y="60" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="12" fill="#A8412A">só se alguém olhar</text>
+
+        <line x1="220" y1="46" x2="236" y2="46" stroke="#5E655B" stroke-width="1" marker-end="url(#ar)"/>
+        <line x1="440" y1="46" x2="456" y2="46" stroke="#5E655B" stroke-width="1" marker-end="url(#ar)"/>
+        <path d="M660 72 L660 104 L120 104 L120 136" fill="none" stroke="#5E655B" stroke-width="1" marker-end="url(#ar)"/>
+
+        <rect x="20" y="140" width="200" height="52" rx="3" fill="#FFFFFF" stroke="#C3CFB9"/>
+        <text x="120" y="161" text-anchor="middle" font-family="IBM Plex Sans Condensed, sans-serif" font-weight="600" font-size="15" fill="#1B2019">Entende</text>
+        <text x="120" y="180" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="12" fill="#5E655B">é erro ou é normal?</text>
+
+        <rect x="240" y="140" width="200" height="52" rx="3" fill="#F8E7E1" stroke="#D9A695"/>
+        <text x="340" y="161" text-anchor="middle" font-family="IBM Plex Sans Condensed, sans-serif" font-weight="600" font-size="15" fill="#7A2E1C">Age</text>
+        <text x="340" y="180" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="12" fill="#A8412A">contesta ou cancela</text>
+
+        <rect x="460" y="140" width="200" height="52" rx="3" fill="#FFFFFF" stroke="#C3CFB9"/>
+        <text x="560" y="161" text-anchor="middle" font-family="IBM Plex Sans Condensed, sans-serif" font-weight="600" font-size="15" fill="#1B2019">Resolve</text>
+        <text x="560" y="180" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="12" fill="#5E655B">pode levar semanas</text>
+
+        <line x1="220" y1="166" x2="236" y2="166" stroke="#5E655B" stroke-width="1" marker-end="url(#ar)"/>
+        <line x1="440" y1="166" x2="456" y2="166" stroke="#5E655B" stroke-width="1" marker-end="url(#ar)"/>
+
+        <text x="340" y="226" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="12" fill="#A8412A">destacado: onde o tempo costuma se perder</text>
+      </svg>
+    </div>
+    <p>O brief nos empurra para a etapa <strong>Percebe</strong> — que é onde quase todo concorrente já mora, e onde a detecção estatística virou commodity.</p>
+  </section>
+
+  <section>
+    <h2>Quatro enquadramentos possíveis</h2>
+    <span class="kicker">Cada um gera um produto diferente — só dá para defender um</span>
+    <div class="entries">
+
+      <article class="entry">
+        <div class="entry-code">ENQ · A</div>
+        <div>
+          <h3>“Ninguém olha”</h3>
+          <dl>
+            <dt>Problema</dt><dd>Cobertura. A conferência hoje é amostral.</dd>
+            <dt>Produto</dt><dd>Vigilância contínua que substitui a checagem manual.</dd>
+            <dt>Risco</dt><dd class="risk">Vira feed de alertas e morre de fadiga na segunda semana.</dd>
+          </dl>
+        </div>
+      </article>
+
+      <article class="entry">
+        <div class="entry-code">ENQ · B</div>
+        <div>
+          <h3>“Olho, mas não sei se é problema”</h3>
+          <dl>
+            <dt>Problema</dt><dd>Julgamento. Anomalia não é o mesmo que erro.</dd>
+            <dt>Produto</dt><dd>Contexto e evidência: histórico, comparativo, contrato.</dd>
+            <dt>Risco</dt><dd class="risk">Depende de dados que talvez não tenhamos no protótipo.</dd>
+          </dl>
+        </div>
+      </article>
+
+      <article class="entry">
+        <div class="entry-code">ENQ · C</div>
+        <div>
+          <h3>“Sei que está errado, mas resolver é um inferno”<span class="flag">menos disputado</span></h3>
+          <dl>
+            <dt>Problema</dt><dd>Resolução. O custo real está depois da descoberta.</dd>
+            <dt>Produto</dt><dd>Agente que redige a contestação, monta o dossiê, acompanha o estorno.</dd>
+            <dt>Risco</dt><dd class="risk">Depende de terceiros — difícil de demonstrar em 30 horas.</dd>
+          </dl>
+        </div>
+      </article>
+
+      <article class="entry">
+        <div class="entry-code">ENQ · D</div>
+        <div>
+          <h3>“Não quero ser eu que deixou passar”<span class="flag">menos disputado</span></h3>
+          <dl>
+            <dt>Problema</dt><dd>Responsabilidade. Quem perde o dinheiro nem sempre é quem passa vergonha.</dd>
+            <dt>Produto</dt><dd>Rastro auditável: conferido, nada pendente, com data e cobertura.</dd>
+            <dt>Risco</dt><dd class="risk">Vende tranquilidade, não economia — valor difícil de medir.</dd>
+          </dl>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <section>
+    <h2>A pergunta que quase todo time esquece</h2>
+    <span class="kicker">Provavelmente a parte mais difícil do tema</span>
+    <div class="callout">
+      <p><strong>O que é “normal”?</strong> No dia 1 não existe histórico. Sem baseline, o sistema ou fica mudo ou grita para tudo. Como funciona a primeira semana de uso é o que ninguém vai apresentar — e resolver só isso bem já nos diferencia.</p>
+      <p><strong>E quem decide o que é normal?</strong> O sistema sozinho (e erra), a pessoa configurando (e ninguém configura), ou o sistema propondo e a pessoa confirmando aos poucos? É decisão de UX pura e define o produto inteiro.</p>
+    </div>
+    <p>Junto com ela vem a assimetria dos erros: falso positivo custa atenção, falso negativo custa dinheiro e confiança. A pessoa perdoa muito menos o segundo — mas é o primeiro que faz ela desinstalar.</p>
+  </section>
+
+  <section>
+    <h2>O que escutar nas entrevistas</h2>
+    <span class="kicker">Três sinais que decidem o enquadramento</span>
+    <ul class="listen">
+      <li><b>Onde está o atraso</b>Se descobrem em dias, o problema é resolução (C). Se descobrem em meses ou nunca, é cobertura (A).</li>
+      <li><b>Verbos de emoção</b>“Fiquei com raiva”, “me senti burra”, “tive que explicar pro meu sócio”. Onde aparece vergonha, aparece o enquadramento D.</li>
+      <li><b>Quem elas acionam</b>Contador, banco, fornecedor, sócio. Se o processo real envolve outra pessoa, o produto também precisa envolver — e quase nenhum concorrente faz isso.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Decisões em aberto</h2>
+    <span class="kicker">Responder antes de começar a construir</span>
+    <ol class="open">
+      <li>Quem é o usuário: pessoa física, dono de PME ou time financeiro de empresa média?</li>
+      <li>Que dados teremos no protótipo: extrato sintético, Open Finance, CSV colado à mão? Enquadramento que não dá para demonstrar não ganha hackathon.</li>
+      <li>Qual dos quatro enquadramentos assumimos — e o que deixamos explicitamente de fora.</li>
+      <li>Qual é a nossa métrica de sucesso: anomalias encontradas, dinheiro recuperado, ou tempo entre o vazamento e a ação?</li>
+    </ol>
+  </section>
+
+  <footer>Documento de trabalho — atualizar conforme as entrevistas chegarem.</footer>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,254 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Regis · Fale com ela</title>
+<meta name="description" content="Você sabe quanto já faturou este ano? A Regis sabe. Ela confere o dinheiro que entra e sai da sua conta e só te chama quando precisa de você.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Karla:wght@400;500;600;700&display=swap">
+<style>
+  :root{
+    color-scheme:dark;
+    --ink:#F2F5F2; --ink2:#C4CFC7; --mute:#8B968E; --faint:#69736C;
+    --bg:#070A08; --card:#111714; --card2:#0C120F; --linha:#212A24;
+    --green:#00C46C; --green-deep:#84E4B6; --green-wash:#0D2217; --on-green:#04170D;
+    --d:"Manrope",-apple-system,BlinkMacSystemFont,sans-serif;
+    --b:"Karla",-apple-system,BlinkMacSystemFont,sans-serif;
+  }
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--b);
+       font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+
+  /* uma coluna só, medida de celular, centrada na página.
+     o texto fica à esquerda, só o bloco é que centraliza. */
+  .pag{max-width:560px;margin:0 auto;padding:38px 22px 56px}
+  @media (min-width:720px){ .pag{padding:64px 22px 80px} }
+
+  /* ---------- entrada suave, mesma mecânica do padrão aprovado ---------- */
+  .vem{opacity:0;transform:translateY(22px);
+       transition:opacity .7s cubic-bezier(.2,.7,.3,1),transform .7s cubic-bezier(.2,.7,.3,1)}
+  .vem.chegou{opacity:1;transform:none}
+  .vem.d1{transition-delay:.08s} .vem.d2{transition-delay:.16s}
+  .vem.d3{transition-delay:.24s} .vem.d4{transition-delay:.32s}
+  .vem.d5{transition-delay:.40s}
+
+  /* em tela muito estreita o selo desce em vez de empurrar a linha pra fora */
+  .topo{display:flex;align-items:center;gap:12px;margin-bottom:28px;flex-wrap:wrap}
+  .topo img{width:86px;height:auto;display:block}
+  .selo{display:inline-flex;align-items:center;gap:7px;background:var(--green-wash);
+        color:var(--green-deep);font-family:var(--d);font-size:10.5px;font-weight:700;
+        letter-spacing:.11em;text-transform:uppercase;padding:5px 11px;border-radius:999px;
+        margin-left:auto}
+  @media (max-width:359px){ .selo{margin-left:0} }
+  .selo .pip{width:6px;height:6px;border-radius:50%;background:var(--green);
+             animation:pulsa 2.4s ease-in-out infinite}
+  @keyframes pulsa{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.72)}}
+
+  h1{font-family:var(--d);font-weight:800;font-size:clamp(31px,8.4vw,42px);line-height:1.04;
+     letter-spacing:-.038em;margin:0;text-wrap:balance}
+  h1 .fraco{color:var(--mute)}
+  .abre{color:var(--ink2);margin:20px 0 0;text-wrap:pretty}
+
+  /* ---------- o botão, que é o motivo da página ---------- */
+  .cta{display:flex;align-items:center;justify-content:center;gap:10px;
+       background:var(--green);color:var(--on-green);border-radius:14px;
+       padding:17px 20px;margin:26px 0 0;text-decoration:none;
+       font-family:var(--d);font-weight:800;font-size:17px;
+       transition:transform .14s,opacity .16s}
+  .cta:hover{opacity:.93;transform:translateY(-1px)}
+  .cta:active{transform:scale(.99)}
+  .cta svg{flex:none;transition:transform .2s}
+  .cta:hover svg{transform:translateX(3px)}
+  .cta.vazado{background:transparent;color:var(--green-deep);
+       border:1px solid var(--green-deep);margin-top:12px}
+  .cta.vazado:hover{background:var(--green-wash);opacity:1}
+  .acesso{background:var(--card);border:1px solid var(--linha);border-radius:14px;
+          padding:15px 18px;margin:14px 0 0;display:flex;flex-wrap:wrap;
+          align-items:center;justify-content:center;gap:8px 22px;
+          font-size:14px;color:var(--mute)}
+  .acesso b{font-family:var(--d);font-weight:700;color:var(--ink);
+            font-size:15px;letter-spacing:.01em}
+  .acesso .par{display:flex;align-items:baseline;gap:8px}
+  .acesso .rot{font-size:11px;letter-spacing:.12em;text-transform:uppercase;
+               color:var(--faint);font-family:var(--d);font-weight:700}
+  .sob{font-size:13.5px;color:var(--faint);margin:11px 0 0;text-align:center;text-wrap:pretty}
+
+  /* ---------- seções ---------- */
+  section{margin-top:44px}
+  h2{font-family:var(--d);font-weight:800;font-size:20px;letter-spacing:-.024em;
+     margin:0 0 6px;text-wrap:balance}
+  .diz{color:var(--mute);font-size:15px;margin:0 0 18px;text-wrap:pretty}
+
+  /* frases em linguagem de gente */
+  .frases{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:9px}
+  .frases li{background:var(--card);border:1px solid var(--linha);border-radius:12px;
+             padding:12px 15px;font-size:15.5px;color:var(--ink2);
+             border-top-left-radius:4px}
+  .frases li::before{content:"“";color:var(--faint)}
+  .frases li::after{content:"”";color:var(--faint)}
+
+  /* comandos */
+  .cmds{list-style:none;margin:0;padding:0;border-top:1px solid var(--linha)}
+  .cmds li{padding:15px 0;border-bottom:1px solid var(--linha)}
+  .cmds .nome{font-family:var(--d);font-weight:800;font-size:16px;color:var(--green);
+              letter-spacing:-.01em}
+  .cmds .oq{font-size:15px;color:var(--ink2);margin-top:3px;text-wrap:pretty}
+  .cmds .nota{font-size:13.5px;color:var(--faint);margin-top:5px;text-wrap:pretty}
+
+  /* o limite duro */
+  .limite{background:var(--card2);border:1px solid var(--linha);border-radius:14px;
+          padding:20px 20px 22px}
+  .limite h2{margin-bottom:8px}
+  .limite p{margin:0;color:var(--ink2);font-size:15.5px;text-wrap:pretty}
+  .limite p + p{margin-top:10px}
+  .limite strong{color:var(--ink);font-weight:600}
+
+  .honesto{font-size:13.5px;color:var(--faint);margin:26px 0 0;text-wrap:pretty;
+           border-left:2px solid var(--linha);padding-left:14px}
+
+  footer{margin-top:44px;padding-top:22px;border-top:1px solid var(--linha);
+         font-size:13.5px;color:var(--faint);text-align:center;text-wrap:pretty}
+  footer a{color:var(--green-deep);text-decoration:none}
+  footer a:hover{text-decoration:underline}
+
+  @media (prefers-reduced-motion:reduce){
+    *{animation:none!important;transition:none!important}
+    .vem{opacity:1;transform:none}
+  }
+</style>
+
+<main class="pag">
+
+  <div class="topo vem">
+    <img src="../idv/Regis%20Logo.svg" alt="Regis">
+    <span class="selo"><span class="pip"></span> Dados de demonstração</span>
+  </div>
+
+  <h1 class="vem d1">Você sabe quanto<br>já faturou este ano?<br><span class="fraco">A Regis sabe.</span></h1>
+  <p class="abre vem d2">Ela confere o dinheiro que entra e sai da sua conta todo dia, e só te chama quando algo não bate. Fale com ela agora, ela responde na hora.</p>
+
+  <a class="cta vem d3" href="https://t.me/ChamaARegisBot" target="_blank" rel="noopener">
+    <svg width="21" height="21" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M21.9 4.3 18.6 20c-.2 1.1-.9 1.4-1.8.9l-4.9-3.6-2.4 2.3c-.3.3-.5.5-1 .5l.4-5 9.1-8.2c.4-.4-.1-.6-.6-.2L6.2 13.6l-4.8-1.5c-1-.3-1.1-1 .2-1.5l18.9-7.3c.9-.3 1.6.2 1.4 1z"/>
+    </svg>
+    Abrir a Regis no Telegram
+  </a>
+  <p class="sob vem d4">Abre direto no seu Telegram. Não precisa instalar mais nada.</p>
+
+  <a class="cta vazado vem d4" href="/regis-app.html">
+    <svg width="20" height="20" viewBox="0 -960 960 960" fill="currentColor" aria-hidden="true">
+      <path d="M120-120v-720h720v720H120Zm80-80h560v-480H200v480Zm80-80h160v-160H280v160Zm240 0h160v-80H520v80Zm0-160h160v-80H520v80Z"/>
+    </svg>
+    Ver o painel da Angela
+  </a>
+
+  <div class="acesso vem d4">
+    <span>Entra com</span>
+    <span class="par"><span class="rot">usuário</span> <b>angela</b></span>
+    <span class="par"><span class="rot">senha</span> <b>TROQUE_ESTA_SENHA</b></span>
+  </div>
+  <p class="sob vem d4">É o mesmo dinheiro da conversa, visto por cima. Uma conta só, com dados simulados.</p>
+
+  <section>
+    <h2 class="vem">Escreva do seu jeito</h2>
+    <p class="diz vem d1">Ela entende português. Você não precisa decorar comando nenhum, é só perguntar como perguntaria pra uma pessoa.</p>
+    <ul class="frases">
+      <li class="vem d1">quanto eu já faturei este ano?</li>
+      <li class="vem d2">e o DAS desse mês?</li>
+      <li class="vem d3">achou alguma coisa errada?</li>
+      <li class="vem d4">monta o resumo pra minha contadora</li>
+      <li class="vem d5">quanto falta pro teto do MEI?</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2 class="vem">Se preferir atalho</h2>
+    <p class="diz vem d1">Seis comandos, todos funcionando agora.</p>
+    <ul class="cmds">
+      <li class="vem d1">
+        <div class="nome">/start</div>
+        <div class="oq">Ela se apresenta e já abre com o número: quanto você faturou no ano.</div>
+        <div class="nota">A primeira mensagem revela um número, nunca pede configuração.</div>
+      </li>
+      <li class="vem d2">
+        <div class="nome">/conferir</div>
+        <div class="oq">Mostra o que ela encontrou: cobrança repetida, assinatura que não parou, repasse menor que a venda.</div>
+      </li>
+      <li class="vem d3">
+        <div class="nome">/teto</div>
+        <div class="oq">Quanto você já faturou e quanto falta pro teto de R$ 81 mil do MEI, com a data provável de bater nele.</div>
+      </li>
+      <li class="vem d4">
+        <div class="nome">/resumo</div>
+        <div class="oq">O resumo de tranquilidade: o que foi conferido, o que ela achou e como está o caixa.</div>
+      </li>
+      <li class="vem d1">
+        <div class="nome">/silencio</div>
+        <div class="oq">O que ela viu e escolheu não te mandar, porque não virava problema.</div>
+        <div class="nota">É o comando que mostra a diferença. Um autopilot decide o que não merece alarme.</div>
+      </li>
+      <li class="vem d2">
+        <div class="nome">/esquecer</div>
+        <div class="oq">Apaga o que você já contou pra ela e deixa a conversa do jeito que estava no começo.</div>
+        <div class="nota">Útil se você quiser ver tudo de novo desde o início.</div>
+      </li>
+    </ul>
+  </section>
+
+  <section class="limite vem">
+    <h2>O que ela não faz</h2>
+    <p><strong>A Regis não mexe no seu dinheiro.</strong> Ela não paga, não transfere, não cancela cartão e não contesta no banco por você.</p>
+    <p>Ela confere, soma, projeta, deixa o documento pronto e lembra do prazo. Quem aperta enviar é você, sempre.</p>
+  </section>
+
+  <a class="cta vem" href="https://t.me/ChamaARegisBot" target="_blank" rel="noopener">
+    <svg width="21" height="21" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M21.9 4.3 18.6 20c-.2 1.1-.9 1.4-1.8.9l-4.9-3.6-2.4 2.3c-.3.3-.5.5-1 .5l.4-5 9.1-8.2c.4-.4-.1-.6-.6-.2L6.2 13.6l-4.8-1.5c-1-.3-1.1-1 .2-1.5l18.9-7.3c.9-.3 1.6.2 1.4 1z"/>
+    </svg>
+    Falar com a Regis
+  </a>
+
+  <p class="honesto vem d1">Os dados desta demonstração são simulados. É um extrato construído por nós, com anomalias plantadas de propósito, para você conferir se ela acha mesmo o que promete achar.</p>
+
+  <footer class="vem d2">
+    Regis · Hackathon Vanguarda, agosto de 2026<br>
+    No Telegram: <a href="https://t.me/ChamaARegisBot" target="_blank" rel="noopener">@ChamaARegisBot</a>
+  </footer>
+
+</main>
+
+<script>
+/* As seções chegam conforme a pessoa rola. Mesma mecânica do padrão aprovado.
+   Não dependo só do IntersectionObserver: alguns navegadores não disparam para
+   elemento com opacity 0. Calculo a posição na mão, no scroll, e ainda deixo
+   uma rede de segurança que revela tudo. A página nunca fica invisível. */
+(function(){
+  var lentos = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var alvos = [].slice.call(document.querySelectorAll(".vem"));
+
+  function revelarTudo(){
+    alvos.forEach(function(e){ e.classList.add("chegou"); });
+  }
+  if (lentos){ revelarTudo(); return; }
+
+  function conferir(){
+    var altura = window.innerHeight || document.documentElement.clientHeight;
+    alvos.forEach(function(e){
+      if (e.classList.contains("chegou")) return;
+      var r = e.getBoundingClientRect();
+      // entrou na tela, mesmo que só um pedaço
+      if (r.top < altura * 0.92 && r.bottom > 0) e.classList.add("chegou");
+    });
+  }
+
+  conferir();
+  var rodando = false;
+  function noScroll(){
+    if (rodando) return;
+    rodando = true;
+    window.requestAnimationFrame(function(){ conferir(); rodando = false; });
+  }
+  window.addEventListener("scroll", noScroll, {passive:true});
+  window.addEventListener("resize", noScroll, {passive:true});
+  window.setTimeout(conferir, 240);
+  // rede de segurança: se algo der errado, ninguém fica com a página em branco
+  window.setTimeout(revelarTudo, 5000);
+})();
+</script>
